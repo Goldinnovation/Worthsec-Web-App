@@ -21,7 +21,7 @@ export async function POST(request) {
           },
           body: JSON.stringify({
             model: 'text-davinci-003',
-            prompt: 'write the title and author of the results inside a square brackets:' + body.question,
+            prompt: body.question,
             temperature: 0,  // how much randomness to inject into the text
             max_tokens: 100
           })
