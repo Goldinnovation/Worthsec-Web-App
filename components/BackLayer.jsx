@@ -2,7 +2,7 @@
 import { useState, useEffect} from 'react';
 import Profilbar from './Profilbar';
 import dictionary from '@utils/dbData';
-
+import SearchBar from './SearchBar';
 
 const BackLayer = () => {
     
@@ -10,6 +10,10 @@ const totalItems = 40;
 const numberOfItemsToShow = 7;
 
 const [currentItems, setCurrentItems] = useState(getRandomItems());
+const [navbar, setNavbar] = useState(false)
+
+
+
 
 useEffect(() => {
     const interval = setInterval(() => {
@@ -32,6 +36,7 @@ function getRandomItems() {
     <div>
         {/* loop for the background */}
         <div className="container">
+        
         {currentItems.map(index => {
                 const book = dictionary[index];
                 return (
@@ -52,7 +57,7 @@ function getRandomItems() {
         </div>
 
         {/* overlay for background */}
-        <div className="blur-overlay"></div>
+    <div className="blur-overlay"></div>
 
         {/* profilbar */}
         <div className="profil-area">
@@ -60,36 +65,20 @@ function getRandomItems() {
         </div>
 
 
+        <div className='search-container'>
+        {navbar && (
+                  <div className="star-area">4</div>
+                )}
+        </div>
+
+
+
         {/* search container */}
         <div className="top-container">
-            <div className="content-area">
-
-                <div className="title-area">
-                    <div className="title-content">
-                    <h1>Trinity</h1>
-                    </div>
-                </div>
-                <div className="search-area"> 
-                <input type="text" className="search-input" placeholder='Enter your inspiration' />
-                <select className='Genre-Opt'>
-                        <option value="0">Genre</option>
-                        <option value="red">Books</option>
-                        <option value="green">green</option>
-                        <option value="pink">pink</option>
-                        <option value="blue">blue</option>
-                    </select>
-
-                </div>
-                <div className="tag-area">
-                    <input type="text" className="tag-content" placeholder='Place your tags' />
-                </div>
-                <div className="btn-area">
-                    <button className='submit-btn'>submit</button>
-                </div>
-            </div>
+           <SearchBar/>
         </div>
         
-      
+    
     </div>
   )
 }

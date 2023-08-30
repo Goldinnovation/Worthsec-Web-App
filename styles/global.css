@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(111, 3, 91);
+    background-color: rgb(0, 0, 0);
     margin: 0; 
     padding: 0;
     box-sizing: border-box;
@@ -11,7 +11,9 @@ html, body{
     overflow: hidden;
 }
 
-/* background */
+
+
+/* background container */
 .container{
     display: grid;
     width: 100%;
@@ -26,6 +28,7 @@ html, body{
     "a a b b b c c d d d ";
     grid-template-columns: repeat(10, 9%); 
 }
+
 
 .hidden {
     display: none;
@@ -43,18 +46,19 @@ html, body{
     object-fit: cover;
 }
 .blur-overlay {
-    position: fixed;      /* This makes the element positioned relative to the viewport */
+    position: fixed;      
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;            /* These four values ensure it stretches to cover the whole viewport */
-    /* backdrop-filter: blur(60px); */
+    bottom: 0;           
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0);  /* White background with 10% opacity */
+    background: rgba(255, 255, 255, 0); 
     background: linear-gradient(0deg, rgb(22, 22, 23), rgba(13, 33, 111, 0.41) 55%, rgba(2, 1, 5, 0.297), rgba(4, 2, 2, 0.262));
     opacity: 0.9;
     z-index: 2;
+    
+
     
 }
 
@@ -62,49 +66,66 @@ html, body{
 /* profilbar area */
 
 .profil-area{
-    display: flex;
+   
+   
     position: absolute;
-    top: 0;
-    left: 90%;
+    top: 32%;
+    right: 0.5%;
     z-index: 4;
-    margin-top: 2%;
-    width: 200px;
+    width: 100;
+    height: 39%;
+    display: flex;
+    justify-content: flex-end;
+
+
     
-    align-items: center;
+
+    
+   
 }
 
 .profil-content{
-  display: flex;
-  flex-direction: column;
-  
-  align-items: center;
-  width: 200px;
-  height: 250px;
-}
-
-.profilImage{
-    width: 80px;
-    height: 80px;
-    position: relative;
-    border-radius:50% ;
-    
-}
-
-
-
-.linkpage1{
+    background-color: rgba(250, 235, 215, 0.231);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
    
-    width: 50px;
-    height: 200px;
-    border: 1px solid  rgba(204, 204, 204, 0.939);
-    border-radius: 5%;
-    margin-top: 5%;
+    width: 48px;
+    height: 450px;
+    border: 1px solid white;
+    border-radius: 30px;
+    margin-top: 25%;
+    align-items: center;
+   
+}
+
+.userIcon{
+    
+    width: 33px;
 }
 
 
-/* inside the container */
+
+.star-area{
+   
+    background-color: rgba(250, 235, 215, 0.231);
+    width: 5070%;
+    height: 200px;
+    position: absolute;
+    top: 135%; 
+    border: 1px solid white; 
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+/* inside the  search container */
 .top-container{
-    
+    background-color: rgba(250, 235, 215, 0.231);
     display: flex;
     position: absolute;
     top: 50%; 
@@ -114,8 +135,9 @@ html, body{
     width: 700px;
     height: 350px;
     border: 1px solid rgba(204, 204, 204, 0.341);
-
     border-radius: 50%;
+   
+    align-items: center;
     
 }
 
@@ -144,7 +166,7 @@ html, body{
 }
 
 .search-area{
-
+background-color: s;
 width: 100%;
 }
 
@@ -154,20 +176,67 @@ width: 100%;
 }
 
 
-.tag-area{
-   
-    width: 100%;
-}
+/* tag area  */
 
-.tag-content{
-    width: 65.2%;
-    height: 65px;
-    background-color: rgb(230, 230, 230);
-    border: 1px solid black;
-    border-radius: 1%;
-    text-align: center;
+.tag-container{
+    
+    width: 420px;
+    height: 80px;
+    padding: .5em;
+    margin-top: .2em;
+    
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap:wrap ;
+    gap: .5em;
+
     
 
+}
+
+
+.tag-item{
+    
+    background-color: rgb(122, 81, 60);
+    display: inline-block;
+    padding: .1em .65em;
+    border-radius: 20px;
+    
+
+}
+
+.tag-item .close{
+
+    
+    height: 10px;
+    width: 15px;
+    border-radius: 50px;
+    margin-left: .5em;
+    display: inline-flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    cursor: pointer ;
+   
+}
+
+.tags-input{
+    flex-grow: 1;
+    padding: .5em 0;
+    border: none;
+    outline: none;
+    background: none; 
+}
+
+.tags-input::placeholder{
+    color: rgba(255, 255, 255, 0.388);
+    text-align: center;
+}
+
+
+.texttry{
+    background-color: hsla(76, 88%, 47%, 0.863);
 }
 
 .btn-area{

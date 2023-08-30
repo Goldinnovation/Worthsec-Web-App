@@ -1,14 +1,18 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import ebbyImage from '@assets/ebby.png'
+import userIcon from '@assets/user.png'
+import starIcon from '@assets/star.png'
+import searchIcon from '@assets/search.png'
 import { useState } from 'react'
+
+
 
 
 const Profilbar = () => {
 
-
   const [navbar, setNavbar] = useState(false)
+
 
   const togglemodal = () => {
     setNavbar(!navbar)
@@ -16,17 +20,27 @@ const Profilbar = () => {
 
   
   return (
-    <div>
+    <>
             <div className="profil-image">
-              <div className="profil-content">
-                <Image src={ebbyImage} alt="decription of image" className='profilImage' onClick={togglemodal}/>
-                {navbar && (
-                  <div className="linkpage1">2</div>
-                )}
-              </div>
+                <div className='profil-content'>
+                <Image src={userIcon} alt="decription of image" className='userIcon' />
+                <Image src={searchIcon} alt="decription of image" className='userIcon' />
+                <Image src={starIcon} alt="decription of image" className='userIcon' onClick={togglemodal}/>
                
+             </div>
             </div>
-    </div>
+
+            
+            {navbar && (
+                  <div className="star-area" onClick={togglemodal}>
+
+                  </div>
+                )}
+
+            
+
+           
+    </>
   )
 }
 
