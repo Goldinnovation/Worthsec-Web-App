@@ -1,11 +1,13 @@
 import React from 'react'
-import Usercontent from '@components/Usercontent'
+import BackLayer from '@components/BackLayer'
+
+
 
 const page = () => {
   return (
     <div>
-    
-       
+   
+      <BackLayer/> 
     </div>
   )
 }

@@ -12,7 +12,8 @@ import { useState } from 'react'
 const SearchBar = () => {
 
     const [tags, setTags] = useState([])
-
+    const [rangeValue, setRangeValue] = useState(0)
+    const [isVisible, setVisible] = useState(true)
 
     const colorOptions = 
         [
@@ -65,48 +66,57 @@ const SearchBar = () => {
     function removeTag(index){
         setTags(tags.filter((_, i) => i !== index))
     }
+
+    
+// handels the input 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setVisible(false);
+
+    }
+
+
+
   return (
     <div>
-         <div className="content-area">
+        {isVisible && (
+             <div className="top-container">
+             <div className="content-area">
 
-            <div className="title-area">
-                <div className="title-content">
-                <h1>Trinity</h1>
-                </div>
-            </div>
-            <div className="search-area"> 
-            <input type="text" className="search-input" placeholder='Enter your inspiration' />
-            <select className='Genre-Opt'>
-                    <option value="0">Genre</option>
-                    <option value="red">Books</option>
-                    <option value="green">green</option>
-                    <option value="pink">pink</option>
-                    <option value="blue">blue</option>
-                </select>
-
-        </div>
-
-        <div className="tag-container">
-            {/* <div className="tag-item">
-                <span className='text'>hello</span>
-                <span className='close'>&times;</span>
-            </div> */}
-
-            {tags.map((tag, index) => (
-                 <div className="tag-item" key={index} style={{backgroundColor: tag.color}}>
-                 <span className='text'>{tag.value}</span>
-                 <span className='close' onClick={() => removeTag(index)}>&times;</span>
+             <div className="title-area">
+                 <div className="title-content">
+                 <h1>Trinity</h1>
+                 </div>
              </div>
-            ))}
-
-            <input  onKeyDown={handleKeyDown}type="text" className="tags-input"   placeholder='Specify your search'/>
-               
-        </div>
-
-        <div className="btn-area">
-            <button className='submit-btn'>submit</button>
-        </div>
-        </div>
+ 
+             <form onSubmit={handleSubmit}>
+             <div className="search-area"> 
+             <input type="text" className="search-input" placeholder='Enter your inspiration' />
+             <div className='range-container'>
+             <input type="range" min='0'  max='20' value={rangeValue} onChange={(e) => setRangeValue(e.target.value)} className='range-slider'/>
+                  <div className="display-rangeValue">{rangeValue}</div>       
+             </div>
+             </div>
+             </form>
+ 
+         <div className="tag-container">
+             {tags.map((tag, index) => (
+                  <div className="tag-item" key={index} style={{backgroundColor: tag.color}}>
+                  <span className='text'>{tag.value}</span>
+                  <span className='close' onClick={() => removeTag(index)}>&times;</span>
+              </div>
+             ))}
+             <input  onKeyDown={handleKeyDown}type="text" className="tags-input"   placeholder='Specify your search'/>     
+         </div>
+         <div className="btn-area">
+             <button className='submit-btn' onClick={handleSubmit}>Infinity Search</button>
+         </div>
+        
+         </div>
+         </div>
+         
+        )}
+        
       
     </div>
   )

@@ -67,16 +67,15 @@ html, body{
 
 .profil-area{
    
-   
+   /* background-color: rgba(89, 4, 4, 0.683); */
     position: absolute;
-    top: 32%;
-    right: 0.5%;
-    z-index: 4;
-    width: 100;
-    height: 39%;
+    width: 100%;
+    z-index: 2;
+    height: 100vh;
     display: flex;
     justify-content: flex-end;
-
+    align-items: center;
+    
 
     
 
@@ -85,36 +84,38 @@ html, body{
 }
 
 .profil-content{
-    background-color: rgba(250, 235, 215, 0.231);
+    /* background-color: rgba(250, 235, 215, 0.231); */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-   
+    justify-content: center;
+    gap: 30px;
     width: 48px;
-    height: 450px;
+    height: 240px;
     border: 1px solid white;
     border-radius: 30px;
     margin-top: 25%;
+    margin-right: 10px;
     align-items: center;
    
 }
 
 .userIcon{
     
-    width: 33px;
+    width: 25px;
+    height: 25px;
 }
 
 
-
 .star-area{
-   
     background-color: rgba(250, 235, 215, 0.231);
-    width: 5070%;
-    height: 200px;
     position: absolute;
-    top: 135%; 
+    width: 99%;
+    height: 200px;
     border: 1px solid white; 
     border-radius: 10px;
+    top: 82%;
+    z-index: 2;
+    margin: 5px;
 }
 
 
@@ -125,6 +126,7 @@ html, body{
 
 /* inside the  search container */
 .top-container{
+
     background-color: rgba(250, 235, 215, 0.231);
     display: flex;
     position: absolute;
@@ -136,14 +138,13 @@ html, body{
     height: 350px;
     border: 1px solid rgba(204, 204, 204, 0.341);
     border-radius: 50%;
-   
     align-items: center;
     
 }
 
 
 .content-area{
-    
+  
     width: 700px;
     display: flex;
     justify-content: center;
@@ -158,7 +159,7 @@ html, body{
 }
 
 .search-input{
-    width: 50%;
+    width: 350px;
     height: 25px;
     margin: 5px;
     margin-right: 5px;
@@ -166,15 +167,31 @@ html, body{
 }
 
 .search-area{
-background-color: s;
-width: 100%;
+    
+    
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: .5em ;
+   
 }
 
-.Genre-Opt{
-    width: 15%;
-    height: 25px;
+.range-container{
+   
+    margin-top: 15px;
+    color: white;
 }
 
+.range-slider::-webkit-slider-thumb{
+appearance: none;
+  width: 10px;
+  height: 20px;
+  border-radius: 50%;
+  background: red; /* change color here */
+  cursor: pointer;
+}
 
 /* tag area  */
 
@@ -241,6 +258,8 @@ width: 100%;
 
 .btn-area{
     margin-top: 5%;
+    /* background-color: red; */
+    
     
 }
 
@@ -250,4 +269,836 @@ width: 100%;
     height: 40px;
     border-radius: 3%;
 }
+
+
+
+
+/*  User feed area  */
+
+
+
+@media screen and (max-width:2000px){
+   
+   
+        .feed-area{
+            /* background-color: rgba(24, 190, 57, 0.256); */
+            margin: 0.2%;
+            height: 490px;
+            border: 1px solid rgb(220, 220, 220) ;
+        }
+
+
+
+}
+
+@media screen and (min-width:2000px) {
+  
+       .feed-area{
+            
+        display: flex;
+        /* background-color: rgba(255, 80, 191, 0.288); */
+            height: 800px;
+            margin: 0.5%;
+            border: 1px solid rgb(220, 220, 220) ;
+       }
+    
+    } 
+
+
+
+
+
+/*  media query for the user feed nav */
+
+
+@media screen and (max-width:2000px){
+
+    .user-feed-nav{
+        /* background-color: rgba(255, 166, 0, 0.648); */
+        width: 50px;
+        height: 450px;
+        margin: 1%;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.897);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        
+    }
+}
+
+@media screen and (min-width:2000px) {
+    
+    
+       .user-feed-nav{
+        /* background-color: rgba(255, 166, 0, 0.648); */
+        width: 50px;
+        height: 750px;
+        margin: 1%;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.897);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        
+    } }
+
+
+
+
+    .create-btn{
+        background-color: rgb(0, 247, 255);
+        height: 100px;
+        width: 100px;
+    }
+    
+    
+    
+    .add-btn{
+        /* background-color: rgba(189, 189, 189, 0.365); */
+        background-color: rgba(189, 183, 183, 0.233);
+        width: 40px;
+    
+    }
+    
+    .Timeline-btn{
+        /* background-color: rgba(189, 189, 189, 0.365); */
+        background-color: rgba(194, 194, 194, 0.233);
+        width: 40px;
+    
+    }
+    
+    .Network-btn{
+        background-color: rgba(247, 247, 247, 0.233);
+        width: 40px;
+    }
+    
+    
+    .Setting-btn{
+        background-color: rgba(242, 242, 242, 0.233);
+        width: 40px;
+    }
+    
+    .btn-area{
+       
+        height: 20px;
+    }
+    
+
+
+
+    
+
+/* user create event area  */
+
+
+@media screen and (max-width:2000px){
+
+
+    .create-event-area{
+        /* background-color: rgba(192, 196, 193, 0.55); */
+        width: 550px;
+        height: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,20%);
+        border: 1px solid white;
+        
+    }
+
+    
+
+
+}
+
+
+@media screen and (min-width:2000px) {
+    
+    .create-event-area{
+    /* background-color: rgba(192, 196, 193, 0.55); */
+    width: 750px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,0%);
+    border: 1px solid white;
+    
+
+    }
+ } 
+
+
+
+
+
+
+.title-date-content{
+    /* background-color: rgba(255, 166, 0, 0.975); */
+    margin-top: 20px;
+    display: flex;
+    height: 90px;
+    
+   
+}
+
+
+@media screen and (min-width:1800px){ 
+    
+    .title-date-content{
+        /* background-color: rgba(255, 166, 0, 0.975); */
+        margin-top: 20px;
+        display: flex;
+        height: 90px;
+        
+    
+    }
+}
+
+
+.event-title-area{
+    /* background-color: green; */
+    height: 90px;
+    text-align: center;
+    align-items: center;
+   
+}
+
+
+
+@media screen and (min-width:1800px){ 
+    
+
+    .event-title-area{
+        /* background-color: green; */
+        width: 90%;
+        height: 90px;
+        text-align: center;
+        align-items: center;
+    
+    }
+   
+}
+
+
+
+
+
+.eventTitle{
+    background-color: rgba(240, 248, 255, 0.79);
+    width: 300px;
+    height: 25px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-top: 23px;
+    gap: 50%;
+
+    
+}
+
+@media screen and (min-width:1800px){ 
+    
+    
+    .eventTitle{
+        background-color: rgba(240, 248, 255, 0.79);
+        width: 90%;
+        height: 30px;
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-top: 23px;
+        gap: 50%;
+
+        
+    }
+
+   
+}
+
+
+
+
+
+
+
+/* .eventtype-date-area{
+    background-color: red;
+   
+} */
+
+.eventType{
+    width: 150px;
+    height: 25px;
+    margin-top: 10px;
+    background-color: rgba(240, 248, 255, 0.79);
+    
+}
+
+
+
+.eventDate{
+    width: 145px;
+    margin-top: 5px;
+    background-color: rgba(240, 248, 255, 0.79);
+}
+
+
+/* invite option area */
+
+.Invite-content-area{
+    /* background-color: aquamarine; */
+    height: 50px;
+    border-top-style: solid;
+    border-top-color: white ;
+    border-top-width: 1px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    
+    
+    
+}
+
+.invite-content{
+    /* background-color: orange; */
+    width: 60%;
+    height: 50px;
+    
+    
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white ;
+
+}
+
+.onlyFriends-content{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.friendsPlus-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.worldWide-content{
+    display: flex;
+    flex-direction: column;
+}
+
+/* label style of invite contents */
+
+
+#worldwideClass{
+    
+    background-color: #f3e5e5b9;
+    color: rgb(39, 5, 5);
+}
+
+
+/* Image content area */
+
+
+.UploadCoverArea{
+    display: flex; 
+    gap: 10%;
+    
+    
+    
+    
+}
+
+.invite-area{
+    background-color: goldenrod;
+    width: 100px;
+    
+}
+
+.ImageCoverUpload{
+
+    background-color: aqua;
+    color: white;
+    margin-left: 2%;
+    
+}
+
+
+
+@media screen and (max-width:2000px){
+
+            
+        .imagePreview{
+
+
+            background-color: rgb(0, 255, 255);
+            color: white;
+            margin-left: 11.5%;
+            margin-top: 4%;
+            width: 190px;
+            height: 170px;
+
+        }
+
+}
+
+
+@media screen and (min-width:2000px){
+
+            
+        .imagePreview{
+
+
+            background-color: aqua;
+            color: white;
+            margin-left: 13%;
+
+        }
+
+}
+
+
+/* Image Cover Icon */
+
+@media screen and (max-width:2000px){
+
+    .ImageCoverIcon{
+    
+        /* background-color: rgb(152, 12, 12); */
+        margin-top: 10px;
+        margin-left:65%;
+    } 
+    
+}
+
+
+@media screen and (min-width:2000px){
+
+    .ImageCoverIcon{
+    
+        /* background-color: rgb(152, 12, 12); */
+        margin-top: 10px;
+        margin-left: 100%;
+    } 
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* inside create body - description area */
+.event-Description-And-ImageArea{
+    /* background-color: rgba(226, 52, 43, 0.457); */
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    
+}
+
+
+
+@media screen and (max-width:2000px){
+    
+    .event-Description-And-ImageArea{
+        /* background-color: rgba(226, 52, 43, 0.457); */
+        height: 80;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        align-items: center;
+        
+    }
+
+
+}
+
+@media screen and (min-width:2000px){ 
+    
+    .event-Description-And-ImageArea{
+        /* background-color: rgba(43, 226, 76, 0.457); */
+        height: 180px;
+        
+       
+        
+    }
+   
+}
+
+.eventDescriptionContent{
+    
+    /* background-color: red; */
+    width: 65%;
+    height: 70px;
+    
+}
+
+
+
+@media screen and (max-width:2000px){
+
+    .eventDescriptionContent{
+        background-color: rgba(240, 248, 255, 0.799);
+        margin-top: 20px;
+        width: 58%;
+        height: 80px;
+        margin-right: 1%;
+        border-radius: 10px;
+       
+        text-align: center;
+
+        
+        
+    }
+   
+
+}
+
+@media screen and (min-width:2000px){ 
+    
+    .eventDescriptionContent{
+        background-color: rgba(240, 248, 255, 0.799);
+        margin-top: 10px;
+        width: 58%;
+        height: 150px;
+        margin-right: 1%;
+        border-radius: 10px;
+       
+        text-align: center;
+
+        
+        
+    }
+   
+}
+
+
+
+@media screen and (max-width:2000px){
+
+    .createEventBtnArea{
+        margin-top: 20px;
+        display: flex;
+        /* background-color: aqua; */
+        justify-content: flex-end
+    }
+    
+}
+
+@media screen and (min-width:2000px){
+
+    .createEventBtnArea{
+        margin-top: 10px;
+        display: flex;
+        /* background-color: aqua; */
+        justify-content: flex-end
+    }
+
+}
+
+
+
+@media screen and (max-width:2000px){
+
+    .btnContentArea{
+        /* background-color: green; */
+        width: 408px;
+        margin-right: 1%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width:2000px){
+
+    .btnContentArea{
+        /* background-color: green; */
+        width: 438px;
+        margin-right: 1%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+
+}
+
+
+
+/* Event Time area  */
+
+
+@media screen and (max-width:2000px){
+    
+.eventTime{
+    background-color: rgba(240, 248, 255, 0.79);
+    height: 20px;
+    margin-left: 22%;
+
+}
+}
+
+
+
+@media screen and (min-width:2000px){
+
+    .eventTime{
+        background-color: rgba(240, 248, 255, 0.79);
+        height: 25px;
+        
+    
+    }
+
+ 
+}
+
+/* Create Event btn style  */
+
+
+@media screen and (max-width:2000px){
+
+    .createEventBtn{
+        background-color: rgb(246, 246, 246);
+        width: 150px;
+        margin-right: 10px;
+       
+    }
+    
+   
+    }
+    
+    
+    
+    @media screen and (min-width:2000px){
+    
+        .createEventBtn{
+            background-color: rgb(246, 246, 246);
+            width: 250px;
+            margin-right: 50px;
+           
+        }
+    }
+
+
+
+
+
+    /* Nav Content Area */
+
+.AddEventContentArea{
+        background-color: rgba(35, 35, 35, 0.397);
+        /* background-color: rgba(40, 40, 40, 0.272); */
+        display: flex;
+        margin-top: 30px;
+        width: 2400px;
+        height: 750px;
+        border: 1px solid rgba(255, 255, 255, 0.196);
+        
+
+        
+       
+
+        
+    }
+
+
+.eventContentSection{
+    /* background-color: rgba(103, 16, 16, 0.562); */
+    display: flex;
+    width: 2150px;
+    height: 750px;
+    flex-wrap: wrap;
+    gap: 5%;
+    /* padding: 0%; */
+    
+    
+
+
+}
+
+
+
+
+.create-addbtn-area{
+    /* background-color: firebrick; */
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.add-event-btn{
+    background-color: rgba(22, 22, 22, 0.39);
+    
+    /* border: 1px solid rgba(248, 248, 248, 0.447); */
+    height: 100px;
+    width: 100px;
+    border-radius: 10% 50% 10% 10%;
+    margin-bottom: 90px;
+
+   
+
+    
+
+}
+
+
+
+.CalenderArea{
+    background-color: rgba(35, 35, 35, 0.397);
+    margin-top: 30px;
+    width: 2400px;
+    height: 750px;
+    border: 1px solid rgba(255, 255, 255, 0.196);
+   
+}
+
+
+.eventContent{
+    /* background-color: #ff51dc78; */
+    display: flex;
+    height: 290px;
+    width: 250px;
+    border-radius: 20px;
+    margin: 10%;
+    /* flex-direction: column; */
+    
+
+    
+   
+}
+
+.CoverContentBar{
+display: none;
+}
+
+.eventContent:hover .CoverContentBar{
+    /* background-color: #91919110; */
+    height:248px;
+    width: 228px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 15px;
+    /* border: 1px solid rgb(40, 39, 39); */
+    
+    
+
+}
+
+
+.img-content-cover{
+
+    /* background-color: #ff51dc78; */
+    display: flex;
+    border: 1px solid black;
+    /* border-top-right-radius: 9%;
+    border-top-left-radius: 9%;  */
+    border-radius: 10%;
+    
+
+}
+
+.ImgCoverContent-add-user{
+    /* background-color: rgb(110, 255, 255); */
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 5px;
+    
+    
+}
+
+
+
+.ImgCoverContent-add-user:hover{
+    
+    background-color: rgba(154, 10, 10, 0.537);
+    
+    
+}
+
+.ImgCoverContent-message{
+    /* border-right: 1px solid rgba(255, 255, 255, 0.203);
+    border-left: 1px solid rgba(255, 255, 255, 0.203); */
+    /* background-color: goldenrod; */
+   
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 5px; 
+    align-items: center;
+    
+}
+
+.ImgCoverContent-message:hover{
+    
+   background-color: rgba(0, 63, 141, 0.863);
+    
+}
+
+.ImgCoverContent-setting{
+    /* background-color: green; */
+    border: 1px solid white;
+    border-radius: 50px;
+    padding: 5px;
+    align-items: center;
+}
+
+.ImgCoverContent-setting:hover{
+    background-color: rgba(184, 193, 0, 0.76);
+}
+
+
+.ImageCoverContent{
+    position: relative;
+    width: 230px;
+    height: 253px;
+}
+
+
+.ImageEventTitle{
+    display: none;
+}
+
+
+.ImageCoverContent:hover .ImageEventTitle{
+   
+    position: absolute;
+    height: 234px;
+    width: 232px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(97, 40, 0, 0.126);
+    border: 1px solid black;
+    border-radius: 10%;
+    color: white;
+    
+}
+
+
 

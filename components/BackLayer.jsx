@@ -1,8 +1,9 @@
 'use client'
 import { useState, useEffect} from 'react';
-import Profilbar from './Profilbar';
+import Navbar from './Navbar';
 import dictionary from '@utils/dbData';
 import SearchBar from './SearchBar';
+import Image from 'next/image';
 
 const BackLayer = () => {
     
@@ -10,7 +11,7 @@ const totalItems = 40;
 const numberOfItemsToShow = 7;
 
 const [currentItems, setCurrentItems] = useState(getRandomItems());
-const [navbar, setNavbar] = useState(false)
+const [starbar, setstarbar] = useState(false)
 
 
 
@@ -61,12 +62,12 @@ function getRandomItems() {
 
         {/* profilbar */}
         <div className="profil-area">
-            <Profilbar/>
+            <Navbar/>
         </div>
 
 
         <div className='search-container'>
-        {navbar && (
+        {starbar && (
                   <div className="star-area">4</div>
                 )}
         </div>
@@ -74,7 +75,7 @@ function getRandomItems() {
 
 
         {/* search container */}
-        <div className="top-container">
+        <div className="top-container2">
            <SearchBar/>
         </div>
         

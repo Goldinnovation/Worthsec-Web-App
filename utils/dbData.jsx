@@ -5,6 +5,7 @@ const dictionary = [
       id: 1,
       url: "https://www.amazon.de/Die-Mitternachtsbibliothek-SPIEGEL-Bestseller-Taschenbuch/dp/3426308258/ref=sr_1_3?keywords=Romane+Bestseller&qid=1692290527&s=books&sr=1-3",
       image: "https://m.media-amazon.com/images/I/71Ezvjb4yLL.jpg",
+      tags: ['love', 'pain', ]
     },
     {
       id: 2,
