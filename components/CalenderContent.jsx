@@ -1,77 +1,154 @@
-import React from 'react'
-import { format } from 'date-fns'
-import { DayPicker } from 'react-day-picker'
+'use client'
+import React, { useEffect, useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { useState } from 'react';
-import styles from '@styles/calenderStyle.module.css'
+import style from '@styles/day-picker.module.css'
+import { set } from 'date-fns';
 
 
 
+export const getData = async() => {
+  try{
+    const res = await fetch('http://localhost:3000/api/events', {
+        method: 'GET',
+        cache: 'no-store'
+    })
 
-// const css = `
-
-// `
-
-const CalenderContent = () => {
-    const [startSelect, setStartSelect] = useState(Date)
-    
-   
-
-  return (
-    <div className={styles['calenderPickerStyle']}>
-
-        {/* <style>{css}</style> */}
-        <DayPicker
-        mode="single"
-        modifiersClassNames={styles['calenderPickerStyle']}
+    if(!res.ok){
         
-        selected={startSelect}
-        onSelect={setStartSelect}
-        numberOfMonths={2}
-        showOutsideDays
-        styles={{
-            
-            head_cell: {
-              width: "180px",
-              color: 'white',
-              backgroundColor: '#c6c6c638',
-              border: '1px solid white',
-              marginHeight: "50px"
-            },
-            month:{
-                color: 'white',
-                fontSize: '50'
-            },
-            
+     throw new Error('res IS NOT OK,ERROR')
+    
+    }
 
-            table: {
-              maxWidth: "none",
-            },
-            day: {
-              margin: "auto",
-              color: "white"
-            },
 
-            row: {
-                // backgroundColor: 'green',
-                height: '110px'
-                
-            },
+    const data =  await res.json()
+    console.log(data)
+    return data 
 
-            cell: {
-                // backgroundColor: 'orange',
-                border: '1px solid white',
-                marginTop: "50px"
-                
-                
-                
-            }
-
-          }}
-        />
-      
-    </div>
-  )
+  }catch(error){
+    console.error('Fetch Problem')
+    return[]
+  }
 }
 
-export default CalenderContent
+// fetches the date and image name and displays it inside the specfic calender areas 
+
+
+
+const CalenderContent = () => {
+    
+  
+    const [selectedDateandImage, setselectedDateandImage] = useState([])
+   
+
+    
+    
+    useEffect(() => {
+        const newData = async() => {
+            const allEvents =  await getData();
+        
+            const ImagewithDates = allEvents.map(event => ({
+                date: new Date(event.eventDate),
+                image: event.ImageCoverUpload
+            }))
+
+            setselectedDateandImage(ImagewithDates)
+           
+            
+        }
+        
+       
+         newData();
+         const intervalId = setInterval(newData, 2000)
+         return () => clearInterval(intervalId)
+
+    }, []);
+
+    const modifiers = {
+        selected: selectedDateandImage.map(event => event.date)
+    };
+
+
+    const generateDynamicStyles = () => {
+        
+        let styles = '';
+        selectedDateandImage.forEach(event => {
+            const dateString = event.date.toISOString().split('T')[0]; 
+
+            console.log('Event Image:', event.image);
+           
+
+            styles += `
+            .rdp-day_selected {
+                background: url('/${event.image}') !important;
+                background-size: cover !important; 
+                height: 90px !important;
+                width: 70% !important;
+                border-radius: 10%;
+            }
+           
+
+            `;
+        });
+        return styles;
+    };
+
+
+    const generatedStyles = generateDynamicStyles();
+    console.log(generatedStyles);
+   
+
+
+   
+
+    return (
+        <div>
+
+           
+
+            
+            <style>{generatedStyles}</style>
+            <DayPicker
+                id="EventCalender"
+                // onSelect={(range)=>{console.log(range)}}
+                numberOfMonths={2}
+                showOutsideDays
+                weekStartsOn={1}
+                modifiers={modifiers}
+                modifiersClassNames={{
+                    selected: style.selectedImage,
+                    
+
+                }}
+                
+                styles={{
+
+                   
+                  
+ 
+                    day_Hover: {
+                        color: 'black',
+                    },
+                   
+                    day: {
+                        margin: "auto",
+                        color: "white",
+                    },
+
+                    row: {
+                        height: '100px',
+                        margin: '10px',
+                        // backgroundColor: 'orange'
+                    },
+                    cell: {
+                       
+                        border: '1px solid white',
+                       
+                    }
+                }}
+            />
+        </div>
+    )
+}
+
+export default CalenderContent;

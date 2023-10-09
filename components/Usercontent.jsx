@@ -20,11 +20,14 @@ import { useState } from 'react'
 import CalenderContent from './CalenderContent'
 
 
+
 const Usercontent = () => {
 
     const [addArea, setAddArea] = useState(false)
     const [calenderArea, setCalenderArea] = useState(true)
     const [networkArea, setNetworkArea] = useState(false)
+    const [joinArea, setJoinArea] = useState(false)
+    const [favorArea, setFavorArea] = useState(false)
 
 
 
@@ -33,20 +36,45 @@ const Usercontent = () => {
     const togglemodalCalender = () => { 
         setCalenderArea(true)
         setAddArea(false)
+        setJoinArea(false)
+        setNetworkArea(false)
     }
 
     const togglemodalAddArea = () => { 
 
         setAddArea(true)
         setCalenderArea(false)
+        setJoinArea(false)
+        setNetworkArea(false)
     }
 
 
     const togglemodalnetwork = () => {
-        setNetworkArea(!networkArea)
+        setNetworkArea(true)
+        setJoinArea(true)
         setCalenderArea(false);
         setAddArea(false);
+        setFavorArea(false)
+        
     }
+
+    const togglejoinaraopt = () => {
+        setJoinArea(true)
+        setCalenderArea(false);
+        setAddArea(false);
+        setFavorArea(false)
+
+
+    }
+
+    const togglefavoropt = () => {
+        setFavorArea(true)
+        setJoinArea(false)
+        setCalenderArea(false);
+        setAddArea(false);
+
+    }
+
 
     
 
@@ -141,8 +169,8 @@ const Usercontent = () => {
                             <CalenderContent/>
                     </div>
                 )}
-
             </div>
+
             <div className='ContentArea'>
             {addArea && (
             <div className='AddEventContentArea'>
@@ -153,7 +181,30 @@ const Usercontent = () => {
                         <Createbtn/>
                     </div>
             </div>
-        )}
+             )}
+            </div>
+            <div className='joinAndFavorSection'>
+                {networkArea && (
+                    <div className='joinandFavorarea'>
+                            <div className='JoinandFavor-navbar'>
+                                <div className='join-opt-btn' onClick={togglejoinaraopt}>join</div>
+                                <div className='favor-opt-btn' onClick={togglefavoropt}>favor</div>
+                            </div>
+                            
+                            <div className='joinContentSection'>
+                                {joinArea &&(
+                                    <div className='joinContent-area'>
+                                        <p>hallo</p>
+                                    </div>
+                                )}
+                                 {favorArea && ( 
+                                    <div className='favorContent-area'></div>
+                                )}
+                                
+                            </div>
+
+                    </div>
+                )}
             </div>
              
                 
