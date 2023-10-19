@@ -6,6 +6,7 @@ import HomeIcon from '@assets/home.png'
 import BubbleIcon from '@assets/bubble.png'
 import searchIcon from '@assets/search.png'
 import styles from '@styles/usercontentstyle.module.css'
+import joinandfavorStyle from '@styles/joinandfavorstyle.module.css'
 import TestImage1 from '@assets/forbes.jpg'
 import TestImage2 from '@assets/exo.jpg'
 import testted3 from '@assets/ted.jpg'
@@ -13,11 +14,21 @@ import testalbum from '@assets/album.jpg'
 import Createbtn from '@utils/Createbtn'
 import TimeLayer from '@utils/Timebtn'
 import Networkbtn from '@utils/Networkbtn'
-import Settingsbtn from '@utils/Settingsbtn'
+import Settingbtn from '@utils/Settingsbtn'
 import GetEventContent from './GetEventContent'
 import OrangeAddbtn from '@assets/O-add-btn.png'
 import { useState } from 'react'
 import CalenderContent from './CalenderContent'
+import joinIcon from '@assets/heart.png'
+import StarIcon from '@assets/star.png'
+import Sharebtn from '@utils/Sharebtn'
+import strand2 from '@assets/strand2.jpg'
+import ViewShared from '@utils/ViewShared'
+import mailIcon from '@assets/mail.png'
+import messageBtn from '@utils/Messagebtn'
+import Messagebtn from '@utils/Messagebtn'
+import ReqFriendBtn from '@utils/ReqFriendbtn'
+
 
 
 
@@ -28,6 +39,10 @@ const Usercontent = () => {
     const [networkArea, setNetworkArea] = useState(false)
     const [joinArea, setJoinArea] = useState(false)
     const [favorArea, setFavorArea] = useState(false)
+    const [addShareArea, setAddShareArea] = useState(false)
+    const [viewArea, setViewArea] = useState(false)
+    const [messageArea, setMessageArea] = useState(false)
+    const [reqfriendArea, setReqFriendArea] = useState(false)
 
 
 
@@ -38,6 +53,7 @@ const Usercontent = () => {
         setAddArea(false)
         setJoinArea(false)
         setNetworkArea(false)
+       
     }
 
     const togglemodalAddArea = () => { 
@@ -46,6 +62,7 @@ const Usercontent = () => {
         setCalenderArea(false)
         setJoinArea(false)
         setNetworkArea(false)
+        
     }
 
 
@@ -56,6 +73,7 @@ const Usercontent = () => {
         setAddArea(false);
         setFavorArea(false)
         
+        
     }
 
     const togglejoinaraopt = () => {
@@ -63,20 +81,42 @@ const Usercontent = () => {
         setCalenderArea(false);
         setAddArea(false);
         setFavorArea(false)
+       
 
 
+    }
+
+    const togglemessageArea = () => {
+        setMessageArea(!messageArea)
+        setReqFriendArea(false)
+    }
+
+    const togglefriendArea = () => {
+        setReqFriendArea(!reqfriendArea)
+        setMessageArea(false)
+         
     }
 
     const togglefavoropt = () => {
         setFavorArea(true)
-        setJoinArea(false)
+        // setJoinArea(false)
         setCalenderArea(false);
         setAddArea(false);
+        
 
     }
 
+    const toggleaddsharebtn = () => {
+        setAddShareArea(!addShareArea)
+        setViewArea(false)
 
-    
+    }
+
+    const toggleviewShareArea = () => {
+        setViewArea(!viewArea)
+        setAddShareArea(false)
+    }
+
 
   return (
     <div>
@@ -85,11 +125,30 @@ const Usercontent = () => {
 
         <create/>
         <header className={styles['header-area']}>
-                    <div>
-                        <div className={styles["profil-pic"]}></div>
-                        <div className="inputbtn"></div>
-                        <button className={styles['image-btn']}>+</button>
+                    <div className={styles['profilMessageHeader']}>
+                        <div className={styles["logoWorthsec"]}>
+                            <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button>
+                        </div>
                     </div>
+                    <div className={styles['profilpicArea']}>
+                        <div className={styles['profilpicContent']}>hallo</div>
+                        <button className={styles['addProfilpicbtn']}>+</button>
+
+                    </div>
+                    {/* <div className={styles['invitationArea']}> 
+                        <button className={styles['requestbtnAreabtn']} onClick={toggleRequestArea}><Image src={mailIcon} height={25} width={25}/></button>
+                        </div>
+                        <div className={styles['InvitepopUpSection']}>
+                            {requestArea && (
+                                <div className={styles['InvitePopup']}>hallo</div>
+                            )}
+                        </div> */}
+                    {/* <div className={styles['profilpicArea']}>
+                        <div className={styles['profilpicContent']}>hallo</div>
+                        <button className={styles['addProfilpicbtn']}>+</button>
+
+                    </div> */}
+                    
                     <nav className={styles['nav-area']}>
                         <ul className={styles['nav-list']}>
                                 <li>
@@ -115,9 +174,29 @@ const Usercontent = () => {
                         </ul>
                         <hr  id='in_line'/>
                     </nav>
+
         </header>   
         <hr />
+        
         {/* slider area  */}
+        <div className= {styles['sliderSection']}> ´
+
+         <div className ={styles['RequestSection']}>
+
+                <div className={styles['requestmessageSection']}>
+                  <div className={styles['reqMessageBtn']} onClick={togglemessageArea}>
+                        <Messagebtn/>
+                    </div>  
+                </div>
+
+                <div className={styles['requestFriendSection']} >
+                    <div className={styles['reqFriendBtn']} onClick={togglefriendArea}>
+                        <ReqFriendBtn/>
+                    </div>
+                </div>
+       </div>
+
+        
         <div className={styles["slider"]}>
                 <div className={styles["slide-track"]}>
                     <div className={styles["slide"]}>
@@ -148,17 +227,73 @@ const Usercontent = () => {
                     </div>
                     
                 </div>
-            </div>
+               
+        </div>
+             <div className ={styles['sharebtnSection']}>
+
+                <div className={styles['add-share-btn-area']}>
+                  <div className={styles['add-share-btn']} onClick={toggleaddsharebtn}>
+                        <Sharebtn/>
+                    </div>  
+                </div>
+
+                <div className={styles['view-sharedEvent-btn-area']} >
+                    <div className={styles['view-sharedEvent-btn']} onClick={toggleviewShareArea}>
+                        <ViewShared/>
+                    </div>
+                </div>
+             </div>
+
+             
+        </div>
+       
             <hr />
 
+
+            {/* Pop up section  for the areas over the slide*/}
+
+            <div className={styles['messagePopUpSection']}>
+                {messageArea &&(
+                    <div className={styles['messagePopUpContentArea']}>
+                        hallo
+                    </div>
+                )}
+            </div>
+
+            <div className={styles['reqFriendPopUpSection']}>
+                {reqfriendArea && (
+                    <div className={styles['reqFriendPopUpContentArea']}>
+                        hall2
+                    </div>
+                )}
+            </div>
+
+             <div className={styles['SharePopupArea']}>
+            {addShareArea && (
+                <div className={styles['sharePop']}>
+                    <div className={styles['shareBackground']}><Image src={strand2} height={285} width={487}/></div>
+                    <div className={styles['shareContentArea']}></div>
+                </div>
+            )}
+
+            <div className={styles['ViewPopupArea']}>
+                {viewArea && (
+                    <div className={styles['ViewPopup']}>
+
+                    </div>
+                )}
+            </div>
+        </div>
+        
             <div className='feed-area'>
                 <div className='user-feed-nav'>
                 <div className='timeline-btn-area' onClick={togglemodalCalender}><TimeLayer/></div>
+                    <div className='network-btn-area' onClick={togglemodalnetwork}><Networkbtn/></div>
                     <div className="btn-area">
                         <button className='add-btn' onClick={togglemodalAddArea}><Image src={OrangeAddbtn} alt='imgbtn' height={20} width={20}/></button>
                     </div>
-                    <div className='network-btn-area' onClick={togglemodalnetwork}><Networkbtn/></div>
-                    <div className='setting-btn-area'><Settingsbtn/></div>
+                    {/* <div className='setting-btn-area' onClick={togglemodelshare}><Settingbtn/></div> */}
+                   
                     
                 </div>
             
@@ -171,7 +306,9 @@ const Usercontent = () => {
                 )}
             </div>
 
-            <div className='ContentArea'>
+            {/* create Event Secetion, by pressing the button user creates an event*/}
+
+            <div className='addEventSection'>
             {addArea && (
             <div className='AddEventContentArea'>
                     <div className='EventContentArea'>
@@ -183,22 +320,29 @@ const Usercontent = () => {
             </div>
              )}
             </div>
-            <div className='joinAndFavorSection'>
+
+            {/* The user can view all the events he/she liked and joined */}
+            <div className={joinandfavorStyle['joinAndFavorSection']}>
                 {networkArea && (
-                    <div className='joinandFavorarea'>
-                            <div className='JoinandFavor-navbar'>
-                                <div className='join-opt-btn' onClick={togglejoinaraopt}>join</div>
-                                <div className='favor-opt-btn' onClick={togglefavoropt}>favor</div>
+                    <div className={joinandfavorStyle['joinandFavorarea']}>
+                            <div className={joinandfavorStyle['JoinandFavor-navbar']}>
+                                <div className={joinandfavorStyle['join-opt-btn']} onClick={togglejoinaraopt}><Image src={joinIcon} height={25} width={25}/></div>
+                                <div className={joinandfavorStyle['favor-opt-btn']} onClick={togglefavoropt}><Image src={StarIcon} height={25} width={25}/></div>
                             </div>
                             
-                            <div className='joinContentSection'>
+                            <div className={joinandfavorStyle['joinContentSection']}>
                                 {joinArea &&(
-                                    <div className='joinContent-area'>
+                                    <div className={joinandfavorStyle['joinContent-area']}>
                                         <p>hallo</p>
                                     </div>
                                 )}
-                                 {favorArea && ( 
-                                    <div className='favorContent-area'></div>
+                               
+                            </div>
+                            <div className={joinandfavorStyle['favorContentSection']}>
+                            {favorArea && ( 
+                                    <div className={joinandfavorStyle['favorContent-area']}>
+                                        favor
+                                    </div>
                                 )}
                                 
                             </div>
@@ -206,6 +350,17 @@ const Usercontent = () => {
                     </div>
                 )}
             </div>
+            {/* <div className='ShareSection'>
+                {shareArea && (
+                    <div className='shareArea'>
+                        <div className='ShareSelectedArea'>Selected</div>
+                        <div className='shareAtomArea'>Atom</div>
+                        <div className='ShareDragArea'>hallo</div>
+                        
+                        
+                    </div>
+                )}
+            </div> */}
              
                 
                 

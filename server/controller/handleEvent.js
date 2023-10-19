@@ -17,11 +17,22 @@ exports.findEvents = async(req,res) => {
 }
 
 
+exports.deleteEvent = async(req,res) => {
+    const id = req.params.id;
+    console.log(id)
+
+    const deletedEvent = await prisma.eventPrompt.delete({
+        where: {id: id},
+    })
+
+    res.json(deletedEvent)
+}
+
 
 exports.createEvent = async(req,res) => {
   
   
-    
+    console.log(req.body)
 
     const stringEventType = req.body.eventType
     IntEventType = parseInt(stringEventType, 10)
@@ -37,7 +48,7 @@ exports.createEvent = async(req,res) => {
     // console.log('test')
     try {
         const newCreateEvent = await prisma.eventPrompt.create({ data: newEventBody});
-        // console.log(newCreateEvent)
+        console.log(newCreateEvent)
 
         
     } catch (error) {

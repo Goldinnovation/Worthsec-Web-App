@@ -7,8 +7,7 @@ const app = next({dev})
 
 
 const handle = app.getRequestHandler()
-const promptRoute = require('./router/promptRouter')
-const createEventRequest = require('./router/eventprompt')
+const eventRequest = require('./router/eventprompt')
 
 
 
@@ -19,8 +18,9 @@ app.prepare().then(() => {
 
     // area for the API endpoints of Next
 
-    // server.use('/api/prompt', promptRoute)
-    server.use('/api/events', createEventRequest)
+   
+    server.use('/api/events',eventRequest)
+    // server.use(`/api/events/${eventid}`, eventRequest)
    
 
     server.all('*', (req,res) => {

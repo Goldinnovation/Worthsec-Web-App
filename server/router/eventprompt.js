@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const createNewEvent = require('../controller/createEvent')
+const handleEvent = require('../controller/handleEvent')
 const ImageFileUpload = require('../Middlware/coverImage')
 
 
-router.get('/', createNewEvent.findEvents)
-router.post('/', ImageFileUpload, createNewEvent.createEvent )
+router.get('/', handleEvent.findEvents)
+router.post('/', ImageFileUpload, handleEvent.createEvent )
+router.delete('/:id', handleEvent.deleteEvent )
 
 
 module.exports = router

@@ -22,7 +22,7 @@ export const getData = async() => {
 
 
     const data =  await res.json()
-    console.log(data)
+    
     return data 
 
   }catch(error){
@@ -75,16 +75,29 @@ const CalenderContent = () => {
         selectedDateandImage.forEach(event => {
             const dateString = event.date.toISOString().split('T')[0]; 
 
-            console.log('Event Image:', event.image);
+   
            
 
             styles += `
-            .rdp-day_selected {
-                background: url('/${event.image}') !important;
-                background-size: cover !important; 
-                height: 90px !important;
-                width: 70% !important;
-                border-radius: 10%;
+
+            @media screen and (max-width:2000px){
+                .rdp-day_selected {
+                    background: url('/${event.image}') !important;
+                    background-size: cover !important; 
+                    height: 60px !important;
+                    width: 60% !important;
+                    border-radius: 10%;
+                }
+            }
+            
+            @media screen and (min-width:2000px){
+                .rdp-day_selected {
+                    background: url('/${event.image}') !important;
+                    background-size: cover !important; 
+                    height: 90px !important;
+                    width: 70% !important;
+                    border-radius: 10%;
+                }
             }
            
 
@@ -95,7 +108,7 @@ const CalenderContent = () => {
 
 
     const generatedStyles = generateDynamicStyles();
-    console.log(generatedStyles);
+  
    
 
 
