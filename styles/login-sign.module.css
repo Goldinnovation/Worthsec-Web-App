@@ -1,0 +1,179 @@
+.signContentArea{
+    background-color: rgba(176, 179, 179, 0.782);
+    width: 25%;
+    height: 330px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    align-items: center;
+    border-radius: 10px;
+}
+
+.signUpContent{
+    /* background-color: rgb(1, 113, 36); */
+    align-items: center;
+    text-align: center;
+    height: 300px;
+    
+
+}
+
+.signUpTitle{
+    /* background-color: rebeccapurple; */
+    /* border-top: 1px solid white; */
+    
+   
+}
+
+.signUpEmailNamePasswordArea{
+    /* background-color: orange; */
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.signUpEmailName{
+    /* background-color: rebeccapurple; */
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+   
+}
+
+.signUPassword{
+    /* background-color: rgb(51, 105, 153); */
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+    margin-bottom: 10%;
+}
+
+
+
+.loginContentArea{
+    background-color: rgba(116, 10, 138, 0.418);
+    height: 450px;
+    width: 20%;
+    position: absolute;
+    top: 20%;
+    left: 72%;
+    border-radius: 10px ;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginContent{
+    background-color: rgba(9, 101, 110, 0.371);
+    height: 450px;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px ;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+
+.loginEmailPasswordArea{
+    /* background-color: orange; */
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 10%;
+}
+
+
+.loginBtn{
+    margin-top: 5%;
+}
+
+.loginEmail{
+    background-color: rgba(242, 243, 244, 0.637);
+    height: 20px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+.loginpassword{
+    background-color: rgba(242, 243, 244, 0.637);
+    height: 20px;
+    width: 70%;
+    border-radius: 10px;
+}
+
+
+.logoWorthsec{
+    /* background-color: orange; */
+     width: 400px; 
+     height: 40px;
+     margin-top: 0.5%;
+   
+ }
+ 
+ .worthsecAreabtn{
+     background-color: rgba(0, 0, 0, 0.233);
+     /* opacity: 0.7; */
+     width: 400px;
+     height: 40px;
+     color: white;
+     font-size: 25px;
+     border-radius: 10px;
+ }
+.loginTitle{
+    color: white;
+}
+ .loginBtn{
+    height: 35px;
+    width: 30%;
+    border-radius: 5px;
+
+ }
+ 
+ .redirectArea{
+    /* background-color: gray */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+ .noAccText{
+    color: white;
+
+ }
+
+ .createAccLink{
+    width: 30%;
+    font-size: 20px;
+    color: rgba(255, 124, 31, 0.695);
+    border: 1px solid white;
+    background-color: rgba(89, 131, 117, 0.319);
+    text-decoration: none;
+
+
+    
+ }
+
+ .videoSection{
+    background-color: rgba(94, 95, 95, 0.307);
+    height: 700px;
+    width: 60%;
+    margin-left: 3%;
+    margin-top: 5%;
+    /* border: 1px solid white; */
+ }
+ 
+
+ .videoContent{
+    background: url('/assets/eventv1.mp4');
+    width: 100%;
+    height: auto;
+ }
+ 

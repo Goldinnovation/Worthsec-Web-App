@@ -1681,9 +1681,49 @@ appearance: none;
 
   }
 
+  .mapstyle{
+    /* background-color: beige; */
+    height: 500px;
+  }
+
+  .map-container {
+    width: 100%;
+    height: 100vh;
+    opacity: 0.8;
+   
+    /* background-color: rgb(241, 229, 229); */
+    /* border: 1px solid white; */
+    /* border-radius: 10px ; */
+    /* margin-bottom: 1%; */
+
+
+  }
 
 
 
+.navContentArea{
+    
+    position: absolute;
+    width: 30%;
+    height: 120px;
+    background-color: rgb(255, 255, 255);
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 4px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    
+}
+
+.searchInput{
+    background-color: rgb(255, 255, 255);
+}
+
+.searchOpt{
+    display: flex;
+    /* background-color: rgb(255, 255, 255); */
+    justify-content: space-around;
+}
  
 
  

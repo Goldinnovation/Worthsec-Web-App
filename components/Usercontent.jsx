@@ -162,7 +162,7 @@ const Usercontent = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href={'/Community'}>
+                                    <Link href={'/explore'}>
                                     <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
                                     </Link>
                                 </li>
