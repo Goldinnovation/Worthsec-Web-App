@@ -10,10 +10,19 @@ datasource db {
 model eventPrompt {
   id                      String   @id @default(uuid())
   eventTitle              String
-  eventType               Int      @db.Integer   
+  eventType               Int      @db.Integer
   eventDate               DateTime @db.Date
   eventDescriptionContent String
   eventTime               String
   ImageCoverUpload        String
   createdAt               DateTime @default(now())
+}
+
+model account {
+  userId        String   @id @default(uuid())
+  userName      String   @unique
+  userEmail     String
+  userPassword1 String
+  userPassword2 String
+  createdAt     DateTime @default(now())
 }
