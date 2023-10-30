@@ -177,3 +177,34 @@
     height: auto;
  }
  
+ .password-mismatch {
+   /* background-color: rgb(37, 161, 175); */
+  display: flex;
+  justify-content: center;
+
+}
+
+.password-mismatch-content{
+    background-color: rgb(211, 94, 94);
+    width: 200px;
+    height: 20px;
+    border-radius: 10px ;
+    border: 1px solid rgb(61, 9, 9);
+
+}
+
+.userExist{
+    display: flex;
+  justify-content: center;
+
+}
+
+
+.userExistContent{
+    background-color: rgb(211, 94, 94);
+    width: 200px;
+    height: 20px;
+    border-radius: 10px ;
+    border: 1px solid rgb(61, 9, 9);
+    
+}

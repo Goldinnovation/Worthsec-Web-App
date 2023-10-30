@@ -1,20 +1,20 @@
 const bcrypt = require('bcrypt')
 const {PrismaClient} = require('@prisma/client');
-const { id, zhCN } = require('date-fns/locale');
+const passport = require('passport')
+
 
 
 
 const prisma = new PrismaClient()
 
 
-exports.createUserAccount = async(req,res)  => {
+
+
+
+exports.createUserAccount = async(req,res,next)  => {
    
-    // console.log(req.body)
-    const hashpw =  await bcrypt.hash(req.body.userPassword1, 10)
-
-
-    
-        // console.log(hashpw)
+  
+       
         try{
             const exisitingUsername = await prisma.account.findFirst({
                 where:
@@ -24,6 +24,8 @@ exports.createUserAccount = async(req,res)  => {
                 }
              })
              if(!exisitingUsername){
+
+                const hashpw =  await bcrypt.hash(req.body.userPassword1, 10)
                                     
                     try{
                         const newUserAccount = await prisma.account.create({data:
@@ -35,14 +37,15 @@ exports.createUserAccount = async(req,res)  => {
                             }
                         
                         })
-                        // console.log(newUserAccount)
-                        res.json(newUserAccount)
+                        // res.redirect('/user')
+                        console.log(newUserAccount)
+                        res.json({message:"new user created"})
                         
                         
 
                     }catch(error){
 
-                        res.status(500).send('Db fetch failed')
+                        res.status(500).json({message:'Database connection failed'})
 
                     }
                   
@@ -51,7 +54,7 @@ exports.createUserAccount = async(req,res)  => {
             }
             else{
                 console.log('User found');
-                res.status(404).send('Username already exisit in the db ');
+                res.status(500).json({message: 'User already Exist'})
             }
 
 

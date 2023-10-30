@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 const Createbtn = () => {
   const [imagePreview, setImagePreview] = useState(null)
    const [model, setModel] = useState(false)
+   const router = useRouter();
     
 
    const [eventData, setEventData] = useState({
@@ -93,12 +94,17 @@ const Createbtn = () => {
         body: formData,
       });
 
+
+
+      
+
   
       if (!res.ok) {
         throw new Error(`Server responded with ${res.status}`);
       }
   
       const data = await res.json(); 
+
       console.log(data);
       setEventData('')
       setImagePreview("")

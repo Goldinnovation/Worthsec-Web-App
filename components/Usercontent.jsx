@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import HomeIcon from '@assets/home.png'
@@ -28,6 +29,7 @@ import mailIcon from '@assets/mail.png'
 import messageBtn from '@utils/Messagebtn'
 import Messagebtn from '@utils/Messagebtn'
 import ReqFriendBtn from '@utils/ReqFriendbtn'
+import { useRouter } from 'next/navigation'
 
 
 
@@ -43,6 +45,7 @@ const Usercontent = () => {
     const [viewArea, setViewArea] = useState(false)
     const [messageArea, setMessageArea] = useState(false)
     const [reqfriendArea, setReqFriendArea] = useState(false)
+    // const router = useRouter();
 
 
 
@@ -116,6 +119,33 @@ const Usercontent = () => {
         setViewArea(!viewArea)
         setAddShareArea(false)
     }
+
+
+    // useEffect(() => {
+        
+    //     const  fetchData = async () => {
+    //         try {
+    //             const res = await fetch('http://localhost:3000/api/home', {
+    //                 method: 'GET',
+    //             });
+
+    //             const data = await res.json();
+    //             if (!res.ok) {
+    //                 if (data.message === "Authentication failed - redirect to login") {
+    //                     // Redirect to the login page if authentication fails
+    //                     router.push('/login');
+    //                 } else {
+    //                     // Handle other errors
+    //                     console.error('Failed to fetch user content:', data.message);
+    //                 }
+    //             }
+    //         } catch (error) {
+    //             console.error('Failed to fetch user content:', error);
+    //         }
+    //     }
+        
+    //     fetchData();
+    // }, [router]);
 
 
   return (
