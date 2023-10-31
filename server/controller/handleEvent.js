@@ -9,7 +9,9 @@ const prisma = new PrismaClient()
 
 exports.findEvents = async(req,res) => {
 
+    
     const allEvents =  await prisma.eventPrompt.findMany();
+
 
     
     res.json(allEvents);
@@ -20,6 +22,7 @@ exports.findEvents = async(req,res) => {
 exports.deleteEvent = async(req,res) => {
     const id = req.params.id;
     console.log(id)
+
 
     const deletedEvent = await prisma.eventPrompt.delete({
         where: {id: id},

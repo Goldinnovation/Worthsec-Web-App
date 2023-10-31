@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 
 
 
-exports.createUserAccount = async(req,res,next)  => {
+exports.createUserAccount = async(req,res,)  => {
    
   
        
@@ -62,9 +62,7 @@ exports.createUserAccount = async(req,res,next)  => {
             console.error('Error while querying the database:', error);
              res.status(500).send('Internal Server Error');
         }
-       
 
-
-
+        
    
 }

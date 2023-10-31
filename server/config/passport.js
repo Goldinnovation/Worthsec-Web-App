@@ -1,19 +1,20 @@
-const express  = require('express');
+const passport = require('passport');
 const bcrypt = require('bcrypt')
 const LocalStrategy = require('passport-local')
 const {PrismaClient} = require('@prisma/client');
-const passport = require('passport')
 
 
-const prisma = new PrismaClient
+
+const prisma = new PrismaClient();
 
 module.exports = function(passport){
     passport.use(
-        new LocalStrategy( async(username, password, done ) => {
+        new LocalStrategy({usernameField: 'loginEmail', passwordField: 'loginPassword'},async(username, password, done ) => {
+            console.log('Local strategy is triggered');
            try{
             const user = await prisma.account.findFirst({    //checks if the user exist in the db 
                 where: {
-                    userName: username
+                    userEmail: username
                 }
             }); 
             if(!user){
@@ -27,7 +28,7 @@ module.exports = function(passport){
                 return done(null, user); // Authentication was successful
             }
             else{
-                console.log('password doe snot match ')
+                console.log('password does snot match ')
                 return done(null, false); //Password does not match
             }
 
@@ -47,7 +48,7 @@ module.exports = function(passport){
         try{
             const user = await prisma.account.findUnique({
                 where: {
-                    id: userId
+                    userId: userId
                     
                 }
             })
@@ -57,6 +58,7 @@ module.exports = function(passport){
             }
 
             done(null, user)
+           
 
         }catch(error)
         {

@@ -68,7 +68,7 @@ const Signup = () => {
             
             if(res.ok && data.message === "new user created"){
                     
-                    router.push('/user')
+                    router.push('/login')
                 
                 
             }else if(!res.ok && data.message === "User already Exist"){

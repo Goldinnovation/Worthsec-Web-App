@@ -8,14 +8,20 @@ const passport = require('passport')
 const handle = app.getRequestHandler()
 const eventRequest = require('./router/eventprompt')
 const signupRequest = require('./router/userSignup')
-const passportconfig = require('./config/passport')
+const passportConfig = require('./config/passport')
 const Auth = require('./Middlware/checksAuth')
+const isAuth = require('./Middlware/isAuth')
+const loginReq = require('./router/userLogin')
  
 
 app.prepare().then(() => {
     const server = express()
 
     server.use(bodyParser.json())
+    server.use(bodyParser.urlencoded({ extended: true }));
+
+
+
     server.use(expressSession({
         secret: 'mysecretTestkey',
         resave: false, 
@@ -24,14 +30,24 @@ app.prepare().then(() => {
             maxAge: 1000 * 60 * 60 * 24
         }
     }))
+
+
     server.use(passport.initialize())
     server.use(passport.session())
-    passportconfig(passport)
+
+
+
+    passportConfig(passport)
+    
     
     // area for the API endpoints 
-    server.use('/user', Auth)
-    server.use('/api/events',eventRequest)
+    
+
+    server.use('/api/events', eventRequest)
     server.use('/api/signUpAcc',signupRequest)
+    server.use('/api/login', loginReq)
+    // server.use('/user', )
+    // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 
    
