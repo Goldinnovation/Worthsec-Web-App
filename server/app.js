@@ -12,7 +12,25 @@ const passportConfig = require('./config/passport')
 const Auth = require('./Middlware/checksAuth')
 const isAuth = require('./Middlware/isAuth')
 const loginReq = require('./router/userLogin')
- 
+const {PrismaClient} = require('@prisma/client');
+const Seqstore = require('connect-session-sequelize')(expressSession.Store)
+const connectPgSimple = require("connect-pg-simple");
+const cors = require('cors')
+ const logoutReq = require('./router/userLogout')
+
+
+
+const prisma = new PrismaClient({
+    log: ['query']
+})
+
+
+const store = new (connectPgSimple(expressSession))({ 
+    conObject: {
+        connectionString: process.env.DATABASE_URL,
+    }, 
+    tableName: 'session',
+ });
 
 app.prepare().then(() => {
     const server = express()
@@ -21,14 +39,17 @@ app.prepare().then(() => {
     server.use(bodyParser.urlencoded({ extended: true }));
 
 
-
+    // server.use(cors)
     server.use(expressSession({
         secret: 'mysecretTestkey',
+        store: store,
         resave: false, 
         saveUninitialized: true,
         cookie: {
             maxAge: 1000 * 60 * 60 * 24
-        }
+        }, 
+        
+
     }))
 
 
@@ -46,7 +67,8 @@ app.prepare().then(() => {
     server.use('/api/events', eventRequest)
     server.use('/api/signUpAcc',signupRequest)
     server.use('/api/login', loginReq)
-    // server.use('/user', )
+    server.use('/api/logout', logoutReq)
+    server.use('/user', isAuth)
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 

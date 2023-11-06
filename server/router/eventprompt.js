@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const handleEvent = require('../controller/handleEvent')
 const ImageFileUpload = require('../Middlware/coverImage')
+const   isUserAuth  = require('../Middlware/isAuth')
+const Auth = require('../Middlware/checksAuth')
 
 
 

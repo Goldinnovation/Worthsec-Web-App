@@ -1,12 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const handleSignup = require('../controller/handleSignup')
+const handlelogout = require('../controller/handleLogout')
 const   isUserAuth  = require('../Middlware/isAuth')
 
 
 
-router.get('/', isUserAuth)
-router.post('/', handleSignup.createUserAccount)
+
+
+
+
+router.get('/', handlelogout.logout)
+router.post('/')
 
 
 module.exports = router

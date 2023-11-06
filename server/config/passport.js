@@ -40,7 +40,10 @@ module.exports = function(passport){
 
     
     )
+
+    
     passport.serializeUser((user, done) => {  //stores the user id in the session 
+       console.log('catch seq')
         done(null, user.userId);
     });
     
@@ -52,6 +55,8 @@ module.exports = function(passport){
                     
                 }
             })
+
+            // console.log(user)
             if(!user){
                 console.error('User not found');
                 return done(new Error('User not found'))

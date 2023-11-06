@@ -9,6 +9,7 @@ datasource db {
 
 model eventPrompt {
   id                      String   @id @default(uuid())
+  eventHost               String
   eventTitle              String
   eventType               Int      @db.Integer
   eventDate               DateTime @db.Date
@@ -25,4 +26,11 @@ model account {
   userPassword1 String
   userPassword2 String
   createdAt     DateTime @default(now())
+}
+
+model session {
+  id     Int      @id @default(autoincrement())
+  sid    String   @unique
+  sess   String
+  expire DateTime
 }

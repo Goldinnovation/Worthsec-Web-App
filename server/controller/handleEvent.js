@@ -8,13 +8,31 @@ const prisma = new PrismaClient()
 
 
 exports.findEvents = async(req,res) => {
+    // console.log(req.user)
 
     
-    const allEvents =  await prisma.eventPrompt.findMany();
+    try{
+        if(req.user){
+            const userEvents =  await prisma.eventPrompt.findMany({
+                where: {
+                    eventHost: req.user.userId
+                }
+            });
+
+            res.json(userEvents);
+        }else {
+            res.status(401).json({error: 'user is not Authenticated to get events'})
+        }
+
+    }catch(error){
+        console.error(error)
+        res.status(500).send('Error with find Event logic  ')
+    }
+   
 
 
     
-    res.json(allEvents);
+    
 
 }
 
@@ -34,19 +52,24 @@ exports.deleteEvent = async(req,res) => {
 
 exports.createEvent = async(req,res) => {
   
-  
-    console.log(req.body)
+//   console.log(req.body)
+//    console.log(req.user)
 
     const stringEventType = req.body.eventType
     IntEventType = parseInt(stringEventType, 10)
     
-
+    const userId = req.user.userId
+  
     
     const newEventBody = {
         ...req.body, 
         ImageCoverUpload: req.file.filename,
-        eventType: IntEventType
+        eventType: IntEventType,
+        eventHost: userId,
+        
     }
+
+
     
     // console.log('test')
     try {
