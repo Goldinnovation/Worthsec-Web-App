@@ -29,7 +29,8 @@ import mailIcon from '@assets/mail.png'
 import messageBtn from '@utils/Messagebtn'
 import Messagebtn from '@utils/Messagebtn'
 import ReqFriendBtn from '@utils/ReqFriendbtn'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
+import Userlogout from '@utils/Userlogout'
 
 
 
@@ -159,12 +160,15 @@ const Usercontent = () => {
                         <div className={styles["logoWorthsec"]}>
                             <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button>
                         </div>
+                        <div className={styles['userLogout']}><Userlogout/></div>
                     </div>
                     <div className={styles['profilpicArea']}>
                         <div className={styles['profilpicContent']}>hallo</div>
                         <button className={styles['addProfilpicbtn']}>+</button>
 
                     </div>
+                
+                    {/* <div className={styles['logoutbtn']}><logout/></div> */}
                     {/* <div className={styles['invitationArea']}> 
                         <button className={styles['requestbtnAreabtn']} onClick={toggleRequestArea}><Image src={mailIcon} height={25} width={25}/></button>
                         </div>
@@ -179,6 +183,7 @@ const Usercontent = () => {
 
                     </div> */}
                     
+                    
                     <nav className={styles['nav-area']}>
                         <ul className={styles['nav-list']}>
                                 <li>
@@ -187,15 +192,17 @@ const Usercontent = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href={'/search'}>
-                                        <Image src={searchIcon} alt='searchIcon' className='search-Icon' height={30} width={30}/>
-                                    </Link>
-                                </li>
-                                <li>
                                     <Link href={'/explore'}>
                                     <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
                                     </Link>
                                 </li>
+                            
+                                <li>
+                                    <Link href={'/search'}>
+                                        <Image src={searchIcon} alt='searchIcon' className='search-Icon' height={30} width={30}/>
+                                    </Link>
+                                </li>
+                                
                                 <li>
                                     <Link href={'/Community'}>
                                     <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
@@ -204,6 +211,8 @@ const Usercontent = () => {
                         </ul>
                         <hr  id='in_line'/>
                     </nav>
+                    
+                    
 
         </header>   
         <hr />

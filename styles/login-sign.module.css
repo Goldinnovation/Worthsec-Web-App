@@ -172,7 +172,7 @@
  
 
  .videoContent{
-    background: url('/assets/eventv1.mp4');
+    /* background: url('/assets/eventv1.mp4'); */
     width: 100%;
     height: auto;
  }

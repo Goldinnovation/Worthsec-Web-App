@@ -59,7 +59,7 @@ const CalenderContent = () => {
         
        
          newData();
-         const intervalId = setInterval(newData, 2000)
+         const intervalId = setInterval(newData, 8000)
          return () => clearInterval(intervalId)
 
     }, []);
