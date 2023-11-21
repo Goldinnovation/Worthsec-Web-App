@@ -8,7 +8,7 @@ const isAuthenticated = (req,res,next) => {
 
     }else{
         console.log('User is not Auth')
-        return res.redirect('/login')
+        return res.redirect('/')
     }
 } 
 

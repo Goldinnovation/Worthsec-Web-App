@@ -9,14 +9,7 @@ import deleteIcon from '@assets/delete.png'
 
 
 
-
-
-
 export async function getContent(){
-
-
-    
-
     try{
 
         const res = await fetch('http://localhost:3000/api/events', {
@@ -41,6 +34,11 @@ export async function getContent(){
 }
 
 
+
+
+
+
+
 export async function deleteobj(eventId) {
     try{
 
@@ -58,8 +56,12 @@ export async function deleteobj(eventId) {
 }
 
 
-const GetEventContent = () => {
 
+
+
+
+const GetEventContent = () => {
+    
     const [allEventContent, setAllEventContent] = useState([])
   
 
@@ -98,55 +100,53 @@ const GetEventContent = () => {
     },[])
 
 
-
-   
-
   return (
+
     <>
-    {/* after entering all necessary information to create an Event, A object will be generated as the event
+     {/* after entering all necessary information to create an Event, A object will be generated as the event
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
         <div className='eventContentSection'>
             
-        {allEventContent.map((event, i) => (
-         <div>
-            <div key={i} >
-                    <div className='eventContent'>
-                        <div className='ImageCoverContent'>
-                            <Image src={`/${event.ImageCoverUpload}`} className='img-content-cover'  
-                            width={230} height={235} alt='Cover of Job ad'/>
-                            <div className='ImageEventTitle'>
-                                <h2>{event.eventTitle}</h2>
+            {allEventContent.map((event, i) => (
+             <div>
+                <div key={i} >
+                        <div className='eventContent'>
+                            <div className='ImageCoverContent'>
+                                <Image src={`/${event.ImageCoverUpload}`} className='img-content-cover'  
+                                width={230} height={235} alt='Cover of Job ad'/>
+                                <div className='ImageEventTitle'>
+                                    <h2>{event.eventTitle}</h2>
+                                </div>
                             </div>
+                            
+                          
+                            <div className='CoverContentBar'>
+    
+                                <div className='ImgCoverContent-add-user'>
+                                    <Image src={addUser} width={18} height={18}/>
+                                </div>
+                                <div className='ImgCoverContent-message'>
+                                    <Image src={message} width={18} height={18}/>
+                                </div>
+                                <div className='ImgCoverContent-setting'>
+                                    <Image src={setting} width={18} height={18}/>
+                                    
+                                </div>
+                                <div className='ImgCoverContent-delete'>
+                                    <Image src={deleteIcon}  width={22} height={22} onClick={() => handleDelete(event.id)}/>
+                                </div>
+                            </div>
+    
+                            
+                      </div>
+                            
                         </div>
-                        
-                      
-                        <div className='CoverContentBar'>
-
-                            <div className='ImgCoverContent-add-user'>
-                                <Image src={addUser} width={18} height={18}/>
-                            </div>
-                            <div className='ImgCoverContent-message'>
-                                <Image src={message} width={18} height={18}/>
-                            </div>
-                            <div className='ImgCoverContent-setting'>
-                                <Image src={setting} width={18} height={18}/>
-                                
-                            </div>
-                            <div className='ImgCoverContent-delete'>
-                                <Image src={deleteIcon}  width={22} height={22} onClick={() => handleDelete(event.id)}/>
-                            </div>
-                        </div>
-
-                        
-                  </div>
-                        
-                    </div>
-                
-            </div>
-        
-        ))}
-
-    </div>
+                    
+                </div>
+            
+            ))}
+    
+        </div>
       
     </>
   )

@@ -1,10 +1,10 @@
 import React from 'react'
-import Usercontent from '@components/Usercontent'
+import Login from '@components/loginComponents/Login'
 
 const page = () => {
   return (
     <div>
-    {/* <Usercontent/> */}
+    <Login/>
        
     </div>
   )

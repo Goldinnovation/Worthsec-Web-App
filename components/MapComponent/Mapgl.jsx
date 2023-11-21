@@ -11,10 +11,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZ29sZGlubm92YXRpb24iLCJhIjoiY2xvMzJudnpnMTU3Z
 
 
 
-
 const Mapgl = () => {
     
-   
     const mapContainer = useRef(null)
     const map = useRef(null)
     const [lng, setLng] = useState(-70.9)
@@ -37,10 +35,9 @@ const Mapgl = () => {
         setZoom(map.current.getZoom().toFixed(2));
         });
         });
-
   return (
     <div>
-       <Searchbar/>
+          <Searchbar/>
        <div>
        <div ref={mapContainer} className="map-container" />
        </div>

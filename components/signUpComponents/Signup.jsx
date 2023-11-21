@@ -3,101 +3,93 @@ import React, { useEffect, useState } from 'react'
 import style from '@styles/login-sign.module.css'
 import { useRouter } from 'next/navigation'
 
-
-
-
-
-
 const Signup = () => {
-    // displays a message if the password data is empty or does not match 
-    const [showmismatch, setshowmisMatch] = useState(false)
-    const [emptyinput, setemptyInput] = useState(false)
-    const [userexist, setUserexist] = useState(false)
-
-
-    const router = useRouter();
-
-    const [register, setRegister] = useState({
-        userName: "",
-        userEmail: "",
-        userPassword1: "", 
-        userPassword2: ""
-
-    })
-
-    
-
-    const handleInput = (e) => {
-
-        setRegister({...register, [e.target.className]: e.target.value})
-    }
-
-
-    const handleSubmit = async(e) => {
-        e.preventDefault(); 
-        
-        // console.log(register.userPassword1)
-
-        if( register.userPassword1  === "" ||register.userPassword2 === "" ){
-
-            setemptyInput(true)
-            setshowmisMatch(false)
-            
-            return; 
-        }
-
-        if(register.userPassword1 !== register.userPassword2 || register.userPassword1  === "" ){
-
-            setshowmisMatch(true)
-            setemptyInput(false)
-            
-            return; 
-        }
-
-        try{
-            const res = await fetch('http://localhost:3000/api/signUpAcc', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json', // Set the content-type to JSON
-                  },
-                body: JSON.stringify(register)
-            })
-           
-        
-            const data = await res.json()
-            
-            if(res.ok && data.message === "new user created"){
-                    
-                    router.push('/login')
-                
-                
-            }else if(!res.ok && data.message === "User already Exist"){
-                setUserexist(true)
-            }
-            else{
-
-            }
-
-          
-
-           
-            
-           
+       // displays a message if the password data is empty or does not match 
+       const [showmismatch, setshowmisMatch] = useState(false)
+       const [emptyinput, setemptyInput] = useState(false)
+       const [userexist, setUserexist] = useState(false)
+   
+   
+       const router = useRouter();
+   
+       const [register, setRegister] = useState({
+           userName: "",
+           userEmail: "",
+           userPassword1: "", 
+           userPassword2: ""
+   
+       })
+   
        
-
+   
+       const handleInput = (e) => {
+   
+           setRegister({...register, [e.target.className]: e.target.value})
+       }
+   
+   
+       const handleSubmit = async(e) => {
+           e.preventDefault(); 
            
-        }catch(error){
-            console.error('fetch failed')
-        }
-
-
-
-    }
-
-
+           // console.log(register.userPassword1)
+   
+           if( register.userPassword1  === "" ||register.userPassword2 === "" ){
+   
+               setemptyInput(true)
+               setshowmisMatch(false)
+               
+               return; 
+           }
+   
+           if(register.userPassword1 !== register.userPassword2 || register.userPassword1  === "" ){
+   
+               setshowmisMatch(true)
+               setemptyInput(false)
+               
+               return; 
+           }
+   
+           try{
+               const res = await fetch('http://localhost:3000/api/signUpAcc', {
+                   method: 'POST', 
+                   headers: {
+                       'Content-Type': 'application/json', // Set the content-type to JSON
+                     },
+                   body: JSON.stringify(register)
+               })
+              
+           
+               const data = await res.json()
+               
+               if(res.ok && data.message === "new user created"){
+                       
+                       router.push('/')
+                   
+                   
+               }else if(!res.ok && data.message === "User already Exist"){
+                   setUserexist(true)
+               }
+               else{
+   
+               }
+   
+             
+   
+              
+               
+              
+          
+   
+              
+           }catch(error){
+               console.error('fetch failed')
+           }
+   
+   
+   
+       }
   return (
     <div>
-        
         <div className={style["signUpSection"]}>
             <div className={style["signContentArea"]}>
                 <div className={style["signUpContent"]}>

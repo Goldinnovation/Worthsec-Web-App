@@ -7,37 +7,38 @@ import { set } from 'date-fns';
 
 
 
+
 export const getData = async() => {
-  try{
-    const res = await fetch('http://localhost:3000/api/events', {
-        method: 'GET',
-        cache: 'no-store'
-    })
-
-    if(!res.ok){
-        
-     throw new Error('res IS NOT OK,ERROR')
-    
+    try{
+      const res = await fetch('http://localhost:3000/api/events', {
+          method: 'GET',
+          cache: 'no-store'
+      })
+  
+      if(!res.ok){
+          
+       throw new Error('res IS NOT OK,ERROR')
+      
+      }
+  
+  
+      const data =  await res.json()
+      
+      return data 
+  
+    }catch(error){
+      console.error('Fetch Problem')
+      return[]
     }
-
-
-    const data =  await res.json()
-    
-    return data 
-
-  }catch(error){
-    console.error('Fetch Problem')
-    return[]
   }
-}
 
+  
 // fetches the date and image name and displays it inside the specfic calender areas 
 
 
-
 const CalenderContent = () => {
-    
-  
+
+     
     const [selectedDateandImage, setselectedDateandImage] = useState([])
    
 
@@ -110,17 +111,10 @@ const CalenderContent = () => {
     const generatedStyles = generateDynamicStyles();
   
    
-
-
-   
-
-    return (
-        <div>
-
-           
-
-            
-            <style>{generatedStyles}</style>
+  return (
+    <div>
+        
+        <style>{generatedStyles}</style>
             <DayPicker
                 id="EventCalender"
                 // onSelect={(range)=>{console.log(range)}}
@@ -160,8 +154,9 @@ const CalenderContent = () => {
                     }
                 }}
             />
-        </div>
-    )
+      
+    </div>
+  )
 }
 
-export default CalenderContent;
+export default CalenderContent

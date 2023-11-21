@@ -15,7 +15,7 @@ const Userlogout = () => {
                 
                 const data = await res.json()
                 if(data.message === 'user is logged out'){
-                    return window.location.href = '/login'
+                    return window.location.href = '/'
                 }
             }
     
