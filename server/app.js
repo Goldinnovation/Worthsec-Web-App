@@ -16,7 +16,9 @@ const {PrismaClient} = require('@prisma/client');
 const Seqstore = require('connect-session-sequelize')(expressSession.Store)
 const connectPgSimple = require("connect-pg-simple");
 const cors = require('cors')
- const logoutReq = require('./router/userLogout')
+const logoutReq = require('./router/userLogout')
+const userReq = require('./router/userInfos')
+
 
 
 
@@ -68,6 +70,7 @@ app.prepare().then(() => {
     server.use('/api/signUpAcc',signupRequest)
     server.use('/api/login', loginReq)
     server.use('/api/logout', logoutReq)
+    server.use('/api/user', userReq)
     server.use('/user', isAuth)
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)

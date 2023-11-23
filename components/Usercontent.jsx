@@ -31,6 +31,7 @@ import Messagebtn from '@utils/Messagebtn'
 import ReqFriendBtn from '@utils/ReqFriendbtn'
 // import { useRouter } from 'next/navigation'
 import Userlogout from '@utils/Userlogout'
+import UploadProfilImage from '@utils/homeUtils/ProfilImageBtn'
 
 
 
@@ -163,8 +164,10 @@ const Usercontent = () => {
                         <div className={styles['userLogout']}><Userlogout/></div>
                     </div>
                     <div className={styles['profilpicArea']}>
-                        <div className={styles['profilpicContent']}>hallo</div>
-                        <button className={styles['addProfilpicbtn']}>+</button>
+                        
+                        <div className={styles['addProfilpicbtn']}><UploadProfilImage/></div>
+                        
+                        {/* <button className={styles['addProfilpicbtn']}>+sd</button> */}
 
                     </div>
                 
