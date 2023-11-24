@@ -26,6 +26,15 @@ model account {
   userPassword1 String
   userPassword2 String
   createdAt     DateTime @default(now())
+  picture       picture?
+}
+
+model picture {
+  id               String   @id @default(uuid())
+  pictureUrl       String
+  picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
+  picture_owner_id String   @unique
+  createdAt        DateTime @default(now())
 }
 
 model session {
