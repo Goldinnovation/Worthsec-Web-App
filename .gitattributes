@@ -1,2 +1,0 @@
-friends3.mp4 filter=lfs diff=lfs merge=lfs -text
-friendsV.mp4 filter=lfs diff=lfs merge=lfs -text
