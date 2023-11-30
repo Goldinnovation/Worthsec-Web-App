@@ -22,9 +22,6 @@ const userReq = require('./router/userInfos')
 
 
 
-// const prisma = new PrismaClient({
-//     log: ['query']
-// })
 
 
 const store = new (connectPgSimple(expressSession))({ 

@@ -29,7 +29,6 @@ import mailIcon from '@assets/mail.png'
 import messageBtn from '@utils/Messagebtn'
 import Messagebtn from '@utils/Messagebtn'
 import ReqFriendBtn from '@utils/ReqFriendbtn'
-// import { useRouter } from 'next/navigation'
 import Userlogout from '@utils/Userlogout'
 import UploadProfilImage from '@utils/homeUtils/ProfilImageBtn'
 
