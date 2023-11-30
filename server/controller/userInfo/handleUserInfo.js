@@ -6,13 +6,81 @@ const prisma = new PrismaClient()
 
 
 
+
+exports.getUserProfilimage = async(req,res) => {
+    
+    try{
+        if(req.user){
+           
+            const userImage = await prisma.picture.findFirst({
+                where: {
+                    picture_owner_id: req.user.userId
+                }
+            });
+          
+           
+          res.json(userImage)
+            
+        }
+        else{
+            res.status(401).json({error: 'user could not be find'})
+        }
+        
+
+    }catch(error){
+        console.log(error)
+        res.status(500).send('Error getting the Imagedata')
+    }
+
+}
+
+
+
+exports.deleteUserProfilImage = async(req,res) => {
+    
+
+    try{
+        if(req.user){
+            const deleleProfPic = await prisma.picture.delete({
+                where:{
+                    picture_owner_id: req.params.id
+                }
+            })
+            res.json(deleleProfPic)
+            
+        }
+       
+
+    }catch(error){
+        console.log('Catch ERROR on DELETE')
+        res.status(500).send('CATCH DELETE REQ ERROR')
+    }
+   
+    
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.userProfilImage = async(req,res) => {
 
-    const user = req.user 
-    console.log(user)
-    const body =  req.file
-
-    console.log(body)
+    
 
 
     const pictureData = {

@@ -7,8 +7,9 @@ const uploadProfilImage = require('../Middlware/userProfilImage')
 
 
 
-router.get('/',)
+router.get('/', userImage.getUserProfilimage)
 router.post('/', uploadProfilImage, userImage.userProfilImage)
+router.delete('/:id', userImage.deleteUserProfilImage)
 
 
 module.exports = router

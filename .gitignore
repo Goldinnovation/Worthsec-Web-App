@@ -6,6 +6,8 @@
 .pnp.js
 .env
 
+*.mp4
+
 # testing
 /coverage
 

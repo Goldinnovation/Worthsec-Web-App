@@ -190,7 +190,7 @@ const Usercontent = () => {
                     <nav className={styles['nav-area']}>
                         <ul className={styles['nav-list']}>
                                 <li>
-                                    <Link href={'/user'}>
+                                    <Link rel='preload' href={'/user'}>
                                         <Image src={HomeIcon} alt='HomeIcon' className='HomeIcon' height={30} width={30} />
                                     </Link>
                                 </li>

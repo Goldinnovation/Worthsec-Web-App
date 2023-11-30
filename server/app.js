@@ -22,9 +22,9 @@ const userReq = require('./router/userInfos')
 
 
 
-const prisma = new PrismaClient({
-    log: ['query']
-})
+// const prisma = new PrismaClient({
+//     log: ['query']
+// })
 
 
 const store = new (connectPgSimple(expressSession))({ 
@@ -39,9 +39,9 @@ app.prepare().then(() => {
 
     server.use(bodyParser.json())
     server.use(bodyParser.urlencoded({ extended: true }));
-
-
-    // server.use(cors)
+    server.use(express.static('public'))
+    server.use(cors())
+    
     server.use(expressSession({
         secret: 'mysecretTestkey',
         store: store,

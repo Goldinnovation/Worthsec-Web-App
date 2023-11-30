@@ -8,7 +8,7 @@ const prisma = new PrismaClient()
 
 
 exports.findEvents = async(req,res) => {
-    // console.log(req.user)
+  
 
     
     try{

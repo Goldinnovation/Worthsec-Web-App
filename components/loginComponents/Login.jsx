@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import style from '@styles/login-sign.module.css'
 import Link from 'next/link'
-import Video from 'next-video';
 import { useRouter } from 'next/navigation';
 
 const Login = () => {
@@ -37,34 +36,32 @@ const Login = () => {
            }else{
                const data = await res.json();
                if(data.message === "Login Successful"){
-                   window.location.href = '/user'
+                router.prefetch('/user')
+                router.push('/user')
                }else {
                    console.error('failed to handle data message', data.message)
                }
            }
-
-
            
-
        }catch(error){
            console.error('fetch error')
 
        }
+    }
 
      
-     }
-
   return (
     <div>
+        <div className={style["mainBackground"]}>
+            <video autoPlay loop muted className={style["mainvideoContent"]}>
+            <source src='/friends3.mp4' type='video/mp4'/>
+            </video>
+            
+        </div>
          <div className={style["logoWorthsec"]}>
                             <button className={style['worthsecAreabtn']} disabled>WORTHSEC</button>
                         </div>
          <div className={style["loginSection"]}>
-            <div className={style["videoSection"]}>
-                <div className={style["videoContent"]}>
-                    {/* <Video src={Videosrc} width={200} height={200}/> */}
-                </div>
-            </div>
             <div className={style["loginContentArea"]}>
                 <div className={style["loginContent"]}>
                    <div className={style["loginTitle"]}>
