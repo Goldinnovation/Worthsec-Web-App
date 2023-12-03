@@ -503,6 +503,9 @@
 
 .pictureUrl{
     border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat ;
 
 }
 
@@ -512,16 +515,24 @@
 
 .deleteProfPic{
     /* background-color: burlywood; */
+    position: relative;
     width: 20px;
     color: red;
     font-size: 23px;
-    position: relative;
     left: 2%;
-    top: 33px;
+    top: 25px;
    
 }
 .proId{
     background-color: orange;
     width: 100px;
     height: 10px;
+}
+
+.ProfilpiContainer{
+    
+    position: relative;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
 }

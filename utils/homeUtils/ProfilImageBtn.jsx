@@ -101,7 +101,7 @@ const ProfilImageBtn = () => {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className={styles["profilPicSection"]}>
          
            

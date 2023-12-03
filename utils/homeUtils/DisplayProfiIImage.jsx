@@ -108,19 +108,24 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
            
         <div onClick={() => handleDelete(profilImageData.picture_owner_id)} className={style["deleteProfPic"]}>x</div>
            { profilImageData ? (
-            <div>
+            <div className={style["ProfilpiContainer"]}>
                
                  <Image 
                  src={`/${profilImageData.pictureUrl}`}
                  className={style["pictureUrl"]}
-                 width={115} 
-                height={115}/>
+                 alt='uploaded Image'
+                 fill
+                quality={100}
+                priority
+                
+                />
+                
             </div>
            ) : (
             <Image
             src={happyprofilIcon}
             className={style["happyProfilIcon"]}
-            alt='defaul profil Image'
+            alt='default profil Image'
             width={100}
             height={100} />
            )}

@@ -1123,14 +1123,14 @@ appearance: none;
 
 @media screen and (max-width:2000px){   
 .eventContent{
-    /* background-color: #58d17290; */
+    background-color: #58d17290;
     display: flex;
     height: 150px;
-    width: 150px;
+    width: 190px;
     border-radius: 20px;
     margin: 10%;
     /* flex-direction: column; */
-    
+
 
     
    
@@ -1157,13 +1157,13 @@ appearance: none;
 
     .eventContent:hover .CoverContentBar{
         /* background-color: #ff0909; */
-        height:150px;
-        width: 230px;
+        height: 150px;
+        width: 100px;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-left: 7px;
+        margin-left: 17px;
        
         
         
@@ -1174,7 +1174,7 @@ appearance: none;
 
 @media screen and (min-width:2000px){
     .eventContent:hover .CoverContentBar{
-        
+        background-color: #0038e1;
         height:248px;
         width: 228px;
         border-bottom-left-radius: 9px;
@@ -1288,8 +1288,9 @@ appearance: none;
 .ImageCoverContent{
     /* background-color: aqua; */
     position: relative;
-    width: 230px;
-    height: 253px;
+    display: block;
+    width: 300px;
+    height: 150px;
 }
 
 
@@ -1378,7 +1379,7 @@ appearance: none;
 
 @media screen and (max-width:2000px){
     .ImageCoverContent:hover .ImageEventTitle{
-        /* background-color: rgb(255, 0, 0); */
+        background-color: rgb(255, 0, 0);
          position: absolute;
          height: 150px;
          width: 150px;
@@ -1389,7 +1390,7 @@ appearance: none;
          display: flex;
          justify-content: center;
          align-items: center;
-         background-color: rgba(255, 155, 172, 0.098);
+         background-color: rgba(255, 155, 172, 0.579);
          /* border: 1px solid black; */
          border-radius: 10%;
          color: white;

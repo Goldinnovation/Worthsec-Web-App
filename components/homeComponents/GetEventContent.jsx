@@ -111,9 +111,12 @@ const GetEventContent = () => {
              <div>
                 <div key={i} >
                         <div className='eventContent'>
+                            
                             <div className='ImageCoverContent'>
                                 <Image src={`/${event.ImageCoverUpload}`} className='img-content-cover'  
-                                width={230} height={235} alt='Cover of Job ad'/>
+                                fill 
+                                quality={100}
+                                alt='Cover of Job ad'/>
                                 <div className='ImageEventTitle'>
                                     <h2>{event.eventTitle}</h2>
                                 </div>
