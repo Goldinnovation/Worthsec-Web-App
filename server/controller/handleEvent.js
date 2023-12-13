@@ -8,7 +8,7 @@ const config = require('../config/firebase')
 const Imageupload = require("../Middlware/coverImage");
 const giveCurrentDateTime = require('../utils/date')
 const prisma = new PrismaClient()
-
+const sharp = require('sharp')
 
 // initialize firebase application
 initializeApp(config.firebaseConfig);
@@ -27,6 +27,15 @@ exports.createEvent = async(req,res) => {
             // storage path reference 
             const dateTime = giveCurrentDateTime();
             const storageRef = ref(storage, `files/${dateTime}_${req.file.originalname}`)
+
+            // compromising the image with sharp 
+
+            const compromiseImage = await sharp(req.file.buffer)
+            .resize({width: 800, height: 1050})
+            .jpeg({quality: 80})
+            .toBuffer();
+
+
             
 
             const metadata = {
@@ -34,7 +43,7 @@ exports.createEvent = async(req,res) => {
             }
 
             // upload the file to the firebase storage
-            const uploadaction = uploadBytesResumable(storageRef, req.file.buffer, metadata)
+            const uploadaction = uploadBytesResumable(storageRef, compromiseImage, metadata)
         
             // wait for the upload to complete 
             const snapshot = await uploadaction;
@@ -189,7 +198,7 @@ exports.deleteEvent = async(req,res) => {
     console.log(id)
     console.log(req.body.eventpath);
     const imagePath = req.body.eventpath
-    // console.log(req.params);
+   
     try{
         
         if(!id){
@@ -204,7 +213,7 @@ exports.deleteEvent = async(req,res) => {
 
         const storageRef = ref(storage, imagePath)
         await deleteObject(storageRef)
-        
+
         console.log('Image is deleted')
     
        
