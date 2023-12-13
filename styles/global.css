@@ -1015,6 +1015,9 @@ appearance: none;
 
 
 
+
+
+
         /* Create-btn Arean */
 @media screen and (max-width:2000px){
     
@@ -1123,7 +1126,7 @@ appearance: none;
 
 @media screen and (max-width:2000px){   
 .eventContent{
-    background-color: #58d17290;
+    /* background-color: #58d17290; */
     display: flex;
     height: 150px;
     width: 190px;
@@ -1153,45 +1156,10 @@ appearance: none;
 
 
 
-@media screen and (max-width:2000px){
-
-    .eventContent:hover .CoverContentBar{
-        /* background-color: #ff0909; */
-        height: 150px;
-        width: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-left: 17px;
-       
-        
-        
-    
-    }
-}
 
 
-@media screen and (min-width:2000px){
-    .eventContent:hover .CoverContentBar{
-        background-color: #0038e1;
-        height:248px;
-        width: 228px;
-        border-bottom-left-radius: 9px;
-        border-bottom-right-radius: 9px;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-        margin-left: 15px;
-        
-        
-        
-    
-    }
-    
 
-}
+
 
 /* Image Cover Content */
 
@@ -1201,8 +1169,7 @@ appearance: none;
 
         /* background-color: #8cff0078; */
         display: flex;
-        width: 150px;
-        height: 150px;
+        
         border: 1px solid black;
         /* border-top-right-radius: 9%;
         border-top-left-radius: 9%;  */
@@ -1231,35 +1198,6 @@ appearance: none;
 }
 
 
-@media screen and (max-width:2000px){
-    .ImgCoverContent-add-user{
-        /* background-color: rgb(110, 255, 255); */
-        border: 1px solid white;
-        border-radius: 50px;
-        padding: 5px;
-        height: 17px;
-        width: 17px;
-        text-align: center;
-        align-items: center;
-        
-        
-    }
-
-}
-
-@media screen and (min-width:2000px){
-    
-    .ImgCoverContent-add-user{
-        /* background-color: rgb(110, 255, 255); */
-        border: 1px solid white;
-        border-radius: 50px;
-        padding: 5px;
-        
-        
-    }
-    
-
-}
 
 
 
@@ -1268,29 +1206,17 @@ appearance: none;
     }
 
 
-.ImgCoverContent-add-user:hover{
-    
-    background-color: rgba(225, 4, 0, 0.537);
-    
-    
-}
 
-.ImgCoverContent-message:hover{
-    
-    background-color: rgba(0, 102, 227, 0.863);
-     
- }
 
- .ImgCoverContent-setting:hover{
-    background-color: rgba(255, 247, 0, 0.76);
-}
 
 .ImageCoverContent{
     /* background-color: aqua; */
-    position: relative;
+    /* position: relative;
     display: block;
     width: 300px;
-    height: 150px;
+    height: 150px; */
+   
+   
 }
 
 
@@ -1300,37 +1226,6 @@ appearance: none;
 
 
 
-@media screen and (max-width:2000px){
-
-    .ImgCoverContent-message{
-        /* border-right: 1px solid rgba(255, 255, 255, 0.203);
-        border-left: 1px solid rgba(255, 255, 255, 0.203); */
-        /* background-color: goldenrod; */
-       
-        text-align: center;
-        border: 1px solid white;
-        border-radius: 50px;
-        height: 17px;
-        width: 17px;
-        padding: 5px; 
-        align-items: center;
-        
-    }
-
-}
-
-
-@media screen and (min-width:2000px){
-    .ImgCoverContent-message{
-        text-align: center;
-        border: 1px solid white;
-        border-radius: 50px;
-        padding: 5px; 
-        align-items: center;
-        
-    }
-
-}
 
 
 
@@ -1340,34 +1235,6 @@ appearance: none;
 
 
 
-@media screen and (max-width:2000px){
-    
-    .ImgCoverContent-setting{
-        /* background-color: green; */
-        border: 1px solid white;
-        border-radius: 50px;
-        /* padding: 5px; */
-        height: 17px;
-        width: 17px;
-        padding: 5px; 
-        align-items: center;
-    }
-
-}
-
-@media screen and (min-width:2000px){
-
-    .ImgCoverContent-setting{
-        /* background-color: green; */
-        border: 1px solid white;
-        border-radius: 50px;
-        padding: 5px;
-        align-items: center;
-    }
-    
-
-
-}
 
 
 @media screen and (max-width:2000px){
@@ -1379,19 +1246,18 @@ appearance: none;
 
 @media screen and (max-width:2000px){
     .ImageCoverContent:hover .ImageEventTitle{
-        background-color: rgb(255, 0, 0);
-         position: absolute;
-         height: 150px;
-         width: 150px;
-         top: 0;
+         position: relative;
+         width: 181px;
+         height: 170px;
+         top: -114%;
          left: 0;
          right: 0;
          bottom: 0;
          display: flex;
          justify-content: center;
          align-items: center;
-         background-color: rgba(255, 155, 172, 0.579);
-         /* border: 1px solid black; */
+         background-color: rgba(248, 30, 23, 0.116);
+         background-size: cover;
          border-radius: 10%;
          color: white;
          
@@ -1400,10 +1266,221 @@ appearance: none;
 
 }
 
+
+.eventWindoOverlay{
+   
+    background-color: rgba(27, 26, 26, 0.526);
+
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    
+}
+
+.eventWindowSection{
+    /* background-color:rgba(201, 197, 201, 0.244); */
+    position: absolute;
+    top: 53.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 5;
+}
+
+.eventWindowContent{
+    /* background-color:rgba(234, 234, 234, 0.147); */
+    background-color:rgba(8, 8, 8, 0.712);
+    /* background-color: orange; */
+    /* background-color: green; */
+    width: 100%;
+    border-radius: 15px;
+    margin-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.184);
+
+}
+
+.eventWindowNav{
+    background-color:rgba(8, 8, 8, 0.712);
+    /* background-color: orange; */
+    width: 10%;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.184);
+}
+
+.eventwindowHeader{
+
+    /* background-color: rgb(10, 82, 34); */
+    display: flex;
+    align-items: center;
+}
+.eventWindowTitle{
+    background-color:rgba(201, 197, 201, 0.078);
+    /* background-color: orange; */
+    height: 30px;
+    width: 95%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* border: 1px solid white; */
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+}
+
+.eventwindowClose{
+    background-color: rgb(255, 0, 0);
+    width: 15px;
+    height: 15px;
+    color: rgb(20, 19, 19);
+    /* margin-bottom: 3%; */
+    margin: 2%;
+    font-size: medium;
+    font-weight: bolder;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.eventWindowImage{
+    /* background-color: orange; */
+    display: flex;
+    margin-left: 5%;
+    /* justify-content: center; */
+}
+
+.eventMetaData{
+    /* background-color: orange; */
+    margin-left: 2%;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 5%;
+    /* border-left: 1px solid rgba(255, 255, 255, 0.158); */
+}
+
+.eventHostMetaDataHost{
+    background-color: rgba(255, 0, 0, 0.327);
+    text-align: center;
+    margin: 5%;
+    font: bold;
+   border-radius: 10px;
+}
+.eventHostMetaDataDate{
+    background-color: rgba(0, 255, 47, 0.327);
+    text-align: center;
+    margin: 5%;
+   border-radius: 10px;
+}
+
+.eventHostMetaDataeventType{
+    background-color: violet;
+    text-align: center;
+    margin: 5%;
+    border-radius: 10px;
+}
+
+.eventWindowImageContent{
+    border-radius: 10px;
+}
+
+
+.eventWindowImageDescriptionArea{
+    /* background-color:rgba(201, 197, 201, 0.078); */
+    /* background-color: rgba(16, 182, 16, 0.263); */
+    height: 100px;
+    margin: 4%;
+    border-radius: 10px;
+    /* border: 1px solid rgba(255, 255, 255, 0.164); */
+    
+
+}
+
+
+.eventWindowImageDescription{
+    background-color: rgba(222, 222, 222, 0.041);
+    height: 80%;
+    width: 97%;
+    border-radius: 10px;
+    margin-left: 1px;
+    color: white;
+   
+    
+
+    
+}
+
+
+.eventWindowNavOptions{
+    /* background-color: orange; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1%;
+
+}
+
+.eventoptionView{
+    /* background-color: green; */
+    margin-top: 30%;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.eventoptionMessage{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+
+}
+
+.eventoptionAddUser{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+
+
+.eventoptionsDelete{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
 @media screen and (min-width:2000px){
 
     .ImageCoverContent:hover .ImageEventTitle{
         background-color: aqua;
+    
          position: absolute;
          height: 234px;
          width: 230px;
@@ -1425,19 +1502,10 @@ appearance: none;
 }
 
 
-.ImgCoverContent-delete{
-    /* background-color: orange; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 1px solid white;
-    border-radius: 50px;
-    width: 30px;
-    height: 30px;
 
-    
-}
+
+
+
 
 .eventOptionSection{
     background-color: orange;

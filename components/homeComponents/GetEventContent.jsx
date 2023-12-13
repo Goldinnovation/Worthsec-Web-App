@@ -64,9 +64,14 @@ export async function deleteobj(eventId,eventpath) {
 
 
 
+
+
+
 const GetEventContent = () => {
     
     const [allEventContent, setAllEventContent] = useState([])
+    // const [eventWindow, setEventWindow] = useState(false)
+    const [selectedEvent, setSelectedEvent] = useState(null);
   
 
     
@@ -79,11 +84,31 @@ const GetEventContent = () => {
             const updatedData = allEventContent.filter((event) => event.id !== eventId)
             setAllEventContent(updatedData)
 
+            if(selectedEvent && selectedEvent.id === eventId){
+                setSelectedEvent(null)
+            }
+
            
 
         }catch(error){
             console.error('function error', error)
         }
+    }
+
+
+    const handlepopuptoggle = (event) => {
+
+        // set the toggle to the event object 
+        setSelectedEvent(selectedEvent === event ? null : event)
+
+       
+
+    }
+
+    const handleCloseCLick = () => {
+
+        setSelectedEvent(null)
+
     }
    
 
@@ -114,42 +139,84 @@ const GetEventContent = () => {
         <div className='eventContentSection'>
             
             {allEventContent.map((event, i) => (
-             <div>
-                <div key={i} >
+             <div className='eventContentSectionArea'>
+                <div key={i} className='eventContentKey' >
                         <div className='eventContent'>
                             
-                            <div className='ImageCoverContent'>
+                            <div className='ImageCoverContent' onClick={() => handlepopuptoggle(event)}>
                                 <Image src={event.ImageCoverUpload} className='img-content-cover'  
-                                fill 
+                                // fill
+                                width={180}
+                                height={170}
                                 quality={100}
                                 alt='Cover of Job ad'/>
                                 <div className='ImageEventTitle'>
                                     <h2>{event.eventTitle}</h2>
                                 </div>
-                            </div>
-                            
-                          
-                            <div className='CoverContentBar'>
-    
-                                <div className='ImgCoverContent-add-user'>
-                                    <Image src={addUser} width={18} height={18}/>
-                                </div>
-                                <div className='ImgCoverContent-message'>
-                                    <Image src={message} width={18} height={18}/>
-                                </div>
-                                <div className='ImgCoverContent-setting'>
-                                    <Image src={setting} width={18} height={18}/>
-                                    
-                                </div>
-                                <div className='ImgCoverContent-delete'>
-                                    <Image src={deleteIcon}  width={22} height={22} onClick={() => handleDelete(event.id, event.ImageCoverUpload)}/>
-                                </div>
-                            </div>
-    
-                            
+                            </div>       
                       </div>
-                            
-                        </div>
+                      </div>
+                        {selectedEvent && selectedEvent.id  === event.id && (
+                                
+                                <div className='eventWindoOverlay' > 
+                                  <div className='eventWindowSection'>
+                                    <div className='eventWindowContent'>
+                                        <div className='eventwindowHeader'>
+                                        <div className='eventWindowTitle'>
+                                        title
+                                        </div>
+                                        <div className='eventwindowClose' onClick={handleCloseCLick}>
+                                        x
+                                        </div>
+
+                                        </div>
+                                        
+                                        <div className='eventWindowImage'>
+                                        <Image src={event.ImageCoverUpload} className='eventWindowImageContent'  
+                                        width={300}
+                                        height={270}
+                                        quality={100}
+                                        alt='Cover of Job ad'/>
+
+                                        <div className='eventMetaData'>
+                                                <p className='eventHostMetaDataHost'>Host: Emmanuel</p>
+                                                <p className='eventHostMetaDataDate'>Date: 23.15.24</p>
+                                                <p className='eventHostMetaDataeventType'>Type: Party</p>
+                                        </div>
+                                        </div>
+
+                                        <div className='eventWindowImageDescriptionArea'>
+                                            <input type="text" className="eventWindowImageDescription" />
+                                        </div>
+                                    </div>
+
+
+                                    <div className='eventWindowNav'>
+                                        <div className='eventWindowNavOptions'>
+                                            <div className='eventoptionView'>
+                                                <Image src={addUser} width={18} height={18}/>
+                                            </div>
+                                            <div className='eventoptionMessage'>
+                                                <Image src={message} width={18} height={18}/>
+                                                </div>
+                                            <div className='eventoptionAddUser'>
+                                            <Image src={setting} width={18} height={18}/>
+                                            </div>
+                                            <div className='eventoptionsEdit'>
+                                            </div>
+                                            <div className='eventoptionsDelete'>
+                                            <Image src={deleteIcon}  width={20} height={20} onClick={() => handleDelete(event.id, event.ImageCoverUpload)}/>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                  </div>
+
+                                  </div>
+                                  
+
+                            )
+                            }
                     
                 </div>
             

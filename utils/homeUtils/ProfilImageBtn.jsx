@@ -107,9 +107,6 @@ const ProfilImageBtn = () => {
            
                 
                
-                    
-                
-
                 
             <input type="file" className="UserProfilImage" id='uplaodProfilImageInput'  onChange={handleUplaodImage} hidden/>
                 <GetImageProfilPIC/>
