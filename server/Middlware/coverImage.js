@@ -1,23 +1,11 @@
 const multer = require('multer')
-const {fileURLToPath} = require('url')
-const path = require('path')
-const {join} = path 
+// const {fileURLToPath} = require('url')
 
 
 
-
-const storage = multer.diskStorage({
-
-    
-    destination: function(req,file,cb){
-        
-        cb(null, 'public')
-    },
-    filename: function(req,file,cb){
-        cb(null, file.originalname)
-        // console.log(file)
-    }
-})
+// setting the multer configurationn to handle file upload 
+const storage = multer.memoryStorage()
+const upload = multer({storage}).single('ImageCoverUpload')
 
 
 
@@ -25,6 +13,8 @@ const storage = multer.diskStorage({
 
 
 
-const uploadedImageFile = multer({storage:storage}).single('ImageCoverUpload')
-console.log(uploadedImageFile)
-module.exports = (uploadedImageFile)
+// const uploadedImageFile = multer({storage:storage}).single('ImageCoverUpload')
+// // console.log(uploadedImageFile)
+module.exports = upload;
+
+ 

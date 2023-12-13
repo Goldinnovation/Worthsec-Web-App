@@ -18,6 +18,10 @@ const connectPgSimple = require("connect-pg-simple");
 const cors = require('cors')
 const logoutReq = require('./router/userLogout')
 const userReq = require('./router/userInfos')
+const {initializeApp} = require("firebase/app")
+const {getAnalytics} = require("firebase/analytics")
+const config = require('./config/firebase')
+
 
 
 
@@ -34,10 +38,12 @@ const store = new (connectPgSimple(expressSession))({
 app.prepare().then(() => {
     const server = express()
 
+
     server.use(bodyParser.json())
     server.use(bodyParser.urlencoded({ extended: true }));
     server.use(express.static('public'))
     server.use(cors())
+    
     
     server.use(expressSession({
         secret: 'mysecretTestkey',
@@ -58,7 +64,7 @@ app.prepare().then(() => {
 
 
     passportConfig(passport)
-    
+    // initializeApp(config.firebaseConfig)
     
     // area for the API endpoints 
     

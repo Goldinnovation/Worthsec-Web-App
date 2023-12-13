@@ -39,12 +39,16 @@ export async function getContent(){
 
 
 
-export async function deleteobj(eventId) {
+export async function deleteobj(eventId,eventpath) {
     try{
 
         const res = await fetch(`http://localhost:3000/api/events/${eventId}`,{
 
-            method: 'DELETE', 
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({eventpath})
         }); 
         if(!res.ok){
             throw new Error(' Delete req has failed')
@@ -66,14 +70,16 @@ const GetEventContent = () => {
   
 
     
-    const handleDelete = async(eventId) => {
+    const handleDelete = async(eventId,eventpath) => {
         try{
-            await deleteobj(eventId)
+            await deleteobj(eventId,eventpath)
 
             // Look this area up 
 
             const updatedData = allEventContent.filter((event) => event.id !== eventId)
             setAllEventContent(updatedData)
+
+           
 
         }catch(error){
             console.error('function error', error)
@@ -113,7 +119,7 @@ const GetEventContent = () => {
                         <div className='eventContent'>
                             
                             <div className='ImageCoverContent'>
-                                <Image src={`/${event.ImageCoverUpload}`} className='img-content-cover'  
+                                <Image src={event.ImageCoverUpload} className='img-content-cover'  
                                 fill 
                                 quality={100}
                                 alt='Cover of Job ad'/>
@@ -136,7 +142,7 @@ const GetEventContent = () => {
                                     
                                 </div>
                                 <div className='ImgCoverContent-delete'>
-                                    <Image src={deleteIcon}  width={22} height={22} onClick={() => handleDelete(event.id)}/>
+                                    <Image src={deleteIcon}  width={22} height={22} onClick={() => handleDelete(event.id, event.ImageCoverUpload)}/>
                                 </div>
                             </div>
     

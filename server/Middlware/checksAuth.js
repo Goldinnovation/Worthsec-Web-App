@@ -19,4 +19,5 @@ const checkAuth = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = checkAuth;
+
+module.exports = checkAuth
