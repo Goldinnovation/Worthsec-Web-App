@@ -1,43 +1,9 @@
-.navbarsection{
-    
-    /* background-color: rgba(111, 0, 255, 0.458); */
-    display: flex;
 
 
-}
-
-.navbarArea{
-    /* background-color: green; */
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-   
-    align-items: center;
-    padding: 1%;
-}
-.profilpic{
-    width: 100px;
-    height: 100px;
-    background-color: rgba(21, 21, 21, 0.645);
-    border: 1px solid white;
-    border-radius: 50px;
-    margin-left: 3%;
-    
-}
-.navbarcontent{
-    display: flex;
-    background-color: rgb(88, 63, 18);
-    height: 50px;
-    width: 20%;
-    border: 1px solid white;
-    border-radius: 10px ;
-    align-items: center;
-    justify-content: space-around;
-}
 
 .middleSection{
     /* background-color: rgba(0, 255, 255, 0.495); */
-    height: 650px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +13,7 @@
 .middleContentArea{
     background-color: rgba(0, 58, 0, 0.49);
     height: 550px;
-    width: 50%;
+    width: 40%;
     margin: 1%;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
@@ -63,7 +29,7 @@
 
 .exploreSection{
    /* background-color: rosybrown; */
-   height: 500px;
+   height: 350px;
    display: flex;
    
    

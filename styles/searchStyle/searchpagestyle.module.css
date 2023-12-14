@@ -1,0 +1,97 @@
+
+.HeaderArea{
+   
+    /* background-color: rgb(9, 255, 0); */
+}
+
+.NavArea{
+    color: white;
+    width: 100%;
+    /* background-color: orange; */
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    align-items: center;
+}
+
+
+.searchInput{
+    background-color: rgb(255, 255, 255);
+}
+
+.searchOpt{
+    display: flex;
+    /* background-color: rgb(255, 255, 255); */
+    justify-content: space-around;
+}
+ 
+
+
+
+.searchSection{
+    color: white;
+    /* background-color: rgba(157, 160, 157, 0.119); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 700px;
+    height: 600px;
+    /* border: 1px solid rgba(255, 255, 255, 0.266); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 90%;
+
+    /* gap: 3%; */
+
+}
+ 
+
+.viewuserArea{
+    /* background-color: rgba(131, 125, 115, 0.073); */
+    width: 100%;
+    height: 150px;
+    margin-bottom: 5%;
+    margin-top: 20% ;
+    border: 1px solid rgba(255, 255, 255, 0.093);
+    border-radius: 50px;
+
+    
+    
+}
+    
+
+.searchuserArea{
+    background-color: rgba(126, 121, 121, 0.136);
+    width: 80%;
+    height: 60px;
+    border: 1px solid rgb(33, 31, 31);
+    border-radius: 10px;
+    display: flex;
+    
+    align-items: center;
+    
+    
+
+}
+
+
+.searchInput{
+    width: 70%;
+    height: 30px;
+    margin-left: 2%;
+    border-radius: 10px;
+    background-color: #ffffff74;
+
+}
+
+.searchBtn{
+    background-color: #868686;
+    width: 20%;
+    height: 40%;
+    margin-left: 4%;
+}
+
+

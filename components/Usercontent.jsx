@@ -15,7 +15,6 @@ import testalbum from '@assets/album.jpg'
 import Createbtn from '@utils/Createbtn'
 import TimeLayer from '@utils/Timebtn'
 import Networkbtn from '@utils/Networkbtn'
-import Settingbtn from '@utils/Settingsbtn'
 import GetEventContent from './homeComponents/GetEventContent'
 import OrangeAddbtn from '@assets/O-add-btn.png'
 import { useState } from 'react'
@@ -31,6 +30,7 @@ import Messagebtn from '@utils/Messagebtn'
 import ReqFriendBtn from '@utils/ReqFriendbtn'
 import Userlogout from '@utils/Userlogout'
 import UploadProfilImage from '@utils/homeUtils/ProfilImageBtn'
+import GlobalNavbar from '@utils/globalnavbar/GlobalNavbar'
 
 
 
@@ -122,31 +122,6 @@ const Usercontent = () => {
     }
 
 
-    // useEffect(() => {
-        
-    //     const  fetchData = async () => {
-    //         try {
-    //             const res = await fetch('http://localhost:3000/api/home', {
-    //                 method: 'GET',
-    //             });
-
-    //             const data = await res.json();
-    //             if (!res.ok) {
-    //                 if (data.message === "Authentication failed - redirect to login") {
-    //                     // Redirect to the login page if authentication fails
-    //                     router.push('/login');
-    //                 } else {
-    //                     // Handle other errors
-    //                     console.error('Failed to fetch user content:', data.message);
-    //                 }
-    //             }
-    //         } catch (error) {
-    //             console.error('Failed to fetch user content:', error);
-    //         }
-    //     }
-        
-    //     fetchData();
-    // }, [router]);
 
 
   return (
@@ -156,68 +131,61 @@ const Usercontent = () => {
 
         <create/>
         <header className={styles['header-area']}>
+
+            {/* Logo Section  */}
                     <div className={styles['profilMessageHeader']}>
                         <div className={styles["logoWorthsec"]}>
                             <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button>
                         </div>
                         <div className={styles['userLogout']}><Userlogout/></div>
                     </div>
+            {/* Profilpic Section  */}
+
                     <div className={styles['profilpicArea']}>
-                        
                         <div className={styles['addProfilpicbtn']}><UploadProfilImage/></div>
-                        
-                        {/* <button className={styles['addProfilpicbtn']}>+sd</button> */}
+                    </div>  
+
+            {/*  Navbar Section  */}
+                    
+                    <div  className={styles['nav-area']} >
+                    <div className={styles['nav-list']}>
+                        <div className='1'>
+                        <Link rel='preload' href={'/user'}>
+                                <Image src={HomeIcon} alt='HomeIcon' className='HomeIcon' height={30} width={30} />
+                        </Link>
+                        </div>
+                        <div className='2'>
+                        <Link href={'/explore'}>
+                                <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
+                        </Link>
+                        </div>
+                        <div className='3'>
+                        <Link href={'/search'}>
+                                <Image src={searchIcon} alt='searchIcon' className='search-Icon' height={30} width={30}/>
+                        </Link>
+
+                        </div>
+                        <div className='4'>
+                        <Link href={'/Community'}>
+                                <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
+                        </Link>
+                        </div>
 
                     </div>
-                
-                    {/* <div className={styles['logoutbtn']}><logout/></div> */}
-                    {/* <div className={styles['invitationArea']}> 
-                        <button className={styles['requestbtnAreabtn']} onClick={toggleRequestArea}><Image src={mailIcon} height={25} width={25}/></button>
-                        </div>
-                        <div className={styles['InvitepopUpSection']}>
-                            {requestArea && (
-                                <div className={styles['InvitePopup']}>hallo</div>
-                            )}
-                        </div> */}
-                    {/* <div className={styles['profilpicArea']}>
-                        <div className={styles['profilpicContent']}>hallo</div>
-                        <button className={styles['addProfilpicbtn']}>+</button>
-
-                    </div> */}
-                    
-                    
-                    <nav className={styles['nav-area']}>
-                        <ul className={styles['nav-list']}>
-                                <li>
-                                    <Link rel='preload' href={'/user'}>
-                                        <Image src={HomeIcon} alt='HomeIcon' className='HomeIcon' height={30} width={30} />
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href={'/explore'}>
-                                    <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
-                                    </Link>
-                                </li>
-                            
-                                <li>
-                                    <Link href={'/search'}>
-                                        <Image src={searchIcon} alt='searchIcon' className='search-Icon' height={30} width={30}/>
-                                    </Link>
-                                </li>
-                                
-                                <li>
-                                    <Link href={'/Community'}>
-                                    <Image src={BubbleIcon} alt='BubbleIcon' className='BubbleIcon' height={30} width={30}/>
-                                    </Link>
-                                </li>
-                        </ul>
-                        <hr  id='in_line'/>
-                    </nav>
-                    
-                    
-
+                   </div>
         </header>   
         <hr />
+
+
+        ---------------------------------------------------------------
+        
+        
+        
+        
+        
+        
+        
+        
         
         {/* slider area  */}
         <div className= {styles['sliderSection']}> ´
@@ -291,6 +259,13 @@ const Usercontent = () => {
             <hr />
 
 
+
+
+
+
+--------------------------------------------------------------------------------
+
+
             {/* Pop up section  for the areas over the slide*/}
 
             <div className={styles['messagePopUpSection']}>
@@ -325,7 +300,14 @@ const Usercontent = () => {
                 )}
             </div>
         </div>
-        
+
+   ----------------------------------------------------------------------------------
+           
+           
+           
+
+         <hr/>
+           
             <div className='feed-area'>
                 <div className='user-feed-nav'>
                 <div className='timeline-btn-area' onClick={togglemodalCalender}><TimeLayer/></div>
@@ -333,7 +315,6 @@ const Usercontent = () => {
                     <div className="btn-area">
                         <button className='add-btn' onClick={togglemodalAddArea}><Image src={OrangeAddbtn} alt='imgbtn' height={20} width={20}/></button>
                     </div>
-                    {/* <div className='setting-btn-area' onClick={togglemodelshare}><Settingbtn/></div> */}
                    
                     
                 </div>

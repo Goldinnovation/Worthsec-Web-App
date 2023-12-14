@@ -1,3 +1,4 @@
+
 body{
     background-color: rgb(0, 0, 0);
     margin: 0; 
@@ -1209,15 +1210,6 @@ appearance: none;
 
 
 
-.ImageCoverContent{
-    /* background-color: aqua; */
-    /* position: relative;
-    display: block;
-    width: 300px;
-    height: 150px; */
-   
-   
-}
 
 
 .ImageEventTitle{
@@ -1548,7 +1540,7 @@ appearance: none;
 
 .shareArea{
     /* background-color: rgb(255, 121, 215); */
-    background-color: rgba(40, 40, 40, 0.272);
+    background-color: rgba(255, 0, 0, 0.272);
     display: flex;
     margin-top: 30px;
     width: 2400px;
@@ -1770,123 +1762,96 @@ appearance: none;
 
 
 
-.navContentArea{
-    
-    position: absolute;
-    width: 30%;
+
+
+
+.NavbarLayer{
+    width: 750px;
     height: 120px;
-    background-color: rgb(255, 255, 255);
-    top: 83%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    border: 4px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    
-}
-
-.searchInput{
-    background-color: rgb(255, 255, 255);
-}
-
-.searchOpt{
+    /* background-color: gray; */
     display: flex;
-    /* background-color: rgb(255, 255, 255); */
+    justify-content: center;
+    align-items: center;
+    gap: 7%
+
+
+}
+.leftNavbar{
+    /* background-color: green; */
+    width: 30%;
+    height: 45px;
+    /* border-radius: 10px; */
+    /* border: 1px solid white; */
+    /* border-bottom: 1px dotted rgb(106, 103, 103); */
+    display: flex;
+    justify-content: space-around;
+
+  
+
+}
+
+.middleNavbar{
+    /* background-color: orange;
+    height: 80px;
+    width: 10%;
+    border-radius: 50%; */
+    margin-bottom: 3%;
+
+
+}
+
+.rightNavbar{
+    /* background-color: blueviolet; */
+    width: 30%;
+    height: 45px;
+    border-radius: 10px;
+    /* border: 1px double white; */
+    /* border-bottom: 1px dotted rgb(106, 103, 103); */
+
+    display: flex;
     justify-content: space-around;
 }
- 
 
+.logoWorthsec{
+    /* background-color: orange; */
+     width: 400px; 
+     height: 40px;
+   
+ }
 
-
-.searchSection{
+ .worthsecAreabtn{
+    background-color: rgba(0, 0, 0, 0.233);
+    opacity: 0.7;
+    width: 400px;
+    height: 40px;
     color: white;
-    /* background-color: rgba(157, 160, 157, 0.119); */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 700px;
-    height: 600px;
-    /* border: 1px solid rgba(255, 255, 255, 0.266); */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 90%;
-
-    /* gap: 3%; */
-
-}
- 
-
-.viewuserArea{
-    /* background-color: rgba(131, 125, 115, 0.073); */
-    width: 100%;
-    height: 150px;
-    margin-bottom: 5%;
-    margin-top: 20% ;
-    border: 1px solid rgba(255, 255, 255, 0.093);
-    border-radius: 50px;
-
-    
-    
-}
-    
-
-.searchuserArea{
-    background-color: rgba(126, 121, 121, 0.136);
-    width: 80%;
-    height: 60px;
-    border: 1px solid rgb(33, 31, 31);
+    font-size: 25px;
     border-radius: 10px;
-    display: flex;
-    
-    align-items: center;
-    
-    
-
-}
-
-
-.searchInput{
-    width: 70%;
-    height: 30px;
-    margin-left: 2%;
-    border-radius: 10px;
-    background-color: #ffffff74;
-
-}
-
-.searchBtn{
-    background-color: #868686;
-    width: 20%;
-    height: 40%;
-    margin-left: 4%;
 }
 
 
 
-.HeaderArea{
-    color: white;
-    background-color: rgba(255, 166, 0, 0.303);
+.GlobalHeader{
+    /* background-color: orange; */
+}
+
+.globalHeaderLogoSection{
+    /* background-color: green; */
     margin: 1%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    height: 0px;
 }
 
-
-.ProfilPicSearchUser{
-    width: 100px;
-    height: 100px;
-    margin-top: 5.5%;
-    margin-left: 4%;
+.gloabalHeaderLogout{
+    
+        /* background-color: green; */
+        width: 100px;
+        height: 20px;
+    
+}
+.globalNavbarLogo{
+    /* background-color: #180270; */
+    display: flex;
+    justify-content: center;
 }
 
-.navBarSearchUser{
-    background-color: rgba(255, 166, 0, 0.21);
-    width: 25%;
-    height: 40px;
-    margin-top: 8%;
-    margin-right: 3%;
-    border-radius: 10px;
-}

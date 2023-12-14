@@ -1,19 +1,12 @@
 import React from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
+import GlobalHeader from '@utils/globalheader/GlobalHeader'
 
 const ExploreContent = () => {
   return (
     <div>
-       <header className={styles['navbarsection']}>
-        <div className={styles['navbarArea']}> 
-        <div className={styles['profilpic']}></div>
-        <div className={styles['navbarcontent']}>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-        </div>
-       </div>
+       <header className={styles['Headersection']}>
+        <GlobalHeader/>
        </header>
        <section className={styles['middleSection']}>
             <div className={styles['middleContentArea']}>

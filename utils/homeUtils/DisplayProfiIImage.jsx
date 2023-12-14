@@ -5,7 +5,7 @@ import style from '@styles/usercontentstyle.module.css'
 import happyprofilIcon from '@assets/happy.png'
 import { getData } from '@components/homeComponents/CalenderContent'
 import useSWR, { preload } from 'swr'
-
+import testProfpIC from '@assets/profpic2.jpg'
 
 
 
@@ -123,11 +123,13 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
             </div>
            ) : (
             <Image
-            src={happyprofilIcon}
+            src={testProfpIC}
             className={style["happyProfilIcon"]}
             alt='default profil Image'
-            width={90}
-            height={90} />
+            // fill
+            width={100}
+            height={100}
+            quality={100} />
            )}
         </div>
       

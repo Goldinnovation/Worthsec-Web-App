@@ -30,12 +30,7 @@
 }
 
 
-.invitationArea{
-    /* background-color: orange; */
-    width: 100%;
-    /* border: 1px solid white; */
 
-}
 
 
 .RequestSection{
@@ -47,7 +42,9 @@
     margin-left: 1.7%;
 
 }
-
+.happyProfilIcon{
+    border-radius: 50%;
+}
 
 .messagePopUpContentArea{
     background-color: rgba(102, 51, 153, 0.167);
@@ -101,32 +98,17 @@
     
 }
 
-.profilpicContent{
-    margin-top: 10px;
-    /* background-color: gray; */
-    width: 100px;
-    height: 100px;
-    border: 1px solid white;
-    border-radius: 50px;
-   
-}
 
 
 
 
-.addProfilpicbtn{
-    
-    width: 30px;
-    height: 20px;
-}
 
 .nav-area{
     
     margin-top: 2%;
-    height: 100px;
+    height: 80px;
     width: 40%;
-    text-align: center;
-    align-items: center;
+    /* background-color: dodgerblue; */
     
 }
 
@@ -135,16 +117,14 @@
 .nav-list{
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin-top: 3%;
+    /* background-color: rgb(30, 255, 53); */
+    border-bottom: 1px white dotted;
     
 }
 
-.nav-list li {
-   
-    list-style: none;
-    text-decoration: none;
-    
-  
-}
 
 #in_line{
     position: relative;
@@ -309,7 +289,8 @@
 }
 
 .addProfilpicbtn{
-    /* background-color: rgb(255, 172, 18); */
+    /* background-color: rgb(18, 223, 255); */
+
     height: 130px;
     width: 130px;
     
@@ -407,12 +388,6 @@
     height: 20px;
 }
 
-.addProfilpicbtn{
-    /* background-color: rgb(255, 172, 18); */
-    height: 130px;
-    width: 130px;
-    
-}
 
 .profilPicSection{
     /* background-color: rgb(227, 227, 227); */
