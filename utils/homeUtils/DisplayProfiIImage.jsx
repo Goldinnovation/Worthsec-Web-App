@@ -126,8 +126,8 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
             src={happyprofilIcon}
             className={style["happyProfilIcon"]}
             alt='default profil Image'
-            width={100}
-            height={100} />
+            width={90}
+            height={90} />
            )}
         </div>
       

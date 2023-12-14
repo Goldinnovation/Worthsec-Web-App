@@ -83,7 +83,7 @@ const CalenderContent = () => {
 
             @media screen and (max-width:2000px){
                 .rdp-day_selected {
-                    background: url('/${event.image}') !important;
+                    background: url(${event.image}) !important;
                     background-size: cover !important; 
                     height: 60px !important;
                     width: 60% !important;
@@ -93,7 +93,7 @@ const CalenderContent = () => {
             
             @media screen and (min-width:2000px){
                 .rdp-day_selected {
-                    background: url('/${event.image}') !important;
+                    background: url('/event.image}') !important;
                     background-size: cover !important; 
                     height: 90px !important;
                     width: 70% !important;
@@ -103,8 +103,10 @@ const CalenderContent = () => {
            
 
             `;
-        });
+        })
+        console.log(styles)
         return styles;
+
     };
 
 
