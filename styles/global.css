@@ -1780,7 +1780,9 @@ appearance: none;
     /* background-color: green; */
     width: 30%;
     height: 45px;
-    /* border-radius: 10px; */
+    border-radius: 50px;
+    border-right: 1px dotted white;
+    /* border-bottom: 1px solid white; */
     /* border: 1px solid white; */
     /* border-bottom: 1px dotted rgb(106, 103, 103); */
     display: flex;
@@ -1804,7 +1806,8 @@ appearance: none;
     /* background-color: blueviolet; */
     width: 30%;
     height: 45px;
-    border-radius: 10px;
+    border-radius: 50px;
+    border-left: 1px dotted white;
     /* border: 1px double white; */
     /* border-bottom: 1px dotted rgb(106, 103, 103); */
 

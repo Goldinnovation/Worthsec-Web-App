@@ -4,6 +4,7 @@ import searchstyle from '@styles/searchStyle/searchpagestyle.module.css'
 import GlobalNavbar from '@utils/globalnavbar/GlobalNavbar'
 import GlobalLogo from '@utils/globallogo/GlobalLogo'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
+import SearchInput from '@utils/searchutils/SearchInput'
 
 
 
@@ -19,10 +20,8 @@ const SearchUser = () => {
             
             <div className={searchstyle['searchuserArea']}>
             
-                
-                <input type="text" className={searchstyle['searchInput']} />
-                
-                <button className={searchstyle['searchBtn']}>Search</button>
+                <SearchInput/>
+             
                 
             </div>
         </div>

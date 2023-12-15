@@ -140,7 +140,7 @@ const Usercontent = () => {
                         <div className={styles['userLogout']}><Userlogout/></div>
                     </div>
             {/* Profilpic Section  */}
-
+                        {/* <GlobalNavbar/> */}
                     <div className={styles['profilpicArea']}>
                         <div className={styles['addProfilpicbtn']}><UploadProfilImage/></div>
                     </div>  
