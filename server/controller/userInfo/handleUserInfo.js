@@ -19,10 +19,7 @@ exports.getUserProfilimage = async(req,res) => {
                     picture_owner_id: req.user.userId
                 }
             });
-          
-           
           res.json(userImage)
-            
         }
         else{
             res.status(401).json({error: 'user could not be find'})
@@ -33,6 +30,7 @@ exports.getUserProfilimage = async(req,res) => {
         console.log(error)
         res.status(500).send('Error getting the Imagedata')
     }
+   
 
 }
 
@@ -40,48 +38,72 @@ exports.getUserProfilimage = async(req,res) => {
 
 
 
-exports.getUserbyUser = async(req,res) => {
 
-    const searchUserName = await req.body.searchValue
+
+// exports.getUserbyUser = async(req,res,next) => {
+
+//     const searchUserName =  req.body.searchValue
+//     console.log(searchUserName)
+
+//     // try{
+//     //     const searchUser =  await prisma.account.findMany({
+//     //         where: {
+
+//     //             userName: searchUserName
+//     //         }
+//     //     })
+       
+//     //     console.log('connected to the db')
+//     //     console.log(searchUser)
+//     //     res.status(200).json(searchUser)
+
+
+//     // }catch(error){
+//     //     console.log(error)
+//     //     return res.status(400).json({message:"Could not find User", error})
+
+//     // }
+//     // finally{
+//     //     console.log('reached')
+//     //     next()
+//     // }
+    
+   
+//  next()
+    
+
+// }
+
+
+
+
+
+
+exports.postUserbyUser = async(req,res,next) => {
+
+    const searchUserName =  req.body.searchValue
     console.log(searchUserName)
 
     try{
+        const searchUser =  await prisma.account.findMany({
+            where: {
 
-        if(!req.body){
-            res.status(404).json({Error: "User could not be found "})
-
-        }else{
-
-            try{
-                const searchUser =  await prisma.account.findMany({
-                    where: {
-
-                        userName: searchUserName
-                    }
-                })
-                // console.log('connected to the db')d
-                console.log(searchUser)
-                // return res.status(200).json(searchUser)
-                next()
-
-            }catch(error){
-                res.status(400).json({message:"Could not find User"})
+                userName: searchUserName
             }
-            
-            
+        })
+       
+        console.log('connected to the db')
+        console.log(searchUser)
+        res.status(200).json(searchUser)
 
-
-
-        }
     }catch(error){
-
-        next()
-        res.status(500).json({message: "Fetch error of User by User", error})
+        console.log(error)
+        return res.status(400).json({message:"Could not find User", error})
 
     }
-    // res.json({message: "connected"})
-    
+  
 }
+
 
 
 
@@ -141,10 +163,9 @@ exports.deleteUserProfilImage = async(req,res) => {
 
 
 
-exports.userProfilImage = async(req,res) => {
+exports.userProfilImage = async(req,res, next) => {
 
     
-
 
 
     const pictureData = {
@@ -184,21 +205,15 @@ exports.userProfilImage = async(req,res) => {
             console.log('new picture created')
             res.json({createPic})
         }
-        next();
+
+        console.log('reached 2 ');
+        next()
+       
     }
     catch(error){
         console.log(error)
 
     } 
-  
-
-
-    // finally {
-    //     await prisma.$disconnect();
-    // }
-
-
-    
    
 
 

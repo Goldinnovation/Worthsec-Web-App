@@ -4,25 +4,52 @@ import React, { useEffect, useState } from 'react'
 
 
 
-const handleInput = async(searchValue) => {
+const queryUser  = async(searchValue) => {
+  try{
+    const res = await fetch(`http://localhost:3000/api/user`, {
+    method: "POST", 
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({searchValue})
+
+  })
+  if(!res.ok){
+    throw new Error('Invalid res')
+  }
+  const data = await res.json() 
+  return data
+
+  }catch(error){
+    console.log('Fail to send information ');
+  }
+ 
+}
+
+
+
+
+const getqueriedUser = async() => {
   try{
     const res = await fetch(`http://localhost:3000/api/user`,{
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({searchValue})
+      method: "GET",
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
+      // body: JSON.stringify({searchValue})
 
     })
     if(!res.ok){
       throw new Error('Invalid res')
     }
     const data = await res.json() 
-    return data 
+    // console.log(data)
+    return data
+   
 
   }catch(error){
     // throw new Error(error, "Fetch Error on requesting User on search")
-    console.log(error, "Fetch Error on requesting User on search",error)
+    console.log( "Fetch Error getting User on search",error)
   
 
   }
@@ -32,14 +59,16 @@ const handleInput = async(searchValue) => {
 const SearchInput = () => {
 
   const [searchValue, setSearchValue] = useState("");
-  const [displayUserInfo, setDisplayUserInfo] = useState(null)
+  const [displayUserInfo, setDisplayUserInfo] = useState([])
 
   useEffect(() => {
       const fetchuserInfo = async() => {
 
-        const userInfo = await handleInput(searchValue)
+        const requestUserInfo = await queryUser(searchValue)
+        // const getUserInfo = await getqueriedUser()
+        
 
-        setDisplayUserInfo(userInfo)
+        setDisplayUserInfo(requestUserInfo)
 
 
       
@@ -52,7 +81,7 @@ const SearchInput = () => {
   },[searchValue])
 
 
-
+// console.log(displayUserInfo)
 
 const handleChange = async(e) => {
   const value = e.target.value
@@ -69,24 +98,40 @@ const handleChange = async(e) => {
         <div className={searchstyle['searchContent']}>
         <input type="text" className={searchstyle['searchInput']}  
         onChange={handleChange}
-       
-        
         />
         {/* <button className={searchstyle['searchBtn']} >Search</button> */}
 
         
         </div>
-
-        {displayUserInfo && (
-          <div> 
-              	{displayUserInfo.searchValue}
-
+        {/* {displayUserInfo.map((event,i) => (
+          <div>
+            <div key={i}>
+              <div className='testtry1'>
+              {event.userName}
+              </div>
+              
+            </div>
           </div>
-        )}
+        ))} */}
+
+        <div className='testtry1'>
+        {displayUserInfo.map((event,i) => (
+          <div>
+            <div key={i}>
+              <div className='testtry1'>
+              {event.userId}
+              </div>
+              
+            </div>
+          </div>
+        ))}
+            
+        </div>
 
           
       
     </div>
+
   )
 }
 

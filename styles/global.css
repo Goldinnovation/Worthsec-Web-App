@@ -1858,3 +1858,15 @@ appearance: none;
     justify-content: center;
 }
 
+.testtry1{
+    background-color: rgba(255, 166, 0, 0.174);
+    width: 650px;
+    height: 200px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px ;
+    
+}
+
