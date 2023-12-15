@@ -16,7 +16,7 @@ const SearchUser = () => {
         </div>
         <div className={searchstyle['searchSection']}>
         
-            <div  className={searchstyle['viewuserArea']}>view</div>
+            <div  className={searchstyle['viewuserArea']}></div>
             
             <div className={searchstyle['searchuserArea']}>
             

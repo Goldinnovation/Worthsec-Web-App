@@ -1,4 +1,6 @@
-const {PrismaClient} = require('@prisma/client')
+const {PrismaClient} = require('@prisma/client');
+const { default: next } = require('next');
+const { redirect } = require('next/dist/server/api-utils');
 const prisma = new PrismaClient()
 
 
@@ -93,14 +95,19 @@ exports.postUserbyUser = async(req,res,next) => {
         })
        
         console.log('connected to the db')
-        console.log(searchUser)
+        // console.log(searchUser)
+        
         res.status(200).json(searchUser)
+        
+     
 
     }catch(error){
         console.log(error)
         return res.status(400).json({message:"Could not find User", error})
 
     }
+   
+    
   
 }
 
@@ -131,15 +138,10 @@ exports.deleteUserProfilImage = async(req,res) => {
             
         }
 
-       
-
     }catch(error){
         console.log('Catch ERROR on DELETE')
         res.status(500).send('CATCH DELETE REQ ERROR')
     }
-   
-    
-  
 }
 
 
@@ -164,9 +166,8 @@ exports.deleteUserProfilImage = async(req,res) => {
 
 
 exports.userProfilImage = async(req,res, next) => {
-
-    
-
+  
+    console.log('knock knock');
 
     const pictureData = {
         pictureUrl: req.file.filename,
@@ -196,6 +197,8 @@ exports.userProfilImage = async(req,res, next) => {
            
             res.json({updatePic})
            
+          
+           
         }else {
 
             const createPic = await prisma.picture.create({
@@ -204,6 +207,7 @@ exports.userProfilImage = async(req,res, next) => {
 
             console.log('new picture created')
             res.json({createPic})
+            
         }
 
         console.log('reached 2 ');
@@ -214,7 +218,7 @@ exports.userProfilImage = async(req,res, next) => {
         console.log(error)
 
     } 
-   
+    
 
 
 }

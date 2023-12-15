@@ -100,21 +100,10 @@ const handleChange = async(e) => {
         onChange={handleChange}
         />
         {/* <button className={searchstyle['searchBtn']} >Search</button> */}
-
-        
         </div>
-        {/* {displayUserInfo.map((event,i) => (
-          <div>
-            <div key={i}>
-              <div className='testtry1'>
-              {event.userName}
-              </div>
-              
-            </div>
-          </div>
-        ))} */}
+       
 
-        <div className='testtry1'>
+        <div className={searchstyle['DisplayUserSection']}>
         {displayUserInfo.map((event,i) => (
           <div>
             <div key={i}>

@@ -55,7 +55,7 @@
     height: 150px;
     margin-bottom: 5%;
     margin-top: 20% ;
-    border: 1px solid rgba(255, 255, 255, 0.093);
+    /* border: 1px solid rgba(255, 255, 255, 0.093); */
     border-radius: 50px;
 
     
@@ -77,7 +77,7 @@
 }
 
 .searchContent{
-    /* background-color: green; */
+    /* background-color: black; */
     width: 550px;
 }
 
@@ -88,14 +88,35 @@
     margin-left: 2%;
     border-radius: 10px;
     background-color: #ffffff74;
+    border: 1px solid black
+
+
+}
+.searchInput:focus{
+    outline: none;
+    border: 1px solid rgb(189, 189, 189)
+
 
 }
 
 .searchBtn{
-    background-color: #868686;
+    background-color: #595b5b;
     width: 95px;
     height: 30px;
     margin-left: 4%;
 }
 
 
+.DisplayUserSection{
+    
+    /* background-color: rgba(187, 187, 187, 0.496); */
+    width: 750px;
+    height: 200px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px ;
+    border: 1px solid rgba(255, 255, 255, 0.321);
+
+}
