@@ -42,28 +42,36 @@ exports.searchUserbyUser = async(req,res,next) => {
 
 exports.findUserProfilimage = async(req,res) => {
 
-   const body = await req.params.id
-   console.log(body)
+    console.log('Received request:', req.method, req.url, req.params);
+//     const user = req.user
+//     console.log(user)
+//    const body = await req.params.id
+//    console.log(body)
     
-    // try{
-    //     if(req.user){
+//     try{
+
+//         if(body){
            
-    //         const userImage = await prisma.picture.findFirst({
-    //             where: {
-    //                 picture_owner_id: req.user.userId
-    //             }
-    //         });
-    //       res.json(userImage)
-    //     }
-    //     else{
-    //         res.status(401).json({error: 'user could not be find'})
-    //     }
+//             const userImage = await prisma.picture.findFirst({
+//                 where: {
+//                     picture_owner_id: body
+//                 }
+//             });
+//             console.log('init')
+//             console.log(userImage)
+//           res.json(userImage)
+//         }
+//         else{
+//             res.status(401).json({error: 'user could not be find'})
+//         }
         
 
-    // }catch(error){
-    //     console.log(error)
-    //     res.status(500).send('Error getting the Imagedata')
-    // }
+//     }catch(error){
+//         console.log('failed to connect to db')
+//         console.log(error)
+//         res.status(500).send('Error getting the Imagedata')
+//     }
+    res.json({message:"succesful"})
    
 
 }

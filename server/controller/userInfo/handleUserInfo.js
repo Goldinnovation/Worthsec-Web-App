@@ -111,9 +111,6 @@ exports.createProfilImage = async(req,res, next) => {
             res.json({createPic})
             
         }
-
-        console.log('reached 2 ');
-        next()
        
     }
     catch(error){
