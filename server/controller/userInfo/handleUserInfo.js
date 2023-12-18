@@ -42,88 +42,6 @@ exports.getUserProfilimage = async(req,res) => {
 
 
 
-// exports.getUserbyUser = async(req,res,next) => {
-
-//     const searchUserName =  req.body.searchValue
-//     console.log(searchUserName)
-
-//     // try{
-//     //     const searchUser =  await prisma.account.findMany({
-//     //         where: {
-
-//     //             userName: searchUserName
-//     //         }
-//     //     })
-       
-//     //     console.log('connected to the db')
-//     //     console.log(searchUser)
-//     //     res.status(200).json(searchUser)
-
-
-//     // }catch(error){
-//     //     console.log(error)
-//     //     return res.status(400).json({message:"Could not find User", error})
-
-//     // }
-//     // finally{
-//     //     console.log('reached')
-//     //     next()
-//     // }
-    
-   
-//  next()
-    
-
-// }
-
-
-
-
-
-
-exports.postUserbyUser = async(req,res,next) => {
-
-    const searchUserName =  req.body.searchValue
-    console.log(searchUserName)
-
-    try{
-        const searchUser =  await prisma.account.findMany({
-            where: {
-
-                userName: searchUserName
-            }
-        })
-       
-        console.log('connected to the db')
-        // console.log(searchUser)
-        
-        res.status(200).json(searchUser)
-        
-     
-
-    }catch(error){
-        console.log(error)
-        return res.status(400).json({message:"Could not find User", error})
-
-    }
-   
-    
-  
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.deleteUserProfilImage = async(req,res) => {
     
 
@@ -149,23 +67,7 @@ exports.deleteUserProfilImage = async(req,res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-exports.userProfilImage = async(req,res, next) => {
+exports.createProfilImage = async(req,res, next) => {
   
     console.log('knock knock');
 

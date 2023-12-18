@@ -16,6 +16,26 @@
     
 }
 
+.userRequestSection{
+    /* background-color: green; */
+    margin-top: 2%;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.userRequestContent{
+    /* background-color: orange; */
+    display: flex;
+    width: 450px;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    
+
+}
 
 .profilMessageHeader{
     /* background-color: rgba(174, 19, 19, 0.542); */
@@ -48,10 +68,10 @@
 
 .messagePopUpContentArea{
     background-color: rgba(102, 51, 153, 0.167);
-    width: 640px;
-    height: 280px;
+    width: 540px;
+    height: 220px;
     position: absolute;
-    top: 5%;
+    top: 9%;
     left: 3%;
     border: 1px solid white;
     border-radius: 10px;
@@ -59,10 +79,10 @@
 
 .reqFriendPopUpContentArea{
     background-color: rgba(223, 202, 13, 0.679);
-    width: 640px;
-    height: 280px;
+    width: 540px;
+    height: 220px;
     position: absolute;
-    top: 5%;
+    top: 9%;
     left: 3%;
     border: 1px solid white;
     border-radius: 10px;
@@ -121,7 +141,7 @@
     text-align: center;
     margin-top: 3%;
     /* background-color: rgb(30, 255, 53); */
-    border-bottom: 1px white dotted;
+    border-bottom: 1px white solid;
     
 }
 
@@ -310,6 +330,7 @@
     position: absolute;
     top: 2%; 
     left: 55%;
+
     width: 420px;
     height: 200px;
     border: 1px solid white;
@@ -317,17 +338,7 @@
 
 }
 
-.previewSectionImage{
-    /* background-color: rgba(0, 128, 0, 0.253); */
-    
-    height: 75%;
-    margin: 1%;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    
-    
-}
+
 
 .previewSectionBtn{
     /* background-color: orange; */
@@ -357,30 +368,73 @@
 }
 
 .BtnSection{
-    /* background-color: green; */
-    height: 30px;
-    display: flex;
-    justify-content: flex-end;
+  /* background-color: orchid; */
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: -45px;
+  margin-right: 25px;
 }
 
-.previewSectionCloseBtn{
-    color: red;
-    /* background-color: violet; */
-    height: 7px;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 20px ;
-    font-size: 20px;
 
-}
 
 .uploadprofilImageBtn{
-    position: relative;
-    top: -79%;
-    left: -16%;
+   
+    /* margin-right: 30px; */
     /* background-color: aqua; */
 
 }
+.editoptionPopup{
+    /* background-color: rgba(185, 185, 185, 0.278); */
+    position: relative;
+    top: -20px;
+    left: -8px;
+    width: 150px;
+}
+
+.editOptions{
+    /* background-color: rgba(140, 140, 140, 0.168); */
+    width: 150px;
+    height: 20px;
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid rgba(255, 255, 255, 0.266); */
+    color: white;
+    border-radius: 10px;
+
+   
+   
+
+}
+.DeleteProfilPicture{
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.upatebtnProfilPicture{
+    border-right: 1px solid white;
+    border-radius: 10px;
+    padding-right: 10px;
+    border-left: 1px solid white;
+    padding-left: 10px;
+    
+
+}
+
+.DeleteProfilPicture:hover{
+    background-color: rgba(140, 140, 140, 0.168);
+}
+
+
+.upatebtnProfilPicture:hover{
+    background-color: rgba(140, 140, 140, 0.168);
+}
+
+
 
 .userLogout{
     /* background-color: green; */
@@ -418,8 +472,14 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    margin-bottom: 1px;
     
     
+    
+}
+
+.previewImageObject{
+    border-radius: 10px;
 }
 
 .previewSectionBtn{
@@ -449,31 +509,34 @@
 
 }
 
-.BtnSection{
+
+
+
+
+
+
+.previewSectionUpperlayer{
     /* background-color: green; */
-    height: 30px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    height: 15px;
 }
-
 .previewSectionCloseBtn{
     color: red;
-    /* background-color: violet; */
-    height: 7px;
-    display: flex;
-    justify-content: flex-end;
+    /* background-color: violet;  */
     margin-right: 20px ;
     font-size: 20px;
 
 }
 
-.uploadprofilImageBtn{
-    position: relative;
-    top: -79%;
-    left: -16%;
-    /* background-color: aqua; */
+.previewSectionDeleteImage{
+    color: white;
+    margin-left: 20px;
 
 }
+
+
 
 
 .pictureUrl{
@@ -484,20 +547,10 @@
 
 }
 
-.ImageSection{
-    /* background-color: pink; */
-}
 
-.deleteProfPic{
-    /* background-color: burlywood; */
-    position: relative;
-    width: 20px;
-    color: red;
-    font-size: 23px;
-    left: 2%;
-    top: 25px;
-   
-}
+
+
+
 .proId{
     background-color: orange;
     width: 100px;
@@ -511,3 +564,4 @@
     width: 100px;
     height: 100px;
 }
+

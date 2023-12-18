@@ -21,6 +21,7 @@ const userReq = require('./router/userInfos')
 const {initializeApp} = require("firebase/app")
 const {getAnalytics} = require("firebase/analytics")
 const config = require('./config/firebase')
+const searchUserReq = require('./router/userSearch')
 
 
 
@@ -75,6 +76,7 @@ app.prepare().then(() => {
     server.use('/api/logout', logoutReq)
     server.use('/api/user', userReq)
     server.use('/user', isAuth)
+    server.use('/api/search', searchUserReq )
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 

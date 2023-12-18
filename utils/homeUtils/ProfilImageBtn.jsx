@@ -5,7 +5,9 @@ import happyprofilIcon from '@assets/happy.png'
 import Image from 'next/image'
 import { use } from 'passport'
 import CameraIcon from '@assets/camera.png'
+import EditIcon from '@assets/edit.png'
 import GetImageProfilPIC from '@utils/homeUtils/DisplayProfiIImage'
+import DeleteBtn from '@utils/homeUtils/DeleteBtnProfImage'
 
 
 
@@ -18,9 +20,12 @@ const ProfilImageBtn = () => {
 
     const [profilImagepreview, setProfilImagePreview] = useState(null)
     const [previewArea, setPreviewArea] = useState(false)
+    const [editOptions, setEditOptions] = useState(false)
     const [uplaodImage, setUploadImage] = useState({
         UserProfilImage:""
     })
+
+    
 
 
 
@@ -35,6 +40,12 @@ const ProfilImageBtn = () => {
         setPreviewArea(!previewArea)
 
     }
+
+    const toggleShowOptions = () => {
+        setEditOptions(!editOptions)
+        setPreviewArea(false)
+    }
+    
 
 
     const handleUplaodImage = (e) => {
@@ -94,7 +105,8 @@ const ProfilImageBtn = () => {
             console.error('Send Error, Fetch', error)
 
         }
-        
+
+       
 
     }
 
@@ -102,21 +114,22 @@ const ProfilImageBtn = () => {
   return (
     <div>
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
-            <div className={styles["profilPicSection"]}>
-         
-           
-                
-               
-                
+            <div className={styles["profilPicSection"]}> 
             <input type="file" className="UserProfilImage" id='uplaodProfilImageInput'  onChange={handleUplaodImage} hidden/>
-                <GetImageProfilPIC/>
+                {/* <GetImageProfilPIC/> */}
             </div>
 
             {previewArea &&(
                 <div className={styles["previewSection"]}>
+                    <div className={styles["previewSectionUpperlayer"]} >
                     <div onClick={handleCloseCLick} className={styles["previewSectionCloseBtn"]}>x</div>
+                    </div>
                     <div className={styles["previewSectionImage"]}>
-                    {profilImagepreview && <Image src={profilImagepreview} alt="Uploaded ProfilImage" width={150} height={150}  border-radius={10} />}
+                    {profilImagepreview && (
+                        <div className={styles["previewImageObjectSection"]}>
+                            <Image src={profilImagepreview} alt="Uploaded ProfilImage" width={140} height={140} className={styles["previewImageObject"]}/>
+                        </div>
+                    )}
                     </div>
                     <div className={styles["previewSectionBtn"]}>
                     <button  type='button' onClick={handleUploadClick} className={styles["previewBtntryAgain"]}>Upload</button>
@@ -127,8 +140,19 @@ const ProfilImageBtn = () => {
             )}
 
             <div className={styles["BtnSection"]}>
-            <div  onClick={handletoggle} className={styles["uploadprofilImageBtn"]}><Image src={CameraIcon} height={20} width={20}/></div>
+            <div  onClick={toggleShowOptions} className={styles["uploadprofilImageBtn"]}><Image src={EditIcon} height={25} width={25}/>           
             </div>
+            </div>
+            <div className={styles['editoptionPopup']}>
+            {editOptions &&(
+                        <div className={styles['editOptions']}>
+                            <div onClick={handletoggle} className={styles['upatebtnProfilPicture']} > update</div>
+                            <div className={styles['DeleteProfilPicture']}><DeleteBtn/></div>
+                        </div>
+                    )}
+
+            </div>
+           
         
        
 

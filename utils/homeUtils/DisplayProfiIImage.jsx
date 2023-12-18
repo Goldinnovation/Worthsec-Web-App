@@ -39,27 +39,6 @@ import testProfpIC from '@assets/profpic2.jpg'
 
 
 
-const handleDelete = async(userId) => {
-    try{
-
-
-        const res = await fetch(`http://localhost:3000/api/user/${userId}`,{
-            method: 'DELETE',
-           
-
-        })
-
-        if(!res.ok){
-            throw new Error('DELETE request failed')
-        }
-
-
-    }catch(error){
-        console.log('Fetch Fail, Delete', error)
-    }
-
-
-}
 
 
 
@@ -106,7 +85,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
         <div className={style["ImageSection"]}>
            
            
-        <div onClick={() => handleDelete(profilImageData.picture_owner_id)} className={style["deleteProfPic"]}>x</div>
            { profilImageData ? (
             <div className={style["ProfilpiContainer"]}>
                

@@ -31,7 +31,7 @@ import ReqFriendBtn from '@utils/ReqFriendbtn'
 import Userlogout from '@utils/Userlogout'
 import UploadProfilImage from '@utils/homeUtils/ProfilImageBtn'
 import GlobalNavbar from '@utils/globalnavbar/GlobalNavbar'
-
+import ProfilImageBtn from '@utils/homeUtils/ProfilImageBtn'
 
 
 
@@ -140,14 +140,30 @@ const Usercontent = () => {
                         <div className={styles['userLogout']}><Userlogout/></div>
                     </div>
             {/* Profilpic Section  */}
-                        {/* <GlobalNavbar/> */}
-                    <div className={styles['profilpicArea']}>
+                    <div>
+                            <GlobalNavbar/>
+            
+                    </div>
+                    <div>
+                        <ProfilImageBtn/>
+                    </div>
+                    <div className={styles['userRequestSection']}>
+                        <div className={styles['userRequestContent']}>
+                        <div>Invites</div>
+                         <div>Message</div>
+                         <div>FriendRequest</div>
+
+                        </div>
+                     
+                    </div>
+                       
+                    {/* <div className={styles['profilpicArea']}>
                         <div className={styles['addProfilpicbtn']}><UploadProfilImage/></div>
-                    </div>  
+                    </div>   */}
 
             {/*  Navbar Section  */}
                     
-                    <div  className={styles['nav-area']} >
+                    {/* <div  className={styles['nav-area']} >
                     <div className={styles['nav-list']}>
                         <div className='1'>
                         <Link rel='preload' href={'/user'}>
@@ -172,7 +188,7 @@ const Usercontent = () => {
                         </div>
 
                     </div>
-                   </div>
+                   </div> */}
         </header>   
         <hr />
 
