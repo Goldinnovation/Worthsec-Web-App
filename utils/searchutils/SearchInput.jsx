@@ -166,25 +166,30 @@ const SearchInput = () => {
         {displayUserInfo.map((event,i) => (
           <div>
             <div key={i}>
-              <div className='testtry1'>
-              {event.userId}
-              </div>
+             
 
               
-          {/* {displayUserPic && (
-            <div>
-              <div>{displayUserPic.pictureUrl}</div>
+            <div className={searchstyle['DisplayImageArea']}>
+             
+            {displayUserPic && (
+            <div className={searchstyle['DisplayImageContentArea']}>
+              <Image  className={searchstyle['DisplayImageContent']} src={`/${displayUserPic.pictureUrl}`} width={100} height={100} 
+              quality={100}
+              />
+
+              <div className='testtry1'>
+              {event.userId} 
+              
+              </div>
             </div>
-          )} */}
+          )}
 
-               {/* {displayUserPic.map((eventPic, i) => (
-                  <div key={i}> 
-                  <div>
-                    {eventPic.pictureUrl}
-                  </div>
+            </div>
+          
+             
 
-                  </div>
-               ))} */}
+
+             
               
             </div>
           </div>

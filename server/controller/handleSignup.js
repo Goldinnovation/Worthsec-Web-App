@@ -11,9 +11,11 @@ const prisma = new PrismaClient()
 
 
 
+
 exports.createUserAccount = async(req,res,)  => {
    
-  
+    const user = req.body
+    console.log(user);
        
         try{
             const exisitingUsername = await prisma.account.findFirst({

@@ -109,7 +109,7 @@
 
 .DisplayUserSection{
     
-    background-color: rgba(187, 187, 187, 0.496);
+    /* background-color: rgba(187, 187, 187, 0.496); */
     width: 750px;
     height: 200px;
     position: absolute;
@@ -117,7 +117,9 @@
     left: 50%;
     transform: translate(-50%,-50%);
     border-radius: 10px ;
-    border: 1px solid rgba(255, 255, 255, 0.321);
+    /* border: 1px solid rgba(255, 255, 255, 0.321); */
+    display: flex;
+    justify-content: center;
 
 }
 
@@ -125,4 +127,16 @@
     background-color: orange;
     width: 200px;
     height: 100px;
+}
+
+
+.DisplayImageArea{
+    background-color: green;
+    width: 100px;
+}
+
+
+.DisplayImageContent{
+    border-radius: 50%;
+
 }
