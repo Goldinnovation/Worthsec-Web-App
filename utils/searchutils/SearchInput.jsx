@@ -77,12 +77,7 @@ const SearchInput = () => {
   
   }
   
-  const handleSearchReq =  (userId) => {
-    
-    setUserIdPicData(userId)
-  
-  }
-  
+
 
   useEffect(() => {
     
@@ -149,27 +144,6 @@ const SearchInput = () => {
   }, [searchValue, userIdPicData])
 
 
-
-  // useEffect(() => {
-  //     const fetchuserInfo = async() => {
-
-  //       const requestUserInfo = await queryUser(searchValue)
-        
-
-  //       setDisplayUserInfo(requestUserInfo)
-  //       if (requestUserInfo.length > 0) {
-  //         setUserIdPicData(requestUserInfo[0].userId)
-  //       }
-      
-
-  
-  //     } 
-
-  //     const intervalId = setInterval(fetchuserInfo, 5000)
-  //     fetchuserInfo()
-
-  //     return() => clearInterval(intervalId)
-  // },[searchValue])
 
 
 
