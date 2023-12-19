@@ -1,11 +1,10 @@
 const {PrismaClient} = require('@prisma/client');
-// const { default: next } = require('next');
-// const { redirect } = require('next/dist/server/api-utils');
 const prisma = new PrismaClient()
 
 
 
-
+// User can search for other user by typing his the username 
+// the handlerlogic checks for the enterd user in the database table
 
 exports.searchUserbyUser = async(req,res,next) => {
 
@@ -39,6 +38,8 @@ exports.searchUserbyUser = async(req,res,next) => {
 
 
 
+// After finding the user the handlelogic findUserprogilimage search for the user Profilimage 
+//  in the databse table picture and return the specfific link to the image 
 
 exports.findUserProfilimage = async(req,res) => {
 
@@ -70,7 +71,6 @@ exports.findUserProfilimage = async(req,res) => {
         console.log(error)
         res.status(500).send('Error getting the Imagedata')
     }
-    // res.json({message:"succesful"})
    
 
 }

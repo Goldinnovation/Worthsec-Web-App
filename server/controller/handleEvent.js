@@ -16,6 +16,12 @@ initializeApp(config.firebaseConfig);
 // initialize the storage with the firebase service 
 const storage = getStorage();
 
+
+
+// The user creates a event, which enterd information will be stored in the in database eventPrompt 
+// Unless the Image, it will be stored in firebase cloud storage. After storing the image firebase will create 
+// a url link which enables the user to view the image as URL 
+
 exports.createEvent = async(req,res) => {
 
     
@@ -82,32 +88,6 @@ exports.createEvent = async(req,res) => {
             res.status(500).send('issue server side')
         }
 
-
-            // res.send({
-            //     messaage: 'uploaded file to firebase storage',
-            //     name: req.file.originalname,
-            //     type: req.file.mimetype,
-            //     downloadImageUrl: downloadImageUrl
-            // })
-            // res.status(200).json({downloadImageUrl})
-
-            //  gets the dowload url after the upload is completed
-            // uploadaction.on('state_changed', 
-            // (snapshot) => {
-            //     // handle the upload progress, like loading bar 
-            //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            //     console.log(progress  );
-            // }, (error) => {
-            //     console.error(error)
-            //     res.status(500).json({error: "Error uploading File"})
-            // }, 
-            // async() => {
-            //     const downloadImageUrl = await getDownloadURL(uploadaction.ref)
-            //     console.log(downloadImageUrl);
-            //     res.status(200).json({downloadImageUrl})
-            // }
-            // )
-    
         }catch(error){
 
             console.log(error)
@@ -115,7 +95,7 @@ exports.createEvent = async(req,res) => {
         }
 
         
-        // res.json(newEventBody)
+        
     }
 
 
@@ -152,7 +132,7 @@ exports.createEvent = async(req,res) => {
 
 
 
-// find the Event Object throw the user id and respond with the object 
+// find the Event Object throw the user id and responds with the object inside of an array  
 
 
 exports.findEvents = async(req,res) => {

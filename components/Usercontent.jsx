@@ -50,7 +50,7 @@ const Usercontent = () => {
 
 
 
-
+    // open up the Pop up of  the calender and closes all other toggle 
 
     const togglemodalCalender = () => { 
         setCalenderArea(true)
@@ -59,6 +59,8 @@ const Usercontent = () => {
         setNetworkArea(false)
        
     }
+
+    // open up the Pop up of the create event area and closes all other toggle 
 
     const togglemodalAddArea = () => { 
 
@@ -69,6 +71,7 @@ const Usercontent = () => {
         
     }
 
+   // open up the Pop up of the network area and closes all other toggle 
 
     const togglemodalnetwork = () => {
         setNetworkArea(true)
@@ -79,6 +82,9 @@ const Usercontent = () => {
         
         
     }
+
+    // open up the Pop up of the join area and closes all other toggle 
+
 
     const togglejoinaraopt = () => {
         setJoinArea(true)
@@ -320,7 +326,7 @@ const Usercontent = () => {
    ----------------------------------------------------------------------------------
            
            
-           
+           {/* Beginning of the feed area where the user can access the calender, join area, and create event area  */}
 
          <hr/>
            
