@@ -3,6 +3,7 @@ import searchstyle from '@styles/searchStyle/searchpagestyle.module.css'
 import React, { useEffect, useState } from 'react'
 import useSWR, { preload } from 'swr'
 import Image from 'next/image'
+import {debounce} from 'lodash'
 
 
 
@@ -84,6 +85,7 @@ const SearchInput = () => {
   
 
   useEffect(() => {
+    
       const fetchUserPic = async() => {
 
         if(userIdPicData !== ""){
@@ -98,31 +100,53 @@ const SearchInput = () => {
         }
      
         
-      }
+      };
+
+
       const fetchUserInfo = async () => {
-  
-        const requestUserInfo = await queryUser(searchValue)
+
+        try{
+          const requestUserInfo = await queryUser(searchValue)
         setDisplayUserInfo(requestUserInfo)
     
        
         if (requestUserInfo.length > 0) {
           setUserIdPicData(requestUserInfo[0].userId)
         }
-      }
+
+
+
+        }catch(error){
+          console.log('Error fetching User input data', error);
+
+        }
+  
+        
+      }; 
+
+      // debounce will execute the api request after a timeslot of 500 ms 
+
+      const debounceFetch = debounce(fetchUserInfo, 500); 
+
+      // debounce is based on the input, so every time there is certain pause the funciton will be executed 
+      debounceFetch(searchValue)
     
+      // Interval for periodic fetch 
       const intervalId = setInterval(() => {
         fetchUserPic()
-        fetchUserInfo()
       }, 5000)
     
       // Initial fetch
       fetchUserPic()
-      fetchUserInfo()
-
-
-      return () => clearInterval(intervalId)
      
-  }, [searchValue])
+
+
+      return () => {
+        clearInterval(intervalId);
+        debounceFetch.cancel()
+      }
+     
+  }, [searchValue, userIdPicData])
 
 
 
