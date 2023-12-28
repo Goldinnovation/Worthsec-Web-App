@@ -14,6 +14,7 @@ import DisplayProfiIImage from "@utils/homeUtils/DisplayProfiIImage";
 import SearchInput from '@utils/searchutils/SearchInput'
 import Sliderbar from '@utils/sliderutils/Sliderbar'
 import UserFeedArea from '@utils/userFeed/UserFeedArea'
+import ExploreContent from './exploreComponents/ExploreContent' 
 
 
 
@@ -21,7 +22,7 @@ const Usercontent = () => {
 
     
     const [showNav, setShowNav] =  useState(true)
-    const [searchArea, setSearchArea] = useState(true)
+    const [searchArea, setSearchArea] = useState(false)
     const [explorePage, setExplorePage] = useState(false)
     const [homePage, setHomePage] = useState(true)
 
@@ -43,12 +44,14 @@ const Usercontent = () => {
     const exploreToggle = () =>  {
         setExplorePage(true)
         setHomePage(false)
+        setSearchArea(false)
 
     }
 
     const homeToggle = () => {
         setHomePage(true)
         setExplorePage(false)
+        setSearchArea(false)
     }
 
 
@@ -124,7 +127,6 @@ const Usercontent = () => {
                     <div className="rightNavbar">
                    
                     <div className='exploreIconOpt'>
-                    {/* <Link href={"/explore"}> */}
                               <Image
                                   src={BubbleIcon}
                                   alt="BubbleIcon"
@@ -133,8 +135,6 @@ const Usercontent = () => {
                                   width={25}
                                   onClick={exploreToggle}
                               />
-                          {/* </Link> */}
-
                     </div>
                     
                 </div>
@@ -155,6 +155,8 @@ const Usercontent = () => {
                      
                     </div>
                     
+                   
+                    
         </header>  
 
         <div className='userPageOptions'>
@@ -164,6 +166,18 @@ const Usercontent = () => {
                  <div>
                  <Sliderbar/> 
                  </div>
+                 <div className={styles['closefriendsSection']}>
+                        <div className={styles['closefriendsContent']}>
+                        <div>Ifriend1</div>
+                         <div>Ifriend2</div>
+                         <div>Ifriend3</div>
+                         <div>Ifriend1</div>
+                         <div>Ifriend2</div>
+                         <div>Ifriend3</div>
+
+                        </div>
+                     
+                    </div>
                  <div>
                       {/* Feed Area */}
                  <UserFeedArea/>
@@ -177,6 +191,7 @@ const Usercontent = () => {
             {explorePage && (
                 <div>
                     <div>
+                        <ExploreContent/>
 
                     </div>
                 </div>
