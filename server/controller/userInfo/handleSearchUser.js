@@ -19,6 +19,7 @@ exports.searchUserbyUser = async(req,res,next) => {
             }
         })
        
+        console.log(searchUser);
         console.log('connected to the db')
         // console.log(searchUser)
         
@@ -38,8 +39,8 @@ exports.searchUserbyUser = async(req,res,next) => {
 
 
 
-// After finding the user the handlelogic findUserprogilimage search for the user Profilimage 
-//  in the databse table picture and return the specfific link to the image 
+// After typing the user in the input the findUserprogilimage qill search for the user Profilimage 
+//  in the database table picture  with id and return the specfific link to the image 
 
 exports.findUserProfilimage = async(req,res) => {
 
@@ -57,8 +58,7 @@ exports.findUserProfilimage = async(req,res) => {
                     picture_owner_id: userParam
                 }
             });
-            console.log('init')
-            console.log(userImage)
+           
           res.json(userImage)
         }
         else{

@@ -126,7 +126,7 @@ const SearchInput = () => {
       // debounce is based on the input, so every time there is certain pause the funciton will be executed 
       debounceFetch(searchValue)
     
-      // Interval for periodic fetch 
+      // Interval for a periodic fetch 
       const intervalId = setInterval(() => {
         fetchUserPic()
       }, 5000)
@@ -169,17 +169,20 @@ const SearchInput = () => {
              
 
               
-            <div className={searchstyle['DisplayImageArea']}>
+            <div className={searchstyle['displayUserArea']}>
              
             {displayUserPic && (
-            <div className={searchstyle['DisplayImageContentArea']}>
-              <Image  className={searchstyle['DisplayImageContent']} src={`/${displayUserPic.pictureUrl}`} width={100} height={100} 
+            <div className={searchstyle['displayUserContent']}>
+              <Image  className={searchstyle['DisplayImageContent']} src={`/${displayUserPic.pictureUrl}`} width={58} height={58} 
               quality={100}
               />
 
-              <div className='testtry1'>
-              {event.userId} 
+              <div className={searchstyle['displayUserName']}>
+              {event.userName} 
               
+              </div>
+              <div className={searchstyle['searchFollowOption']}> 
+                 folgen 
               </div>
             </div>
           )}
