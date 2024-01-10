@@ -1,13 +1,27 @@
-installed Libaries 
+# Learning Project: Worthsec Web App
+
+Worthsec is a Web application that offers users the opportunity to create, share, discover, exchange, and participate in exciting events.
 
 
-frontend: 
-npm i create-react-app - frontend js framework
-npm i pg - database
-npm i react-day-picker date-fns - Calender picker component libary 
 
 
-Backend
-npm i expres
-npm i body-parser -Middleware -  converts json string object to js object 
-npm i multer - handle file upload 
+
+### Key Features:
+- CRUD
+- Explore
+- Share 
+- Chat
+- Invite
+- Join 
+ 
+
+### Tech Stack:
+- Node.js 
+- Next.js - Frontend 
+- Express.js - Backend 
+- Database - Postgresql
+- ORM - Prisma 
+
+
+### Installation 
+
