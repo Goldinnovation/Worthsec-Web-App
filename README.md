@@ -1,12 +1,16 @@
 ![Worthsec Logo](/assets/WORTHSECREADMELOGO.png)
 
+<div align="center">
+
 # Learning Project: Worthsec Web App
+
+</div>
+
 
 Worthsec is a Web application that offers users the opportunity to create, share, discover, exchange, and participate in exciting events.
 
 
-
-
+</br>
 
 ### Key Features:
 
@@ -22,7 +26,7 @@ Worthsec is a Web application that offers users the opportunity to create, share
 
 </br>
 </br>
-</br>
+
 
 
  
@@ -44,7 +48,7 @@ Worthsec is a Web application that offers users the opportunity to create, share
 </br>
 
 
-# Current   Feature State
+### Current   Feature State
 
 - [x] Login 
 - [x] Sign up
