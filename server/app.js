@@ -76,7 +76,7 @@ app.prepare().then(() => {
     server.use('/api/user', userReq)
     server.use('/user', isAuth)
     server.use('/api/search', searchUserReq )
-    server.use('/api/usertouser',userFollowUser)
+    server.use('/api/userTouser',userFollowUser)
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 

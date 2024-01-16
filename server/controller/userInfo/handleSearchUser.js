@@ -9,7 +9,7 @@ const prisma = new PrismaClient()
 exports.searchUserbyUser = async(req,res,next) => {
 
     const searchUserName =  req.body.searchValue
-    console.log(searchUserName)
+    // console.log(searchUserName)
 
     try{
         const searchUser =  await prisma.account.findMany({
@@ -19,7 +19,7 @@ exports.searchUserbyUser = async(req,res,next) => {
             }
         })
        
-        console.log(searchUser);
+        // console.log(searchUser);
         console.log('connected to the db')
         // console.log(searchUser)
         
@@ -44,10 +44,10 @@ exports.searchUserbyUser = async(req,res,next) => {
 
 exports.findUserProfilimage = async(req,res) => {
 
-    console.log('Received request:', req.method, req.url, req.params);
+    // console.log('Received request:', req.method, req.url, req.params);
 
    const userParam = await req.params.id
-   console.log(userParam)
+//    console.log(userParam)
     
     try{
 

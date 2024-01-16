@@ -48,7 +48,6 @@ const getqueriedUser = async(userIdPicData) => {
       throw new Error('Invalid res')
     }
     const data = await res.json() 
-    console.log(data)
     return data
    
 
@@ -65,22 +64,26 @@ const getqueriedUser = async(userIdPicData) => {
 
 const followUserFetch  = async(userIdPicData) => {
   try{
-    const res = await fetch(`http://localhost:3000/api/usertouser`,
+    const res = await fetch(`http://localhost:3000/api/userTouser`,
       {
-        method: "GET", 
-        body: JSON.stringify(userIdPicData)
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({userIdPicData})
 
       })
       if(!res.ok){
-        throw new Error('fetch res Error')
+        throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
       }
 
       const data = await res.json() 
-      console.log(data)
+     
       return data
 
   }catch(error){
-    throw Error("follow user fetch, Error: ",error)
+    console.error('fetch userID error for followUserFetch',error)
+    throw error
   }
 }
 
@@ -190,10 +193,7 @@ const SearchInput = () => {
         <div className={searchstyle['DisplayUserSection']}>
         {displayUserInfo.map((event,i) => (
           <div>
-            <div key={i}>
-             
-
-              
+            <div key={i}>      
             <div className={searchstyle['displayUserArea']}>
              
             {displayUserPic && (
@@ -207,8 +207,8 @@ const SearchInput = () => {
               
 
               </div>
-              <div className={searchstyle['searchFollowOption']} onClick={followUserFetch}> 
-                 folgen 
+              <div className={searchstyle['searchFollowOption']}> 
+                 <button onClick={ () =>followUserFetch(userIdPicData)}>follow</button>
               </div>
             </div>
           )}
