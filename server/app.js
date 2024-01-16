@@ -22,6 +22,7 @@ const {initializeApp} = require("firebase/app")
 const {getAnalytics} = require("firebase/analytics")
 const config = require('./config/firebase')
 const searchUserReq = require('./router/userSearch')
+const userFollowUser = require('./router/userToUser')
 
 
 
@@ -67,9 +68,7 @@ app.prepare().then(() => {
     passportConfig(passport)
     // initializeApp(config.firebaseConfig)
     
-    // area for the API endpoints 
-    
-
+    // API endpoints 
     server.use('/api/events', eventRequest)
     server.use('/api/signUpAcc',signupRequest)
     server.use('/api/login', loginReq)
@@ -77,6 +76,7 @@ app.prepare().then(() => {
     server.use('/api/user', userReq)
     server.use('/user', isAuth)
     server.use('/api/search', searchUserReq )
+    server.use('/api/usertouser',userFollowUser)
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 

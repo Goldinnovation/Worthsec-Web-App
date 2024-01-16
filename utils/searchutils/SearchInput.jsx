@@ -63,6 +63,27 @@ const getqueriedUser = async(userIdPicData) => {
 }
 
 
+const followUserFetch  = async(userIdPicData) => {
+  try{
+    const res = await fetch(`http://localhost:3000/api/usertouser`,
+      {
+        method: "GET", 
+        body: JSON.stringify(userIdPicData)
+
+      })
+      if(!res.ok){
+        throw new Error('fetch res Error')
+      }
+
+      const data = await res.json() 
+      console.log(data)
+      return data
+
+  }catch(error){
+    throw Error("follow user fetch, Error: ",error)
+  }
+}
+
 
 const SearchInput = () => {
 
@@ -77,6 +98,8 @@ const SearchInput = () => {
   
   }
   
+
+
 
 
   useEffect(() => {
@@ -118,6 +141,8 @@ const SearchInput = () => {
   
         
       }; 
+
+
 
       // debounce will execute the api request after a timeslot of 500 ms 
 
@@ -180,8 +205,9 @@ const SearchInput = () => {
               <div className={searchstyle['displayUserName']}>
               {event.userName} 
               
+
               </div>
-              <div className={searchstyle['searchFollowOption']}> 
+              <div className={searchstyle['searchFollowOption']} onClick={followUserFetch}> 
                  folgen 
               </div>
             </div>

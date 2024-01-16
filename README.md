@@ -14,8 +14,7 @@ Worthsec is a Web application that offers users the opportunity to create, share
 
 ### Key Features:
 
-- Login 
-- Sign Up
+
 - CRUD
 - Explore
 - Share 
