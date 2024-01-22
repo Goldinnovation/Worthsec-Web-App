@@ -20,13 +20,13 @@ model eventPrompt {
 }
 
 model account {
-  userId        String      @id @default(uuid())
-  userName      String      @unique
+  userId        String       @id @default(uuid())
+  userName      String       @unique
   userEmail     String
   userPassword1 String
-  createdAt     DateTime    @default(now())
+  createdAt     DateTime     @default(now())
   picture       picture?
-  userTouser    userTouser?
+  userTouser    userTouser[]
 }
 
 model picture {
@@ -40,7 +40,7 @@ model picture {
 model userTouser {
   userTouserId     String   @id @default(uuid())
   userRequested    account  @relation(fields: [userRequested_id], references: [userId])
-  userRequested_id String   @unique
+  userRequested_id String
   userFollowed     String
   userStatus       Int
   createdAt        DateTime @default(now())
