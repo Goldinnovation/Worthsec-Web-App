@@ -64,15 +64,17 @@ const getqueriedUser = async(userIdData) => {
 
 
 
+
 const SearchInput = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [displayUserInfo, setDisplayUserInfo] = useState([])
   const [userIdData, setUserIdData] = useState("");
   const [displayUserPic, setdisplayUserPic] = useState(null)
-  const [userFollowArea, setuserFolloweArea] = useState(true)
+  const [userFollowArea, setuserFollowArea] = useState(true)
   const [userUnFollowArea, setUserUnFollowArea] = useState(false)
-  const [userArefriends, setuserAreFriends] = useState(null)
+  // const [userfriendsData, setuserFriendsData] = useState(null)
+  const [userFriendsId, setuserFriendId] = useState(null)
 
 
   const handleChange = async(e) => {
@@ -93,20 +95,22 @@ const SearchInput = () => {
       })
   
       const data = await res.json()
+      console.log(data)
   
-      if(res.ok && data.message ==="User are connected as Friend" ){
+      if(res.ok && data.length === 1){
         setUserUnFollowArea(true)
-        setuserFolloweArea(false)
+        setuserFollowArea(false)
   
   
-      }else if(res.ok && data.message ==="User are not Friends"){
+      }else if(res.ok && data.length === 0){
         setUserUnFollowArea(false)
-        setuserFolloweArea(true)
+        setuserFollowArea(true)
 
       }
       else if(!res.ok){
         throw new Error(' Error: Bad response')
       }
+      return data 
   
   
     }catch(error){
@@ -116,40 +120,74 @@ const SearchInput = () => {
   }
   
 
+  // follow the user 
 
-  const followUserFetch  = async(userIdData) => {
-    try{
-      const res = await fetch(`http://localhost:3000/api/userTouser`,
-        {
-          method: "POST", 
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({userIdData})
-  
-        })
-  
+const followUserFetch  = async(userIdData) => {
+  try{
+    const res = await fetch(`http://localhost:3000/api/userTouser`,
+      {
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({userIdData})
+
+      })
         const data = await res.json() 
-  
         if(res.ok && data.message === "User followed user"){
-          setuserFolloweArea(false)
-          setUserUnFollowArea(true)
-  
-        }else if(!res.ok){
-          console.log('Res error')
-          throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
-        }
-  
-       
-       
-        
-  
-    }catch(error){
-      console.error('fetch userID error for followUserFetch',error)
-      throw error
-    }
+        setuserFollowArea(false)
+        setUserUnFollowArea(true)
+
+      }else if(!res.ok){
+        console.log('Res error')
+        throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
+      }   
+      
+
+  }catch(error){
+    console.error('fetch userID error for followUserFetch',error)
+    throw error
   }
-  
+}
+
+
+// unfollow the user 
+const UnFollowUserFetch = async(unFollowUserId) => { 
+
+  try{
+    const res = await fetch(`http://localhost:3000/api/userTouser`,
+      {
+        method: "DELETE", 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({unFollowUserId})
+
+      })
+
+      const data = await res.json() 
+
+      if(res.ok && data.message === "User unFollowed user"){
+        setuserFollowArea(true)
+        setUserUnFollowArea(false)
+
+      }else if(!res.ok){
+        console.log('Res error')
+        throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
+      }
+
+     
+     
+      
+
+  }catch(error){
+    console.error('fetch userID error for followUserFetch',error)
+    throw error
+  }
+    
+}
+
+
 
 
 
@@ -164,7 +202,9 @@ const SearchInput = () => {
             const userPicData =  await getqueriedUser(userIdData)
             setdisplayUserPic(userPicData)
             const checkifexitasFriend = await checkifUserexist(userIdData)
-            // setuserAreFriends(checkifexitasFriend)
+            setuserFriendId(checkifexitasFriend)
+         
+            
             
           }catch(error){
               console.error("error fetching ther user pic", error)
@@ -260,7 +300,7 @@ const SearchInput = () => {
               <div className={searchstyle['searchFollowOption']}> 
              {userUnFollowArea && (
                 <div className={searchstyle["SearchFollowArea"]}>
-                     <button onClick={ () =>followUserFetch(userIdData)}>Unfollow</button>
+                     <button onClick={ () =>UnFollowUserFetch(userFriendsId[0].userTouserId)}>Unfollow</button>
                 </div>
               )}
               {userFollowArea && (
