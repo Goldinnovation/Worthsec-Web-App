@@ -34,9 +34,9 @@ const queryUser  = async(searchValue) => {
 
 
 
-const getqueriedUser = async(userIdPicData) => {
+const getqueriedUser = async(userIdData) => {
   try{
-    const res = await fetch(`http://localhost:3000/api/search/${userIdPicData}`,{
+    const res = await fetch(`http://localhost:3000/api/search/${userIdData}`,{
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -62,43 +62,92 @@ const getqueriedUser = async(userIdPicData) => {
 }
 
 
-const followUserFetch  = async(userIdPicData) => {
-  try{
-    const res = await fetch(`http://localhost:3000/api/userTouser`,
-      {
-        method: "POST", 
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({userIdPicData})
-
-      })
-      if(!res.ok){
-        throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
-      }
-
-      const data = await res.json() 
-     
-      return data
-
-  }catch(error){
-    console.error('fetch userID error for followUserFetch',error)
-    throw error
-  }
-}
 
 
 const SearchInput = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [displayUserInfo, setDisplayUserInfo] = useState([])
-  const [userIdPicData, setUserIdPicData] = useState("");
+  const [userIdData, setUserIdData] = useState("");
   const [displayUserPic, setdisplayUserPic] = useState(null)
+  const [userFollowArea, setuserFolloweArea] = useState(true)
+  const [userUnFollowArea, setUserUnFollowArea] = useState(false)
+  const [userArefriends, setuserAreFriends] = useState(null)
+
 
   const handleChange = async(e) => {
     const value = e.target.value
     setSearchValue(value)
   
+  }
+
+
+  const checkifUserexist = async(userIdData) => {
+
+    try{
+      const res = await fetch(`http://localhost:3000/api/userTouser/${userIdData}`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+  
+      const data = await res.json()
+  
+      if(res.ok && data.message ==="User are connected as Friend" ){
+        setUserUnFollowArea(true)
+        setuserFolloweArea(false)
+  
+  
+      }else if(res.ok && data.message ==="User are not Friends"){
+        setUserUnFollowArea(false)
+        setuserFolloweArea(true)
+
+      }
+      else if(!res.ok){
+        throw new Error(' Error: Bad response')
+      }
+  
+  
+    }catch(error){
+      console.log('Error checking if user exist', error)
+    }
+  
+  }
+  
+
+
+  const followUserFetch  = async(userIdData) => {
+    try{
+      const res = await fetch(`http://localhost:3000/api/userTouser`,
+        {
+          method: "POST", 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({userIdData})
+  
+        })
+  
+        const data = await res.json() 
+  
+        if(res.ok && data.message === "User followed user"){
+          setuserFolloweArea(false)
+          setUserUnFollowArea(true)
+  
+        }else if(!res.ok){
+          console.log('Res error')
+          throw new Error(`fetch res Error: ${res.status} ${res.statusText}`)
+        }
+  
+       
+       
+        
+  
+    }catch(error){
+      console.error('fetch userID error for followUserFetch',error)
+      throw error
+    }
   }
   
 
@@ -109,12 +158,14 @@ const SearchInput = () => {
     
       const fetchUserPic = async() => {
 
-        if(userIdPicData !== ""){
+        if(userIdData !== ""){
           try{
 
-            const userPicData =  await getqueriedUser(userIdPicData)
+            const userPicData =  await getqueriedUser(userIdData)
             setdisplayUserPic(userPicData)
-
+            const checkifexitasFriend = await checkifUserexist(userIdData)
+            // setuserAreFriends(checkifexitasFriend)
+            
           }catch(error){
               console.error("error fetching ther user pic", error)
           }
@@ -132,7 +183,7 @@ const SearchInput = () => {
     
        
         if (requestUserInfo.length > 0) {
-          setUserIdPicData(requestUserInfo[0].userId)
+          setUserIdData(requestUserInfo[0].userId)
         }
 
 
@@ -169,12 +220,11 @@ const SearchInput = () => {
         debounceFetch.cancel()
       }
      
-  }, [searchValue, userIdPicData])
+  }, [searchValue, userIdData])
 
 
 
-
-
+  
 
 
 
@@ -208,7 +258,18 @@ const SearchInput = () => {
 
               </div>
               <div className={searchstyle['searchFollowOption']}> 
-                 <button onClick={ () =>followUserFetch(userIdPicData)}>follow</button>
+             {userUnFollowArea && (
+                <div className={searchstyle["SearchFollowArea"]}>
+                     <button onClick={ () =>followUserFetch(userIdData)}>Unfollow</button>
+                </div>
+              )}
+              {userFollowArea && (
+                <div className={searchstyle["SearchFollowArea"]}>
+                     <button onClick={ () =>followUserFetch(userIdData)}>Follow</button>
+                </div>
+              )}
+             
+                 {/* <button onClick={ () =>followUserFetch(userIdData)}>follow</button> */}
               </div>
             </div>
           )}
