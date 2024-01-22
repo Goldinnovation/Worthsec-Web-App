@@ -5,6 +5,8 @@ const prisma = new PrismaClient()
 
 exports.userFollowOtherUser = (req,res) => {
     
+    const user = req.user
+    console.log(user);
     const body = req.body
     console.log(body);
 

@@ -20,13 +20,14 @@ model eventPrompt {
 }
 
 model account {
-  userId        String   @id @default(uuid())
-  userName      String   @unique
+  userId        String      @id @default(uuid())
+  userName      String      @unique
   userEmail     String
   userPassword1 String
   userPassword2 String
-  createdAt     DateTime @default(now())
+  createdAt     DateTime    @default(now())
   picture       picture?
+  userTouser    userTouser?
 }
 
 model picture {
@@ -34,6 +35,14 @@ model picture {
   pictureUrl       String
   picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
   picture_owner_id String   @unique
+  createdAt        DateTime @default(now())
+}
+
+model userTouser {
+  userTouserId     String   @id @default(uuid())
+  userRequested    account  @relation(fields: [userRequested_id], references: [userId])
+  userRequested_id String   @unique
+  userFollowed     String
   createdAt        DateTime @default(now())
 }
 
