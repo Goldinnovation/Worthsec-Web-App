@@ -34,8 +34,7 @@ exports.createUserAccount = async(req,res,)  => {
                             {
                                 userName: req.body.userName,
                                 userEmail: req.body.userEmail,
-                                userPassword1: hashpw,
-                                userPassword2: hashpw
+                                userPassword1: hashpw
                             }
                         
                         })

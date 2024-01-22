@@ -24,7 +24,6 @@ model account {
   userName      String      @unique
   userEmail     String
   userPassword1 String
-  userPassword2 String
   createdAt     DateTime    @default(now())
   picture       picture?
   userTouser    userTouser?
@@ -43,6 +42,7 @@ model userTouser {
   userRequested    account  @relation(fields: [userRequested_id], references: [userId])
   userRequested_id String   @unique
   userFollowed     String
+  userStatus       Int
   createdAt        DateTime @default(now())
 }
 
