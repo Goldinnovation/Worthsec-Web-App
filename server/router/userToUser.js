@@ -6,7 +6,8 @@ const handleUsertoFollow = require('../controller/userInfo/handleUserToUser')
 
 
 router.get('/')
-router.post('/', handleUsertoFollow.userToUser)
+router.get('/:id', handleUsertoFollow.searchUser_friends)
+router.post('/', handleUsertoFollow.followUser)
 
 
 module.exports = router
