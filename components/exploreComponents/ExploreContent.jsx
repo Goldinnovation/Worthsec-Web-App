@@ -2,15 +2,43 @@ import React, { useState } from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
 
+
+
+export const getallEventsWorldwide =  async(selectedValues) => {
+
+  try{
+    const res =  await fetch('http://localhost:3000/api/selctedEvents', {
+
+     method: "POST",
+     headers: {
+      'Content-Type': 'application/json',
+      },
+     body: JSON.stringify(selectedValues)
+
+  })
+  if(!res.ok){
+    Console.log('Error on response: GetallEventsWorldWide')
+  }
+  const data = await res.json()
+  return data
+
+
+  }catch(error){
+    console.log('GetallEventsWorldWide:', error)
+    // throw Error('Request Error on Fetch: GetallEventsWorldWide')
+  }
+
+}
+
 const ExploreContent = () => {
 
   
   const [rangeValue, setrangeValue] = useState(15)
   const [selectedValues, setSelectedValues] = useState({
-    selectTypeofEvent: "",
+    explore_selectTypeofEvent__bmewZ:"",
     selectedRangeofEvents: "",
-    selectTypeofEventCategory: "",
-    startselectSearch: ""
+    explore_selectTypeofEventCategory__KzDeU: ""
+    
 
 
 
@@ -18,13 +46,18 @@ const ExploreContent = () => {
 
   const handleInput = (e) => {
 
-    if(e.target.className === "selectedRangeofEvents" && e.target.value)
-    setrangeValue(e.target.value)
+    if(e.target.className === "selectedRangeofEvents" && e.target.value){
+
+      setrangeValue(e.target.value)
+    }
+    
 
 
-    setSelectedValues( selectedValues => {return {...selectedValues, [e.target.className]: e.target.value}})
+    setSelectedValues({...selectedValues, [e.target.className]: e.target.value})
     
   }
+
+
 
 
 
@@ -65,7 +98,7 @@ const ExploreContent = () => {
 
                   </div>
                   <div>
-                    <button className="startselectSearch">Start</button>
+                    <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button>
                   </div>
                
               
