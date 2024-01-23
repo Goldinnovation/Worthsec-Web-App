@@ -22,6 +22,9 @@ const Createbtn = () => {
     eventDescriptionContent: "",
     eventTime: "",
     ImageCoverUpload: "",
+    Only_friends:"",
+    friends_Plus_Plus:"",
+    worldwideClass: ""
 
    })
 
@@ -40,6 +43,16 @@ const Createbtn = () => {
 
     if(e.target.className === 'eventType' && value){
       value = parseInt(value)
+    }
+
+    if(e.target.className === "Only_friends" && value){
+      value  = 1
+
+    }else if (e.target.className === "friends_Plus_Plus" && value){
+      value =2
+    }else if(e.target.className === "worldwideClass" && value){
+      value = 3 
+      
     }
 
     setEventData({...eventData, [e.target.className]: value})   
@@ -83,6 +96,12 @@ const Createbtn = () => {
     formData.append('eventDescriptionContent', eventData.eventDescriptionContent)
     formData.append('eventType', eventData.eventType)
     formData.append('eventTime', eventData.eventTime)
+    formData.append('Only_friends', eventData.Only_friends)
+    formData.append('friends_Plus_Plus', eventData.friends_Plus_Plus)
+    formData.append('worldwideClass', eventData.worldwideClass)
+
+
+
 
     
     
@@ -155,7 +174,8 @@ const Createbtn = () => {
                   <input 
                   type="checkbox"
                   id="friendsId" 
-                  className='friends'
+                  className='Only_friends'
+                  onChange={handleInput}
                   
                   />
                   </div>
@@ -167,11 +187,12 @@ const Createbtn = () => {
                                       outline: 2px solid #ffffff;  // Set a constant outline when checkbox is checked
                                   }
                               `}</style> */}
-                  <label for="friendsPlusPlus" style={{color:'#ffffff'}}>Friends++</label>
+                  <label for="friendsPlusPlus"  style={{color:'#ffffff'}}>Friends++</label>
                   <input 
                   type="checkbox"
                   id='friendsPlusPlus' 
-                  className='friendsPlusPlus'    
+                  className='friends_Plus_Plus' 
+                  onChange={handleInput}   
                   
                   />
 
@@ -183,11 +204,12 @@ const Createbtn = () => {
                                       outline: 2px solid #ffffff;  // Set a constant outline when checkbox is checked
                                   }
                                   `}</style> */}
-                  <label for="worldwide" style={{color:'#ffffff'}}>WorldWide</label>
+                  <label for="worldwide"  onChange={handleInput} style={{color:'#ffffff'}}>WorldWide</label>
                   <input 
                   type="checkbox"
                   id='worldwide' 
                   className='worldwideClass'
+                  onChange={handleInput}
                   
                   />
                   </div>
