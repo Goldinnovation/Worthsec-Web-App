@@ -969,15 +969,15 @@ appearance: none;
         width: 1300px;
         height: 450px;
         overflow: hidden;
-        animation: jumpOut 2s ease-out;
+        animation: jumpOut 0.4s ease-out;
     }
 
     @keyframes jumpOut {
         0% {
-            transform: scale(0.5);
+            transform: scale(1);
         }
         50% {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         100% {
             transform: scale(1);

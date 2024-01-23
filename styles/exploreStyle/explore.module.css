@@ -53,7 +53,6 @@
 .selectTypeofEvent{
     width: 300px;
     height: 30px;
-    margin-left: 10%;
     border-radius: 20px;
 }
 
@@ -61,7 +60,7 @@
 .selectTypeofEventCategory{
     width: 300px;
     height: 30px;
-    margin-left: 10%;
+    
     border-radius: 20px;
 }
 
@@ -89,10 +88,4 @@
     border-radius: 10px;
    
 
-}
-
-.rs-label{
-    margin-top: 29px;
-    width: 600px;
-    -webkit-appearance: none;
 }
