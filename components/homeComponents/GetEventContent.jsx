@@ -6,6 +6,7 @@ import addUser from '@assets/add-user.png'
 import message from '@assets/conversation.png'
 import setting from '@assets/Coversetting.png'
 import deleteIcon from '@assets/delete.png'
+import Createbtn from '@utils/Createbtn'
 
 
 
@@ -136,7 +137,8 @@ const GetEventContent = () => {
     <>
      {/* after entering all necessary information to create an Event, A object will be generated as the event
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
-        <div className='eventContentSection'>
+       <div className='contentCreateSection'>
+       <div className='eventContentSection'>
             
             {allEventContent.map((event, i) => (
              <div className='eventContentSectionArea'>
@@ -220,9 +222,17 @@ const GetEventContent = () => {
                     
                 </div>
             
-            ))}
+            ))} 
     
         </div>
+
+        <div className='create-addbtn-area'>
+            <Createbtn/>
+        </div>
+
+
+       </div>
+      
       
     </>
   )

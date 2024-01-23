@@ -53,7 +53,7 @@ const Sliderbar = () => {
 
   return (
     <div>
-         <hr />
+         {/* <hr color='white' /> */}
         <div className= {styles['sliderSection']}> ´
 
 <div className ={styles['RequestSection']}>
@@ -125,7 +125,7 @@ const Sliderbar = () => {
 
 
    
---------------------------------------------------------------------------------
+
 
 
 {/* Pop up section  for the areas over the slide*/}
@@ -162,7 +162,6 @@ const Sliderbar = () => {
     )}
 </div>
 </div>
-<hr />
 
 
       

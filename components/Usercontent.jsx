@@ -163,9 +163,10 @@ const Usercontent = () => {
             {homePage && (
                 <div>
                  {/* Slider Area  */} 
-                 <div>
+                 <div className={styles['sliderAreasection']}>
                  <Sliderbar/> 
                  </div>
+                 
                  <div className={styles['closefriendsSection']}>
                         <div className={styles['closefriendsContent']}>
                         <div>Ifriend1</div>

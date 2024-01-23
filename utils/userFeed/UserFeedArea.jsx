@@ -15,8 +15,8 @@ import Image from 'next/image'
 
 
 const UserFeedArea = () => {
-    const [addArea, setAddArea] = useState(false)
-    const [calenderArea, setCalenderArea] = useState(true)
+    const [addArea, setAddArea] = useState(true)
+    const [calenderArea, setCalenderArea] = useState(false)
     const [networkArea, setNetworkArea] = useState(false)
     const [joinArea, setJoinArea] = useState(false)
     const [favorArea, setFavorArea] = useState(false)
@@ -79,8 +79,7 @@ const UserFeedArea = () => {
   return (
     <div>
 
-<hr/>
-           
+
            <div className='feed-area'>
                <div className='user-feed-nav'>
                <div className='timeline-btn-area' onClick={togglemodalCalender}><TimeLayer/></div>
@@ -91,6 +90,7 @@ const UserFeedArea = () => {
                   
                    
                </div>
+               
            
 
            <div className='CalenderContentContainer'>
@@ -108,16 +108,22 @@ const UserFeedArea = () => {
            <div className='AddEventContentArea'>
                    <div className='EventContentArea'>
                        <GetEventContent/>
+                      
+                    
                    </div>
-                   <div className='create-addbtn-area'>
+                   <div className='chatContentArea'>
+                        hallo
+                   </div>
+                   {/* <div className='create-addbtn'>
                        <Createbtn/>
-                   </div>
+                     </div> */}
+                  
            </div>
             )}
            </div>
 
            {/* The user can view all the events he/she liked and joined */}
-           <div className={joinandfavorStyle['joinAndFavorSection']}>
+           {/* <div className={joinandfavorStyle['joinAndFavorSection']}>
                {networkArea && (
                    <div className={joinandfavorStyle['joinandFavorarea']}>
                            <div className={joinandfavorStyle['JoinandFavor-navbar']}>
@@ -144,7 +150,7 @@ const UserFeedArea = () => {
 
                    </div>
                )}
-           </div>
+           </div> */}
            {/* <div className='ShareSection'>
                {shareArea && (
                    <div className='shareArea'>

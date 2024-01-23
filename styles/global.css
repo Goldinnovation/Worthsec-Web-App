@@ -283,10 +283,13 @@ appearance: none;
    
         .feed-area{
             /* background-color: rgba(24, 190, 57, 0.256); */
-            margin: 0.2%;
-            height: 490px;
+            /* background: linear-gradient(45deg, #0b0b0b, #00ccff); */
+            /* margin: 0.2%; */
+            margin-top: 0;
+            height: 510px;
             display: flex;
-            border: 1px solid rgb(220, 220, 220) ;
+            /* border: 1px solid rgb(220, 220, 220) ; */
+            border-radius: 10px;
         }
 
 
@@ -321,8 +324,10 @@ appearance: none;
         height: 450px;
         margin: 1%;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.897);
+        margin-right: 1%;
+        border: 1px solid rgba(255, 255, 255, 0);
         border-radius: 10px;
+        
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -905,13 +910,13 @@ appearance: none;
     }
 
  @media screen and (max-width:2000px){
-    /* .addEventSection{
-        background-color: peru;
-        width: 1220px;
+    .addEventSection{
+        /* background-color: peru; */
+        width: 2500px;
         height: 500px;
 
 
-    } */
+    }
 
     }
 
@@ -919,38 +924,63 @@ appearance: none;
 
     /* Nav Content Area */
 
-.AddEventContentArea{
-        background-color: rgba(35, 35, 35, 0.397);
-        /* background-color: rgba(40, 40, 40, 0.272); */
-        /* display: flex;
-        margin-top: 30px;
-        width: 2400px;
-        height: 750px;
-        border: 1px solid rgba(255, 255, 255, 0.196); */
-        
-
-        
-       
-
-        
-    }
 
 
     @media screen and (max-width:2000px){
     
         .AddEventContentArea{
-            background-color: rgba(35, 35, 35, 0.397);
+            /* background-color: rgba(35, 35, 35, 0.397); */
             /* background-color: rgba(40, 40, 40, 0.272); */
+            /* background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e); */
             display: flex;
             margin-top: 20px;
+            gap: 2%;
             
-            width: 1590px;
-            height: 450px;
-            border: 1px solid rgba(255, 255, 255, 0.196);
+            /* width: 50%; */
+            
+            /* height: 450px;
+            bo3der: 1px solid rgba(255, 255, 255, 0.196);
+            border-radius: 10px; */
             
     
             
                
+        }
+    }
+
+    .chatContentArea{
+        background: linear-gradient(5deg, #151716, #10272d, #17171727);
+        border: 1px solid rgba(255, 255, 255, 0.196);
+        border-radius: 10px;
+        width: 500px;
+        height: 450px;
+        margin-right: 10px;
+        overflow: hidden;
+        animation: jumpOut 1s ease-out;
+      
+    }
+
+
+    .EventContentArea{
+        background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e);
+        background: linear-gradient(5deg, #151716, #10272d, #17171727);
+        border: 1px solid rgba(255, 255, 255, 0.196);
+        border-radius: 10px;
+        width: 1300px;
+        height: 450px;
+        overflow: hidden;
+        animation: jumpOut 2s ease-out;
+    }
+
+    @keyframes jumpOut {
+        0% {
+            transform: scale(0.5);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
         }
     }
 
@@ -973,6 +1003,14 @@ appearance: none;
     
             
         }
+    }
+
+
+    .contentCreateSection{
+        /* background-color: #0038e1; */
+        display: flex;
+        flex-direction: column;
+
     }
     
 
@@ -1000,8 +1038,8 @@ appearance: none;
         .eventContentSection{
             /* background-color: rgba(255, 26, 148, 0.562); */
             display: flex;
-            width: 1400px;
-            height: 450px;
+            /* width: 1400px; */
+            height: 350px;
             flex-wrap: wrap;
             gap: 5%;
             /* padding: 0%; */
@@ -1023,11 +1061,16 @@ appearance: none;
 @media screen and (max-width:2000px){
     
 .create-addbtn-area{
-    /* background-color: rgb(184, 4, 4); */
-    width: 150px;
+    background-color: rgb(184, 4, 4);
+    /* position: relative; */
     display: flex;
-    flex-direction: column;
     justify-content: flex-end;
+    height: 0px;
+    margin-right: 3%;
+    /* width: 150px; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: flex-end; */
 }
 
 }
