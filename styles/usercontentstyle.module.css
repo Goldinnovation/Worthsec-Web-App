@@ -17,23 +17,18 @@
 }
 
 .userRequestSection{
-    /* background-color: green; */
-    margin-top: 2%;
+
     width: 100%;
     height: 50px;
-    display: flex;
-    justify-content: center;
+    
     
 }
 
 .userRequestContent{
     /* background-color: orange; */
     display: flex;
-    width: 450px;
-    align-items: center;
-    justify-content: space-around;
-    color: white;
-    
+    gap: 20%;
+    margin-left: 10%;
 
 }
 
@@ -74,10 +69,25 @@
 
 
 
+.pictureUrl{
+ 
+    width: 150px;
+    height: 150px;
+    margin-left: 90%;
+    border-radius: 50%;
+    margin-top: 45%;
+
+}
+
+
 
 
 .happyProfilIcon{
     border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-left: 13%;
+    
 }
 
 .messagePopUpContentArea{
@@ -395,15 +405,6 @@
 
 
 
-.pictureUrl{
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat ;
-
-}
-
-
 
 
 
@@ -433,16 +434,64 @@
 
 }
 
+.profiloptionslayer{
+    background-color: rgb(75, 75, 75);
+    width: 45%;
+    margin-left: 1%;
+    margin-bottom: 0%;
+    /* border: 1px solid white; */
+    /* border-radius: 10px; */
+    /* border-right: 1px solid rgba(220, 220, 220, 0.622) ;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.622);
+    border-top: 1px solid rgba(255, 255, 255, 0.588); */
+    border-right: 1px solid rgba(220, 220, 220, 0.622) ;
+}
+
+.sliderAreasectionyLayor{
+    /* background-color: orange; */
+    display: flex;
+    /* justify-content: flex-end; */
+    /* gap: 1%; */
+}
+
 
 .sliderAreasection{
     /* background-color: rebeccapurple; */
     /* border: 1px solid white; */
     padding: 10px;
-    
-    /* border-bottom: 1px solid rgba(235, 35, 35, 0.622);
-    border-top: 1px solid rgba(67, 8, 67, 0.188); */
+    width: 100%;
+    border-bottom: 1px solid rgba(220, 220, 220, 0.622);
+    border-top: 1px solid rgba(255, 255, 255, 0.588);
     margin-bottom: 1%;
-    border-radius: 50px;
-    margin-left: 1%;
-    margin-right: 1%;
+   
+   
+}
+.profiloptionContent{
+    /* background-color: green; */
+    width: 350px;
+    display: flex;
+    margin-bottom: 1%;
+    /* border-right: 1px solid white; */
+}
+
+.Notificationbtn{
+    background-color: rgba(245, 245, 245, 0.459);
+    width: 150%;
+    height: 40px;
+    background: linear-gradient(5deg, #70887c, #28d4ff, #17171727);
+}
+
+
+.Messagebtn{
+    width: 150%;
+    height: 40px;
+    background: linear-gradient(5deg, #91fcc6, #df0d0d, #6756ea27);
+
+}
+
+.Friendsbtn{
+    width: 180%;
+    height: 40px;
+    background: linear-gradient(5deg, #151716, #2097b4, #17171727);
+
 }

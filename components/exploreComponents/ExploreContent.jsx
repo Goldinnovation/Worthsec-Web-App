@@ -11,7 +11,7 @@ const ExploreContent = () => {
                 bar
             </div>
             <div className={styles['middleContentArea']}>
-           
+           sds
             </div>
             
        </section>

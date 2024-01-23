@@ -61,7 +61,7 @@ const Usercontent = () => {
 
        
 
-        <create/>
+        {/* <create/> */}
         <header className={styles['header-area']}>
 
             {/* Logo Section  */}
@@ -94,66 +94,75 @@ const Usercontent = () => {
                         <div className={styles['userLogout']}><Userlogout/></div>
 
                         </div>
-                       
-                   
-
                     </div>
-                    <div>
 
+
+
+                     {/* Navbar section */}
+                    <div className='ProfilNavAreaContent'>
                         
-            {/* Navbar section */}
             <div className="NavbarLayer">
-                {showNav && (
-                          <div className="leftNavbar">
-                            <div className='homeIconOpt'>
-                            <Link rel="preload" href={"/user"}>
-                              <Image
-                                  src={HomeIcon}
-                                  alt="HomeIcon"
-                                  className="HomeIcon"
-                                  height={25}
-                                  width={25}
-                                  onClick={homeToggle}
-                              />
-                          </Link>
-                        </div>
-                      </div>
-                )}
-              
-                <div className="middleNavbar" onClick={handleToggle}>
+            <div className="middleNavbar" onClick={handleToggle}>
                     <DisplayProfiIImage />
                 </div>
+                <div className='NavbarMenu'>
+
+                <div className="leftNavbar" >
                 {showNav && (
-                    <div className="rightNavbar">
-                   
+                          <div className='homeIconOpt'>
+                          <Link rel="preload" href={"/user"}>
+                           <button className='homebtn' onClick={homeToggle} >
+                           <Image
+                                src={HomeIcon}
+                                alt="HomeIcon"
+                                className="HomeIcon"
+                                height={25}
+                                width={25}
+                              
+                            />
+                         </button>
+                        </Link>
+                        
+                      </div> 
+                )}
+                </div>
+              
+
+
+                <div className="rightNavbar" >
+                     {showNav && (
                     <div className='exploreIconOpt'>
+                              <button className='explorebtn' onClick={exploreToggle} >
                               <Image
                                   src={BubbleIcon}
                                   alt="BubbleIcon"
                                   className="BubbleIcon"
                                   height={25}
                                   width={25}
-                                  onClick={exploreToggle}
+                                  
+                                  
                               />
+                                
+                              </button>
                     </div>
-                    
-                </div>
 
                 )}
-            </div>
-                    </div>
-                    <div>
+                        
+                    </div> 
+               
+                </div>
+                
+                <div>
                         <ProfilImageBtn/>
                     </div>
-                    <div className={styles['userRequestSection']}>
-                        <div className={styles['userRequestContent']}>
-                        <div>Invites</div>
-                         <div>Message</div>
-                         <div>FriendRequest</div>
+                   
 
-                        </div>
-                     
-                    </div>
+                
+             
+            </div>
+
+            </div>
+                   
                     
                    
                     
@@ -163,9 +172,27 @@ const Usercontent = () => {
             {homePage && (
                 <div>
                  {/* Slider Area  */} 
+                
+                 <div className={styles['sliderAreasectionyLayor']}>
+                    {/* <div className={styles['profiloptionContent']}>
+                    <div className={styles['userRequestSection']}>
+                        <div className={styles['userRequestContent']}>
+                        <div><button className={styles['Notificationbtn']}>N</button></div>
+                         <div><button className={styles['Messagebtn']}>M</button></div>
+                         <div><button className={styles['Friendsbtn']}>F</button></div>
+
+                        </div>
+                     
+                     </div>
+
+                    </div> */}
+                
                  <div className={styles['sliderAreasection']}>
                  <Sliderbar/> 
                  </div>
+
+                 </div>
+                 
                  
                  <div className={styles['closefriendsSection']}>
                         <div className={styles['closefriendsContent']}>

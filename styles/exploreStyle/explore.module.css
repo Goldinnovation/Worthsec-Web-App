@@ -3,28 +3,28 @@
 
 .middleSection{
     /* background-color: rgba(0, 255, 255, 0.495); */
-    height: 500px;
+    height: 800px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
     
 }
 
 .middleContentArea{
-    background-color: rgba(0, 58, 0, 0.49);
-    height: 550px;
-    width: 40%;
-    margin: 1%;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 10px;
+    background: linear-gradient(5deg, #151716, #10272d, #17171727);
+
+    height: 800px;
+    /* width: 40%; */
+   
+    
 }
 
 .middleContentbar{
-    background-color: rgba(207, 207, 207, 0.271);
-    width: 40%;
+    background-color: rgba(255, 255, 255, 0.045);
+    background: linear-gradient(1deg, #0b3621, #10272d, #ff151527, #0b3621);
+    /* width: 40%; */
     height: 50px;
-    border: 1px solid white;
-    border-radius: 10px;
+    
 }
 
 .exploreSection{

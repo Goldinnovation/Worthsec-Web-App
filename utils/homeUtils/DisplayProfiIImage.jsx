@@ -92,7 +92,8 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
                  src={`/${profilImageData.pictureUrl}`}
                  className={style["pictureUrl"]}
                  alt='uploaded Image'
-                 fill
+                 width={130}
+                height={130}
                 quality={100}
                 priority
                 
