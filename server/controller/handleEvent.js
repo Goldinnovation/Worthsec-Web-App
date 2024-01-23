@@ -24,7 +24,8 @@ const storage = getStorage();
 
 exports.createEvent = async(req,res) => {
 
-    
+     const trybody = req.body
+     console.log(trybody)
     
         try{
             if(!req.file){
@@ -65,6 +66,20 @@ exports.createEvent = async(req,res) => {
         IntEventType = parseInt(stringEventType, 10)
         const userId = req.user.userId
         console.log(downloadImageUrl);
+        console.log(req.body.Only_friends)
+
+        let eventinviteNum;
+
+        if(req.body.Only_friends === '1' ){
+           const num1 = req.body.Only_friends
+            eventinviteNum =  parseInt(num1, 10)
+        }else if(req.body.friends_Plus_Plus === '2'){
+            const num2 =  req.body.friends_Plus_Plus
+            eventinviteNum = parseInt(num2, 10)
+        }else if(req.body.worldwideClass === '3'){
+            const num3 =  req.body.worldwideClass
+             eventinviteNum = parseInt(num3, 10)
+        }
 
         // Stores the data in the Database 
         const newEventBody = {
@@ -72,13 +87,25 @@ exports.createEvent = async(req,res) => {
             ImageCoverUpload: downloadImageUrl,
             eventType: IntEventType,
             eventHost: userId,
+            eventInviteType: eventinviteNum
             
         }
 
         
     
         try {
-            const newCreateEvent = await prisma.eventPrompt.create({ data: newEventBody});
+            const newCreateEvent = await prisma.eventPrompt.create({ data: 
+            {
+                eventHost: userId,
+                eventTitle: req.body.eventTitle,
+                eventType:  IntEventType,             
+                eventDate: req.body.eventDate,               
+                eventDescriptionContent: req.body.eventDescriptionContent,
+                eventTime: req.body.eventTime,      
+                ImageCoverUpload: downloadImageUrl,                
+                eventInviteType: eventinviteNum 
+
+            }});
             console.log(newCreateEvent, "successful uploaded")
             // res.status(200).json({messaage: "successful uploaded on the database"})
             

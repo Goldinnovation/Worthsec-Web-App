@@ -17,6 +17,7 @@ model eventPrompt {
   eventTime               String
   ImageCoverUpload        String
   createdAt               DateTime @default(now())
+  eventInviteType             Int?
 }
 
 model account {

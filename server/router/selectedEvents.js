@@ -5,7 +5,7 @@ const handleSelectedEvents = require('../controller/handleSelectedEvents')
 
 
 
-router.get('/', handleSelectedEvents.AllWorldwideEvents )
+router.post('/', handleSelectedEvents.AllWorldwideEvents )
 
 
 
