@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
+import Image from 'next/image'
 
 
 
@@ -20,6 +21,7 @@ export const getallEventsWorldwide =  async(selectedValues) => {
     Console.log('Error on response: GetallEventsWorldWide')
   }
   const data = await res.json()
+  console.log(data)
   return data
 
 
@@ -34,10 +36,11 @@ const ExploreContent = () => {
 
   
   const [rangeValue, setrangeValue] = useState(9)
+  const [userexploreData, setuserExploreData] = useState([])
   const [selectedValues, setSelectedValues] = useState({
     explore_selectTypeofEvent__bmewZ:"3",
-    selectedRangeofEvents: "9",
-    explore_selectTypeofEventCategory__KzDeU: "3"
+    selectedRangeofEvents:"",
+    explore_selectTypeofEventCategory__KzDeU:"3"
     
 
 
@@ -57,6 +60,34 @@ const ExploreContent = () => {
 
   }
 
+  
+
+
+
+  useEffect(() => {
+    const fetchexploreData = async() => {
+
+      try{
+        const exploreData = await getallEventsWorldwide(selectedValues)
+        setuserExploreData(exploreData)
+
+      }catch(error){
+        console.log('Error fetching explore data:', error)
+
+      }
+    };
+
+    // Sets up the interval for the period of the fetch 
+    const invervalId = setInterval(fetchexploreData, 52000)
+
+    fetchexploreData()
+  
+    return () => clearInterval(invervalId)
+
+    // Renders the page from everytime the selectedValue is enterd 
+  },[selectedValues])
+
+ 
 
 
 
@@ -71,9 +102,6 @@ const ExploreContent = () => {
               
                 
                 <div className={styles['middleContentbar']}>
-
-                
-
 
                   <div className={styles['selectContentTypeofEventbar']}>
                   <select className={styles['selectTypeofEvent']}  onChange={handleInput} required>
@@ -98,7 +126,7 @@ const ExploreContent = () => {
 
                   </div>
                   <div>
-                    <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button>
+                    {/* <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button> */}
                   </div>
                
               
@@ -106,8 +134,45 @@ const ExploreContent = () => {
                 </div>
                 
             </div>
-            <div className={styles['middleContentArea']}>
-           sds
+            <div className={styles['middleContentFeed']}>
+            <div className={styles['explorefeedContent']}>
+              {userexploreData.map((event, i) => (
+                <div key={i} className={styles['exploreContentSection']}>
+                    <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>
+                </div>
+              ))}      
+            </div>
+
+            <div className={styles['feedbarSection']}>
+                  <div   className={styles['feetbarContent_line']}> 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_circle1']}> 
+                      
+                  </div>
+                  <div   className={styles['feetbarContent_line']}> 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_circle1']}> 
+                      
+                  </div>
+                  <div   className={styles['feetbarContent_line']}> 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_circle1']}> 
+                      
+                  </div>
+                  <div   className={styles['feetbarContent_line']}> 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_circle1']}> 
+                      
+                  </div>
+                  <div   className={styles['feetbarContent_line']}> 
+                   
+                   </div>
+            </div>
+            
             </div>
             
        </section>

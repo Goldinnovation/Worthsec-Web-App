@@ -20,20 +20,20 @@ exports.AllWorldwideEvents = async(req,res) => {
     req.body.explore_selectTypeofEvent__bmewZ === "3" ? parseInt(req.body.explore_selectTypeofEvent__bmewZ,10) :
     undefined; 
 
-    console.log(selectEventTypeNum);
+    // console.log(selectEventTypeNum);
 
 
     const inputNumber =  parseInt(req.body.selectedRangeofEvents, 10)
     const rangeEventNum = (inputNumber >= 9 && inputNumber <=20 ? inputNumber : undefined)
-    console.log(rangeEventNum);
+    // console.log(rangeEventNum);
 
     const inputCategoryNum  =  parseInt(req.body.explore_selectTypeofEventCategory__KzDeU, 10)
     const inviteNum = (inputCategoryNum >=1 && inputCategoryNum <=3 ? inputCategoryNum : undefined)
 
-    console.log(inviteNum)
+    // console.log(inviteNum)
 
     try{
-         if(req.user){
+         if(req.user && selectEventTypeNum !== undefined && inviteNum !== undefined){
             const getselectedEvents = await prisma.eventPrompt.findMany({
                 where: {
                     eventType: selectEventTypeNum,
@@ -43,8 +43,7 @@ exports.AllWorldwideEvents = async(req,res) => {
             
         console.log(getselectedEvents)
         console.log(getselectedEvents.length)
-        res.status(200).json({message: "successful found"})
-
+        res.status(200).json(getselectedEvents)
          }
 
     }catch(error){

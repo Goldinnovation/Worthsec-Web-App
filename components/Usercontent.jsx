@@ -23,8 +23,8 @@ const Usercontent = () => {
     
     // const [showNav, setShowNav] =  useState(true)
     const [searchArea, setSearchArea] = useState(false)
-    const [explorePage, setExplorePage] = useState(false)
-    const [homePage, setHomePage] = useState(true)
+    const [explorePage, setExplorePage] = useState(true)
+    const [homePage, setHomePage] = useState(false)
 
     // const router = useRouter();
 
@@ -115,7 +115,6 @@ const Usercontent = () => {
             {homePage && (
                 <div>
                  {/* Slider Area  */} 
-                
                  <div className={styles['sliderAreasectionyLayor']}>
                     {/* <div className={styles['profiloptionContent']}>
                     <div className={styles['userRequestSection']}>
@@ -161,9 +160,23 @@ const Usercontent = () => {
 
             {explorePage && (
                 <div>
+                    <div className='tvSectionArea'>
+                        <div className='tvSection_sidebar1'>
+                           
+                        </div>
+                        <div className='tvSection_middle'>
+                            <div className='tvSection_middle_frame'>
+                                
+                            </div>
+                           
+                        </div>
+                        <div className='tvSection_sidebar2'>
+                            
+                        </div>
+
+                    </div>
                     <div>
                         <ExploreContent/>
-
                     </div>
                 </div>
             )
