@@ -7,7 +7,7 @@ import GlobalHeader from '@utils/globalheader/GlobalHeader'
 export const getallEventsWorldwide =  async(selectedValues) => {
 
   try{
-    const res =  await fetch('http://localhost:3000/api/selctedEvents', {
+    const res =  await fetch(`http://localhost:3000/api/selctedEvents`, {
 
      method: "POST",
      headers: {
@@ -33,11 +33,11 @@ export const getallEventsWorldwide =  async(selectedValues) => {
 const ExploreContent = () => {
 
   
-  const [rangeValue, setrangeValue] = useState(15)
+  const [rangeValue, setrangeValue] = useState(9)
   const [selectedValues, setSelectedValues] = useState({
-    explore_selectTypeofEvent__bmewZ:"",
-    selectedRangeofEvents: "",
-    explore_selectTypeofEventCategory__KzDeU: ""
+    explore_selectTypeofEvent__bmewZ:"3",
+    selectedRangeofEvents: "9",
+    explore_selectTypeofEventCategory__KzDeU: "3"
     
 
 
@@ -54,7 +54,7 @@ const ExploreContent = () => {
 
 
     setSelectedValues({...selectedValues, [e.target.className]: e.target.value})
-    
+
   }
 
 
@@ -84,7 +84,7 @@ const ExploreContent = () => {
                 </select>
                   </div>
                   <div>
-                  <input type="range" id="rangeInput"  className='selectedRangeofEvents'  onChange={handleInput} min="15" max="35" value={rangeValue} />
+                  <input type="range" id="rangeInput"  className='selectedRangeofEvents'  onChange={handleInput} min="9" max="20" value={rangeValue} />
                   <output for="rangeInput" id="outputValue">{rangeValue}</output>
 
                   </div>
