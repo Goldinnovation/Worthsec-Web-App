@@ -102,7 +102,6 @@ const ExploreContent = () => {
               
                 
                 <div className={styles['middleContentbar']}>
-
                   <div className={styles['selectContentTypeofEventbar']}>
                   <select className={styles['selectTypeofEvent']}  onChange={handleInput} required>
                           <option value=''  className={styles['event-type-content']} >Event-type</option>
@@ -125,9 +124,9 @@ const ExploreContent = () => {
                 </select>
 
                   </div>
-                  <div>
-                    {/* <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button> */}
-                  </div>
+                  {/* <div>
+                    <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button>
+                  </div> */}
                
               
 

@@ -160,21 +160,7 @@ const Usercontent = () => {
 
             {explorePage && (
                 <div>
-                    <div className='tvSectionArea'>
-                        <div className='tvSection_sidebar1'>
-                           
-                        </div>
-                        <div className='tvSection_middle'>
-                            <div className='tvSection_middle_frame'>
-                                
-                            </div>
-                           
-                        </div>
-                        <div className='tvSection_sidebar2'>
-                            
-                        </div>
-
-                    </div>
+                   
                     <div>
                         <ExploreContent/>
                     </div>
