@@ -1810,37 +1810,27 @@ appearance: none;
     width: 100%;
     height: 300px;
     margin: 0px;
-}
-
-
-.NavbarLayer{
-    width: 515px;
-    height: 430px;
-    /* background-color: gray; */
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
-    margin-bottom: 1%;
-    /* align-items: center; */
-    /* gap: 7% */
     
-
-
-
+    align-items: center;
+  
 }
+
+
 
 .NavbarMenu{
-    /* background-color: orange; */
+    /* background-color: rgb(192, 170, 130); */
     display: flex;
-    width: 400px;
-    /* height: 92px; */
-    /* justify-content: center; */
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    gap: 5%;
+
+
     
-    /* border-top: 1px solid white;
-    border-bottom: 1px solid white;
-     */
-     gap: 22%;
-     padding-left: 15%;
+    
+    
    
 }
 
@@ -1848,52 +1838,36 @@ appearance: none;
 .middleNavbar{
     /* background-color: orange; */
     height: 200px;
-    width: 100%;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    /* width: 100%; */
+    margin-left: -3%;
     
-    margin-bottom: 3%;
+    margin-bottom: 1%;
 
 
-}
-
-.leftNavbar{
-    /* background-color: green; */
-    width: 10%;
-    height: 40px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    /* border-right: 1px solid white; */
-}
-
-.rightNavbar{
-  
-    width: 10%;
-    height: 40px;
-   
-  
 }
 
 .homebtn{
-    background-color: rgba(70, 70, 70, 0.848);;
-    width: 120%;
-    height: 40px;
-    /* border-radius: 10px; */
+    /* background-color: rgba(35, 169, 237, 0.553);; */
+   background: linear-gradient(40deg, #0b0b0b, #00ccff,#0b0b0b); 
+    width: 30%;
+    height: 30px;
+    border-radius: 60px;
+
     cursor: pointer;
 }
 .explorebtn{
-    background-color: rgba(70, 70, 70, 0.848);
-    width: 120%;
-    height: 40px;
-    /* border-radius: 10px; */
-    z-index: index 1;;
+    background-color: rgba(217, 0, 0, 0.848);
+    background: linear-gradient(45deg, #0b0b0b, #ff0800,#0b0b0b); 
+    width: 30%;
+    height: 30px;
+    border-radius: 60px;
+    margin-right: 3%;
     cursor: pointer;
 }
 
-.BubbleIcon{
-    cursor: pointer;
-
-  
-}
 
 
 .logoWorthsec{
@@ -1915,10 +1889,6 @@ appearance: none;
 
 
 
-.GlobalHeader{
-    /* background-color: orange; */
-}
-
 .globalHeaderLogoSection{
     /* background-color: green; */
     margin: 1%;
@@ -1939,15 +1909,3 @@ appearance: none;
     justify-content: center;
 }
 
-/* .testtry1{
-    background-color: rgba(255, 166, 0, 0.174);
-    width: 650px;
-    height: 200px;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 10px ;
-    
-}
- */

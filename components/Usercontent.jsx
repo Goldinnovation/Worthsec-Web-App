@@ -21,7 +21,7 @@ import ExploreContent from './exploreComponents/ExploreContent'
 const Usercontent = () => {
 
     
-    const [showNav, setShowNav] =  useState(true)
+    // const [showNav, setShowNav] =  useState(true)
     const [searchArea, setSearchArea] = useState(false)
     const [explorePage, setExplorePage] = useState(false)
     const [homePage, setHomePage] = useState(true)
@@ -31,10 +31,7 @@ const Usercontent = () => {
 
 
 
-    const handleToggle = () => {
-        setShowNav(!showNav)
-    }
-
+   
     const handleToggleSearch = () => {
 
         setSearchArea(!searchArea)
@@ -94,79 +91,25 @@ const Usercontent = () => {
                         <div className={styles['userLogout']}><Userlogout/></div>
 
                         </div>
-                    </div>
-
-
-
-                     {/* Navbar section */}
-                    <div className='ProfilNavAreaContent'>
-                        
-            <div className="NavbarLayer">
-            <div className="middleNavbar" onClick={handleToggle}>
-                    <DisplayProfiIImage />
-                </div>
-                <div className='NavbarMenu'>
-
-                <div className="leftNavbar" >
-                {showNav && (
-                          <div className='homeIconOpt'>
-                          <Link rel="preload" href={"/user"}>
-                           <button className='homebtn' onClick={homeToggle} >
-                           <Image
-                                src={HomeIcon}
-                                alt="HomeIcon"
-                                className="HomeIcon"
-                                height={25}
-                                width={25}
-                              
-                            />
-                         </button>
-                        </Link>
-                        
-                      </div> 
-                )}
-                </div>
-              
-
-
-                <div className="rightNavbar" >
-                     {showNav && (
-                    <div className='exploreIconOpt'>
-                              <button className='explorebtn' onClick={exploreToggle} >
-                              <Image
-                                  src={BubbleIcon}
-                                  alt="BubbleIcon"
-                                  className="BubbleIcon"
-                                  height={25}
-                                  width={25}
-                                  
-                                  
-                              />
+                    </div>          
                                 
-                              </button>
-                    </div>
-
-                )}
-                        
-                    </div> 
-               
-                </div>
-                
-                <div>
-                        <ProfilImageBtn/>
-                    </div>
-                   
-
-                
-             
-            </div>
-
-            </div>
-                   
-                    
-                   
-                    
         </header>  
+
+        
+                     {/* Navbar section */}
+            <div className='ProfilNavAreaContent'>         
+            
+            <div className="middleNavbar" >
+                    <DisplayProfiIImage />
+            </div>
+            <div className='NavbarMenu' >   
+                       <button className='homebtn' onClick={homeToggle}>H</button>
+                       <button className='explorebtn' onClick={exploreToggle}>E</button>
+            </div>  
+            <div>
+                        {/* <ProfilImageBtn/> */}
+            </div>        
+            </div>
 
         <div className='userPageOptions'>
             {homePage && (
