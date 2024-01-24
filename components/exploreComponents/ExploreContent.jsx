@@ -100,7 +100,9 @@ const ExploreContent = () => {
        <section className={styles['middleSection']}>
             <div className={styles['middleContentarea']}>
               
-                
+                <div className={styles['middleContentbar_left']}>
+
+                </div>
                 <div className={styles['middleContentbar']}>
                   <div className={styles['selectContentTypeofEventbar']}>
                   <select className={styles['selectTypeofEvent']}  onChange={handleInput} required>
@@ -127,10 +129,10 @@ const ExploreContent = () => {
                   {/* <div>
                     <button className="startselectSearch" onClick={() => getallEventsWorldwide(selectedValues)}>Start</button>
                   </div> */}
-               
-              
-
                 </div>
+                <div className={styles['middleContentbar_right']}>
+
+</div>
                 
             </div>
             <div className={styles['middleContentFeed']}>
@@ -143,33 +145,30 @@ const ExploreContent = () => {
             </div>
 
             <div className={styles['feedbarSection']}>
-                  <div   className={styles['feetbarContent_line']}> 
+
+                 {/* <div  className={styles['feetbarContent_circle_left']}> 
+                     
+                  </div> */}
+                  <div   className={styles['feetbarContent_middle']}> 
+                 
                    
                   </div>
-                  <div   className={styles['feetbarContent_circle1']}> 
+                  <div   className={styles['feetbarContent_middle2']}> 
+                 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_middle3']}> 
+                 
+                   
+                  </div>
+                  <div   className={styles['feetbarContent_middle4']}> 
+                 
+                   
+                  </div>
+                  {/* <div   className={styles['feetbarContent_circle_right']}> 
                       
-                  </div>
-                  <div   className={styles['feetbarContent_line']}> 
-                   
-                  </div>
-                  <div   className={styles['feetbarContent_circle1']}> 
-                      
-                  </div>
-                  <div   className={styles['feetbarContent_line']}> 
-                   
-                  </div>
-                  <div   className={styles['feetbarContent_circle1']}> 
-                      
-                  </div>
-                  <div   className={styles['feetbarContent_line']}> 
-                   
-                  </div>
-                  <div   className={styles['feetbarContent_circle1']}> 
-                      
-                  </div>
-                  <div   className={styles['feetbarContent_line']}> 
-                   
-                   </div>
+                  </div> */}
+               
             </div>
             
             </div>

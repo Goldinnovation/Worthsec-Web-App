@@ -28,7 +28,7 @@
     /* width: 40%; */
     height: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 10px;
     
 }
@@ -37,7 +37,9 @@
     /* background-color: rgb(205, 205, 205); */
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
     width: 1000px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     display: flex;
     justify-content:space-around;
     align-items: center;
@@ -46,10 +48,33 @@
    
 
 }
+.middleContentbar_left{
+    background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
+    width: 70px;
+    /* border-radius: 20px; */
+    /* border-top-right-radius: 50px; */
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    border: 1px solid rgb(28, 28, 28);
+}
+.middleContentbar_right{
+
+    background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
+    width: 70px;
+    /* border-radius: 20px; */
+    border-top-left-radius:50px;
+    /* border-bottom-left-radius: 20px; */
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    border: 1px solid rgb(28, 28, 28);
+}
 
 .explorefeedContent{
     /* background-color: aqua; */
-    margin-top: 1%;
+    margin-top: 2%;
     /* margin-right: 1%; */
     display: flex;
     justify-content: center;
@@ -64,10 +89,11 @@
 
 
 .feedbarSection{
-    /* background-color: orange; */
+    /* background-color: #1823ee22; */
     width: 500px;
     height: 70px;
    display: flex;
+   justify-content: center;
    align-items: center;
    margin-right: 1%;
 }
@@ -75,12 +101,49 @@
 
 
 
-.feetbarContent_line{
-    /* background-color: green; */
+.feetbarContent_middle{
+    background-color: green;
     border-top: 2px solid rgba(178, 9, 9, 0.471);
-    margin-top: 4%;
-    width: 90px;
-    height: 20px;
+    background: linear-gradient(1deg, #a5a5a5, #09e21e, #6bbe3c27, #0b3621); /* Linear gradient */
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 3%;
+    margin-right: 15%;
+}
+
+
+.feetbarContent_middle2{
+    background-color: green;
+    border-top: 2px solid rgba(178, 9, 9, 0.471);
+    background: linear-gradient(1deg, #a5a5a5, #6a0268, #6bbe3c27, #0b3621); /* Linear gradient */
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 3%;
+    margin-right: 15%;
+}
+
+.feetbarContent_middle3{
+    background-color: green;
+    border-top: 2px solid rgba(178, 9, 9, 0.471);
+    background: linear-gradient(1deg, #a5a5a5, #e2d709, #6bbe3c27, #0b3621); /* Linear gradient */
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 3%;
+    margin-right: 15%;
+}
+
+.feetbarContent_middle4{
+    background-color: green;
+    border-top: 2px solid rgba(178, 9, 9, 0.471);
+    background: linear-gradient(1deg, #a5a5a5, #e25c09, #6bbe3c27, #0b3621); /* Linear gradient */
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
 .feetbarContent_line:hover{
@@ -88,15 +151,53 @@
 
 }
 
-.feetbarContent_circle1{
+.feetbarContent_circle_left{
     /* background-color: red; */
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    /* width: 30px;
+    height: 30px; */
+    /* border-radius: 50%;
     border-top: 2px solid rgba(178, 9, 9, 0.23);
     border: 2px solid rgb(178, 9, 9,);
-    border-top: 2px solid rgb(255, 62, 62) ;
+    border-top: 2px solid rgb(255, 62, 62) ; */
+    position: relative;
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 60px solid rgb(200, 194, 15); /* Adjust the color and size as needed */
+      background: linear-gradient(1deg, #a5a5a5, #8a0000, #d4000027, #0b3621); /* Linear gradient */
+      /* border-radius: 50%; */
+      transform: rotate(-90deg);
+   
+   
+  
 }
+
+
+.feetbarContent_circle_right{
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 60px solid rgba(190, 102, 2, 0.94); /* Adjust the color and size as needed */
+    transform: rotate(90deg);
+    z-index: 1; /* Set z-index for the main element */
+
+
+}
+
+.feetbarContent_circle_right::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(1deg, #a5a5a5, #8a0000, #d4000027, #02ce6b); /* Linear gradient */
+    z-index: -1; 
+}
+
 
 .feetbarContent_circle1:hover{
         background: linear-gradient(1deg, #a5a5a5, #8a0000, #d4000027, #0b3621);
