@@ -181,13 +181,17 @@ const ExploreContent = () => {
 
                         </div>
                         <div  className={styles['explorePopUpselectedOptions']}>
-                          <div className={styles['explorePopUpselectedOption1']}>
+                         
                           <button className={styles['explorePopUpselectedOptionbtn1']}>Join</button>
-                          </div>
-                          <div className={styles['explorePopUpselectedOption2']} >
+                        
+                         
                           <button className={styles['explorePopUpselectedOptionbtn2']} >Store</button>
 
-                          </div>
+                         
+                         
+                          <button className={styles['explorePopUpselectedOptionbtn3']}>Share</button>
+
+                          
                         </div>
                         
 
