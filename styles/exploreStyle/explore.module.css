@@ -275,3 +275,130 @@
    
 
 }
+
+
+.exploreContentPopupArea{
+    /* background-color: rgba(235, 255, 235, 0.547); */
+    width: 40%;
+    height: 500px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 1px solid white; */
+    border-radius: 10px;
+}
+
+.explorePopUpselectedTitleSection{
+    /* background-color: orange; */
+    /* background-color: rgba(235, 255, 235, 0.547); */
+    /* border: 1px solid white; */
+    height: 40px;
+    border-radius: 10px;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+
+}
+
+.explorePopUpselectedTitle{
+    background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white;
+    height: 35px;
+    width: 500px;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 90px;
+    
+}
+
+.explorePopUpselectedClose{
+    background-color: rgb(255, 0, 38);
+    width: 10px;
+    height: 20px;
+    margin-left: 60px;
+    border-radius: 50px;
+}
+
+
+.explorePopUpselectedContentSection{
+    /* background-color: green; */
+    /* background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white; */
+    border-radius: 10px;
+    margin: 1%;
+    display:  flex;
+    
+}
+
+.explorePopUpselectedContent{
+    background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white;
+    display: flex;
+    border-radius: 10px;
+    margin-right: 3%;
+}
+
+.explorePopUpselectedbar{
+    background-color: #8a000083;
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid white;
+
+}
+
+
+
+
+.explorePopUpselectedCover{
+    margin:  1%;
+
+}
+
+.explorePopUpCoverItem{
+    border-radius: 10px;
+}
+
+
+
+
+.explorePopUpselectedDescript{
+    background-color: rgba(92, 6, 29, 0.574);
+    margin: 1%;
+    width: 350px;
+}
+
+.explorePopUpselectedOptions{
+    display: flex;
+}
+
+
+
+.explorePopUpselectedOptions{
+    /* background-color: pink; */
+    /* border: 1px solid white; */
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+   
+
+}
+.explorePopUpselectedOption1{
+    /* background-color: #6a02683d; */
+    background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.explorePopUpselectedOption2{
+    /* background-color: #9695956f; */
+    background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+}

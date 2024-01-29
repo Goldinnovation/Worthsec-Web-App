@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
 import Image from 'next/image'
+import { isNull } from 'lodash'
 
 
 
@@ -37,6 +38,7 @@ const ExploreContent = () => {
   
   const [rangeValue, setrangeValue] = useState(9)
   const [userexploreData, setuserExploreData] = useState([])
+  const [popupSelectedItem, setpopupSelectedItem] = useState(null)
   const [selectedValues, setSelectedValues] = useState({
     explore_selectTypeofEvent__bmewZ:"3",
     selectedRangeofEvents:"",
@@ -60,6 +62,10 @@ const ExploreContent = () => {
 
   }
 
+  const handleToggleitem = (event) => {
+    setpopupSelectedItem(popupSelectedItem === event ? null : event)
+    
+  }
   
 
 
@@ -139,8 +145,58 @@ const ExploreContent = () => {
             <div className={styles['explorefeedContent']}>
               {userexploreData.map((event, i) => (
                 <div key={i} className={styles['exploreContentSection']}>
-                    <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>
+                  <div className={styles['exploreContent']} onClick={() => handleToggleitem(event)}>
+                  <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>           
+                  </div>
+
+                  <div className={styles['exploreContentPopupSection']}>
+                    {popupSelectedItem && popupSelectedItem.id === event.id && (
+                      <div className={styles['exploreContentPopupArea']}>
+                        <div className={styles['explorePopUpselectedTitleSection']}>
+                          <div  className={styles['explorePopUpselectedTitle']}>
+                                 titldsd
+                          </div >
+                          <div className={styles['explorePopUpselectedClose']} onClick={() =>handleToggleitem(null)}>
+                              
+                          </div>
+                     
+                        </div>
+                        <div className={styles['explorePopUpselectedContentSection']}>
+
+                          <div className={styles['explorePopUpselectedContent']}>
+                          <div className={styles['explorePopUpselectedCover']}>
+                          <Image src={event.ImageCoverUpload}  className={styles['explorePopUpCoverItem']} width={400} height={400} quality={100} />  
+
+
+                          </div>
+                          <div className={styles['explorePopUpselectedDescript']}>
+                          dsv
+                          </div>
+                          </div>
+                          <div className={styles['explorePopUpselectedbar']}>
+                              dsndjn
+                          </div>
+                       
+                          
+
+                        </div>
+                        <div  className={styles['explorePopUpselectedOptions']}>
+                          <div className={styles['explorePopUpselectedOption1']}>
+                          djkds
+                          </div>
+                          <div className={styles['explorePopUpselectedOption2']} >
+                          sjknsjksdn
+                          </div>
+                        </div>
+                        
+
+                      </div>
+                    )}
+
+                  </div>
                 </div>
+
+              
               ))}      
             </div>
 
