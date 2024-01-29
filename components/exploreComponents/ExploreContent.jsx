@@ -170,7 +170,7 @@ const ExploreContent = () => {
 
                           </div>
                           <div className={styles['explorePopUpselectedDescript']}>
-                          dsv
+                            hbhjb
                           </div>
                           </div>
                           <div className={styles['explorePopUpselectedbar']}>
@@ -182,10 +182,11 @@ const ExploreContent = () => {
                         </div>
                         <div  className={styles['explorePopUpselectedOptions']}>
                           <div className={styles['explorePopUpselectedOption1']}>
-                          djkds
+                          <button className={styles['explorePopUpselectedOptionbtn1']}>Join</button>
                           </div>
                           <div className={styles['explorePopUpselectedOption2']} >
-                          sjknsjksdn
+                          <button className={styles['explorePopUpselectedOptionbtn2']} >Store</button>
+
                           </div>
                         </div>
                         

@@ -363,7 +363,7 @@
 
 
 .explorePopUpselectedDescript{
-    background-color: rgba(92, 6, 29, 0.574);
+     background-color: rgba(5, 5, 5, 0.547);
     margin: 1%;
     width: 350px;
 }
@@ -387,18 +387,38 @@
 }
 .explorePopUpselectedOption1{
     /* background-color: #6a02683d; */
-    background-color: rgba(235, 255, 235, 0.547);
-    border: 1px solid white;
+    /* background-color: rgba(235, 255, 235, 0.547); */
+    /* border: 1px solid white; */
     height: 40px;
     width: 200px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+.explorePopUpselectedOptionbtn1{
+    background: linear-gradient(1deg, #1f1919, #ffffff, #ffffffc9, #1c1d1c);
+    margin-top: 2%;
+    width: 140px;
+    height: 35px;
     border-radius: 10px;
 }
 
 .explorePopUpselectedOption2{
     /* background-color: #9695956f; */
-    background-color: rgba(235, 255, 235, 0.547);
-    border: 1px solid white;
+    /* background-color: rgba(235, 255, 235, 0.547);
+    border: 1px solid white; */
     height: 40px;
     width: 200px;
     border-radius: 10px;
+    text-align: center;
+}
+
+.explorePopUpselectedOptionbtn2{
+    background: linear-gradient(1deg, #1f1919, #ffffff, #ffffffc9, #1c1d1c);
+    margin-top: 2%;
+    width: 140px;
+    height: 35px;
+    border-radius: 10px;
+
 }
