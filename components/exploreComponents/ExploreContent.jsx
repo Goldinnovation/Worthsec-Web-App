@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
 import Image from 'next/image'
-import { isNull } from 'lodash'
-import { use } from 'passport'
+
 
 
 
@@ -253,7 +252,7 @@ const ExploreContent = () => {
 
                          
                          
-                          <button className={styles['explorePopUpselectedOptionbtn3']}>Share</button>
+                          {/* <button className={styles['explorePopUpselectedOptionbtn3']}>Share</button> */}
 
                           
                         </div>
@@ -262,16 +261,30 @@ const ExploreContent = () => {
                         
 
                       </div>
+
+                    
                         
                       <div className={styles['explorePopUppreview']}>
+                      <div className={styles['explorePopUpmovebar']}>
+                      {/* <div className={styles['explorePopUpmoveobarleft']} >
+                           
+                      </div>
+                      <div className={styles['explorePopUpmoveobarright']} >
+                           
+                      </div> */}
+                      </div>
 
-                           {userexploreData.map((event,i) => (
+                      <div  className={styles['explorePopUpOption']}>
+                      {userexploreData.map((event,i) => (
                            <div key={i}  className={styles['explorePopuppreviewSection']}>
                             <div className={styles['explorepreviewContent']} onClick={() => handleToggleitem(event)}>
-                            <Image src={event.ImageCoverUpload} width={60} height={60} quality={100}/>           
+                            <Image src={event.ImageCoverUpload} width={90} height={90} quality={100}/>           
                             </div>
                            </div>
                            ))}
+
+                      </div>
+                           
                       </div>
                       </div>
                       
