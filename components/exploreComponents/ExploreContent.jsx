@@ -181,7 +181,7 @@ const ExploreContent = () => {
                   </div>
                   <div>
                   <input type="range" id="rangeInput"  className='selectedRangeofEvents'  onChange={handleInput} min="9" max="20" value={rangeValue} />
-                  <output for="rangeInput" id="outputValue">{rangeValue}</output>
+                  <output htmlFor="rangeInput" id="outputValue">{rangeValue}</output>
 
                   </div>
                   <div className={styles['selectContentCategorybar']}>
