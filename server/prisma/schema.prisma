@@ -8,26 +8,30 @@ datasource db {
 }
 
 model eventPrompt {
-  id                      String   @id @default(uuid())
+  id                      String           @id @default(uuid())
   eventHost               String
   eventTitle              String
-  eventType               Int      @db.Integer
-  eventDate               DateTime @db.Date
+  eventType               Int              @db.Integer
+  eventDate               DateTime         @db.Date
   eventDescriptionContent String
   eventTime               String
   ImageCoverUpload        String
-  createdAt               DateTime @default(now())
-  eventInviteType             Int?
+  createdAt               DateTime         @default(now())
+  eventInviteType         Int?
+  userJoinEvent           userJoinEvent[]
+  userFavorEvent          userFavorEvent[]
 }
 
 model account {
-  userId        String       @id @default(uuid())
-  userName      String       @unique
-  userEmail     String
-  userPassword1 String
-  createdAt     DateTime     @default(now())
-  picture       picture?
-  userTouser    userTouser[]
+  userId         String           @id @default(uuid())
+  userName       String           @unique
+  userEmail      String
+  userPassword1  String
+  createdAt      DateTime         @default(now())
+  picture        picture?
+  userTouser     userTouser[]
+  userJoinEvent  userJoinEvent[]
+  userFavorEvent userFavorEvent[]
 }
 
 model picture {
@@ -36,6 +40,24 @@ model picture {
   picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
   picture_owner_id String   @unique
   createdAt        DateTime @default(now())
+}
+
+model userJoinEvent {
+  Joinid       String      @id @default(uuid())
+  joined_user  account     @relation(fields: [user_id], references: [userId])
+  user_id      String
+  joined_event eventPrompt @relation(fields: [event_id], references: [id])
+  event_id     String
+  createdAt    DateTime    @default(now())
+}
+
+model userFavorEvent {
+  favorid       String      @id @default(uuid())
+  user_favored  account     @relation(fields: [user_id], references: [userId])
+  user_id       String
+  favored_event eventPrompt @relation(fields: [event_id], references: [id])
+  event_id      String
+  createdAt     DateTime    @default(now())
 }
 
 model userTouser {
