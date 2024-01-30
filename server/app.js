@@ -24,7 +24,8 @@ const config = require('./config/firebase')
 const searchUserReq = require('./router/userSearch')
 const userFollowUser = require('./router/userToUser')
 const selectEvents = require('./router/selectedEvents')
-
+const userFavorEvent = require('./router/favorEvent')
+const userJoinEvent = require('./router/')
 
 
 
@@ -79,6 +80,10 @@ app.prepare().then(() => {
     server.use('/api/search', searchUserReq )
     server.use('/api/userTouser',userFollowUser)
     server.use('/api/selctedEvents', selectEvents)
+    server.use('/api/favorEvent', userFavorEvent)
+    server.use('/api/JoinEvent', )
+
+
     // server.use()
     // server.use(`/api/events/${eventid}`, eventRequest)
 

@@ -8,8 +8,8 @@ exports.AllWorldwideEvents = async(req,res) => {
     
 
     
-    const body = req.body 
-    console.log(body);
+    // const body = req.body 
+    // console.log(body);
 
     // Converting the all 3 string to Numbers 
     // if none of the numbers are selceted the value will be undefined 
@@ -41,8 +41,8 @@ exports.AllWorldwideEvents = async(req,res) => {
                 }
             })
             
-        console.log(getselectedEvents)
-        console.log(getselectedEvents.length)
+        // console.log(getselectedEvents)
+        // console.log(getselectedEvents.length)
         res.status(200).json(getselectedEvents)
          }
 

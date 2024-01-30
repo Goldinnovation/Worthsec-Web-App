@@ -3,6 +3,7 @@ import styles from '@styles/exploreStyle/explore.module.css'
 import GlobalHeader from '@utils/globalheader/GlobalHeader'
 import Image from 'next/image'
 import { isNull } from 'lodash'
+import { use } from 'passport'
 
 
 
@@ -33,12 +34,68 @@ export const getallEventsWorldwide =  async(selectedValues) => {
 
 }
 
+//  User can favor event
+const userFavorEvent = async(favoreventId) => {
+
+  try{
+    const res = await fetch(`http://localhost:3000/api/favorEvent`, {
+    method: "POST", 
+    headers:{
+      'Content-Type': 'application/json',
+      },
+    body: JSON.stringify({favoreventId})
+    
+
+  })
+  if(!res.ok){
+    console.log('response Error on userFavorEvent')
+  }
+
+  const data =  await res.json()
+
+
+  }catch(error){
+    console.log('userFavorEvent request failed, fetch Error:',error)
+
+  }
+  
+}
+
+
+// user can join event#
+
+const userJoinEvent = async(joinEventId) => {
+  try{
+
+    const res = await fetch(``,{
+      method: "POST", 
+      headers:{
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({joinEventId})
+      
+    })
+    if(!res.ok){
+      console.log('Response Error: UserJoinEvent fetch')
+    }
+    const data = await res.json()
+
+
+  }catch(error){
+    console.log('Request Error: userJoinEvent Fetch, unexpected Error:', error)
+
+  }
+}
+
+
+
 const ExploreContent = () => {
 
   
   const [rangeValue, setrangeValue] = useState(9)
   const [userexploreData, setuserExploreData] = useState([])
   const [popupSelectedItem, setpopupSelectedItem] = useState(null)
+  // const [favoreventId, setFavoreventId] = useState(null)
   const [selectedValues, setSelectedValues] = useState({
     explore_selectTypeofEvent__bmewZ:"3",
     selectedRangeofEvents:"",
@@ -48,6 +105,11 @@ const ExploreContent = () => {
 
 
   })
+
+
+
+
+
 
   const handleInput = (e) => {
 
@@ -172,7 +234,7 @@ const ExploreContent = () => {
 
                           </div>
                           <div className={styles['explorePopUpselectedDescript']}>
-                            hbhjb
+                           {event.id}
                           </div>
                           </div>
                           <div className={styles['explorePopUpselectedbar']}>
@@ -184,10 +246,10 @@ const ExploreContent = () => {
                         </div>
                         <div  className={styles['explorePopUpselectedOptions']}>
                          
-                          <button className={styles['explorePopUpselectedOptionbtn1']}>Join</button>
+                          <button className={styles['explorePopUpselectedOptionbtn1']} onClick={() => userJoinEvent(event.id)}>Join</button>
                         
                          
-                          <button className={styles['explorePopUpselectedOptionbtn2']} >Store</button>
+                          <button className={styles['explorePopUpselectedOptionbtn2']} onClick={() => userFavorEvent(event.id)} >Favor</button>
 
                          
                          
