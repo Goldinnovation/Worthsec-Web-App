@@ -151,11 +151,13 @@ const ExploreContent = () => {
 
                   <div className={styles['exploreContentPopupSection']}>
                     {popupSelectedItem && popupSelectedItem.id === event.id && (
-                      <div className={styles['exploreContentPopupArea']}>
+
+                      <div className={styles['exploreContentPopupOverlay']} >
+                        <div className={styles['exploreContentPopupArea']}>
                         <div className={styles['explorePopUpselectedTitleSection']}>
-                          <div  className={styles['explorePopUpselectedTitle']}>
-                                 titldsd
-                          </div >
+                          <h1  className={styles['explorePopUpselectedTitle']}>
+                          {event.eventTitle}
+                          </h1 >
                           <div className={styles['explorePopUpselectedClose']} onClick={() =>handleToggleitem(null)}>
                               
                           </div>
@@ -193,9 +195,24 @@ const ExploreContent = () => {
 
                           
                         </div>
+
+                     
                         
 
                       </div>
+                        
+                      <div className={styles['explorePopUppreview']}>
+
+                           {userexploreData.map((event,i) => (
+                           <div key={i}  className={styles['explorePopuppreviewSection']}>
+                            <div className={styles['explorepreviewContent']} onClick={() => handleToggleitem(event)}>
+                            <Image src={event.ImageCoverUpload} width={60} height={60} quality={100}/>           
+                            </div>
+                           </div>
+                           ))}
+                      </div>
+                      </div>
+                      
                     )}
 
                   </div>
@@ -210,7 +227,7 @@ const ExploreContent = () => {
                  {/* <div  className={styles['feetbarContent_circle_left']}> 
                      
                   </div> */}
-                  <div   className={styles['feetbarContent_middle']}> 
+                  {/* <div   className={styles['feetbarContent_middle']}> 
                  
                    
                   </div>
@@ -225,7 +242,7 @@ const ExploreContent = () => {
                   <div   className={styles['feetbarContent_middle4']}> 
                  
                    
-                  </div>
+                  </div> */}
                   {/* <div   className={styles['feetbarContent_circle_right']}> 
                       
                   </div> */}
