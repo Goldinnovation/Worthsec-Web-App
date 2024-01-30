@@ -25,7 +25,7 @@ const searchUserReq = require('./router/userSearch')
 const userFollowUser = require('./router/userToUser')
 const selectEvents = require('./router/selectedEvents')
 const userFavorEvent = require('./router/favorEvent')
-const userJoinEvent = require('./router/')
+const userJoinEvent = require('./router/userJoinEvent')
 
 
 
@@ -81,7 +81,7 @@ app.prepare().then(() => {
     server.use('/api/userTouser',userFollowUser)
     server.use('/api/selctedEvents', selectEvents)
     server.use('/api/favorEvent', userFavorEvent)
-    server.use('/api/JoinEvent', )
+    server.use('/api/JoinEvent', userJoinEvent)
 
 
     // server.use()
@@ -97,7 +97,7 @@ app.prepare().then(() => {
 
     server.listen(3000, (err) => {
         if(err) throw err; 
-        console.log('> Ready on http://localhost:3000')
+        console.log('Ready on http://localhost:3000')
     })
     
 })

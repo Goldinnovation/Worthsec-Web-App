@@ -67,12 +67,12 @@ const userFavorEvent = async(favoreventId) => {
 const userJoinEvent = async(joinEventId) => {
   try{
 
-    const res = await fetch(``,{
+    const res = await fetch(`http://localhost:3000/api/JoinEvent`,{
       method: "POST", 
       headers:{
         'Content-Type': 'application/json',
         },
-        body: JSON.stringify({joinEventId})
+      body: JSON.stringify({joinEventId})
       
     })
     if(!res.ok){
