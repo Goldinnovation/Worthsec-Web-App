@@ -3,11 +3,28 @@ const prisma = new PrismaClient()
 
 
 
-exports.DisplayUserofJoinEvents = (req,res) => {
+exports.DisplayUserofJoinEvents = async(req,res) => {
+    const user = req.user.userId
+    console.log(user)
      const body = req.body 
      console.log(body);
 
+     try{
+        if(req.user){
+            const getEventIdofJointUser =  await prisma.userJoinEvent.findMany({
+                where: {
+                    user_id: user
+                }
+            })
+            console.log(getEventIdofJointUser)
+            res.status(200).json({message: "Successfully got user Id"})
+        }
+
+     }catch(error){
+        console.log('Unexpected Error on server side for DisplayUserofJoinEvents handler ');
+     }
 
 
-     res.json({message: "Connected to backend of DisplayUserofJoinEvents"})
+
+    //  res.json({message: "Connected to backend of DisplayUserofJoinEvents"})
 }
