@@ -15,11 +15,11 @@ import Image from 'next/image'
 
 
 const UserFeedArea = () => {
-    const [addArea, setAddArea] = useState(true)
+    const [addArea, setAddArea] = useState(false)
     const [calenderArea, setCalenderArea] = useState(false)
-    const [networkArea, setNetworkArea] = useState(false)
-    const [joinArea, setJoinArea] = useState(false)
-    const [favorArea, setFavorArea] = useState(false)
+    const [networkArea, setNetworkArea] = useState(true)
+    // const [joinArea, setJoinArea] = useState(false)
+    // const [favorArea, setFavorArea] = useState(false)
 
     
     // open up the Pop up of  the calender and closes all other toggle 
@@ -27,7 +27,7 @@ const UserFeedArea = () => {
     const togglemodalCalender = () => { 
         setCalenderArea(true)
         setAddArea(false)
-        setJoinArea(false)
+        // setJoinArea(false)
         setNetworkArea(false)
        
     }
@@ -38,7 +38,7 @@ const UserFeedArea = () => {
 
         setAddArea(true)
         setCalenderArea(false)
-        setJoinArea(false)
+        // setJoinArea(false)
         setNetworkArea(false)
         
     }
@@ -47,10 +47,10 @@ const UserFeedArea = () => {
 
     const togglemodalnetwork = () => {
         setNetworkArea(true)
-        setJoinArea(true)
+        // setJoinArea(true)
         setCalenderArea(false);
         setAddArea(false);
-        setFavorArea(false)
+        // setFavorArea(false)
         
         
     }
@@ -58,24 +58,24 @@ const UserFeedArea = () => {
     // open up the Pop up of the join area and closes all other toggle 
 
 
-    const togglejoinaraopt = () => {
-        setJoinArea(true)
-        setCalenderArea(false);
-        setAddArea(false);
-        setFavorArea(false)
+    // const togglejoinaraopt = () => {
+    //     setJoinArea(true)
+    //     setCalenderArea(false);
+    //     setAddArea(false);
+    //     setFavorArea(false)
        
 
 
-    }
+    // }
 
-    const togglefavoropt = () => {
-        setFavorArea(true)
-        // setJoinArea(false)
-        setCalenderArea(false);
-        setAddArea(false);
+    // const togglefavoropt = () => {
+    //     setFavorArea(true)
+    //     // setJoinArea(false)
+    //     setCalenderArea(false);
+    //     setAddArea(false);
         
 
-    }
+    // }
   return (
     <div>
 
@@ -99,6 +99,44 @@ const UserFeedArea = () => {
                            <CalenderContent/>
                    </div>
                )}
+           </div>
+
+
+           <div className='netwerokContentSection'>
+            {networkArea && (
+                <div className='NetworkContentArea'>
+                    <div className='favorcontnetArea'>
+
+                        <div className='favorandjoinbar'>
+                            <div className='joinoptionbtnArea'>
+                                    
+                                    <button className='joinoptionbtn'>J</button>
+                            </div>
+                            <div className='favoroptionbtnArea'>
+                                <button className='favoroptionbtn'>F</button>
+                            </div>
+
+                        </div>
+                           <div className='favorcontnetArea_left'>
+                            left
+                           </div>
+                           <div className='displaycontnetArea_middle'>
+                            middle
+                           </div>
+                           <div className='favorcontnetArea_right' >
+                            right
+                           
+                           </div> 
+
+                    </div>
+
+                    <div className='favorChatRoomsection'>
+                        dfdf
+                    </div>
+            
+
+                </div>
+            )}
            </div>
 
            {/* create Event Secetion, by pressing the button user creates an event*/}

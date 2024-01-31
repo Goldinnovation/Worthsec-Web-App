@@ -921,6 +921,132 @@ appearance: none;
     }
 
 
+.netwerokContentSection{
+    /* background-color: peru; */
+    width: 6500%;
+    height: 500px;
+    display: flex;
+}
+
+.NetworkContentArea{
+     /* background-color: rgba(35, 35, 35, 0.397); */
+            /* background-color: rgba(40, 40, 40, 0.272); */
+            /* background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e); */
+            display: flex;
+            margin: 1%;
+            width: 100%;
+            gap: 2%;
+            
+            /* width: 50%; */
+            
+            /* height: 450px;
+            bo3der: 1px solid rgba(255, 255, 255, 0.196);
+            border-radius: 10px; */
+            
+
+
+}
+
+.favorcontnetArea{
+    background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    border: 1px solid rgba(255, 255, 255, 0.196);
+    border-radius: 10px;
+    width: 1830px;
+    height: 450px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+
+}
+
+.favorandjoinbar{
+    /* background-color: rgb(0, 0, 0); */
+    background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    width: 40px;
+    height: 120px;
+    /* border-radius: 10px; */
+    /* border: 1px solid rgba(255, 255, 255, 0.196); */
+    border-bottom:  1px solid rgba(255, 255, 255, 0.196);
+    border-right: 1px solid rgba(255, 255, 255, 0.196);
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.joinoptionbtnArea{
+    /* background-color: pink; */
+    height: 55px;
+    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom:1px solid rgba(255, 255, 255, 0.196);
+    align-items: center;
+
+}
+
+
+.favoroptionbtnArea {
+
+    /* background-color: rgb(192, 255, 249); */
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
+.favorcontnetArea_left{
+    /* background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    border: 1px solid rgba(255, 255, 255, 0.196); */
+    border-right: 1px solid rgba(255, 255, 255, 0.196);
+    /* border-radius: 10px; */
+    width: 650px;
+    height: 450px;
+    margin-right: 10px;
+    overflow: hidden;
+
+}
+
+.displaycontnetArea_middle{
+    background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    border: 1px solid rgba(255, 255, 255, 0.196);
+    border-radius: 10px;
+    width: 500px;
+    height: 450px;
+    margin-right: 10px;
+    overflow: hidden;
+
+}
+
+.favorcontnetArea_right{
+    /* background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    border: 1px solid rgba(255, 255, 255, 0.196); */
+    border-left: 1px solid rgba(255, 255, 255, 0.196);
+    /* border-radius: 10px; */
+    width: 650px;
+    height: 450px;
+    /* margin-right: 10px; */
+    overflow: hidden;
+}
+
+
+
+
+/* .favorChatRoomsection{
+    background: linear-gradient(5deg, #151716, #10272d, #17171727);
+    border: 1px solid rgba(255, 255, 255, 0.196);
+    border-radius: 10px;
+    width: 500px;
+    height: 450px;
+    margin-right: 10px;
+    overflow: hidden;
+
+} */
 
     /* Nav Content Area */
 
@@ -989,7 +1115,7 @@ appearance: none;
     
         .AddEventContentArea{
             /* background-color: rgba(35, 35, 35, 0.397); */
-            background-color: rgba(40, 40, 40, 0.272);
+            /* background-color: rgba(40, 40, 40, 0.272); */
             display: flex;
             margin-top: 30px;
             width: 2400px;

@@ -58,7 +58,8 @@ Worthsec is a Web application that offers users the opportunity to create, share
 - [x] Explore
 - [ ] Chat 
 - [ ] Invite 
-- [ ] Join 
+- [X] Favor
+- [X] Join 
 
 
 
