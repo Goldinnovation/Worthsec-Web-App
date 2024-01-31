@@ -10,16 +10,15 @@ import joinandfavorStyle from '@styles/joinandfavorstyle.module.css'
 import TimeLayer from '@utils/Timebtn'
 import Networkbtn from '@utils/Networkbtn'
 import Image from 'next/image'
-
-
+import DisplayJoinEvent from './DisplayJoinEvent'
 
 
 const UserFeedArea = () => {
     const [addArea, setAddArea] = useState(false)
     const [calenderArea, setCalenderArea] = useState(false)
     const [networkArea, setNetworkArea] = useState(true)
-    // const [joinArea, setJoinArea] = useState(false)
-    // const [favorArea, setFavorArea] = useState(false)
+    const [joinArea, setJoinArea] = useState(true)
+    const [favorArea, setFavorArea] = useState(false)
 
     
     // open up the Pop up of  the calender and closes all other toggle 
@@ -27,7 +26,7 @@ const UserFeedArea = () => {
     const togglemodalCalender = () => { 
         setCalenderArea(true)
         setAddArea(false)
-        // setJoinArea(false)
+        setJoinArea(false)
         setNetworkArea(false)
        
     }
@@ -38,7 +37,7 @@ const UserFeedArea = () => {
 
         setAddArea(true)
         setCalenderArea(false)
-        // setJoinArea(false)
+        setJoinArea(false)
         setNetworkArea(false)
         
     }
@@ -47,35 +46,37 @@ const UserFeedArea = () => {
 
     const togglemodalnetwork = () => {
         setNetworkArea(true)
-        // setJoinArea(true)
+        setJoinArea(true)
         setCalenderArea(false);
         setAddArea(false);
-        // setFavorArea(false)
-        
+        setFavorArea(false)
+
         
     }
 
     // open up the Pop up of the join area and closes all other toggle 
 
 
-    // const togglejoinaraopt = () => {
-    //     setJoinArea(true)
-    //     setCalenderArea(false);
-    //     setAddArea(false);
-    //     setFavorArea(false)
-       
+    const togglejoinaraopt = () => {
+        setJoinArea(true)
+        setCalenderArea(false);
+        setAddArea(false);
+        setFavorArea(false)
 
+        
+    }
 
-    // }
-
-    // const togglefavoropt = () => {
-    //     setFavorArea(true)
-    //     // setJoinArea(false)
-    //     setCalenderArea(false);
-    //     setAddArea(false);
+    const togglefavoropt = () => {
+        
+        setFavorArea(true)
+        setNetworkArea(true)
+        setJoinArea(false)
+        setCalenderArea(false);
+        setAddArea(false);
+        
         
 
-    // }
+    }
   return (
     <div>
 
@@ -110,31 +111,40 @@ const UserFeedArea = () => {
                         <div className='favorandjoinbar'>
                             <div className='joinoptionbtnArea'>
                                     
-                                    <button className='joinoptionbtn'>J</button>
+                            <button className='joinoptionbtn' onClick={togglejoinaraopt}>J</button>
                             </div>
                             <div className='favoroptionbtnArea'>
-                                <button className='favoroptionbtn'>F</button>
+                                <button className='favoroptionbtn' onClick={togglefavoropt}>F</button>
                             </div>
 
                         </div>
-                           <div className='favorcontnetArea_left'>
-                            left
-                           </div>
-                           <div className='displaycontnetArea_middle'>
-                            middle
-                           </div>
-                           <div className='favorcontnetArea_right' >
-                            right
-                           
-                           </div> 
-
+                        {joinArea &&(
+                                 <div className='joindisplayContentArea'>
+                                    <div className='joincontnetArea_left'>
+                                        <DisplayJoinEvent/>
+                                    </div>
+                                    
+                                    <div className='displaycontnetArea_middle'>
+                                        middle
+                                    </div>
+                                    <div className='favorcontnetArea_right' >
+                                        right
+                                     </div> 
+                                 </div>
+                               )}
+                               
+                               {favorArea && ( 
+                                   <div className="favordisplaySection">
+                                      <div className='favorContent'>
+                                        wew
+                                      </div>
+                                   </div>
+                                 )}
+                                
+                              
+                              
                     </div>
-
-                    <div className='favorChatRoomsection'>
-                        dfdf
-                    </div>
-            
-
+                   
                 </div>
             )}
            </div>
