@@ -15,7 +15,9 @@ export async function getContent(){
 
         const res = await fetch('http://localhost:3000/api/events', {
             method: "GET",
-            cache: "no-store"
+            // cache: "no-store",
+            next: { revalidate: 50}
+           
         })
         
         if(!res.ok){
@@ -124,7 +126,7 @@ const GetEventContent = () => {
 
         }
 
-        const intervalId = setInterval(fetchEventData, 5000)
+        const intervalId = setInterval(fetchEventData, 2000)
 
         fetchEventData();
        

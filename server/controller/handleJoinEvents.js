@@ -19,7 +19,7 @@ exports.userJoinEvent = async(req,res) => {
                 event_id: joined_event_id
             }})
 
-            console.log(joinusertoEvent)
+            // console.log(joinusertoEvent)
             res.status(200).json({message:"user successfully favored a event"})
         }
 

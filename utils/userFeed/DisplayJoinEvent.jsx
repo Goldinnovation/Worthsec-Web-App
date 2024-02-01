@@ -13,8 +13,8 @@ export const allJointEventsbyUser = async() => {
         if(!res.ok){
             console.log('Unexpected Response Error');
         }
-
         const data = await res.json()
+        console.log(data);
         return data
 
     }catch(error){
@@ -36,10 +36,10 @@ useEffect(() => {
 
         }
 
-        // const intervalId = setInterval(fetchUserId, 5000)
+        const intervalId = setInterval(fetchUserId, 5000)
         fetchUserId(); 
 
-        // return () => clearInterval(intervalId)
+        return () => clearInterval(intervalId)
 }, [])
 
 

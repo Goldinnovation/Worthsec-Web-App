@@ -48,7 +48,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 
   const DisplayProfiIImage = () => {
     const {data: profilImageData,error,mutate} = useSWR('http://localhost:3000/api/user', fetcher, {
-        refreshInterval: 500,
+        refreshInterval: 5000,
     })
 
 
