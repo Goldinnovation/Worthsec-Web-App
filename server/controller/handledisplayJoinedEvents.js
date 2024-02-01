@@ -16,8 +16,8 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
                     user_id: user
                 }
             })
-            console.log(getEventIdofJointUser)
-            res.status(200).json({message: "Successfully got user Id"})
+            // console.log(getEventIdofJointUser)
+            res.status(200).json(getEventIdofJointUser)
         }
 
      }catch(error){
@@ -27,4 +27,15 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 
 
     //  res.json({message: "Connected to backend of DisplayUserofJoinEvents"})
+}
+
+
+
+
+exports.DisplaygetEventbyjoinId = async (req,res) => {
+
+    const body = await req.body
+    console.log(body);
+
+    res.json({message: "Connect to Backend"})
 }

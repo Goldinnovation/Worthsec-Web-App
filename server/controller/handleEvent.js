@@ -174,6 +174,7 @@ exports.findEvents = async(req,res) => {
                 }
             });
 
+            // console.log(userEvents);
             res.json(userEvents);
         }else {
             res.status(401).json({error: 'user is not Authenticated to get events'})
