@@ -203,7 +203,6 @@ const UnFollowUserFetch = async(unFollowUserId) => {
             setdisplayUserPic(userPicData)
             const checkifexitasFriend = await checkifUserexist(userIdData)
             setuserFriendId(checkifexitasFriend)
-         
             
             
           }catch(error){

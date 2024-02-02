@@ -32,10 +32,10 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 
 
 
-exports.DisplaygetEventbyjoinId = async (req,res) => {
+exports.DisplaygetEventbyjoinId = async(req,res) => {
 
     const body = await req.body
-    console.log(body);
+    console.log("body catched",body);
 
     res.json({message: "Connect to Backend"})
 }

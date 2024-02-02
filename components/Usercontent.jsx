@@ -107,7 +107,7 @@ const Usercontent = () => {
                        <button className='explorebtn' onClick={exploreToggle}>E</button>
             </div>  
             <div>
-                        {/* <ProfilImageBtn/> */}
+                        <ProfilImageBtn/>
             </div>        
             </div>
 
