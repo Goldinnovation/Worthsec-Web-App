@@ -15,8 +15,8 @@ export async function getContent(){
 
         const res = await fetch('http://localhost:3000/api/events', {
             method: "GET",
-            // cache: "no-store",
-            next: { revalidate: 50}
+            // next: { revalidate: 1}
+          
            
         })
         

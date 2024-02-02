@@ -83,7 +83,8 @@ app.prepare().then(() => {
     server.use('/api/selctedEvents', selectEvents)
     server.use('/api/favorEvent', userFavorEvent)
     server.use('/api/JoinEvent', userJoinEvent)
-    server.use('/api/DisplayJoinedEvent', displayUserJoinEvent )
+    server.use('/api/DisplayJoinedEvent', displayUserJoinEvent)
+    
 
 
 

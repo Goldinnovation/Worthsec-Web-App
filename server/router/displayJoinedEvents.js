@@ -5,6 +5,7 @@ const handleDisplayJoinedEvent = require('../controller/handledisplayJoinedEvent
 
 
 router.get('/',  handleDisplayJoinedEvent.DisplayUserofJoinEvents)
+router.post('/', handleDisplayJoinedEvent.DisplaygetEventbyjoinId)
 
 
 
