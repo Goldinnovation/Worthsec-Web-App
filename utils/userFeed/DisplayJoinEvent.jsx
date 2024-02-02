@@ -40,23 +40,25 @@ const DisplayJoinEvent = () => {
     const [eventidData, setEventIdData] = useState([])
     const [displayEvent, setDisplayEvent] = useState([])
 
-    const {data: allJointEventsbyUser, error, mutate: mutateData} = useSWR('http://localhost:3000/api/DisplayJoinedEvent', fetcher, {
-     
+    const {data: allJointEventsbyUser, error} = useSWR('http://localhost:3000/api/DisplayJoinedEvent', fetcher, {
+      
+
+
     })
 
 
     useEffect(() => {
         if (allJointEventsbyUser?.length > 0  ) {
+                console.log(allJointEventsbyUser);
                  const eventId = allJointEventsbyUser.map(event => event.event_id)
                 setEventIdData(eventId);
                 handleeventRequest(eventId);
-                // const checkid = allJointEventsbyUser.length > 0 ? allJointEventsbyUser.map(event => event.event_id): null;
-                // setEventIdData(checkid)
+                
         }
 
       
 
-    }, [allJointEventsbyUser, mutateData]);
+    }, [allJointEventsbyUser]);
 
     
 
@@ -70,6 +72,7 @@ const DisplayJoinEvent = () => {
             {eventidData.map((event, i) => (
                 <div key={i}>{event}</div>
             ))}
+             
         </div>
     </>
   )
