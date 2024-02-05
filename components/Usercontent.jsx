@@ -15,7 +15,7 @@ import SearchInput from '@utils/searchutils/SearchInput'
 import Sliderbar from '@utils/sliderutils/Sliderbar'
 import UserFeedArea from '@utils/userFeed/UserFeedArea'
 import ExploreContent from './exploreComponents/ExploreContent' 
-
+import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
 
 
 const Usercontent = () => {
@@ -137,16 +137,8 @@ const Usercontent = () => {
                  
                  
                  <div className={styles['closefriendsSection']}>
-                        <div className={styles['closefriendsContent']}>
-                        <div>Ifriend1</div>
-                         <div>Ifriend2</div>
-                         <div>Ifriend3</div>
-                         <div>Ifriend1</div>
-                         <div>Ifriend2</div>
-                         <div>Ifriend3</div>
-
-                        </div>
-                     
+                
+                        <UserfriendsSlide/>                
                     </div>
                  <div>
                       {/* Feed Area */}

@@ -15,10 +15,10 @@ import DisplayJoinEvent from './DisplayJoinEvent'
 
 
 const UserFeedArea = () => {
-    const [addArea, setAddArea] = useState(false)
+    const [addArea, setAddArea] = useState(true)
     const [calenderArea, setCalenderArea] = useState(false)
-    const [networkArea, setNetworkArea] = useState(true)
-    const [joinArea, setJoinArea] = useState(true)
+    const [networkArea, setNetworkArea] = useState(false)
+    const [joinArea, setJoinArea] = useState(false)
     const [favorArea, setFavorArea] = useState(false)
 
     

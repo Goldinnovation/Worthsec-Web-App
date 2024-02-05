@@ -40,19 +40,18 @@
     height: 50px;
     margin: 0;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     border: 1px solid rgba(247, 247, 247, 0.234);
     border-radius: 80px;
 }
 
 
 .closefriendsContent{
-     /* background-color: orange; */
-     display: flex;
-     width: 80%;
-     align-items: center;
-     justify-content: space-around;
+     background-color: orange;
+ 
+    display: flex;
      color: white;
+     margin: 1%;
 }
 
 .profilHeader{

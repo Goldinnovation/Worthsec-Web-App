@@ -299,10 +299,10 @@ const ExploreContent = () => {
 
             <div className={styles['feedbarSection']}>
 
-                 {/* <div  className={styles['feetbarContent_circle_left']}> 
+                 <div  className={styles['feetbarContent_circle_left']}> 
                      
-                  </div> */}
-                  {/* <div   className={styles['feetbarContent_middle']}> 
+                  </div> 
+                  <div   className={styles['feetbarContent_middle']}> 
                  
                    
                   </div>
@@ -317,10 +317,10 @@ const ExploreContent = () => {
                   <div   className={styles['feetbarContent_middle4']}> 
                  
                    
-                  </div> */}
-                  {/* <div   className={styles['feetbarContent_circle_right']}> 
+                  </div>
+                   <div   className={styles['feetbarContent_circle_right']}> 
                       
-                  </div> */}
+                  </div>
                
             </div>
             
