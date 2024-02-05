@@ -41,7 +41,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 const DisplayJoinEvent = () => {
     const [eventidData, setEventIdData] = useState([])
     const [displayEvent, setDisplayEvent] = useState([])
-
+    const [optiontypeToggle, setoptiontypeToggle] = useState(false)
     const {data: allJointEventsbyUser, error} = useSWR('http://localhost:3000/api/DisplayJoinedEvent', fetcher,{})
 
     
@@ -69,6 +69,10 @@ const DisplayJoinEvent = () => {
 
     }, [allJointEventsbyUser]);
 
+
+    const toggleoptionbar = () => {
+        setoptiontypeToggle(!optiontypeToggle)
+    }
     
 
     
@@ -77,17 +81,42 @@ const DisplayJoinEvent = () => {
   return (
     <>
         <div className={styles['displayuserJoinedEvent']}>
-            sdds
-            {displayEvent.map((event, i) => (
-                <div key={i}>
-                    <div className={styles["joinEventContentSection"]}>
-                    <Image src={event.ImageCoverUpload} className={styles['JoinedEventImgObj']}  width={100} height={100}/>
+            <div className={styles["typebaroption_display_join_opt"]}>
+            
+            {optiontypeToggle && (
+                <div>   
+                      <div className={styles["typebaroption_display_HoverSection"]}></div>
 
+                </div>
+            )}
+        
+            <div className={styles["typebaroption_display_Section"]} onClick={toggleoptionbar}></div>
+          
+            </div>
+          
+
+          <div className={styles["typebaroption_display_join_event"]}>
+                    <div className={styles["join_event_title_section"]}>
+                    <div  className={styles["join_event_title_content"]}>
+                        <p className={styles["join_event_title"]}>The upcoming Week</p>
+                    </div>
+                    
+                    </div>
+                    <div className={styles["typebaroption_display_join_event_Content"]}>
+                    {displayEvent.map((event, i) => (
+                        <div key={i}>
+                            <div className={styles["imageContainer"]}>
+                            <Image src={event.ImageCoverUpload} className={styles['JoinedEventImgObj']}  width={100} height={100}/>           
+                            </div>
                         
+                            </div>
+                    ))}
+
                     </div>
-                  
-                    </div>
-            ))}
+               
+
+          </div>
+            
              
         </div>
     </>
