@@ -35,16 +35,25 @@ const handleeventRequest = async(eventid) => {
 
 
 
+
+
+
+
+
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 
-const DisplayJoinEvent = () => {
+const DisplayJoinEvent = ({}) => {
     const [eventidData, setEventIdData] = useState([])
     const [displayEvent, setDisplayEvent] = useState([])
     const [optiontypeToggle, setoptiontypeToggle] = useState(false)
     const {data: allJointEventsbyUser, error} = useSWR('http://localhost:3000/api/DisplayJoinedEvent', fetcher,{})
+    const [eventObj, setEventObj] = useState(null)
+
+
 
     
+
     useEffect(() => {
     
              if(allJointEventsbyUser?.length > 0 ){
@@ -70,17 +79,28 @@ const DisplayJoinEvent = () => {
     }, [allJointEventsbyUser]);
 
 
+    const handleEventObj = (event) => {
+        setEventObj((prevEventObj) => (prevEventObj === event ? null : event));
+    
+      };
+
+
     const toggleoptionbar = () => {
         setoptiontypeToggle(!optiontypeToggle)
     }
+
+
     
 
+  
     
     
 
   return (
     <>
         <div className={styles['displayuserJoinedEvent']}>
+
+            <div className={styles["typebaroption_display_join_leftSection"]}>
             <div className={styles["typebaroption_display_join_opt"]}>
             
             {optiontypeToggle && (
@@ -98,14 +118,14 @@ const DisplayJoinEvent = () => {
           <div className={styles["typebaroption_display_join_event"]}>
                     <div className={styles["join_event_title_section"]}>
                     <div  className={styles["join_event_title_content"]}>
-                        <p className={styles["join_event_title"]}>The upcoming Week</p>
+                        <p className={styles["join_event_title"]}>This Week</p>
                     </div>
                     
                     </div>
                     <div className={styles["typebaroption_display_join_event_Content"]}>
                     {displayEvent.map((event, i) => (
                         <div key={i}>
-                            <div className={styles["imageContainer"]}>
+                            <div className={styles["imageContainer"]} onClick={() => handleEventObj(event)}>
                             <Image src={event.ImageCoverUpload} className={styles['JoinedEventImgObj']}  width={100} height={100}/>           
                             </div>
                         
@@ -113,14 +133,29 @@ const DisplayJoinEvent = () => {
                     ))}
 
                     </div>
+
                
 
           </div>
             
-             
+
+
+            </div>
+          
+          <div className={styles["typebaroption_display_join_middleSection"]}>
+            {eventObj && (
+                    <div className={styles["typebaroption_display_join_overlay"]}>{eventObj.id}</div>
+            )}
         </div>
+
+            
+        </div>
+
+       
     </>
   )
 }
+
+
 
 export default DisplayJoinEvent

@@ -13,6 +13,7 @@ import Image from 'next/image'
 import DisplayJoinEvent from './DisplayJoinEvent'
 
 
+
 const UserFeedArea = () => {
     const [addArea, setAddArea] = useState(false)
     const [calenderArea, setCalenderArea] = useState(false)
@@ -118,22 +119,28 @@ const UserFeedArea = () => {
                             </div>
 
                         </div>
+                        
+                        <div className='joindisplayContentSection' >
                         {joinArea &&(
                                  <div className='joindisplayContentArea'>
                                     <div className='joincontnetArea_left'>
                                         <DisplayJoinEvent/>
                                     </div>
                                     
-                                    <div className='displaycontnetArea_middle'>
-                                        middle
+                                    {/* <div className='displaycontnetArea_middle'>
+                                       
+                                        
                                     </div>
                                     <div className='favorcontnetArea_right' >
                                         right
-                                     </div> 
-                                 </div>
+                                     </div>  */}
+                                </div>
                                )}
-                               
-                               {favorArea && ( 
+
+                        </div>
+                       
+                       <div className='favorSectionArea'>
+                       {favorArea && ( 
                                    <div className="favordisplaySection">
                                       <div className='favorContent'>
                                         wew
@@ -141,6 +148,10 @@ const UserFeedArea = () => {
                                    </div>
                                  )}
                                 
+
+                       </div>
+                               
+                              
                               
                               
                     </div>
