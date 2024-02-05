@@ -67,6 +67,7 @@ const DisplayJoinEvent = ({}) => {
                  const fetcheventIdData = async() => {
                         const data = await handleeventRequest(eventId);
                         setDisplayEvent(data)
+                         
 
                  }
 
@@ -77,6 +78,12 @@ const DisplayJoinEvent = ({}) => {
     
 
     }, [allJointEventsbyUser]);
+
+
+    useEffect(() => {
+       
+        setEventObj(displayEvent[displayEvent.length - 1])
+      }, [displayEvent]);
 
 
     const handleEventObj = (event) => {
@@ -144,7 +151,22 @@ const DisplayJoinEvent = ({}) => {
           
           <div className={styles["typebaroption_display_join_middleSection"]}>
             {eventObj && (
-                    <div className={styles["typebaroption_display_join_overlay"]}>{eventObj.id}</div>
+                    <div className={styles["typebaroption_display_join_overlay"]}>
+                        <div className={styles["typebaroption_display_join_window"]}></div>
+                        
+                        <div className={styles["typebaroption_display_join_layerbar"]}>
+                            <div className={styles["typebaroption_display_join_leftbar"]}>
+                                    ss
+                            </div>
+                            <div className={styles["typebaroption_display_join_middleImage"]}>
+                              <Image src={eventObj.ImageCoverUpload} width={50} height={50} className={styles["typebaroption_display_join_middleImage"]}/>
+                            </div>
+                            <div className={styles["typebaroption_display_join_rightbar"]}>
+                                        dd
+                            </div>
+
+                        </div>
+                    </div>
             )}
         </div>
 

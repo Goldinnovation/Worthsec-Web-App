@@ -37,15 +37,59 @@
 
 
 .typebaroption_display_join_overlay{
-    background-color: wheat;
-    width: 400px;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 550px;
+    height: 450px;
 }
 
+.typebaroption_display_join_window{
+    /* background-color: orange; */
+    width: 550px;
+    height: 390px;
+
+}
+
+.typebaroption_display_join_layerbar{
+    /* background-color: rgb(60, 200, 179); */
+    width: 550px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4%;
+}
+
+
+.typebaroption_display_join_leftbar{
+    background-color: rgba(25, 26, 25, 0.753);
+    width: 210px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid rgb(6, 6, 6);
+
+}
+
+
+.typebaroption_display_join_rightbar{
+    background-color: rgba(25, 26, 25, 0.753);
+    width: 210px;
+    height: 30px;
+    border-radius: 50px;
+    border-radius: 50px;
+    border: 1px solid rgb(6, 6, 6);
+
+
+}
+
+.typebaroption_display_join_middleImage{
+    border-radius: 50px;
+}
 .typebaroption_display_join_middleSection{
     /* background-color: rgb(41, 40, 40); */
     width: 550px;
-    border-left: 1px solid rgba(172, 172, 172, 0.764);
-    border-right: 1px solid rgba(172, 172, 172, 0.764);;
+    height: 450px;
+    border-left: 1px solid rgba(112, 112, 112, 0.764);
+    border-right: 1px solid rgba(112, 112, 112, 0.764);
     border-radius: 4px;
 }
 

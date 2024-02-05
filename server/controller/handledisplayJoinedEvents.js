@@ -54,8 +54,8 @@ exports.DisplaygetEventbyjoinId = async(req,res) => {
             })
 
 
-            console.log(eventData.length)
-            console.log(eventData);
+            // console.log(eventData.length)
+            // console.log(eventData);
             res.status(200).json(eventData)
 
         }
