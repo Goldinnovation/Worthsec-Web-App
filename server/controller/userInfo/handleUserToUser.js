@@ -30,16 +30,53 @@ exports.searchUser_friends = async (req, res) => {
     
     try {
         // responds with an object, if the user are in the table connected
-        const checkIfUserFriends = await prisma.userTouser.findMany({
-            where: {
-                userRequested_id: currentUser.userId,
-                userFollowed: otherUser_id
+
+        if(currentUser && otherUser_id){
+            const checkifConnectionExist = await prisma.userTouser.findMany({
+                where: {
+                    userRequested_id: otherUser_id,
+                    userFollowed: currentUser.userId,
+                }
+            })
+
+
+            if(checkifConnectionExist?.length === 1){
+
+                const userTouser_Id = checkifConnectionExist[0].userTouserId
+                const updateStatus  = await prisma.userTouser.update({
+                    where: {
+
+                        userTouserId: userTouser_Id
+                    
+                       
+                        
+                    },
+                    data: {
+                        userRequested_id: otherUser_id,
+                        userStatus: 2
+                        
+                    }
+
+                })
+                const upatedobject = [updateStatus] 
+                res.status(200).json(upatedobject)
+            }else{
+                const checkIfUserFriends = await prisma.userTouser.findMany({
+                    where: {
+                        userRequested_id: currentUser.userId,
+                        userFollowed: otherUser_id
+                    }
+                })
+                
+        
+                console.log("user follows other user")
+                res.status(200).json(checkIfUserFriends)
+
             }
-        })
+        }else{
+                res.status(500).json('Bad request, Error in currenUser or otherUser')
 
-        // console.log(checkIfUserFriends.length)
-        res.status(200).json(checkIfUserFriends)
-
+        }
 
     } catch (error) {
         console.log(error)
@@ -78,19 +115,57 @@ exports.followUser = async (req, res) => {
 
     const currentUser = req.user
     const otherUser_id = req.body
+    console.log(otherUser_id)
 
     try {
-        // create a record as connect between both users 
-        const createUserasFriend = await prisma.userTouser.create({
-            data: {
-                userRequested_id: currentUser.userId,
-                userFollowed: otherUser_id.userIdData,
-                userStatus: 1
-            }
-        })
-        console.log(createUserasFriend)
-        res.status(200).json({ message: "User followed user" })
 
+        if(currentUser && otherUser_id){
+            const IfUserFriends = await prisma.userTouser.findMany({
+                where: {
+                    userRequested_id: currentUser.userId,
+                    userFollowed: otherUser_id.userIdData
+
+                }
+            })
+            if(IfUserFriends.length === 0){
+                const swapuserconnectionreq = await prisma.userTouser.findMany({
+                    where: {
+                        userRequested_id: otherUser_id.userIdData,
+                        userFollowed: currentUser.userId
+    
+                    }
+                })
+                if( swapuserconnectionreq?.length === 1){
+
+                    const createUserasFriend = await prisma.userTouser.create({
+                        data: {
+                            userRequested_id: currentUser.userId,
+                            userFollowed: otherUser_id.userIdData,
+                            userStatus: 2
+                        }
+                    })
+                    console.log(createUserasFriend)
+                    res.status(200).json({ message:"User followed user" })
+                }
+    
+            }else{
+
+                // create a record as connect between both users 
+                const createUserasFriend = await prisma.userTouser.create({
+                    data: {
+                        userRequested_id: currentUser.userId,
+                        userFollowed: otherUser_id.userIdData,
+                        userStatus: 1
+                    }
+                })
+                console.log(createUserasFriend)
+                res.status(200).json({ message:"User followed user" })
+
+            }
+        }else {
+
+            return req.status(400).json({ message: "Users follows already other user" })
+        }
     } catch (error) {
         console.log(error)
         return req.status(400).json({ message: "Bad UserToUser Request" })
@@ -139,6 +214,6 @@ exports.unFollowUser = async (req, res) => {
     } catch (error) {
         console.log(error)
         return req.status(400).json({ message: "Bad Request for unFollowUser handler" })
-        
+
     }
 }
