@@ -35,6 +35,12 @@
 .closefriendsSection{
     /* background-color: green; */
     background: linear-gradient(0.1deg, #1036249e, #141b1b74, #00000027);
+    /* background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac); */
+    /* background: linear-gradient(1deg, #5e5e5e80, #6768680e, #88bcfc00, #4a4848); */
+    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+
+
+
 
     /* width: 100%; */
     height: 50px;
@@ -234,6 +240,7 @@
     color: white;
     border: 1px solid rgb(144, 144, 144);
     border-radius: 10px;
+    
 
 }
 

@@ -36,6 +36,10 @@
 .middleContentbar{
     /* background-color: rgb(205, 205, 205); */
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
+    /* background: linear-gradient(0.1deg, #1036249e, #141b1b74, #00000027); */
+    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+    
+
     width: 1000px;
     /* border-radius: 20px; */
     border-top-left-radius: 50px;
@@ -48,8 +52,11 @@
    
 
 }
+
 .middleContentbar_left{
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
+    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+    /* background: linear-gradient(0.1deg, #1036249e, #141b1b74, #00000027); */
     width: 70px;
     /* border-radius: 20px; */
     /* border-top-right-radius: 50px; */
@@ -62,6 +69,10 @@
 .middleContentbar_right{
 
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
+    /* background: linear-gradient(0.1deg, #1036249e, #141b1b74, #00000027); */
+    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+
+
     width: 70px;
     /* border-radius: 20px; */
     border-top-left-radius:50px;
