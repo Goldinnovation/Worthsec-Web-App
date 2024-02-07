@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from "@styles/userFriends.module.css"
 import {debounce} from 'lodash'
+import { ca, da } from 'date-fns/locale'
 
 
 
@@ -31,6 +32,28 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
 
 
 
+const fetchUserImg = async(otherUserIdData) => {
+   try{
+    const res = await fetch(`http://localhost:3000/api/searchforclosefriends/${otherUserIdData}`,{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+          }
+        
+    })
+    if(!res.ok){
+        throw new Error("Invalid response from fetch:fetchUserImg ")
+    }
+    const data =  await res.json()
+    return data
+
+   }catch(error){
+    console.log("Fetch Error on fetchUserImg - closefriendslide",error)
+
+   }
+}
+
+
 
 const UserfriendsSlide = () => {
 
@@ -38,7 +61,7 @@ const UserfriendsSlide = () => {
     const [searchfriendsvalue, setSearchFriendValue] = useState(null)
     const [closeFriendsData, setCloseFriendsData] = useState(null)
     const [otherUserIdData, setotherUserIdData] = useState(null)
-
+    const [userImgUrl, setUserImgUrl] =useState(null)
 
     const handleToggleInput = ()=> {
         setInputSectionToggle(!inputSectionToggle)
@@ -56,10 +79,21 @@ const UserfriendsSlide = () => {
    useEffect(() => {
 
 
-    //  const fetchUserData = async() => {
+     const fetchUserData = async() => {
 
-    //     if()
-    //  }
+        if(otherUserIdData !== ""){
+            try{
+                const userImgUrl = await fetchUserImg(otherUserIdData)
+                setUserImgUrl(userImgUrl)
+                
+
+            }catch(error){
+                console.error("Fetch error on response userImgUrl: ", error)
+            }   
+        }
+
+     }
+
 
 
 
@@ -69,36 +103,33 @@ const UserfriendsSlide = () => {
         try{
             const resUserData = await fetchsearchFriend(searchfriendsvalue)
             setCloseFriendsData(resUserData)
-
            
-            if(resUserData?.length > 0){
-                // setotherUserIdData(resUserData[0])
-                console.log(resUserData)
+            if(resUserData.userName === searchfriendsvalue){
+                setotherUserIdData(resUserData.userId)
+                
             }
-
-
 
         }catch(error){
 
             console.log('Error on requesting fetchuserDataforcloseFriends', error)
         }
+        // console.log(otherUserIdData)
     }
 
     // debounce will execute the api request after a timeslot of 500 ms after the user types the character
     const debounceCloseFriendsFetch = debounce(fetchuserDataforcloseFriends, 500)
+    const debounceImgUrl = debounce(fetchUserData, 500)
 
      // debounce is based on the input, so every time there is certain pause the funciton will be executed 
     debounceCloseFriendsFetch(searchfriendsvalue)
+    debounceImgUrl(otherUserIdData)
 
 
     
     
-    
-
-    
 
 
-   },[searchfriendsvalue])
+   },[searchfriendsvalue,otherUserIdData])
 
 
 

@@ -7,6 +7,7 @@ const handleclosefriendsrequest = require('../controller/handleClosefriendsSearc
 
 
 
+router.get('/:id', handleclosefriendsrequest.searchImgUrl)
 router.post('/', handleclosefriendsrequest.searchforClosefriends)
 
 
