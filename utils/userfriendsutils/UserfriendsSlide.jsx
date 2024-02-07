@@ -35,9 +35,9 @@ const fetchUserImg = async(otherUserIdData) => {
 const UserfriendsSlide = () => {
 
     const [inputSectionToggle, setInputSectionToggle] = useState(true)
-    const [searchfriendsvalue, setSearchFriendValue] = useState(null)
+    const [searchfriendsvalue, setSearchFriendValue] = useState("")
     const [closeFriendsData, setCloseFriendsData] = useState(null)
-    const [otherUserIdData, setotherUserIdData] = useState(null)
+    const [otherUserIdData, setotherUserIdData] = useState("")
     const [userExitPopup, setUserExistPopup] =  useState(false)
     const [userImgUrl, setUserImgUrl] =useState(null)
 
@@ -89,31 +89,13 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
    useEffect(() => {
 
 
-     const fetchUserData = async() => {
-
-        if(otherUserIdData !== ""){
-            try{
-                // console.log(otherUserIdData)
-                const userImgUrl = await fetchUserImg(otherUserIdData)
-                setUserImgUrl(userImgUrl)
-                
-
-            }catch(error){
-                console.error("Fetch error on response userImgUrl: ", error)
-            }   
-        //  console.log(userImgUrl, "url");
-        }
-
-     }
-
-
-
 
 
 
     const fetchuserDataforcloseFriends =  async() => {
         try{
             console.log('init');
+            
             if(searchfriendsvalue){
                 console.log('init2')
                 const resUserData = await fetchsearchFriend(searchfriendsvalue)
@@ -121,14 +103,19 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
            
                 console.log(resUserData.message)
                 if(resUserData?.length === 1){
-                    setUserExistPopup(false)
+                    console.log('init4');
                     setotherUserIdData(resUserData[0].userFollowed)
                 
 
-            }
+                }else{
+                    setUserImgUrl("")
+                    setotherUserIdData("")
+                }
             }else{
+                // close the toggle if the input is empty
+                setUserImgUrl("")
                 setUserExistPopup(false);
-
+                
             }
             
 
@@ -138,6 +125,29 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
         }
         // console.log(otherUserIdData)
     }
+
+    
+    const fetchUserData = async() => {
+
+        if(otherUserIdData !== ""){
+            console.log('init3');
+            console.log(otherUserIdData);
+            try{
+                // console.log(otherUserIdData)
+                const userImgUrl = await fetchUserImg(otherUserIdData)
+                setUserImgUrl(userImgUrl)
+               
+             
+            }catch(error){
+                console.error("Fetch error on response userImgUrl: ", error)
+            }   
+        //  console.log(userImgUrl, "url");
+        }else{
+            // setUserImgUrl("")
+            // setUserExistPopup(false);
+        }
+
+     }
 
     // debounce will execute the api request after a timeslot of 500 ms after the user types the character
     const debounceCloseFriendsFetch = debounce(fetchuserDataforcloseFriends, 200)
@@ -149,12 +159,12 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
 
 
     
-     // Interval for a periodic fetch 
+    //  // Interval for a periodic fetch 
      const intervalId = setInterval(() => {
         fetchUserData()
       }, 5000)
     
-    // inital fetch 
+    // // inital fetch 
       fetchUserData()
 
       return () => {
@@ -167,7 +177,7 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
     
 
 
-   },[searchfriendsvalue,otherUserIdData])
+   },[searchfriendsvalue, otherUserIdData])
 
 
 

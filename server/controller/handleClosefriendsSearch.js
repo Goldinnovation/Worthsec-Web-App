@@ -21,7 +21,7 @@ exports.searchforClosefriends = async(req,res) => {
 
             if(searchforUser) {
                 try {
-                    console.timeEnd('prismaQuery');
+                    // console.timeEnd('prismaQuery');
                     const closefriendsconnection = await prisma.userTouser.findMany({
                         where: {
                             userRequested_id: currentUser,
@@ -29,7 +29,7 @@ exports.searchforClosefriends = async(req,res) => {
                             userStatus: 2
                         },
                     });
-                    console.timeEnd('prismaQuery');
+                    // console.timeEnd('prismaQuery');
                     // console.log(closefriendsconnection);
                     res.status(200).json(closefriendsconnection);
                 } catch (error) {
@@ -54,10 +54,10 @@ exports.searchforClosefriends = async(req,res) => {
 
 
 
-exports.searchImgUrl = async(req,res) =>{
+exports.searchImgUrl = async(req,res) => {
 
     const otherUserId = req.params.id
-    // console.log("searchImgUrl", otherUserId);
+    console.log("searchImgUrl", otherUserId);
 
     try{
         if(req.user && otherUserId){
@@ -68,7 +68,7 @@ exports.searchImgUrl = async(req,res) =>{
 
             })
 
-            // console.log(userImgurl)
+            console.log(userImgurl)
             res.status(200).json(userImgurl)
         }
         
