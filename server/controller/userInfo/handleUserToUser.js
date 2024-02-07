@@ -30,54 +30,48 @@ exports.searchUser_friends = async (req, res) => {
     
     try {
         // responds with an object, if the user are in the table connected
-
-        if(currentUser && otherUser_id){
-            const checkifConnectionExist = await prisma.userTouser.findMany({
+        const checkifConnectionExist = await prisma.userTouser.findMany({
+            where: {
+                userRequested_id: currentUser.userId,
+                userFollowed:  otherUser_id,
+            }
+        })
+        if(checkifConnectionExist?.length === 1){
+            
+            const updatestate = await prisma.userTouser.findMany({
                 where: {
                     userRequested_id: otherUser_id,
-                    userFollowed: currentUser.userId,
+                    userFollowed: currentUser.userId
                 }
             })
+            // console.log(checkifConnectionExist[0].userStatus)
+            const updatecurrentUserstate = checkifConnectionExist[0].userTouserId
+            const usercurrentconnectionstate = checkifConnectionExist[0].userStatus
 
-
-            if(checkifConnectionExist?.length === 1){
-
-                const userTouser_Id = checkifConnectionExist[0].userTouserId
-                const updateStatus  = await prisma.userTouser.update({
+            if(updatestate?.length === 1 && usercurrentconnectionstate === 1){
+                const newUserconnecitonState = await prisma.userTouser.update({
                     where: {
-
-                        userTouserId: userTouser_Id
-                    
-                       
-                        
+                        userTouserId: updatecurrentUserstate
                     },
-                    data: {
-                        userRequested_id: otherUser_id,
+                    data:{
                         userStatus: 2
-                        
-                    }
-
-                })
-                const upatedobject = [updateStatus] 
-                res.status(200).json(upatedobject)
-            }else{
-                const checkIfUserFriends = await prisma.userTouser.findMany({
-                    where: {
-                        userRequested_id: currentUser.userId,
-                        userFollowed: otherUser_id
                     }
                 })
-                
-        
-                console.log("user follows other user")
-                res.status(200).json(checkIfUserFriends)
-
+                console.log("updated the state of the current user");
+                res.status(200).json(updatestate)
+            }else {
+                console.log(" status is already updated");
+                res.status(200).json(checkifConnectionExist)
             }
+            
+       
         }else{
-                res.status(500).json('Bad request, Error in currenUser or otherUser')
 
+
+            res.status(200).json(checkifConnectionExist)
         }
-
+      
+       
     } catch (error) {
         console.log(error)
         return req.status(400).json({ message: "Bad request handler by searchUser_friends" })
@@ -127,7 +121,7 @@ exports.followUser = async (req, res) => {
 
                 }
             })
-            if(IfUserFriends.length === 0){
+            if(IfUserFriends?.length === 0){
                 const swapuserconnectionreq = await prisma.userTouser.findMany({
                     where: {
                         userRequested_id: otherUser_id.userIdData,
@@ -135,6 +129,7 @@ exports.followUser = async (req, res) => {
     
                     }
                 })
+                
                 if( swapuserconnectionreq?.length === 1){
 
                     const createUserasFriend = await prisma.userTouser.create({
@@ -144,22 +139,28 @@ exports.followUser = async (req, res) => {
                             userStatus: 2
                         }
                     })
-                    console.log(createUserasFriend)
+                    console.log("other user followes already other user create friend")
                     res.status(200).json({ message:"User followed user" })
+                }else{
+                    const createUserasFriend = await prisma.userTouser.create({
+                        data: {
+                            userRequested_id: currentUser.userId,
+                            userFollowed: otherUser_id.userIdData,
+                            userStatus: 1
+                        }
+                    })
+                    console.log("User followes now the - first")
+                    res.status(200).json({ message:"User followes now the user"})
+
                 }
     
             }else{
 
-                // create a record as connect between both users 
-                const createUserasFriend = await prisma.userTouser.create({
-                    data: {
-                        userRequested_id: currentUser.userId,
-                        userFollowed: otherUser_id.userIdData,
-                        userStatus: 1
-                    }
-                })
-                console.log(createUserasFriend)
-                res.status(200).json({ message:"User followed user" })
+
+
+               
+                console.log("User followes already user")
+                res.status(200).json({ message:"User followes already user" })
 
             }
         }else {
