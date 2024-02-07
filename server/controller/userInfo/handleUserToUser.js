@@ -29,13 +29,21 @@ exports.searchUser_friends = async (req, res) => {
 
     
     try {
-        // responds with an object, if the user are in the table connected
+        /**
+         * responds with an object of length 1, if the current user is already following the other user
+         * if the current user has no record with the other user it will return an object with length of 0 
+         */ 
         const checkifConnectionExist = await prisma.userTouser.findMany({
             where: {
                 userRequested_id: currentUser.userId,
                 userFollowed:  otherUser_id,
             }
         })
+        /**
+         *if the lenth of 1 confirmed the logic will check if there is a oppsite record object from the other user pesepective 
+         if this yes the user will check the status of the currentuser and it is on 1 it will update it to 2 and if it's on 2 it will return 
+         an object with a length of one, which also stands for the status is already updated 
+         */ 
         if(checkifConnectionExist?.length === 1){
             
             const updatestate = await prisma.userTouser.findMany({

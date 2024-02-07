@@ -190,7 +190,7 @@ const UnFollowUserFetch = async(unFollowUserId) => {
 
 
 
-
+// controlles if the userIdData has a character if true it retrieves the the user picture_id data
 
   useEffect(() => {
     
