@@ -40,9 +40,19 @@ const UserfriendsSlide = () => {
     const [otherUserIdData, setotherUserIdData] = useState("")
     const [userExitPopup, setUserExistPopup] =  useState(false)
     const [userImgUrl, setUserImgUrl] =useState(null)
+    const [messageToggle, setMessageToggle] = useState(false)
+
+
+    const userMessageToggle = () =>  {
+        setMessageToggle(!messageToggle)
+    }
 
     const handleToggleInput = ()=> {
         setInputSectionToggle(!inputSectionToggle)
+        setMessageToggle(false)
+        setUserImgUrl("")
+       
+
     }
 
     const handleInput = (e) => {
@@ -100,21 +110,27 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
                 console.log('init2')
                 const resUserData = await fetchsearchFriend(searchfriendsvalue)
                 setCloseFriendsData(resUserData)
+                setUserExistPopup(false);
            
                 console.log(resUserData.message)
                 if(resUserData?.length === 1){
                     console.log('init4');
-                    setotherUserIdData(resUserData[0].userFollowed)
+                    const userImgUrl = await fetchUserImg(resUserData[0].userFollowed)
+                    setUserImgUrl(userImgUrl)
+
                 
 
                 }else{
                     setUserImgUrl("")
-                    setotherUserIdData("")
+                    setUserExistPopup(true);
+
                 }
             }else{
                 // close the toggle if the input is empty
                 setUserImgUrl("")
                 setUserExistPopup(false);
+           
+               
                 
             }
             
@@ -127,27 +143,7 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
     }
 
     
-    const fetchUserData = async() => {
-
-        if(otherUserIdData !== ""){
-            console.log('init3');
-            console.log(otherUserIdData);
-            try{
-                // console.log(otherUserIdData)
-                const userImgUrl = await fetchUserImg(otherUserIdData)
-                setUserImgUrl(userImgUrl)
-               
-             
-            }catch(error){
-                console.error("Fetch error on response userImgUrl: ", error)
-            }   
-        //  console.log(userImgUrl, "url");
-        }else{
-            // setUserImgUrl("")
-            // setUserExistPopup(false);
-        }
-
-     }
+    
 
     // debounce will execute the api request after a timeslot of 500 ms after the user types the character
     const debounceCloseFriendsFetch = debounce(fetchuserDataforcloseFriends, 200)
@@ -160,19 +156,19 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
 
     
     //  // Interval for a periodic fetch 
-     const intervalId = setInterval(() => {
-        fetchUserData()
-      }, 5000)
+    //  const intervalId = setInterval(() => {
+    //     fetchUserData()
+    //   }, 5000)
     
-    // // inital fetch 
-      fetchUserData()
+    // // // inital fetch 
+    // fetchUserData()
 
-      return () => {
-        clearInterval(intervalId);
-        debounceCloseFriendsFetch.cancel()
-        // debounceImgUrl.cancel()
+    //   return () => {
+    //     clearInterval(intervalId);
+    //     debounceCloseFriendsFetch.cancel()
+    //     // debounceImgUrl.cancel()
 
-      }
+    //   }
 
     
 
@@ -198,24 +194,51 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
 
                              <div  className={styles["friendsSlideDisplaySection"]}>
                                 { userImgUrl && (
-                                    <div>
-                                     <Image src={`/${userImgUrl.pictureUrl}`}  className={styles["userImgUrl"]} width={35} height={35} quality={100}/>
+                                    <div className={styles["userImgUrllayer"]}  onClick={userMessageToggle}>
+                                     <Image src={`/${userImgUrl.pictureUrl}`}  className={styles["userImgUrl"]} width={40} height={40} quality={100}/>
                                     </div>
                                 )}
 
-                                {userExitPopup &&(
-                                    <div> user does not exist</div>
-                                )}
+                                <div  className={styles["userdoesnotexistLayer"]}>
+                                    {userExitPopup &&(
+                                    <div className={styles["userdoesnotexistContent"]}> user does not exist</div>
+                                        )}
+
+                                </div>
+                               
                              </div>
                         </div>
 
                        
                     )} 
+                
+               
+
                 </div>
+
             </div>
             <div>
                 
             </div>
+            <div>
+                    {messageToggle && (
+                        <div className={styles["messageToggleLaver"]}>
+                                    <div className={styles["messageToggleupperlayer"]}></div>
+                                    <div className={styles["messageToggledownlayer"]}>
+                                        <input type="text"  className={styles["messageToggledownlayer_input"]} /> 
+                                        {/* <div className={styles["messageToggledownlayer_right"]}></div>                                    */}
+                                    </div>
+                                    
+
+                        </div>
+                    )}
+
+                    
+                    {/* <div className={styles["messageToggledownlayer_left"]}> <input type="text" /></div> */}
+
+                     {/* <div  className={styles["messageToggledownlayer_middle"]}>ass</div> */}
+                    {/* <div className={styles["messageToggledownlayer_right"]}>asa</div> */}
+                </div>sa
             djfhfd
         </div>
       

@@ -26,29 +26,29 @@ const Sliderbar = () => {
 
 
 
-    const togglemessageArea = () => {
-        setMessageArea(!messageArea)
-        setReqFriendArea(false)
-    }
+    // const togglemessageArea = () => {
+    //     setMessageArea(!messageArea)
+    //     setReqFriendArea(false)
+    // }
 
 
     
-    const togglefriendArea = () => {
-        setReqFriendArea(!reqfriendArea)
-        setMessageArea(false)
+    // const togglefriendArea = () => {
+    //     setReqFriendArea(!reqfriendArea)
+    //     setMessageArea(false)
          
-    }
+    // }
 
-    const toggleaddsharebtn = () => {
-        setAddShareArea(!addShareArea)
-        setViewArea(false)
+    // const toggleaddsharebtn = () => {
+    //     setAddShareArea(!addShareArea)
+    //     setViewArea(false)
 
-    }
+    // }
 
-    const toggleviewShareArea = () => {
-        setViewArea(!viewArea)
-        setAddShareArea(false)
-    }
+    // const toggleviewShareArea = () => {
+    //     setViewArea(!viewArea)
+    //     setAddShareArea(false)
+    // }
 
 
   return (
@@ -56,7 +56,7 @@ const Sliderbar = () => {
          {/* <hr color='white' /> */}
         <div className= {styles['sliderSection']}> ´
 
-<div className ={styles['RequestSection']}>
+{/* <div className ={styles['RequestSection']}>
 
        <div className={styles['requestmessageSection']}>
          <div className={styles['reqMessageBtn']} onClick={togglemessageArea}>
@@ -69,7 +69,7 @@ const Sliderbar = () => {
                <ReqFriendBtn/>
            </div>
        </div>
-</div>
+</div> */}
 
 
 <div className={styles["slider"]}>
@@ -104,7 +104,7 @@ const Sliderbar = () => {
        </div>
       
 </div>
-    <div className ={styles['sharebtnSection']}>
+    {/* <div className ={styles['sharebtnSection']}>
 
        <div className={styles['add-share-btn-area']}>
          <div className={styles['add-share-btn']} onClick={toggleaddsharebtn}>
@@ -117,7 +117,7 @@ const Sliderbar = () => {
                <ViewShared/>
            </div>
        </div>
-    </div>
+    </div> */}
 
     
 </div>
