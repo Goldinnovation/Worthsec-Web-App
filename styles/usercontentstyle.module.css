@@ -56,8 +56,7 @@
 
 .closefriendsContent{
      background-color: orange;
- 
-    display: flex;
+     display: flex;
      color: white;
      margin: 1%;
 }
@@ -174,17 +173,47 @@
 }
 
 
+.userOptionLayer{
+    background-color: rgb(62, 64, 64);
+    /* background-color: rgb(7, 239, 239); */
+    position: absolute;
+    top: 6%;
+    left: 97%;
+    width: 25px;
+    height: 100px;
+    border: 1px solid white;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+    
+    
 
-
-
-
-
-
-.userLogout{
-    /* background-color: green; */
-    width: 100px;
-    height: 20px;
 }
+
+
+.userOptionUpper{
+    /* background-color: green; */
+    
+    color: white;
+
+   
+}
+
+.userOptionlower{
+    color: white;
+
+    
+
+}
+
+
+
+
+
 
 .addProfilpicbtn{
     /* background-color: rgb(18, 223, 255); */
@@ -246,28 +275,21 @@
 
 }
 
-.BtnSection{
-  /* background-color: orchid; */
-  display: flex;
-  justify-content: flex-end;
-  position: relative;
-  top: -40px;
-  left: 70px;
-  margin-right: 25px;
-}
+
 
 
 
 .editoptionPopup{
-    /* background-color: rgba(185, 185, 185, 0.278); */
+    background-color: rgba(198, 10, 10, 0.812);
     position: absolute;
-    top: 19%;
-    left: 46%;
-    width: 150px;
+    top: 17%;
+    left: -650%;
+    /* width3 150px; */
 }
 
 .editOptions{
-    /* background-color: rgba(140, 140, 140, 0.168); */
+    background-color: rgba(0, 0, 0, 0.632);
+    position: absolute;
     width: 150px;
     height: 20px;
     display: flex;
@@ -275,46 +297,47 @@
     /* border: 1px solid rgba(255, 255, 255, 0.266); */
     color: white;
     border-radius: 10px;
+    /* position: absolute;
+    top: 1%;
+    left: 10%; */
+    gap: 1%;
 
    
    
 
 }
 .DeleteProfilPicture{
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    /* background-color: rgba(153, 13, 13, 0.632); */
+    width: 50%;
+    display: flex;
+   justify-content: center;
+   
 }
 
 
 .upatebtnProfilPicture{
-    border-right: 1px solid white;
-    border-radius: 10px;
-    padding-right: 10px;
-    border-left: 1px solid white;
-    padding-left: 10px;
-    
+    /* background-color: green; */
+    width: 50%;
+    border-right: 1px solid rgb(65, 62, 62);
+    display: flex;
+    justify-content: center;
+
 
 }
 
 .DeleteProfilPicture:hover{
-    background-color: rgba(140, 140, 140, 0.168);
+    background-color: rgba(255, 137, 19, 0.785);
+    border-radius: 50px;
 }
 
 
 .upatebtnProfilPicture:hover{
-    background-color: rgba(140, 140, 140, 0.168);
+    background-color: rgba(255, 137, 19, 0.785);
+    border-radius: 50px;
 }
 
 
 
-.userLogout{
-    /* background-color: green; */
-    width: 100px;
-    height: 20px;
-}
 
 
 .profilPicSection{
@@ -330,7 +353,7 @@
     background-color: rgba(16, 16, 16, 0.49);
     position: absolute;
     top: 2%; 
-    left: 55%;
+    left: -2400%;
     width: 420px;
     height: 200px;
     border: 1px solid white;
@@ -432,13 +455,15 @@
 
 
 .navSideOptions{
-    /* background-color: yellow; */
-    width: 40%;
+    /* background-color: rgb(59, 59, 48); */
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 7%;
-    color: rgb(255, 255, 255);
+    
+
+ 
 
 }
 

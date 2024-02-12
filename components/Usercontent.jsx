@@ -16,7 +16,8 @@ import Sliderbar from '@utils/sliderutils/Sliderbar'
 import UserFeedArea from '@utils/userFeed/UserFeedArea'
 import ExploreContent from './exploreComponents/ExploreContent' 
 import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
-
+// import SettingIcon from '@assets/CoverSetting.png'
+import setting from '@assets/Coversetting.png'
 
 const Usercontent = () => {
 
@@ -25,6 +26,7 @@ const Usercontent = () => {
     const [searchArea, setSearchArea] = useState(false)
     const [explorePage, setExplorePage] = useState(true)
     const [homePage, setHomePage] = useState(false)
+    const [optionToggle, setOptionToggle] = useState(false)
 
     // const router = useRouter();
 
@@ -35,6 +37,7 @@ const Usercontent = () => {
     const handleToggleSearch = () => {
 
         setSearchArea(!searchArea)
+        setOptionToggle(false)
 
     }
 
@@ -49,6 +52,13 @@ const Usercontent = () => {
         setHomePage(true)
         setExplorePage(false)
         setSearchArea(false)
+    }
+
+
+    const handleOptionToggle = () => {
+        setOptionToggle(!optionToggle)
+        setSearchArea(false)
+
     }
 
 
@@ -88,8 +98,25 @@ const Usercontent = () => {
                         />
                                    
                         </div>
-                        <div className={styles['userLogout']}><Userlogout/></div>
-
+                                
+                        <div className={styles['settingOption']}>
+                                <Image src={setting}  height={20} width={20} onClick={handleOptionToggle}/>
+                               
+                        </div>
+                        <div>
+                        {optionToggle && (
+                                    <div className={styles['userOptionLayer']}>
+                                        <div className={styles['userOptionUpper']}>
+                                             <ProfilImageBtn/>
+                                            
+                                        </div>
+                                        <div  className={styles['userOptionlower']}>
+                                             <Userlogout/>
+                                        </div>
+                                        
+                                    </div>
+                                )}
+                        </div>
                         </div>
                     </div>          
                                 
@@ -106,9 +133,7 @@ const Usercontent = () => {
                        <button className='homebtn' onClick={homeToggle}>H</button>
                        <button className='explorebtn' onClick={exploreToggle}>E</button>
             </div>  
-            <div>
-                        <ProfilImageBtn/>
-            </div>        
+              
             </div>
 
         <div className='userPageOptions'>

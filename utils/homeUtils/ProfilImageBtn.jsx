@@ -140,24 +140,26 @@ const ProfilImageBtn = () => {
             )}
 
             <div className={styles["BtnSection"]}>
-            <div  onClick={toggleShowOptions} className={styles["uploadprofilImageBtn"]}><Image src={EditIcon} height={25} width={25}/>           
+            <div  onClick={toggleShowOptions} className={styles["uploadprofilImageBtn"]}>SE          
             </div>
             </div>
-            <div className={styles['editoptionPopup']}>
-            {editOptions &&(
-                        <div className={styles['editOptions']}>
-                            <div onClick={handletoggle} className={styles['upatebtnProfilPicture']} > update</div>
-                            <div className={styles['DeleteProfilPicture']}><DeleteBtn/></div>
-                        </div>
-                    )}
-
-            </div>
+           
            
         
        
 
 
         </form>
+
+        <div className={styles['editoptionPopup']}>
+            {editOptions &&(
+                        <div className={styles['editOptions']}>
+                            <div onClick={handletoggle} className={styles['upatebtnProfilPicture']} >update</div>
+                            <div className={styles['DeleteProfilPicture']}><DeleteBtn/></div>
+                        </div>
+                    )}
+
+            </div>
        
     </div>
   )
