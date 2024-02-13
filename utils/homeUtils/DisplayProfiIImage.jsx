@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import style from '@styles/usercontentstyle.module.css'
 import happyprofilIcon from '@assets/happy.png'
-import { getData } from '@components/homeComponents/CalenderContent'
 import useSWR, { preload } from 'swr'
 import testProfpIC from '@assets/defaultPic2.jpg'
 

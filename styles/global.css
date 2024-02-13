@@ -1805,3 +1805,43 @@ appearance: none;
 
 
 
+.logoWorthsec{
+    /* background-color: orange; */
+     width: 400px; 
+     height: 40px;
+   
+ }
+
+ .worthsecAreabtn{
+    /* background-color: rgba(0, 0, 0, 0.233);
+    opacity: 0.7;
+    width: 400px;
+    height: 40px;
+    color: white;
+    font-size: 25px;
+    border-radius: 10px; */
+}
+
+
+
+.globalHeaderLogoSection{
+    background-color: green;
+    /* margin: 1%;
+    display: flex;
+    justify-content: space-between; */
+}
+
+.gloabalHeaderLogout{
+    
+        /* background-color: green;
+        width: 100px;
+        height: 20px; */
+    
+}
+.globalNavbarLogo{
+    /* background-color: #180270;
+    display: flex;
+    justify-content: center; */
+}
+
+
