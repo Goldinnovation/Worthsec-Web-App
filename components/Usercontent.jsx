@@ -18,6 +18,7 @@ import ExploreContent from './exploreComponents/ExploreContent'
 import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
 // import SettingIcon from '@assets/CoverSetting.png'
 import setting from '@assets/Coversetting.png'
+import worldIcon from '@assets/worldIcon.svg'
 
 const Usercontent = () => {
 
@@ -97,6 +98,9 @@ const Usercontent = () => {
                             onClick={handleToggleSearch}
                         />
                                    
+                        </div>
+                        <div className={styles['worldmessageSection']}>
+                                    <Image src={worldIcon} width={23} height={25}/>
                         </div>
                                 
                         <div className={styles['settingOption']}>

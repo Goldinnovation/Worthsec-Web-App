@@ -297,7 +297,7 @@ const ExploreContent = () => {
               ))}      
             </div>
 
-            <div className={styles['feedbarSection']}>
+            {/* <div className={styles['feedbarSection']}>
 
                  <div  className={styles['feetbarContent_circle_left']}> 
                      
@@ -322,7 +322,7 @@ const ExploreContent = () => {
                       
                   </div>
                
-            </div>
+            </div> */}
             
             </div>
             
