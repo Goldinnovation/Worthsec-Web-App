@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import useSWR, { preload } from 'swr'
 import Image from 'next/image'
 import {debounce} from 'lodash'
+import Gift  from '@assets/3YKw.gif'
 
 
 
@@ -287,12 +288,26 @@ const UnFollowUserFetch = async(unFollowUserId) => {
              
             {displayUserPic && (
             <div className={searchstyle['displayUserContent']}>
+              <div className={searchstyle['DisplayImageArea']}>
+              
               <Image  className={searchstyle['DisplayImageContent']} src={`/${displayUserPic.pictureUrl}`} width={58} height={58} 
               quality={100}
               />
 
+              <div  className={searchstyle['userOverlay']}>
+                <Image className={searchstyle['userOverBack']} src= {Gift}  width={800} height={300}/>
+                  <div className={searchstyle['userOverlayImageContent']}>
+                  <Image  className={searchstyle['userOverlayImage']} src={`/${displayUserPic.pictureUrl}`} width={140} height={140} 
+                     quality={100}
+                    />
+                  </div>
+              </div>
+              </div>
+            
+
               <div className={searchstyle['displayUserName']}>
               {event.userName} 
+              
               
 
               </div>

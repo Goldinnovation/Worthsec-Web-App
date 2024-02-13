@@ -47,7 +47,7 @@ const UserFeedArea = () => {
 
 
                 </div>
-
+            {/*  Create Section */}
                 {addArea && (
                     <div className='AddEventContentArea'>
                         <div className='EventContentArea'>
@@ -56,11 +56,11 @@ const UserFeedArea = () => {
                         </div>
                     </div>
                 )}
-
+             {/*  Network Section, includes user Joined and favored Events  */}
                 {networkArea && (
                     <div className='NetworkContentArea'>
                         <div className='ContentArea'>
-                            <div className='joincontnetArea_left'>
+                            <div className='joinandFavorArea'>
                                 <DisplayJoinEvent />
                             </div>
                         </div>

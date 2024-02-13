@@ -89,10 +89,6 @@ app.prepare().then(() => {
     
 
 
-
-    // server.use()
-    // server.use(`/api/events/${eventid}`, eventRequest)
-
    
    
 

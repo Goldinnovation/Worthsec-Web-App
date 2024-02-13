@@ -7,34 +7,34 @@ import message from '@assets/conversation.png'
 import setting from '@assets/Coversetting.png'
 import deleteIcon from '@assets/delete.png'
 import Createbtn from '@utils/Createbtn'
+import useSWR, { mutate } from 'swr';
 
 
 
-export async function getContent(){
-    try{
+// export async function getContent(){
+//     try{
 
-        const res = await fetch('http://localhost:3000/api/events', {
-            method: "GET",
-            // next: { revalidate: 1}
+//         const res = await fetch('http://localhost:3000/api/events', {
+//             method: "GET",
           
            
-        })
+//         })
         
-        if(!res.ok){
-            throw new Error('res IS NOT OK,ERROR')
-        }
+//         if(!res.ok){
+//             throw new Error('res IS NOT OK,ERROR')
+//         }
 
-        const data = await res.json()
-        // console.log(data)
-        return data
+//         const data = await res.json()
+//         // console.log(data)
+//         return data
         
 
-    }
+//     }
 
-    catch(error){
-        console.error('Fetch API ERROR')
-    }
-}
+//     catch(error){
+//         console.error('Fetch API ERROR')
+//     }
+// }
 
 
 
@@ -67,25 +67,44 @@ export async function deleteobj(eventId,eventpath) {
 
 
 
-
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 
 const GetEventContent = () => {
     
-    const [allEventContent, setAllEventContent] = useState([])
+    // const [allEventContent, setAllEventContent] = useState([])
     // const [eventWindow, setEventWindow] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null);
+
+    const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
+        refreshInterval: 5000,
+    })
+
+
+
+
+
+    useEffect(() => {
+        if(allEventContent?.length > 0){
+            console.log(allEventContent)
+            setSelectedEvent(allEventContent[allEventContent?.length - 1])
+        }
+    },[allEventContent])
+
+   
+
+  
   
 
-    
+// Deletes the Event Object 
     const handleDelete = async(eventId,eventpath) => {
         try{
             await deleteobj(eventId,eventpath)
 
             // Look this area up 
 
-            const updatedData = allEventContent.filter((event) => event.id !== eventId)
-            setAllEventContent(updatedData)
+            const updatedData = allEventContent?.filter((event) => event.id !== eventId)
+                allEventContent(updatedData)
 
             if(selectedEvent && selectedEvent.id === eventId){
                 setSelectedEvent(null)
@@ -99,6 +118,8 @@ const GetEventContent = () => {
     }
 
 
+
+
     const handlepopuptoggle = (event) => {
 
         // set the toggle to the event object 
@@ -108,30 +129,24 @@ const GetEventContent = () => {
 
     }
 
-    const handleCloseCLick = () => {
-
-        setSelectedEvent(null)
-
-    }
-   
-
     
-    useEffect(() => {
+    
+    // useEffect(() => {
         
-        const fetchEventData =  async() => {
-            const data = await getContent();
+    //     const fetchEventData =  async() => {
+    //         const data = await getContent();
 
-            setAllEventContent(data)
+    //         setAllEventContent(data)
             
 
-        }
+    //     }
 
-        const intervalId = setInterval(fetchEventData, 2000)
+    //     const intervalId = setInterval(fetchEventData, 2000)
 
-        fetchEventData();
+    //     fetchEventData();
        
-        return () => clearInterval(intervalId)
-    },[])
+    //     return () => clearInterval(intervalId)
+    // },[])
 
 
   return (
@@ -141,8 +156,7 @@ const GetEventContent = () => {
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
        <div className='contentCreateSection'>
        <div className='eventContentSection'>
-            
-            {allEventContent.map((event, i) => (
+            {allEventContent?.map((event, i) => (
              <div className='eventContentSectionArea'>
                 <div key={i} className='eventContentKey' >
                         <div className='eventContent'>
@@ -160,7 +174,7 @@ const GetEventContent = () => {
                             </div>       
                       </div>
                       </div>
-                        {selectedEvent && selectedEvent.id  === event.id && (
+                        {/* {selectedEvent && selectedEvent.id  === event.id && (
                                 
                                 <div className='eventWindoOverlay' > 
                                   <div className='eventWindowSection'>
@@ -220,7 +234,7 @@ const GetEventContent = () => {
                                   
 
                             )
-                            }
+                            } */}
                     
                 </div>
             
@@ -229,14 +243,73 @@ const GetEventContent = () => {
         </div>
 
         <div className='create-addbtn-area'>
+            
+        
             <Createbtn/>
+        
         </div>
 
 
        </div>
 
        <div className='chatContentArea'>
-                        hallo
+        
+       {selectedEvent && selectedEvent.id && (
+                                
+                                // <div className='eventWindoOverlay' > 
+                                  <div className='eventWindowSection'>
+                                    <div className='eventWindowContent'>
+                                        <div className='eventwindowHeader'>
+                                        <div className='eventWindowTitle'>
+                                        {selectedEvent.eventTitle}
+                                        </div>
+                                      
+
+                                        </div>
+                                        
+                                        <div className='eventWindowImage'>
+                                        <Image src={selectedEvent.ImageCoverUpload} className='eventWindowImageContent'  
+                                        width={370}
+                                        height={350}
+                                        quality={100}
+                                        alt='Cover of Job ad'/>
+
+                                        <div className='eventMetaData'>
+                                                <p className='eventHostMetaDataHost'>Host: Emmanuel</p>
+                                                <p className='eventHostMetaDataDate'>Date: 23.15.24</p>
+                                                <p className='eventHostMetaDataeventType'>Type: Party</p>
+                                        </div>
+                                        </div>
+
+                                       
+
+
+                                    <div className='eventWindowNav'>
+                                        <div className='eventWindowNavOptions'>
+                                            <div className='eventoptionView'>
+                                                <Image src={addUser} width={18} height={18}/>
+                                            </div>
+                                            <div className='eventoptionMessage'>
+                                                <Image src={message} width={18} height={18}/>
+                                                </div>
+                                            <div className='eventoptionAddUser'>
+                                            <Image src={setting} width={18} height={18}/>
+                                            </div>
+                                            <div className='eventoptionsEdit'>
+                                            </div>
+                                            <div className='eventoptionsDelete'>
+                                            <Image src={deleteIcon}  width={20} height={20} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                  </div>
+
+                                 </div>
+                                  
+
+                            )
+                            }
         </div>
       
       

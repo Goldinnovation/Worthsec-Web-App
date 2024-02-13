@@ -962,7 +962,7 @@ appearance: none;
 
 
 
-.joincontnetArea_left{
+.joinandFavorArea{
     background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
     border: 1px solid rgba(255, 255, 255, 0.196);
     border-right: 1px solid rgba(255, 255, 255, 0.196);
@@ -1100,7 +1100,7 @@ appearance: none;
     @media screen and (min-width:2000px){
     
         .eventContentSection{
-            /* background-color: rgba(103, 16, 16, 0.562); */
+            background-color: rgba(103, 16, 16, 0.562);
             display: flex;
             width: 2150px;
             height: 750px;
@@ -1245,7 +1245,6 @@ appearance: none;
     }
 
 }
-
 
 
 
@@ -1395,43 +1394,45 @@ appearance: none;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
+    /* z-index: 1; */
 
     
 }
 
 .eventWindowSection{
-    /* background-color:rgba(201, 197, 201, 0.244); */
-    position: absolute;
+    /* background-color:rgba(255, 0, 255, 0.244); */
+    /* position: absolute;
     top: 53.5%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     width: 500px;
     height: 450px;
     border-radius: 10px;
     display: flex;
-    justify-content: flex-end;
-    z-index: 5;
+    /* justify-content: flex-end; */
+    
 }
 
 .eventWindowContent{
     /* background-color:rgba(234, 234, 234, 0.147); */
-    background-color:rgba(8, 8, 8, 0.712);
+    /* background-color:rgba(8, 8, 8, 0.712); */
     /* background-color: orange; */
     /* background-color: green; */
     width: 100%;
-    border-radius: 15px;
-    margin-right: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.184);
+    margin: 1%;
+    /* border-radius: 15px; */
+    
+    /* border: 1px solid rgba(255, 255, 255, 0.184); */
 
 }
 
 .eventWindowNav{
-    background-color:rgba(8, 8, 8, 0.712);
-    /* background-color: orange; */
-    width: 10%;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.184);
+    /* background-color:rgba(8, 8, 8, 0.712); */
+    /* background-color: rgb(0, 255, 98); */
+    width: 96%;
+    height: 40px;
+    /* border-radius: 15px; */
+    /* border: 1px solid rgba(255, 255, 255, 0.184); */
 }
 
 .eventwindowHeader{
@@ -1455,37 +1456,23 @@ appearance: none;
     border-radius: 10px;
 }
 
-.eventwindowClose{
-    background-color: rgb(255, 0, 0);
-    width: 15px;
-    height: 15px;
-    color: rgb(20, 19, 19);
-    /* margin-bottom: 3%; */
-    margin: 2%;
-    font-size: medium;
-    font-weight: bolder;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
+
 
 .eventWindowImage{
     /* background-color: orange; */
     display: flex;
-    margin-left: 5%;
+    margin-left: 1%;
     /* justify-content: center; */
 }
 
 .eventMetaData{
     /* background-color: orange; */
-    margin-left: 2%;
+    margin-left: 1%;
     width: 100px;
     display: flex;
     flex-direction: column;
 
-    gap: 5%;
+    
     /* border-left: 1px solid rgba(255, 255, 255, 0.158); */
 }
 
@@ -1515,52 +1502,30 @@ appearance: none;
 }
 
 
-.eventWindowImageDescriptionArea{
-    /* background-color:rgba(201, 197, 201, 0.078); */
-    /* background-color: rgba(16, 182, 16, 0.263); */
-    height: 100px;
-    margin: 4%;
-    border-radius: 10px;
-    /* border: 1px solid rgba(255, 255, 255, 0.164); */
-    
 
-}
-
-
-.eventWindowImageDescription{
-    background-color: rgba(222, 222, 222, 0.041);
-    height: 80%;
-    width: 97%;
-    border-radius: 10px;
-    margin-left: 1px;
-    color: white;
-   
-    
-
-    
-}
 
 
 .eventWindowNavOptions{
-    /* background-color: orange; */
-    width: 100%;
-    height: 100%;
+   
+    border-top: 1px solid rgba(255, 255, 255, 0.064);
     display: flex;
-    flex-direction: column;
+    height: 30px;
+    width: 100%;
     align-items: center;
-    margin-top: 1%;
-
+    margin-top: 2%;
+    border-radius: 50px;
+   
 }
 
 .eventoptionView{
     /* background-color: green; */
-    margin-top: 30%;
+    
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid white;
+   
 }
 
 .eventoptionMessage{
@@ -1569,7 +1534,6 @@ appearance: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid white;
 
 }
 
@@ -1579,7 +1543,6 @@ appearance: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid white;
 }
 
 
@@ -1590,7 +1553,6 @@ appearance: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid white;
 }
 
 @media screen and (min-width:2000px){
@@ -1803,45 +1765,5 @@ appearance: none;
     cursor: pointer;
 }
 
-
-
-.logoWorthsec{
-    /* background-color: orange; */
-     width: 400px; 
-     height: 40px;
-   
- }
-
- .worthsecAreabtn{
-    /* background-color: rgba(0, 0, 0, 0.233);
-    opacity: 0.7;
-    width: 400px;
-    height: 40px;
-    color: white;
-    font-size: 25px;
-    border-radius: 10px; */
-}
-
-
-
-.globalHeaderLogoSection{
-    background-color: green;
-    /* margin: 1%;
-    display: flex;
-    justify-content: space-between; */
-}
-
-.gloabalHeaderLogout{
-    
-        /* background-color: green;
-        width: 100px;
-        height: 20px; */
-    
-}
-.globalNavbarLogo{
-    /* background-color: #180270;
-    display: flex;
-    justify-content: center; */
-}
 
 
