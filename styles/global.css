@@ -286,12 +286,13 @@ appearance: none;
    
         .feed-area{
             /* background-color: rgba(24, 190, 57, 0.256); */
-            /* background: linear-gradient(45deg, #0b0b0b, #00ccff); */
+            /* background: linear-gradient(45deg, #0b0b0b, #11819d69); */
+            /* background-color: yellow; */
             /* margin: 0.2%; */
-            margin-top: 0;
-            height: 500px;
+        
+            width: 100%;
+            height: 490px;
             display: flex;
-            /* border: 1px solid rgb(220, 220, 220) ; */
             border-radius: 10px;
         }
 
@@ -299,13 +300,14 @@ appearance: none;
 
 }
 
+
 @media screen and (min-width:2000px) {
   
        .feed-area{
             
         display: flex;
-        /* background-color: rgba(255, 80, 191, 0.288); */
-            height: 800px;
+        background-color: rgba(255, 80, 191, 0.288);
+            height: 560px;
             margin: 0.5%;
             border: 1px solid rgb(220, 220, 220) ;
        }
@@ -327,7 +329,6 @@ appearance: none;
         height: 450px;
         margin: 1%;
         text-align: center;
-        margin-right: 1%;
         border: 1px solid rgba(255, 255, 255, 0);
         border-radius: 10px;
         
@@ -345,7 +346,7 @@ appearance: none;
        .user-feed-nav{
         /* background-color: rgba(255, 166, 0, 0.648); */
         width: 50px;
-        height: 750px;
+        height: 490px;
         margin: 1%;
         text-align: center;
         border: 1px solid rgba(255, 255, 255, 0.897);
@@ -916,146 +917,66 @@ appearance: none;
     
 
  @media screen and (max-width:2000px){
-    .addEventSection{
-        /* background-color: peru; */
-        width: 2500px;
-        height: 500px;
+        .addEventSection{
+            /* background-color: peru;
+            width: 100%;
+            display: flex; */
+            
+        
+        
 
+
+        }
 
     }
 
-    }
 
-
-.netwerokContentSection{
-    /* background-color: peru; */
-    width: 94%;
-    height: 500px;
-    display: flex;
-}
 
 .NetworkContentArea{
      /* background-color: rgba(35, 35, 35, 0.397); */
-            /* background-color: rgba(40, 40, 40, 0.272); */
+            /* background-color: rgba(203, 17, 17, 0.742); */
             /* background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e); */
             display: flex;
-            margin: 1%;
-            width: 100%;
-            gap: 2%;
-            
-            /* width: 50%; */
-            
-            /* height: 450px;
-            bo3der: 1px solid rgba(255, 255, 255, 0.196);
-            border-radius: 10px; */
-            
-
+            width: 95% ;
+            height: 500px;
+          
 
 }
 
 
-.joindisplayContentArea{
-    /* background-color: #0038e1; */
-    width: 1980px;
-    height: 450px;
-    display: flex
-}
-
-.favordisplaySection{
-    /* background-color: orange;  */
-    /* width: 100%;
-    height: 450px; */
-    /* border-left: 1px solid rgba(255, 255, 255, 0.196); */
-    /* margin-left: 1%; */
-     
-
-}
 
 
-.favorcontnetArea{
-    background: linear-gradient(5deg, #151716, #10272d, #17171727);
-    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
-    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
 
-
-    
-    border: 1px solid rgba(255, 255, 255, 0.196);
+.ContentArea{
     border-radius: 10px;
     width: 100%;
-    height: 450px;
-    display: flex;
- 
 
 }
 
 
-.favorSectionArea{
-   
-    width: 1980px;
-    height: 450px;
-    display: flex
-
-}
-.favorandjoinbar{
-    /* background-color: rgba(168, 11, 11, 0.649); */
-    background: linear-gradient(5deg, #151716, #10272d, #17171727);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 28px;
-    height: 100px;
-    padding: 3px;
-    /* border-radius: 10px; */
-    /* border: 1px solid rgba(255, 255, 255, 0.196); */
-    border-bottom:  1px solid rgba(255, 255, 255, 0.196);
-    border-right: 1px solid rgba(255, 255, 255, 0.196);
-    border-bottom-right-radius: 10px;
-   
-   
-}
 
 
 
 
-.joinoptionbtnArea{
-    /* background-color: pink; */
-    height: 55px;
-    /* align-items: center; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom:1px solid rgba(255, 255, 255, 0.196);
-    align-items: center;
 
-}
-
-
-.favoroptionbtnArea {
-
-    /* background-color: rgb(192, 255, 249); */
-    height: 55px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
 
 
 
 .joincontnetArea_left{
-    /* background: linear-gradient(5deg, #151716, #10272d, #17171727);
-    border: 1px solid rgba(255, 255, 255, 0.196); */
+    background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
+    border: 1px solid rgba(255, 255, 255, 0.196);
     border-right: 1px solid rgba(255, 255, 255, 0.196);
     /* border-radius: 10px; */
-    width: 100%;
+    width: 98.5%;
     height: 450px;
-    margin-right: 10px;
+    margin-top: 18px;
+    border-radius: 10px;
+    /* margin-right: 10px; */
     overflow: hidden;
-    margin-left: 1%;
+    /* margin-left: 1%; */
 
 }
-
+/* 
 .displaycontnetArea_middle{
     background: linear-gradient(5deg, #151716, #10272d, #17171727);
     border: 1px solid rgba(255, 255, 255, 0.196);
@@ -1065,32 +986,13 @@ appearance: none;
     margin-right: 10px;
     overflow: hidden;
 
-}
-
-.favorcontnetArea_right{
-    /* background: linear-gradient(5deg, #151716, #10272d, #17171727);
-    border: 1px solid rgba(255, 255, 255, 0.196); */
-    border-left: 1px solid rgba(255, 255, 255, 0.196);
-    /* border-radius: 10px; */
-    width: 650px;
-    height: 450px;
-    /* margin-right: 10px; */
-    overflow: hidden;
-}
-
-
-
-
-/* .favorChatRoomsection{
-    background: linear-gradient(5deg, #151716, #10272d, #17171727);
-    border: 1px solid rgba(255, 255, 255, 0.196);
-    border-radius: 10px;
-    width: 500px;
-    height: 450px;
-    margin-right: 10px;
-    overflow: hidden;
-
 } */
+
+
+
+
+
+
 
     /* Nav Content Area */
 
@@ -1103,6 +1005,7 @@ appearance: none;
             /* background-color: rgba(40, 40, 40, 0.272); */
             /* background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e); */
             display: flex;
+            width: 100%;
             margin-top: 20px;
             gap: 2%;
             
@@ -1137,21 +1040,8 @@ appearance: none;
 
 
     .EventContentArea{
-        /* background: linear-gradient(58deg, #0b0b0b, #4f6267, #3684982e); */
-        background: linear-gradient(5deg, #151716, #10272d, #17171727);
-        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
-      
-        
-
-
-       
-       
-        border: 1px solid rgba(255, 255, 255, 0.196);
-        border-radius: 10px;
-        width: 1300px;
-        height: 450px;
-        overflow: hidden;
-        animation: jumpOut 0.4s ease-out;
+        display: flex;
+        gap: 3%;
     }
 
     @keyframes jumpOut {
@@ -1171,7 +1061,7 @@ appearance: none;
     
         .AddEventContentArea{
             /* background-color: rgba(35, 35, 35, 0.397); */
-            /* background-color: rgba(40, 40, 40, 0.272); */
+            /* background-color: rgba(255, 9, 9, 0.86); */
             display: flex;
             margin-top: 30px;
             width: 2400px;
@@ -1189,9 +1079,19 @@ appearance: none;
 
 
     .contentCreateSection{
-        /* background-color: #0038e1; */
+        /* background-color: #0038e1;
         display: flex;
-        flex-direction: column;
+        flex-direction: column; */
+        background: linear-gradient(5deg, #151716, #10272d, #17171727);
+        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
+      
+       
+        border: 1px solid rgba(255, 255, 255, 0.196);
+        border-radius: 10px;
+        width: 1300px;
+        height: 450px;
+        overflow: hidden;
+        animation: jumpOut 0.4s ease-out;
 
     }
     
@@ -1818,172 +1718,25 @@ appearance: none;
 
 
 
-/* day picker  global style */
-  
-  @media screen and (min-width:2000px){
-    .rdp {
-        --rdp-cell-size: 0px 40px !important;
-        --rdp-accent-color: #868686;
-        --rdp-background-color: #0038e1;
-        /* Switch to dark colors for dark themes */
-        --rdp-accent-color-dark: #3003e1;
-        --rdp-background-color-dark: #180270;
-        /* Outline border for focused elements */
-        --rdp-outline: 2px solid var(--rdp-accent-color);
-        /* Outline border for focused and selected elements */
-        --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
-        
-        
-      }
-    
-
-  }
-
-
-
-  @media screen and (max-width:2000px){
-    .rdp {
-        --rdp-cell-size: 10px 40px !important;
-        --rdp-accent-color: #868686;
-        --rdp-background-color: #0038e1;
-        /* Switch to dark colors for dark themes */
-        --rdp-accent-color-dark: #3003e1;
-        --rdp-background-color-dark: #180270;
-        /* Outline border for focused elements */
-        --rdp-outline: 2px solid var(--rdp-accent-color);
-        /* Outline border for focused and selected elements */
-        --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
-        
-        
-      }
-    
-
-  }
 
 
 
 
 
 
-  @media screen and (min-width:2000px){
-  
-    .rdp-head_cell{
-        background-color: aquamarine;
-        width: 180px !important;
-        color: white !important;
-        background-color: #c6c6c638;
-        border: 1px solid white !important;
-        height: 30px !important;
 
-    }
 
-  }
+
+
+
+
+
+
+
 
 
 
   
-  @media screen and (max-width:2000px){
-  
-    .rdp-head_cell{
-        background-color: aquamarine;
-        width: 180px !important;
-        color: white !important;
-        background-color: #c6c6c638;
-        border: 1px solid white !important;
-       
-
-    }
-
-  }
-
-
-  /* rdp-month */
-
-
-
-  @media screen and (min-width:2000px){
-   
-    .rdp-month{
-        color: white;
-    }
-
-  }
-
-  
-  @media screen and (max-width:2000px){
-   
-    .rdp-month{
-        color: white;
-        
-    }
-
-  }
- 
-
-  /* rdp-tabl */
-
-  @media screen and (min-width:2000px){
-   
-   .rdp-table{
-    width: none;
-   }
-
-  }
-
-
- 
-  @media screen and (min-width:2000px){
-   
-    .rdp-row{
-        /* background-color: rgb(255, 149, 149) !important; */
-        height: 100px ;
-        width: 100% !important;
-    }
-  }
-
-
-   
-  @media screen and (max-width:2000px){
-   
-    .rdp-row{
-        /* background-color: rgb(255, 149, 149) !important; */
-        height: 60px !important;
-        width: 40px !important;
-    }
-  }
-
- 
-
- 
-
-  @media screen and (min-width:2000px){
-/*    
-      .rdp-day{
-        background-color: red;
-        margin: "auto";
-        color: white;
-        padding: 10px;
-      } */
-
-  }
-
-  .mapstyle{
-    /* background-color: beige; */
-    height: 500px;
-  }
-
-  .map-container {
-    width: 100%;
-    height: 100vh;
-    opacity: 0.8;
-   
-    /* background-color: rgb(241, 229, 229); */
-    /* border: 1px solid white; */
-    /* border-radius: 10px ; */
-    /* margin-bottom: 1%; */
-
-
-  }
 
 
 
@@ -2050,45 +1803,5 @@ appearance: none;
     cursor: pointer;
 }
 
-
-
-.logoWorthsec{
-    /* background-color: orange; */
-     width: 400px; 
-     height: 40px;
-   
- }
-
- .worthsecAreabtn{
-    background-color: rgba(0, 0, 0, 0.233);
-    opacity: 0.7;
-    width: 400px;
-    height: 40px;
-    color: white;
-    font-size: 25px;
-    border-radius: 10px;
-}
-
-
-
-.globalHeaderLogoSection{
-    /* background-color: green; */
-    margin: 1%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.gloabalHeaderLogout{
-    
-        /* background-color: green; */
-        width: 100px;
-        height: 20px;
-    
-}
-.globalNavbarLogo{
-    /* background-color: #180270; */
-    display: flex;
-    justify-content: center;
-}
 
 

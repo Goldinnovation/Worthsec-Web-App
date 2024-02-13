@@ -234,6 +234,10 @@ const GetEventContent = () => {
 
 
        </div>
+
+       <div className='chatContentArea'>
+                        hallo
+        </div>
       
       
     </>

@@ -169,8 +169,8 @@ const Usercontent = () => {
                 
                         <UserfriendsSlide/>                
                     </div>
-                 <div>
-                      {/* Feed Area */}
+                     {/* Feed Area */}
+                 <div className='overFeedlayer'>
                  <UserFeedArea/>
                  </div>
                 </div>

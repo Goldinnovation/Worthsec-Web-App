@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from '@styles/exploreStyle/explore.module.css'
-import GlobalHeader from '@utils/globalheader/GlobalHeader'
 import Image from 'next/image'
 
 
