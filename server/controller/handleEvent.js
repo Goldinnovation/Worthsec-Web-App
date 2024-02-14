@@ -9,6 +9,8 @@ const Imageupload = require("../Middlware/coverImage");
 const giveCurrentDateTime = require('../utils/date')
 const prisma = new PrismaClient()
 const sharp = require('sharp')
+const apicache = require('apicache');
+const cache = apicache.middleware;
 
 // initialize firebase application
 initializeApp(config.firebaseConfig);
@@ -132,6 +134,7 @@ exports.createEvent = async (req, res) => {
                 }
             });
             console.log(newCreateEvent, "successful uploaded")
+            apicache.clear();
             // res.status(200).json({messaage: "successful uploaded on the database"})
 
 
@@ -143,6 +146,7 @@ exports.createEvent = async (req, res) => {
     } catch (error) {
 
         console.log(error)
+        apicache.clear();
         res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
     }
 

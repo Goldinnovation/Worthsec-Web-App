@@ -5,7 +5,7 @@ const apicache = require('apicache')
 let cache = apicache.middleware
 
 
-router.get('/',  cache("5 minutes"),handleDisplayJoinedEvent.DisplayUserofJoinEvents)
+router.get('/',handleDisplayJoinedEvent.DisplayUserofJoinEvents)
 router.post('/', handleDisplayJoinedEvent.DisplaygetEventbyjoinId)
 
 

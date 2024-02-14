@@ -49,6 +49,7 @@ app.prepare().then(() => {
     server.use(bodyParser.urlencoded({ extended: true }));
     server.use(express.static('public'))
     server.use(cors())
+    server.disable('view cache');
     
     
     server.use(expressSession({
@@ -70,7 +71,7 @@ app.prepare().then(() => {
 
 
     passportConfig(passport)
-    // initializeApp(config.firebaseConfig)
+    initializeApp(config.firebaseConfig)
     
     // API endpoints 
     server.use('/api/events', eventRequest)

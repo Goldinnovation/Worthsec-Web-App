@@ -1,10 +1,12 @@
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient()
+const apicache = require('apicache');
+const cache = apicache.middleware;
 
 
 
 
-exports.AllWorldwideEvents = async(req,res) => {
+exports.searchedUserEvent = async(req,res) => {
     
 
     
@@ -41,9 +43,10 @@ exports.AllWorldwideEvents = async(req,res) => {
                 }
             })
             
-        // console.log(getselectedEvents)
+        console.log(getselectedEvents)
         console.log(getselectedEvents.length)
-        res.status(200).json(getselectedEvents)
+        
+         res.status(200).json(getselectedEvents)
          }
 
     }catch(error){

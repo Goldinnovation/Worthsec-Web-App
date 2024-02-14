@@ -9,7 +9,7 @@ let cache = apicache.middleware
 
 
 
-router.get('/',cache('5 minutes'), handleEvent.findEvents)
+router.get('/', handleEvent.findEvents)
 router.post('/', ImageFileUpload, handleEvent.createEvent )
 router.delete('/:id', handleEvent.deleteEvent )
 

@@ -29,7 +29,7 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
                     user_id: currentUser
                 }
             })
-            console.log(getEventIdofJointUser)
+            // console.log(getEventIdofJointUser)
             res.status(200).json(getEventIdofJointUser)
         }
 
@@ -47,9 +47,9 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 exports.DisplaygetEventbyjoinId = async(req,res) => {
 
     const body = req.body
-    console.log(body);
+    // console.log(body);
     
-    console.log(body.eventid);
+    // console.log(body.eventid);
 
 
 
