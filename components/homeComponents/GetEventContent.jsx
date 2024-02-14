@@ -92,7 +92,7 @@ const GetEventContent = () => {
     }
 
     const handleUserToggleInvite = () => {
-        setUserInviteSection(!userInviteSection)
+        setUserInviteSection(true)
         setEventInfo(false)
         
     }
@@ -144,6 +144,9 @@ const GetEventContent = () => {
 
         // set the toggle to the event object 
         setSelectedEvent(selectedEvent === event ? null : event)
+        if(selectedEvent === event ? null : event){
+            handleEventInfo()
+        }
 
        
 

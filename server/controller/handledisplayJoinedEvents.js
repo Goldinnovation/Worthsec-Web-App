@@ -2,21 +2,34 @@ const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient()
 
 
+/** 
+ * Purpose Statement--findUserProfilimage
+ * 
+*/
+
+
+
+/**
+ * Function Signature--findUserProfilimage
+ * @param {string} currentUser - represents the currend User Id
+ * @returns {object} Returns an array of event ids. 
+ */
+
+
+
 
 exports.DisplayUserofJoinEvents = async(req,res) => {
-    const user = req.user.userId
+    const currentUser = req.user.userId
     // console.log(user)
-     const body = req.body 
-    //  console.log(body);
-
+    
      try{
         if(req.user){
             const getEventIdofJointUser =  await prisma.userJoinEvent.findMany({
                 where: {
-                    user_id: user
+                    user_id: currentUser
                 }
             })
-            // console.log(getEventIdofJointUser)
+            console.log(getEventIdofJointUser)
             res.status(200).json(getEventIdofJointUser)
         }
 
@@ -26,7 +39,6 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 
 
 
-    //  res.json({message: "Connected to backend of DisplayUserofJoinEvents"})
 }
 
 
@@ -35,6 +47,7 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 exports.DisplaygetEventbyjoinId = async(req,res) => {
 
     const body = req.body
+    console.log(body);
     
     console.log(body.eventid);
 

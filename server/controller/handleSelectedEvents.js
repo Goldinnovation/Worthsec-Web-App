@@ -42,7 +42,7 @@ exports.AllWorldwideEvents = async(req,res) => {
             })
             
         // console.log(getselectedEvents)
-        // console.log(getselectedEvents.length)
+        console.log(getselectedEvents.length)
         res.status(200).json(getselectedEvents)
          }
 

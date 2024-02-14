@@ -1,13 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const controllerSearchUser = require('../controller/userInfo/handleSearchUser')
-const { ro } = require('date-fns/locale')
-
-
+const apicache = require('apicache')
+let cache = apicache.middleware
 
 
 router.get('/')
-router.get('/:id',controllerSearchUser.findUserProfilimage)
+router.get('/:id',cache('5 minutes'),controllerSearchUser.findUserProfilimage)
 router.post('/', controllerSearchUser.searchUserbyUser)
 
 
