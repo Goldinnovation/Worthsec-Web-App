@@ -1409,31 +1409,23 @@ appearance: none;
     height: 450px;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
     /* justify-content: flex-end; */
     
 }
 
-.eventWindowContent{
-    /* background-color:rgba(234, 234, 234, 0.147); */
+.eventUserInfo{
+    /* background-color:rgba(255, 26, 164, 0.826); */
     /* background-color:rgba(8, 8, 8, 0.712); */
     /* background-color: orange; */
     /* background-color: green; */
     width: 100%;
-    margin: 1%;
     /* border-radius: 15px; */
     
     /* border: 1px solid rgba(255, 255, 255, 0.184); */
 
 }
 
-.eventWindowNav{
-    /* background-color:rgba(8, 8, 8, 0.712); */
-    /* background-color: rgb(0, 255, 98); */
-    width: 96%;
-    height: 40px;
-    /* border-radius: 15px; */
-    /* border: 1px solid rgba(255, 255, 255, 0.184); */
-}
 
 .eventwindowHeader{
 
@@ -1459,7 +1451,7 @@ appearance: none;
 
 
 .eventWindowImage{
-    /* background-color: orange; */
+    /* background-color: rgba(25, 225, 2, 0.511); */
     display: flex;
     margin-left: 1%;
     /* justify-content: center; */
@@ -1502,26 +1494,46 @@ appearance: none;
 }
 
 
-
+/* Created Event style Section */
+.eventWindowNav{
+    /* background-color:rgba(8, 8, 8, 0.712); */
+    /* background-color: rgb(0, 255, 98); */
+    width: 96%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    
+    /* border-radius: 15px; */
+    /* border: 1px solid rgba(255, 255, 255, 0.184); */
+}
 
 
 .eventWindowNavOptions{
    
-    border-top: 1px solid rgba(255, 255, 255, 0.064);
+    
+    background-color: #4e54564d;
+    background: linear-gradient(1deg, #969696, #0e0a0a6b, rgb(12, 12, 12), #434242);
+    /* background-color: #00ccff; */
     display: flex;
+    justify-content: center;
+  
+    margin-left: 3%;
+    margin-right: 2%;
+    width: 30px;
     height: 30px;
-    width: 100%;
+    /* width: 400px; */
     align-items: center;
-    margin-top: 2%;
+    margin-top: 1%;
     border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.289);
    
 }
 
 .eventoptionView{
     /* background-color: green; */
     
-    width: 100%;
-    height: 50px;
+    /* width: 100%;
+    height: 50px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1529,27 +1541,83 @@ appearance: none;
 }
 
 .eventoptionMessage{
-    width: 100%;
-    height: 50px;
+    /* width: 100%;
+    height: 50px; */
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 
-.eventoptionAddUser{
-    width: 100%;
-    height: 50px;
+/*  User Invite Input section  */
+
+.eventInviteUserSection{
+    background-color: rgba(255, 228, 196, 0.473);
     display: flex;
-    justify-content: center;
+    margin-left: 1%;
+    height: 350px;
+}
+.eventInviteInputSection{
+    /* background-color: orange; */
+    width: 412px;
+    display: flex;
     align-items: center;
 }
 
 
+.userInviteSearch{
+    /* background-color: rgb(215, 34, 34); */
+    width: 412px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.userInviteInput{
+    width: 60%;
+    height: 20px;
+    border-radius: 50px;
+}
+
+.inviteUserToEventBtn{
+    
+    width: 90px;
+}
+
+
+/* Eye Menü Section */
+
+.eventeyeSection{
+    /* background-color: #00ccff; */
+    width: 500px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eventOptionContentArea{
+    background-color: rgba(80, 79, 81, 0.673);
+    position: relative;
+    padding: 18%;
+   
+    top: -390%;
+    left: -38%;
+    height: 180px;
+    margin-bottom: 5%;
+    border-radius: 50px;
+    border: 1px solid rgba(104, 103, 103, 0.227);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15%;
+    align-items: center;
+}
 
 .eventoptionsDelete{
-    width: 100%;
-    height: 50px;
+   
     display: flex;
     justify-content: center;
     align-items: center;

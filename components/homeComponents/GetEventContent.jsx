@@ -7,7 +7,9 @@ import message from '@assets/conversation.png'
 import setting from '@assets/Coversetting.png'
 import deleteIcon from '@assets/delete.png'
 import Createbtn from '@utils/Createbtn'
+import eyeIcon from '@assets/eye-track.png'
 import useSWR, { mutate } from 'swr';
+import infoIcon from '@assets/infoIcon.png'
 
 
 
@@ -75,13 +77,31 @@ const GetEventContent = () => {
     // const [allEventContent, setAllEventContent] = useState([])
     // const [eventWindow, setEventWindow] = useState(false)
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [eventOptions, setEventOptions] = useState(false)
+    const [userInviteSection, setUserInviteSection] = useState(false)
+    const [eventInfo, setEventInfo] = useState(true)
 
     const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
         refreshInterval: 5000,
     })
 
 
+    const handleEventToggle = () => {
+        setEventOptions(!eventOptions)
 
+    }
+
+    const handleUserToggleInvite = () => {
+        setUserInviteSection(!userInviteSection)
+        setEventInfo(false)
+        
+    }
+
+    const handleEventInfo = () => {
+
+        setEventInfo(true)
+        setUserInviteSection(false)
+    }
 
 
     useEffect(() => {
@@ -174,67 +194,6 @@ const GetEventContent = () => {
                             </div>       
                       </div>
                       </div>
-                        {/* {selectedEvent && selectedEvent.id  === event.id && (
-                                
-                                <div className='eventWindoOverlay' > 
-                                  <div className='eventWindowSection'>
-                                    <div className='eventWindowContent'>
-                                        <div className='eventwindowHeader'>
-                                        <div className='eventWindowTitle'>
-                                        title
-                                        </div>
-                                        <div className='eventwindowClose' onClick={handleCloseCLick}>
-                                        x
-                                        </div>
-
-                                        </div>
-                                        
-                                        <div className='eventWindowImage'>
-                                        <Image src={event.ImageCoverUpload} className='eventWindowImageContent'  
-                                        width={300}
-                                        height={270}
-                                        quality={100}
-                                        alt='Cover of Job ad'/>
-
-                                        <div className='eventMetaData'>
-                                                <p className='eventHostMetaDataHost'>Host: Emmanuel</p>
-                                                <p className='eventHostMetaDataDate'>Date: 23.15.24</p>
-                                                <p className='eventHostMetaDataeventType'>Type: Party</p>
-                                        </div>
-                                        </div>
-
-                                        <div className='eventWindowImageDescriptionArea'>
-                                            <input type="text" className="eventWindowImageDescription" />
-                                        </div>
-                                    </div>
-
-
-                                    <div className='eventWindowNav'>
-                                        <div className='eventWindowNavOptions'>
-                                            <div className='eventoptionView'>
-                                                <Image src={addUser} width={18} height={18}/>
-                                            </div>
-                                            <div className='eventoptionMessage'>
-                                                <Image src={message} width={18} height={18}/>
-                                                </div>
-                                            <div className='eventoptionAddUser'>
-                                            <Image src={setting} width={18} height={18}/>
-                                            </div>
-                                            <div className='eventoptionsEdit'>
-                                            </div>
-                                            <div className='eventoptionsDelete'>
-                                            <Image src={deleteIcon}  width={20} height={20} onClick={() => handleDelete(event.id, event.ImageCoverUpload)}/>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                  </div>
-
-                                  </div>
-                                  
-
-                            )
-                            } */}
                     
                 </div>
             
@@ -253,21 +212,25 @@ const GetEventContent = () => {
        </div>
 
        <div className='chatContentArea'>
+
+        
         
        {selectedEvent && selectedEvent.id && (
                                 
+                        
                                 // <div className='eventWindoOverlay' > 
                                   <div className='eventWindowSection'>
-                                    <div className='eventWindowContent'>
+
+                                    <div className='eventUserInfo'>
                                         <div className='eventwindowHeader'>
                                         <div className='eventWindowTitle'>
                                         {selectedEvent.eventTitle}
                                         </div>
-                                      
-
                                         </div>
-                                        
-                                        <div className='eventWindowImage'>
+
+                                        { eventInfo && (
+                                            <div>
+                                                   <div className='eventWindowImage'>
                                         <Image src={selectedEvent.ImageCoverUpload} className='eventWindowImageContent'  
                                         width={370}
                                         height={350}
@@ -281,28 +244,73 @@ const GetEventContent = () => {
                                         </div>
                                         </div>
 
-                                       
-
-
-                                    <div className='eventWindowNav'>
-                                        <div className='eventWindowNavOptions'>
-                                            <div className='eventoptionView'>
-                                                <Image src={addUser} width={18} height={18}/>
                                             </div>
-                                            <div className='eventoptionMessage'>
-                                                <Image src={message} width={18} height={18}/>
+                                        )}
+                                  </div>
+
+                                  
+                                  {userInviteSection && (
+                                                <div className='eventInviteUserSection'>
+                                                     ewewe
                                                 </div>
-                                            <div className='eventoptionAddUser'>
-                                            <Image src={setting} width={18} height={18}/>
+                                    )}
+
+                                
+                                  <div>
+                                    
+                                  <div className='eventWindowNav'>
+                                      
+                                        <div className='eventInviteInputSection'>
+                                            <div>
+                                                    {userInviteSection && (
+                                                        <div  className='userInviteSearch'>
+                                                            <input type="text" className="userInviteInput" />
+                                                            <div>
+                                                                <button className='inviteUserToEventBtn'>Send</button>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                             </div>
-                                            <div className='eventoptionsEdit'>
+
+                                        </div> 
+
+                                         <div className='eventWindowNavOptions'>
+                                            <div className='eventeyeSection' onClick={handleEventToggle}>
+                                            <Image  src={eyeIcon} width={18} height={18} />
                                             </div>
-                                            <div className='eventoptionsDelete'>
+                                          
+                                                {eventOptions && (
+                                                    
+                                                    
+                                                    <div className='eventOptionContentArea'>
+                                                           
+
+                                                            
+                                                            <div className='eventoptionsDelete'>
+                                                                 <Image src={setting}  width={18} height={18}/>
+                                                            </div>
+                                                            <div className='eventoptionMessage'>
+                                                                <Image src={message} width={18} height={18}/>
+                                                            </div>
+                                                            <div className='eventoptionAddOtherUser'>
+                                                               <Image src={addUser} width={18} height={18} onClick={handleUserToggleInvite}/>
+                                                            </div>
+                                                            <div>
+                                                            <Image src={infoIcon} width={18} height={18} onClick={handleEventInfo}/>
+                                                            </div>
+                                                    </div>
+                                                )}
+                                           
+                                            
+                                            
+                                            {/* <div className='eventoptionsDelete'>
                                             <Image src={deleteIcon}  width={20} height={20} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         
-                                    </div>
+                                    </div> 
+                                  
+                                    
                                   </div>
 
                                  </div>
