@@ -13,6 +13,7 @@ import infoIcon from '@assets/infoIcon.png'
 
 
 
+
 // export async function getContent(){
 //     try{
 
@@ -82,8 +83,10 @@ const GetEventContent = () => {
     const [eventInfo, setEventInfo] = useState(true)
 
     const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
-        refreshInterval: 5000,
+        refreshInterval: 500,
     })
+
+
 
 
     const handleEventToggle = () => {
@@ -103,13 +106,12 @@ const GetEventContent = () => {
         setUserInviteSection(false)
     }
 
+    const handleEventDelete = () => {
+        setEventInfo(false)
+    }
+   
 
-    useEffect(() => {
-        if(allEventContent?.length > 0){
-            console.log(allEventContent)
-            setSelectedEvent(allEventContent[allEventContent?.length - 1])
-        }
-    },[allEventContent])
+  
 
    
 
@@ -122,15 +124,9 @@ const GetEventContent = () => {
             await deleteobj(eventId,eventpath)
 
             // Look this area up 
-
-            const updatedData = allEventContent?.filter((event) => event.id !== eventId)
-                allEventContent(updatedData)
-
-            if(selectedEvent && selectedEvent.id === eventId){
-                setSelectedEvent(null)
-            }
-
            
+            const updatedData = allEventContent?.filter((event) => event.id !== eventId)
+                allEventContent(updatedData)           
 
         }catch(error){
             console.error('function error', error)
@@ -140,7 +136,7 @@ const GetEventContent = () => {
 
 
 
-    const handlepopuptoggle = (event) => {
+    const handleEventtoggle = (event) => {
 
         // set the toggle to the event object 
         setSelectedEvent(selectedEvent === event ? null : event)
@@ -151,6 +147,19 @@ const GetEventContent = () => {
        
 
     }
+
+
+    // checks the change of the allEventContent by tracking the length, if the length is higher than zero show the last object 
+    // if the length is equal zero, it will show no object 
+
+    useEffect(() => {
+        if(allEventContent?.length > 0){
+            console.log(allEventContent)
+            setSelectedEvent(allEventContent[allEventContent?.length - 1])
+        }else {
+            setSelectedEvent(false)
+        }
+    },[allEventContent])
 
     
     
@@ -184,7 +193,7 @@ const GetEventContent = () => {
                 <div key={i} className='eventContentKey' >
                         <div className='eventContent'>
                             
-                            <div className='ImageCoverContent' onClick={() => handlepopuptoggle(event)}>
+                            <div className='ImageCoverContent' onClick={() => handleEventtoggle(event)}>
                                 <Image src={event.ImageCoverUpload} className='img-content-cover'  
                                 // fill
                                 width={180}
@@ -290,7 +299,7 @@ const GetEventContent = () => {
 
                                                             
                                                             <div className='eventoptionsDelete'>
-                                                                 <Image src={setting}  width={18} height={18}/>
+                                                                 <Image src={setting}  width={18} height={18} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
                                                             </div>
                                                             <div className='eventoptionMessage'>
                                                                 <Image src={message} width={18} height={18}/>

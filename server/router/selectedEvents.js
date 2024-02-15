@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const handleSelectedEvents = require('../controller/handleSelectedEvents')
+const handleExploreEvents = require('../controller/handleSelectedEvents')
 const apicache = require('apicache');
 const cache = apicache.middleware;
 
 
 
-router.post('/', handleSelectedEvents.searchedUserEvent)
+router.get('/:id', handleExploreEvents.exploreEvents)
 
 
 

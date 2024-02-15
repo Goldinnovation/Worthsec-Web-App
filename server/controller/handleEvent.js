@@ -233,6 +233,7 @@ exports.findEvents = async(req,res) => {
 exports.deleteEvent = async(req,res) => {
     const id = req.params.id;
     console.log(id)
+    apicache.clear(id)
     console.log(req.body.eventpath);
     const imagePath = req.body.eventpath
    

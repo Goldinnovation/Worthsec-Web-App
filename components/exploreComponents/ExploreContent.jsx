@@ -5,32 +5,29 @@ import Image from 'next/image'
 
 
 
-export const getallEventsWorldwide =  async(selectedValues) => {
+// export const getallEventsWorldwide =  async(selectedValues) => {
 
-  try{
-    const res =  await fetch(`http://localhost:3000/api/selctedEvents`, {
+//   try{
+//     const res =  await fetch(`http://localhost:3000/api/explore/${selectedValues}`, {
 
-     method: "POST",
-     headers: {
-      'Content-Type': 'application/json',
-      },
-     body: JSON.stringify(selectedValues)
+//      method: "GET",
+//      cache: "no-store"
 
-  })
-  if(!res.ok){
-    Console.log('Error on response: GetallEventsWorldWide')
-  }
-  const data = await res.json()
-  console.log(data)
-  return data
+//   })
+//   if(!res.ok){
+//     Console.log('Error on response: GetallEventsWorldWide')
+//   }
+//   const data = await res.json()
+//   console.log(data)
+//   return data
 
 
-  }catch(error){
-    console.log('GetallEventsWorldWide:', error)
-    // throw Error('Request Error on Fetch: GetallEventsWorldWide')
-  }
+//   }catch(error){
+//     console.log('GetallEventsWorldWide:', error)
+//     // throw Error('Request Error on Fetch: GetallEventsWorldWide')
+//   }
 
-}
+// }
 
 //  User can favor event
 const userFavorEvent = async(favoreventId) => {
@@ -93,7 +90,7 @@ const ExploreContent = () => {
   const [rangeValue, setrangeValue] = useState(9)
   const [userexploreData, setuserExploreData] = useState([])
   const [popupSelectedItem, setpopupSelectedItem] = useState(null)
-  // const [favoreventId, setFavoreventId] = useState(null)
+  const [favoreventId, setFavoreventId] = useState(null)
   const [selectedValues, setSelectedValues] = useState({
     explore_selectTypeofEvent__bmewZ:"3",
     selectedRangeofEvents:"",
@@ -135,7 +132,8 @@ const ExploreContent = () => {
 
       try{
         const exploreData = await getallEventsWorldwide(selectedValues)
-        setuserExploreData(exploreData)
+        console.log(exploreData);
+        // setuserExploreData(exploreData)
 
       }catch(error){
         console.log('Error fetching explore data:', error)
@@ -203,7 +201,7 @@ const ExploreContent = () => {
             </div>
             <div className={styles['middleContentFeed']}>
             <div className={styles['explorefeedContent']}>
-              {userexploreData.map((event, i) => (
+              {/* {userexploreData.map((event, i) => (
                 <div key={i} className={styles['exploreContentSection']}>
                   <div className={styles['exploreContent']} onClick={() => handleToggleitem(event)}>
                   <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>           
@@ -251,7 +249,7 @@ const ExploreContent = () => {
 
                          
                          
-                          {/* <button className={styles['explorePopUpselectedOptionbtn3']}>Share</button> */}
+                          <button className={styles['explorePopUpselectedOptionbtn3']}>Share</button>
 
                           
                         </div>
@@ -265,12 +263,7 @@ const ExploreContent = () => {
                         
                       <div className={styles['explorePopUppreview']}>
                       <div className={styles['explorePopUpmovebar']}>
-                      {/* <div className={styles['explorePopUpmoveobarleft']} >
-                           
-                      </div>
-                      <div className={styles['explorePopUpmoveobarright']} >
-                           
-                      </div> */}
+                     
                       </div>
 
                       <div  className={styles['explorePopUpOption']}>
@@ -293,7 +286,7 @@ const ExploreContent = () => {
                 </div>
 
               
-              ))}      
+              ))}       */}
             </div>
 
             {/* <div className={styles['feedbarSection']}>

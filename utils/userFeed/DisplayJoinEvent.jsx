@@ -48,7 +48,7 @@ const DisplayJoinEvent = ({}) => {
     const [displayEvent, setDisplayEvent] = useState([])
     const [optiontypeToggle, setoptiontypeToggle] = useState(false)
     const {data: allJointEventsbyUser, error} = useSWR('http://localhost:3000/api/DisplayJoinedEvent', fetcher,{})
-    const [eventObj, setEventObj] = useState(null)
+    const [eventObj, setEventObjToggle] = useState(null)
 
 
 
@@ -82,13 +82,14 @@ const DisplayJoinEvent = ({}) => {
 
     useEffect(() => {
        
-        setEventObj(displayEvent[displayEvent.length - 1])
+      
+        setEventObjToggle(displayEvent[displayEvent.length - 1])
       }, [displayEvent]);
 
 
     const handleEventObj = (event) => {
-        setEventObj((prevEventObj) => (prevEventObj === event ? null : event));
-    
+        setEventObjToggle((prevEventObj) => (prevEventObj === event ? null : event));
+       
       };
 
 
@@ -117,7 +118,9 @@ const DisplayJoinEvent = ({}) => {
                 </div>
             )}
         
-            <div className={styles["typebaroption_display_Section"]} onClick={toggleoptionbar}></div>
+            <div className={styles["typebaroption_display_Section"]} onClick={toggleoptionbar}>
+                
+            </div>
           
             </div>
           
