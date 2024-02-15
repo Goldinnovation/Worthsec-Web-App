@@ -5,29 +5,29 @@ import Image from 'next/image'
 
 
 
-// export const getallEventsWorldwide =  async(selectedValues) => {
+export const getallEventsWorldwide =  async(selectedValues) => {
 
-//   try{
-//     const res =  await fetch(`http://localhost:3000/api/explore/${selectedValues}`, {
+  try{
+    const res =  await fetch(`http://localhost:3000/api/explore?selectedValues=${selectedValues}`, {
 
-//      method: "GET",
-//      cache: "no-store"
+     method: "GET",
+     cache: "no-store"
 
-//   })
-//   if(!res.ok){
-//     Console.log('Error on response: GetallEventsWorldWide')
-//   }
-//   const data = await res.json()
-//   console.log(data)
-//   return data
+  })
+  if(!res.ok){
+    Console.log('Error on response: GetallEventsWorldWide')
+  }
+  const data = await res.json()
+  console.log(data)
+  return data
 
 
-//   }catch(error){
-//     console.log('GetallEventsWorldWide:', error)
-//     // throw Error('Request Error on Fetch: GetallEventsWorldWide')
-//   }
+  }catch(error){
+    console.log('GetallEventsWorldWide:', error)
+    // throw Error('Request Error on Fetch: GetallEventsWorldWide')
+  }
 
-// }
+}
 
 //  User can favor event
 const userFavorEvent = async(favoreventId) => {
@@ -91,7 +91,7 @@ const ExploreContent = () => {
   const [userexploreData, setuserExploreData] = useState([])
   const [popupSelectedItem, setpopupSelectedItem] = useState(null)
   const [favoreventId, setFavoreventId] = useState(null)
-  const [selectedValues, setSelectedValues] = useState({
+  const [selectedQuery, setSelectedQuery] = useState({
     explore_selectTypeofEvent__bmewZ:"3",
     selectedRangeofEvents:"",
     explore_selectTypeofEventCategory__KzDeU:"3"
@@ -115,7 +115,8 @@ const ExploreContent = () => {
     
 
 
-    setSelectedValues({...selectedValues, [e.target.className]: e.target.value})
+    setSelectedQuery({...selectedQuery, [e.target.className]: e.target.value})
+    // console.log("vak",selectedQuery)
 
   }
 
@@ -131,9 +132,13 @@ const ExploreContent = () => {
     const fetchexploreData = async() => {
 
       try{
-        const exploreData = await getallEventsWorldwide(selectedValues)
+
+        console.log(selectedQuery)
+        const encodeData = encodeURI(JSON.stringify(selectedQuery))
+        console.log(encodeData)
+        const exploreData = await getallEventsWorldwide(encodeData)
         console.log(exploreData);
-        // setuserExploreData(exploreData)
+        setuserExploreData(exploreData)
 
       }catch(error){
         console.log('Error fetching explore data:', error)
@@ -149,7 +154,7 @@ const ExploreContent = () => {
     return () => clearInterval(invervalId)
 
     // Renders the page from everytime the selectedValue is enterd 
-  },[selectedValues])
+  },[selectedQuery])
 
  
 
@@ -201,7 +206,7 @@ const ExploreContent = () => {
             </div>
             <div className={styles['middleContentFeed']}>
             <div className={styles['explorefeedContent']}>
-              {/* {userexploreData.map((event, i) => (
+              {userexploreData.map((event, i) => (
                 <div key={i} className={styles['exploreContentSection']}>
                   <div className={styles['exploreContent']} onClick={() => handleToggleitem(event)}>
                   <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>           
@@ -286,7 +291,7 @@ const ExploreContent = () => {
                 </div>
 
               
-              ))}       */}
+              ))}      
             </div>
 
             {/* <div className={styles['feedbarSection']}>

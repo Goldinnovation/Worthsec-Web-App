@@ -52,6 +52,7 @@ const Createbtn = () => {
       value =2
     }else if(e.target.className === "worldwideClass" && value){
       value = 3 
+      console.log(value)
       
     }
 

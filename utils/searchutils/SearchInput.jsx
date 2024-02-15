@@ -68,7 +68,7 @@ const getqueriedUser = async(userIdData) => {
 
 const SearchInput = () => {
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [displayUserInfo, setDisplayUserInfo] = useState([])
   const [userIdData, setUserIdData] = useState("");
   const [displayUserPic, setdisplayUserPic] = useState(null)
@@ -78,13 +78,15 @@ const SearchInput = () => {
   const [userFriendsId, setuserFriendId] = useState(null)
 
 
-  const handleChange = async(e) => {
-    const value = e.target.value
-    setSearchValue(value)
+  // const handleChange = async(e) => {
+  //   const value = e.target.value
+  //   setSearchValue(value)
   
-  }
+  // }
 
 
+
+ 
   const checkifUserexist = async(userIdData) => {
 
     try{
@@ -218,8 +220,11 @@ const UnFollowUserFetch = async(unFollowUserId) => {
       const fetchUserInfo = async () => {
 
         try{
-          const requestUserInfo = await queryUser(searchValue)
-        setDisplayUserInfo(requestUserInfo)
+
+            const encodedSearchQuery = encodeURI("http://localhost:3000/api/userTouser")
+            console.log("search:",encodedSearchQuery)
+          const requestUserInfo = await queryUser(searchQuery)
+          setDisplayUserInfo(requestUserInfo)
     
        
         if (requestUserInfo.length > 0) {
@@ -243,7 +248,7 @@ const UnFollowUserFetch = async(unFollowUserId) => {
       const debounceFetch = debounce(fetchUserInfo, 500); 
 
       // debounce is based on the input, so every time there is certain pause the funciton will be executed 
-      debounceFetch(searchValue)
+      debounceFetch(searchQuery)
     
       // Interval for a periodic fetch 
       const intervalId = setInterval(() => {
@@ -260,10 +265,14 @@ const UnFollowUserFetch = async(unFollowUserId) => {
         debounceFetch.cancel()
       }
      
-  }, [searchValue, userIdData])
+  }, [searchQuery, userIdData])
 
 
-
+// const handleSearchQuery = (e) => {
+//   e.prevenDefault(); 
+//   const encodedSearchQuery = encodeURI(searchQuery)
+//   console.log("search:",encodedSearchQuery)
+// }
   
 
 
@@ -271,13 +280,17 @@ const UnFollowUserFetch = async(unFollowUserId) => {
 
   return (
     <div>
-
-        <div className={searchstyle['searchContent']}>
+      {/* <form onSubmit={handleSearchQuery}> */}
+    
+      <div className={searchstyle['searchContent']}>
         <input type="text" className={searchstyle['searchInput']}  
-        onChange={handleChange}
+        onChange={(e) => setSearchQuery(e.target.value)}
         />
         {/* <button className={searchstyle['searchBtn']} >Search</button> */}
         </div>
+
+      {/* </form> */}
+
        
 
         <div className={searchstyle['DisplayUserSection']}>

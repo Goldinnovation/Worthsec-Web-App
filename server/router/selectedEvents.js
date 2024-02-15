@@ -6,7 +6,7 @@ const cache = apicache.middleware;
 
 
 
-router.get('/:id', handleExploreEvents.exploreEvents)
+router.get('/', handleExploreEvents.exploreEvents)
 
 
 
