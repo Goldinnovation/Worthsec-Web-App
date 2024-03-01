@@ -7,7 +7,7 @@ let cache = apicache.middleware
 
 
 router.get('/')
-router.get('/:id', cache('5 minutes'),handleUsertoFollow.searchUser_friends)
+router.get('/:id',handleUsertoFollow.searchUser_friends)
 router.post('/', handleUsertoFollow.followUser)
 router.delete('/', handleUsertoFollow.unFollowUser)
 

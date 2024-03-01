@@ -5,7 +5,7 @@ const   isUserAuth  = require('../Middlware/isAuth')
 
 
 
-router.get('/', isUserAuth)
+router.get('/')
 router.post('/', handleSignup.createUserAccount)
 
 

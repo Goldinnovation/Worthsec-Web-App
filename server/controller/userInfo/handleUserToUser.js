@@ -207,7 +207,7 @@ exports.followUser = async (req, res) => {
 exports.unFollowUser = async (req, res) => {
 
     const userConnection_id = req.body
-    // console.log(userConnection_id);
+    console.log(userConnection_id);
 
     try {
         // deletes the connection of the users 

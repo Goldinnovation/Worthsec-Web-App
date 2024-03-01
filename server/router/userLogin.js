@@ -9,7 +9,7 @@ const   isUserAuth  = require('../Middlware/isAuth')
 
 
 
-router.get('/' )
+router.get('/')
 router.post('/', handleLog.userlog)
 
 
