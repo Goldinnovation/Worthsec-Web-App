@@ -106,15 +106,7 @@ exports.createEvent = async (req, res) => {
             eventinviteNum = parseInt(num3, 10)
         }
 
-        // Stores the data in the Database 
-        // const newEventBody = {
-        //     ...req.body,
-        //     ImageCoverUpload: downloadImageUrl,
-        //     eventType: IntEventType,
-        //     eventHost: userId,
-        //     eventInviteType: eventinviteNum
-
-        // }
+      
 
 
 

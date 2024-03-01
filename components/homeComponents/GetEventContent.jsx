@@ -223,7 +223,7 @@ const GetEventContent = () => {
 
        </div>
 
-       <div className='chatContentArea'>
+       <div className='DisplayEventArea'>
 
         
         
@@ -241,22 +241,16 @@ const GetEventContent = () => {
                                         </div>
 
                                         { eventInfo && (
-                                            <div>
-                                                   <div className='eventWindowImage'>
+                                            <div className='eventWindowLayer'>
+                                         <div className='eventWindowImage'>
                                         <Image src={selectedEvent.ImageCoverUpload} className='eventWindowImageContent'  
-                                        width={370}
+                                        width={400}
                                         height={350}
                                         quality={100}
                                         alt='Cover of Job ad'/>
-
-                                        <div className='eventMetaData'>
-                                                <p className='eventHostMetaDataHost'>Host: Emmanuel</p>
-                                                <p className='eventHostMetaDataDate'>Date: 23.15.24</p>
-                                                <p className='eventHostMetaDataeventType'>Type: Party</p>
-                                        </div>
                                         </div>
 
-                                            </div>
+                                        </div>
                                         )}
                                   </div>
 
