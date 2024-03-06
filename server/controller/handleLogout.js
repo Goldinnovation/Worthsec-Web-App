@@ -3,7 +3,15 @@
 
 
 
-
+/** 
+ * Purpose Statement--logout
+    By pressing the logout button, the API endpoint logout will be triggert and execute the logout handler logic. 
+    This function check first if the user which makes the request ist Authenticatedm, if this true it will execute the logout function from passport. 
+    This execution will elimanat the current user authentican. Throughtout this process the user will be redirected to the login page-
+/**
+ * Function Signature--findUserProfilimage
+ * @param {req} user - represents the current users request. 
+ */
 
 exports.logout = (req,res) => {
    
