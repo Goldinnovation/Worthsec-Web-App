@@ -16,7 +16,7 @@ const passport = require('passport')
 */
 
 /**
- * Function Signature--findUserProfilimage
+ * Function Signature--userlog
  * @param {object} user - represents the users information such as email and password 
  * @returns {object} Returns a json object message as approval or declined
  */

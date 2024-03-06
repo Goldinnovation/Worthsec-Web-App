@@ -3,16 +3,13 @@ const prisma = new PrismaClient()
 
 
 /** 
- * Purpose Statement--findUserProfilimage
- * 
-*/
-
-
-
+ * Purpose Statement--DisplayUserofJoinEvents
+ * The function allows the current user to retrieve the Event's Id that is stored the userJoinEvent database table. 
+ *
 /**
- * Function Signature--findUserProfilimage
+ * Function Signature--DisplayUserofJoinEvents
  * @param {string} currentUser - represents the currend User Id
- * @returns {object} Returns an array of event ids. 
+ * @returns {object} Returns an array of evenids. 
  */
 
 
@@ -41,6 +38,15 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 
 }
 
+
+/** 
+ * Purpose Statement--DisplaygetEventbyjoinId
+ * The DisplaygetEventbyjoinId function allows the current user to retrieve the Event object that the user has joined with the Event-Id. 
+/**
+ * Function Signature--DisplaygetEventbyjoinId
+ * @param {string} Event-Id - represents the Event-Id from DisplayUserofJoinEvents function
+ * @returns {object} Returns an array of Event-Objects. 
+ */
 
 
 
