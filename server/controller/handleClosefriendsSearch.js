@@ -70,7 +70,7 @@ exports.searchforClosefriends = async(req,res) => {
   
 
 /**
- * Function Signature--
+ * Function Signature--searchImgUrl
  * @param {string} otherUserId - represents the other user's Id
  * @returns {body} Returns an image url object.
  */

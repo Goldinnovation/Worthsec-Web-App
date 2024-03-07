@@ -14,7 +14,6 @@
  */
 
 exports.logout = (req,res) => {
-   console.log(req)
     if(req.isAuthenticated()){
         console.log('inside Logout')
        req.logout(function(err){

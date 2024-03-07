@@ -1,16 +1,11 @@
 const {PrismaClient} = require('@prisma/client');
-const { all } = require('axios');
-const fs = require('fs')
-const path = require('path')
 const {getStorage, ref, deleteObject, getDownloadURL, UuploadBytesResumable, uploadBytesResumable}=require("firebase/storage")
 const {initializeApp} = require("firebase/app")
 const config = require('../config/firebase')
-const Imageupload = require("../Middlware/coverImage");
 const giveCurrentDateTime = require('../utils/date')
 const prisma = new PrismaClient()
 const sharp = require('sharp')
-const apicache = require('apicache');
-const cache = apicache.middleware;
+
 
 // initialize firebase application
 initializeApp(config.firebaseConfig);
@@ -111,6 +106,11 @@ exports.createEvent = async (req, res) => {
 
 
         try {
+            // Start the Timer
+            console.time('databaseQuery');
+            
+          
+
             const newCreateEvent = await prisma.eventPrompt.create({
                 data:
                 {
@@ -125,8 +125,11 @@ exports.createEvent = async (req, res) => {
 
                 }
             });
+
+            // Stop the timer 
+            console.timeEnd('databaseQuery')
             console.log(newCreateEvent, "successful uploaded")
-            apicache.clear();
+            
             // res.status(200).json({messaage: "successful uploaded on the database"})
 
 
@@ -138,7 +141,6 @@ exports.createEvent = async (req, res) => {
     } catch (error) {
 
         console.log(error)
-        apicache.clear();
         res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
     }
 
@@ -188,14 +190,20 @@ exports.findEvents = async(req,res) => {
 
     
     try{
+        console.time("QueryTime for Event Table:")
         if(req.user){
+            
             const userEvents =  await prisma.eventPrompt.findMany({
                 where: {
                     eventHost: req.user.userId
                 }
             });
 
-            // console.log(userEvents);
+           
+
+            
+            console.timeEnd("QueryTime for Event Table:")
+            console.log(userEvents);
             res.json(userEvents);
         }else {
             res.status(401).json({error: 'user is not Authenticated to get events'})
@@ -205,11 +213,6 @@ exports.findEvents = async(req,res) => {
         console.error(error)
         res.status(500).send('Error with find Event logic  ')
     }
-   
-
-
-    
-    
 
 }
 
@@ -225,7 +228,6 @@ exports.findEvents = async(req,res) => {
 exports.deleteEvent = async(req,res) => {
     const id = req.params.id;
     console.log(id)
-    apicache.clear(id)
     console.log(req.body.eventpath);
     const imagePath = req.body.eventpath
    

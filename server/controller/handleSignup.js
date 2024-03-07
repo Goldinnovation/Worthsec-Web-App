@@ -54,7 +54,7 @@ exports.createUserAccount = async(req,res,)  => {
                         
                         })
                         // res.redirect('/user')
-                        console.log(newUserAccount)
+                        // console.log(newUserAccount)
                         res.json({message:"new user created"})
                         
                         
