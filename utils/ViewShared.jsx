@@ -1,12 +1,12 @@
-import React from 'react'
+// import React from 'react'
 
-const ViewShared = () => {
-  return (
-    <div>
-        <button>V</button>
+// const ViewShared = () => {
+//   return (
+//     <div>
+//         <button>V</button>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default ViewShared
+// export default ViewShared

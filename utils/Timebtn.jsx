@@ -1,14 +1,14 @@
-import React from 'react'
-import Image from 'next/image'
-import TimeLineIcon from '@assets/Timeicon.png'
+// import React from 'react'
+// import Image from 'next/image'
+// import TimeLineIcon from '@assets/Timeicon.png'
 
 
-const TimeLayer = () => {
-  return (
-    <div>
-       <button className='Timeline-btn'><Image src={TimeLineIcon} height={24} width={24}/></button>
-    </div>
-  )
-}
+// const TimeLayer = () => {
+//   return (
+//     <div>
+//        <button className='Timeline-btn'><Image src={TimeLineIcon} height={24} width={24}/></button>
+//     </div>
+//   )
+// }
 
-export default TimeLayer
+// export default TimeLayer

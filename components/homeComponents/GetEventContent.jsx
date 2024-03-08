@@ -10,7 +10,7 @@ import Createbtn from '@utils/Createbtn'
 import eyeIcon from '@assets/eye-track.png'
 import useSWR, { mutate } from 'swr';
 import infoIcon from '@assets/infoIcon.png'
-
+import InviteUsertoEvent from '@utils/userFeed/InviteUsertoEvent'
 
 
 
@@ -83,7 +83,7 @@ const GetEventContent = () => {
     const [eventInfo, setEventInfo] = useState(true)
 
     const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
-        refreshInterval: 5000,
+        // refreshInterval: 5000,
         // revalidateOnFocus: false
     })
 
@@ -257,7 +257,10 @@ const GetEventContent = () => {
                                   
                                   {userInviteSection && (
                                                 <div className='eventInviteUserSection'>
-                                                     ewewe
+                                                    <div className='eventInvitationLayer'>
+                                                            <InviteUsertoEvent/>
+                                                    </div>
+                                                   
                                                 </div>
                                     )}
 
