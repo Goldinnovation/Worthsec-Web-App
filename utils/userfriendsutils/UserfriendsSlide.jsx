@@ -104,7 +104,6 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
 
     const fetchuserDataforcloseFriends =  async() => {
         try{
-            console.log('init');
             
             if(searchfriendsvalue){
                 console.log('init2')

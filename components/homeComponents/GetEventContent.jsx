@@ -155,7 +155,6 @@ const GetEventContent = () => {
 
     useEffect(() => {
         if(allEventContent?.length > 0){
-            console.log(allEventContent)
             setSelectedEvent(allEventContent[allEventContent?.length - 1])
         }else {
             setSelectedEvent(false)

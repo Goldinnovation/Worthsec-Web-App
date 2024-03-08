@@ -201,10 +201,9 @@ const SearchInput = () => {
 
       if (userIdData !== "") {
         try {
-
-          
-
+          // console.log("init")
           const checkifexitasFriend = await checkifUserexist(userIdData)
+          // console.log(checkifexitasFriend)
           setuserFriendId(checkifexitasFriend)
 
 
@@ -259,7 +258,7 @@ const SearchInput = () => {
     // }, 5000)
 
     // Initial fetch
-    // fetchUserPic()
+    fetchUserPic()
 
 
 
@@ -298,7 +297,7 @@ const SearchInput = () => {
 
       <div className={searchstyle['DisplayUserSection']}>
         {displayUserInfo.map((event, i) => (
-          <div>
+        
             <div key={i}>
               <div className={searchstyle['displayUserArea']}>
 
@@ -311,7 +310,7 @@ const SearchInput = () => {
                       />
 
                       <div className={searchstyle['userOverlay']}>
-                        <Image className={searchstyle['userOverBack']} src={Gift} width={800} height={300} />
+                        <Image className={searchstyle['userOverBack']} src={Gift}  alt="otheruserOveral" width={800} height={300} />
                         <div className={searchstyle['userOverlayImageContent']}>
                           <Image className={searchstyle['userOverlayImage']} src={`/${userProfilImage.pictureUrl}`} alt='other user Overlay Background Image' width={140} height={140}
                             quality={100}
@@ -352,7 +351,7 @@ const SearchInput = () => {
 
 
             </div>
-          </div>
+         
         ))}
 
 

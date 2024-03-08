@@ -188,7 +188,6 @@ exports.findEvents = async(req,res) => {
 
     
     try{
-        console.time("QueryTime for Event Table:")
         if(req.user){
             
             const userEvents =  await prisma.eventPrompt.findMany({
@@ -201,7 +200,6 @@ exports.findEvents = async(req,res) => {
            
 
             
-            console.timeEnd("QueryTime for Event Table:")
             // console.log(userEvents);
             res.json(userEvents);
         }else {

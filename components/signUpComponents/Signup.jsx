@@ -100,8 +100,8 @@ const Signup = () => {
                         <form onSubmit={handleSubmit}> 
                     <div className={style["signUpEmailNamePasswordArea"]}>
                             <div className={style["signUpEmailName"]}>
-                                    <input type="text"  id="" className='userName' onChange={handleInput} placeholder='Enter your Username'/>
-                                    <input type="text" name="" id="" className='userEmail' onChange={handleInput} placeholder='Enter your Email'/>
+                                    <input type="text"   className='userName' onChange={handleInput} placeholder='Enter your Username'/>
+                                    <input type="text"  className='userEmail' onChange={handleInput} placeholder='Enter your Email'/>
                             </div>
                             <div className={style["signUPassword"]}>
                                 <input type="password"  className="userPassword1"  onChange={handleInput}   placeholder='Enter your Password'/>

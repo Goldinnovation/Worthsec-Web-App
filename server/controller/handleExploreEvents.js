@@ -17,10 +17,10 @@ exports.exploreEvents = async(req,res) => {
 
     // receives Json string from the query request 
     const selectQueryString = req.query.selectedValues
-    console.log(selectQueryString)
+    // console.log(selectQueryString)
     // parse the json string to an object 
     const selctedQueryObject = JSON.parse(selectQueryString)
-    console.log(selctedQueryObject)
+    // console.log(selctedQueryObject)
    
 
     // Converting the all 3 string to Numbers 
@@ -30,7 +30,7 @@ exports.exploreEvents = async(req,res) => {
 
     const selectedEventsTypeNum = parseInt(selctedQueryObject.explore_selectTypeofEvent__bmewZ, 10)
     const selectedType = (selectedEventsTypeNum >=1 && selectedEventsTypeNum <=3 ? selectedEventsTypeNum : undefined)
-    console.log(selectedType);
+    // console.log(selectedType);
 
     const inputNumber =  parseInt(selctedQueryObject.selectedRangeofEvents, 10)
     const rangeEventNum = (inputNumber >= 9 && inputNumber <=20 ? inputNumber : undefined)
@@ -39,7 +39,7 @@ exports.exploreEvents = async(req,res) => {
     const inputCategoryNum  =  parseInt(selctedQueryObject.explore_selectTypeofEventCategory__KzDeU, 10)
     const inviteNum = (inputCategoryNum >=1 && inputCategoryNum <=3 ? inputCategoryNum : undefined)
 
-    console.log(inviteNum)
+    // console.log(inviteNum)
 
     try{
          if(req.user && selectedType !== undefined && inviteNum !== undefined){
@@ -51,8 +51,8 @@ exports.exploreEvents = async(req,res) => {
                 }
             })
             
-        console.log(getselectedEvents)
-        console.log(getselectedEvents.length)
+        // console.log(getselectedEvents)
+        // console.log(getselectedEvents.length)
         
          res.status(200).json(getselectedEvents)
          }

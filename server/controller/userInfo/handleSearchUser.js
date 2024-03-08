@@ -35,7 +35,7 @@ exports.searchUserbyUser = async (req, res, next) => {
             }
         })
 
-        console.log(searchUser)
+        // console.log(searchUser)
         res.status(200).json(searchUser)
 
 
