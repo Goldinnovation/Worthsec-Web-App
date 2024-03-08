@@ -41,15 +41,14 @@ exports.searchforClosefriends = async(req,res) => {
                             userStatus: 2
                         },
                     });
-                    // console.timeEnd('prismaQuery');
-                    // console.log(closefriendsconnection);
+                    
                     res.status(200).json(closefriendsconnection);
                 } catch (error) {
                     console.error('Error executing Prisma query:', error);
-                    // res.status(500).json(null);
+                    
                 }
             }else{
-                res.json({message: "user could not be found"})
+                res.json({message:"user could not be found"})
             }
             
         }
@@ -84,15 +83,16 @@ exports.searchImgUrl = async(req,res) => {
 
     try{
         if(req.user && otherUserId){
-            const userImgurl = await prisma.picture.findUnique({
+            const otherUserData = await prisma.account.findUnique({
                 where: {
-                    picture_owner_id: otherUserId
+                    userId: otherUserId
+                }, include: {
+                    picture: true
                 }
 
             })
 
-            console.log(userImgurl)
-            res.status(200).json(userImgurl)
+            res.status(200).json([otherUserData])
         }
         
     }catch(error){

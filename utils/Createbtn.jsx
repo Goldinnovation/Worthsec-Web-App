@@ -227,7 +227,7 @@ const Createbtn = () => {
                 <div className='event-Description-And-ImageArea'>
                   {/* Image Upload  */}
                 <div className='UploadCoverArea'>
-           <input type="file" className="ImageCoverUpload"  id="UploadtriggerId"  onChange={handleImageUpload} hidden/>
+           <input type="file" className="ImageCoverUpload" alt="Input file on create button"  id="UploadtriggerId"  onChange={handleImageUpload} hidden/>
            {imagePreview ? (
                 <Image 
                     src={imagePreview} 

@@ -5,7 +5,7 @@ import NetworkIcon from '@assets/network.png'
 const Networkbtn = () => {
   return (
     <div>
-        <button className='Network-btn'><Image src={NetworkIcon} height={25} width={25} /></button>
+        <button className='Network-btn'><Image src={NetworkIcon}  alt="network-btn" height={25} width={25} /></button>
       
     </div>
   )

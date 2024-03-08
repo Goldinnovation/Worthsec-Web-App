@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '@styles/joinandfavorstyle.module.css'
 import useSWR, { mutate } from 'swr';
-import { headers } from '@next.config';
 import Image from 'next/image';
 
 

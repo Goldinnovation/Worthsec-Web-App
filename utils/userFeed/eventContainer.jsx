@@ -1,22 +1,22 @@
-import React from 'react'
-import DisplayJoinEvent from './DisplayJoinEvent';
-import DisplayEventobj from './DisplayEventobj';
+// import React from 'react'
+// import DisplayJoinEvent from './DisplayJoinEvent';
+// import DisplayEventobj from './DisplayEventobj';
 
-const eventContainer = () => {
+// const eventContainer = () => {
 
-    const [eventData, setEventData] = useState(null);
+//     const [eventData, setEventData] = useState(null);
 
-    const handleEventDisplay = (event) => {
-        // Add your logic here to handle event data
-        setEventData(event);
-      };
-  return (
-    <div>
-         <DisplayJoinEvent onEventDisplay={handleEventDisplay} />
-        <DisplayEventobj eventData={eventData} />
+//     const handleEventDisplay = (event) => {
+//         // Add your logic here to handle event data
+//         setEventData(event);
+//       };
+//   return (
+//     <div>
+//          <DisplayJoinEvent onEventDisplay={handleEventDisplay} />
+//         <DisplayEventobj eventData={eventData} />
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-export default eventContainer
+// export default eventContainer

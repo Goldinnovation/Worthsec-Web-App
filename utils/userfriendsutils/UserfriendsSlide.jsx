@@ -106,16 +106,14 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
         try{
             
             if(searchfriendsvalue){
-                console.log('init2')
-                const resUserData = await fetchsearchFriend(searchfriendsvalue)
-                setCloseFriendsData(resUserData)
+                const closeFriendsData = await fetchsearchFriend(searchfriendsvalue)
+                setCloseFriendsData(closeFriendsData)
                 setUserExistPopup(false);
            
-                console.log(resUserData.message)
-                if(resUserData?.length === 1){
-                    console.log('init4');
-                    const userImgUrl = await fetchUserImg(resUserData[0].userFollowed)
-                    setUserImgUrl(userImgUrl)
+                // console.log(closeFriendsData.message)
+                if(closeFriendsData?.length > 0){
+                    const userImgUrl = await fetchUserImg(closeFriendsData[0].userFollowed)
+                    setUserImgUrl(userImgUrl[0].picture)
 
                 
 
@@ -194,7 +192,7 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
                              <div  className={styles["friendsSlideDisplaySection"]}>
                                 { userImgUrl && (
                                     <div className={styles["userImgUrllayer"]}  onClick={userMessageToggle}>
-                                     <Image src={`/${userImgUrl.pictureUrl}`}  className={styles["userImgUrl"]} width={40} height={40} quality={100}/>
+                                     <Image src={`/${userImgUrl.pictureUrl}`} alt='founded profilImage' className={styles["userImgUrl"]} width={40} height={40} quality={100}/>
                                     </div>
                                 )}
 
