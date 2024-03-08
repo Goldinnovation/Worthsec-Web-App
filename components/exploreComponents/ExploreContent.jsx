@@ -18,7 +18,6 @@ export const getallEventsWorldwide =  async(selectedValues) => {
     Console.log('Error on response: GetallEventsWorldWide')
   }
   const data = await res.json()
-  console.log(data)
   return data
 
 
@@ -116,7 +115,6 @@ const ExploreContent = () => {
 
 
     setSelectedQuery({...selectedQuery, [e.target.className]: e.target.value})
-    // console.log("vak",selectedQuery)
 
   }
 
@@ -133,11 +131,8 @@ const ExploreContent = () => {
 
       try{
 
-        console.log(selectedQuery)
         const encodeData = encodeURI(JSON.stringify(selectedQuery))
-        console.log(encodeData)
         const exploreData = await getallEventsWorldwide(encodeData)
-        console.log(exploreData);
         setuserExploreData(exploreData)
 
       }catch(error){
@@ -209,7 +204,7 @@ const ExploreContent = () => {
               {userexploreData.map((event, i) => (
                 <div key={i} className={styles['exploreContentSection']}>
                   <div className={styles['exploreContent']} onClick={() => handleToggleitem(event)}>
-                  <Image src={event.ImageCoverUpload} width={200} height={200} quality={100}/>           
+                  <Image src={event.ImageCoverUpload} width={200} alt='Event cover' height={200} quality={100}/>           
                   </div>
 
                   <div className={styles['exploreContentPopupSection']}>
@@ -230,7 +225,7 @@ const ExploreContent = () => {
 
                           <div className={styles['explorePopUpselectedContent']}>
                           <div className={styles['explorePopUpselectedCover']}>
-                          <Image src={event.ImageCoverUpload}  className={styles['explorePopUpCoverItem']} width={400} height={400} quality={100} />  
+                          <Image src={event.ImageCoverUpload} alt='current user event cover' className={styles['explorePopUpCoverItem']} width={400} height={400} quality={100} />  
 
 
                           </div>
@@ -275,7 +270,7 @@ const ExploreContent = () => {
                       {userexploreData.map((event,i) => (
                            <div key={i}  className={styles['explorePopuppreviewSection']}>
                             <div className={styles['explorepreviewContent']} onClick={() => handleToggleitem(event)}>
-                            <Image src={event.ImageCoverUpload} width={90} height={90} quality={100}/>           
+                            <Image src={event.ImageCoverUpload} width={90} height={90}  alt=" explore - event preview cover" quality={100}/>           
                             </div>
                            </div>
                            ))}
