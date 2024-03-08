@@ -106,8 +106,7 @@ exports.createEvent = async (req, res) => {
 
 
         try {
-            // Start the Timer
-            console.time('databaseQuery');
+          
             
           
 
@@ -126,8 +125,7 @@ exports.createEvent = async (req, res) => {
                 }
             });
 
-            // Stop the timer 
-            console.timeEnd('databaseQuery')
+          
             console.log(newCreateEvent, "successful uploaded")
             
             // res.status(200).json({messaage: "successful uploaded on the database"})
@@ -196,14 +194,15 @@ exports.findEvents = async(req,res) => {
             const userEvents =  await prisma.eventPrompt.findMany({
                 where: {
                     eventHost: req.user.userId
-                }
+                },
+
             });
 
            
 
             
             console.timeEnd("QueryTime for Event Table:")
-            console.log(userEvents);
+            // console.log(userEvents);
             res.json(userEvents);
         }else {
             res.status(401).json({error: 'user is not Authenticated to get events'})

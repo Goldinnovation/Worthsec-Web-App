@@ -1,11 +1,14 @@
 generator client {
   provider = "prisma-client-js"
+ 
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
 
 model eventPrompt {
   id                      String           @id @default(uuid())
@@ -20,6 +23,7 @@ model eventPrompt {
   eventInviteType         Int?
   userJoinEvent           userJoinEvent[]
   userFavorEvent          userFavorEvent[]
+
 }
 
 model account {
@@ -32,6 +36,8 @@ model account {
   userTouser     userTouser[]
   userJoinEvent  userJoinEvent[]
   userFavorEvent userFavorEvent[]
+
+  @@index(fields: [userName])
 }
 
 model picture {

@@ -96,11 +96,11 @@ const Usercontent = () => {
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    <Image src={worldIcon} width={23} height={25}/>
+                                    <Image src={worldIcon} width={23} height={25} alt='World Icon'/>
                         </div>
                                 
                         <div className={styles['settingOption']}>
-                                <Image src={setting}  height={20} width={20} onClick={handleOptionToggle}/>
+                                <Image src={setting}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/>
                                
                         </div>
                         <div>

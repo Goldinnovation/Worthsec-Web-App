@@ -25,15 +25,17 @@ exports.searchUserbyUser = async (req, res, next) => {
     const searchUserName = req.body.searchValue
 
     try {
-        const searchUser = await prisma.account.findMany({
+       const searchUser = await prisma.account.findMany({
             where: {
 
                 userName: searchUserName
+            },
+            include: {
+                picture: true
             }
         })
 
-
-        // console.log('connected to the db')
+        console.log(searchUser)
         res.status(200).json(searchUser)
 
 
@@ -43,8 +45,7 @@ exports.searchUserbyUser = async (req, res, next) => {
         return res.status(400).json({ message: "Could not find User", error })
 
     }
-
-
+      
 
 }
 
@@ -65,32 +66,32 @@ exports.searchUserbyUser = async (req, res, next) => {
  */
 
 
-exports.findUserProfilimage = async (req, res) => {
+// exports.findUserProfilimage = async (req, res) => {
 
 
-    const userParam = await req.params.id
+//     const userParam = await req.params.id
 
-    try {
+//     try {
 
-        if (userParam) {
+//         if (userParam) {
 
-            const userImage = await prisma.picture.findFirst({
-                where: {
-                    picture_owner_id: userParam
-                }
-            });
-            // console.log(userImage);
-            res.json(userImage)
-        }
-        else {
-            res.status(401).json({ error: 'user could not be find' })
-        }
+//             const userImage = await prisma.picture.findFirst({
+//                 where: {
+//                     picture_owner_id: userParam
+//                 }
+//             });
+//             // console.log(userImage);
+//             res.json(userImage)
+//         }
+//         else {
+//             res.status(401).json({ error: 'user could not be find' })
+//         }
 
 
-    } catch (error) {
-        console.log('failed to connect to db')
-        console.log(error)
-        res.status(500).send('Error getting the Imagedata')
-    }
-}
+//     } catch (error) {
+//         console.log('failed to connect to db')
+//         console.log(error)
+//         res.status(500).send('Error getting the Imagedata')
+//     }
+// }
 

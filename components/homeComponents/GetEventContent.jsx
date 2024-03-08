@@ -190,8 +190,8 @@ const GetEventContent = () => {
        <div className='contentCreateSection'>
        <div className='eventContentSection'>
             {allEventContent?.map((event, i) => (
-             <div className='eventContentSectionArea'>
-                <div key={i} className='eventContentKey' >
+             <div key={i} className='eventContentSectionArea'>
+                <div className='eventContentKey' >
                         <div className='eventContent'>
                             
                             <div className='ImageCoverContent' onClick={() => handleEventtoggle(event)}>
@@ -283,7 +283,7 @@ const GetEventContent = () => {
 
                                          <div className='eventWindowNavOptions'>
                                             <div className='eventeyeSection' onClick={handleEventToggle}>
-                                            <Image  src={eyeIcon} width={18} height={18} />
+                                            <Image  src={eyeIcon} width={18} height={18} alt='Eye Icon' />
                                             </div>
                                           
                                                 {eventOptions && (
@@ -294,16 +294,16 @@ const GetEventContent = () => {
 
                                                             
                                                             <div className='eventoptionsDelete'>
-                                                                 <Image src={setting}  width={18} height={18} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
+                                                                 <Image src={setting} alt='current user event delete Icon'  width={18} height={18} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
                                                             </div>
                                                             <div className='eventoptionMessage'>
-                                                                <Image src={message} width={18} height={18}/>
+                                                                <Image src={message} alt='current user event message Icon' width={18} height={18}/>
                                                             </div>
                                                             <div className='eventoptionAddOtherUser'>
-                                                               <Image src={addUser} width={18} height={18} onClick={handleUserToggleInvite}/>
+                                                               <Image src={addUser}alt='current user add Icon' width={18} height={18} onClick={handleUserToggleInvite}/>
                                                             </div>
                                                             <div>
-                                                            <Image src={infoIcon} width={18} height={18} onClick={handleEventInfo}/>
+                                                            <Image src={infoIcon} width={18} height={18} alt='current user info icon' onClick={handleEventInfo}/>
                                                             </div>
                                                     </div>
                                                 )}

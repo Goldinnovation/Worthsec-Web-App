@@ -136,7 +136,7 @@ const DisplayJoinEvent = ({}) => {
                     {displayEvent.map((event, i) => (
                         <div key={i}>
                             <div className={styles["imageContainer"]} onClick={() => handleEventObj(event)}>
-                            <Image src={event.ImageCoverUpload} className={styles['JoinedEventImgObj']}  width={100} height={100}/>           
+                            <Image src={event.ImageCoverUpload} className={styles['JoinedEventImgObj']} alt='current user joined EVent' width={100} height={100}/>           
                             </div>
                         
                             </div>
