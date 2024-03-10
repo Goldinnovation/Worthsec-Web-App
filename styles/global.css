@@ -1566,7 +1566,7 @@ appearance: none;
 }
 
 .eventInvitationLayer{
-     background-color: rgba(35, 105, 191, 0.336);
+     /* background-color: #c8c8c816; */
      width: 400px;
      margin-left: 5%;
      border-radius: 10px;
@@ -1584,14 +1584,17 @@ appearance: none;
 .userInviteSearch{
     /* background-color: rgb(215, 34, 34); */
     width: 412px;
-    height: 40px;
+    height: 70px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    gap: 10%;
+    margin-bottom: 1%;
 }
 
 .userInviteInput{
+    background-color: rgba(255, 255, 255, 0.948);
     width: 60%;
     height: 20px;
     border-radius: 50px;
@@ -1612,6 +1615,40 @@ appearance: none;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+
+
+/* Create Section_ Closefriends area */
+
+
+.closefriends_Section{
+   /* background-color: #4fff1959; */
+  
+   height: 100px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 10%;
+
+
+}
+
+.closefriends_Content{
+    /* background-color: gray; */
+    width: 70px;
+    height: 80px;
+    text-align: center;
+    margin-top: 20%;
+}
+.inviteCloseFriends_ProfilImg{
+   border-radius: 50%;
+}
+
+
+.closefriends_title{
+    color: rgba(255, 255, 255, 0.751);
 }
 
 .eventOptionContentArea{
@@ -1848,6 +1885,5 @@ appearance: none;
     margin-right: 3%;
     cursor: pointer;
 }
-
 
 

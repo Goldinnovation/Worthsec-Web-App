@@ -15,17 +15,21 @@ exports.getCloseFriends = async (req, res) => {
         },
       });
 
-      const friendData = currentUserFriends[0].userFollowed;
+    
       if (currentUserFriends.length > 0) {
+        const arrobj = currentUserFriends.map((friendsId) =>friendsId.userFollowed)
+        
         const closefriendsData = await prisma.account.findMany({
           where: {
-            userId: friendData,
+            userId:{
+              in: arrobj
+            } 
           },
           include: {
             picture: true,
           },
         });
-        console.log(closefriendsData);
+        // console.log(closefriendsData);
         res.json(closefriendsData);
       }
     }

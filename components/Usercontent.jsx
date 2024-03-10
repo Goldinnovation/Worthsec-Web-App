@@ -15,6 +15,7 @@ import ExploreContent from './exploreComponents/ExploreContent'
 import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
 import setting from '@assets/Coversetting.png'
 import worldIcon from '@assets/worldIcon.svg'
+import notificationIcon from '@assets/notifi.png'
 
 const Usercontent = () => {
 
@@ -96,7 +97,7 @@ const Usercontent = () => {
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    <Image src={worldIcon} width={23} height={25} alt='World Icon'/>
+                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon'/>
                         </div>
                                 
                         <div className={styles['settingOption']}>
