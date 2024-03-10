@@ -105,11 +105,14 @@
 .DisplayUserSection{
     
     /* background-color: rgba(187, 187, 187, 0.063); */
+    background-color: rgba(199, 199, 199, 0.133);
+
     width: 380px;
-    height: 190px;
+    height: 290px;
     position: absolute;
-    top: 15%;
+    top: 18%;
     left: 85%;
+    left: 81%;
     transform: translate(-50%,-50%);
     border-radius: 10px ;
     border: 1px solid rgba(255, 255, 255, 0.321);

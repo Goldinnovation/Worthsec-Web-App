@@ -25,6 +25,8 @@ const Usercontent = () => {
     const [explorePage, setExplorePage] = useState(true)
     const [homePage, setHomePage] = useState(false)
     const [optionToggle, setOptionToggle] = useState(false)
+    const [notifcation, setNotification] = useState(false)
+
 
     // const router = useRouter();
 
@@ -36,6 +38,7 @@ const Usercontent = () => {
 
         setSearchArea(!searchArea)
         setOptionToggle(false)
+        setNotification(false)
 
     }
 
@@ -43,6 +46,7 @@ const Usercontent = () => {
         setExplorePage(true)
         setHomePage(false)
         setSearchArea(false)
+        setNotification(false)
 
     }
 
@@ -50,6 +54,7 @@ const Usercontent = () => {
         setHomePage(true)
         setExplorePage(false)
         setSearchArea(false)
+        setNotification(false)
     }
 
 
@@ -59,6 +64,11 @@ const Usercontent = () => {
 
     }
 
+
+    const handleNotification = () => {
+        setNotification(!notifcation)
+        setSearchArea(false)
+    }
 
 
   return (
@@ -97,7 +107,7 @@ const Usercontent = () => {
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon'/>
+                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/>
                         </div>
                                 
                         <div className={styles['settingOption']}>
@@ -105,6 +115,13 @@ const Usercontent = () => {
                                
                         </div>
                         <div>
+                       
+                        {notifcation && (
+                                    <div className={styles['notificationSection']}>
+                                        sddsd
+                                    </div>
+                        )}
+                       
                         {optionToggle && (
                                     <div className={styles['userOptionLayer']}>
                                         <div className={styles['userOptionUpper']}>

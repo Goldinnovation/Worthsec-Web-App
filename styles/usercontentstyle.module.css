@@ -531,3 +531,22 @@
     background: linear-gradient(5deg, #151716, #2097b4, #17171727);
 
 }
+
+
+
+/* Notification Section */
+.notificationSection{
+    background-color: rgba(199, 199, 199, 0.133);
+    width: 380px;
+    height: 290px;
+    position: absolute;
+    top: 18%;
+    left: 86.6%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    /* border: 1px solid white; */
+    border: 1px solid rgba(255, 255, 255, 0.321);
+
+    
+    
+}
