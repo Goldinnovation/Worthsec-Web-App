@@ -1,14 +1,11 @@
 generator client {
   provider = "prisma-client-js"
- 
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-
 
 model eventPrompt {
   id                      String           @id @default(uuid())
@@ -23,7 +20,6 @@ model eventPrompt {
   eventInviteType         Int?
   userJoinEvent           userJoinEvent[]
   userFavorEvent          userFavorEvent[]
-
 }
 
 model account {
@@ -67,12 +63,13 @@ model userFavorEvent {
 }
 
 model userTouser {
-  userTouserId     String   @id @default(uuid())
-  userRequested    account  @relation(fields: [userRequested_id], references: [userId])
+  userTouserId     String         @id @default(uuid())
+  userRequested    account        @relation(fields: [userRequested_id], references: [userId])
   userRequested_id String
   userFollowed     String
   userStatus       Int
-  createdAt        DateTime @default(now())
+  createdAt        DateTime       @default(now())
+  notification     notification[]
 }
 
 model session {
@@ -80,4 +77,10 @@ model session {
   sid    String   @unique
   sess   String
   expire DateTime
+}
+
+model notification {
+  notificationId     String     @id @default(uuid())
+  otherUserFollow    userTouser @relation(fields: [otherUserfollow_Id], references: [userTouserId])
+  otherUserfollow_Id String
 }
