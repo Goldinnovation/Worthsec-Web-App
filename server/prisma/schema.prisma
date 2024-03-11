@@ -32,6 +32,7 @@ model account {
   userTouser     userTouser[]
   userJoinEvent  userJoinEvent[]
   userFavorEvent userFavorEvent[]
+  notification   notification[]
 
   @@index(fields: [userName])
 }
@@ -81,6 +82,8 @@ model session {
 
 model notification {
   notificationId     String     @id @default(uuid())
+  currentUser        account    @relation(fields: [currentUser_Id], references: [userId])
+  currentUser_Id     String
   otherUserFollow    userTouser @relation(fields: [otherUserfollow_Id], references: [userTouserId])
   otherUserfollow_Id String
 }
