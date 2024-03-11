@@ -29,6 +29,7 @@ const userJoinEvent = require('./router/userJoinEvent')
 const displayUserJoinEvent = require('./router/displayJoinedEvents')
 const searchForCloseFriend = require('./router/userClosefriends')
 const inviteCloseFriends = require('./router/invitefriends')
+const userNotifications = require('./router/userNotifications')
 
 
 
@@ -89,6 +90,8 @@ app.prepare().then(() => {
     server.use('/api/DisplayJoinedEvent', displayUserJoinEvent)
     server.use('/api/searchforclosefriends', searchForCloseFriend)
     server.use('/api/invite', inviteCloseFriends)
+    server.use('/api/notifications', userNotifications)
+
     
 
 
