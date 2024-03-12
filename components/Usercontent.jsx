@@ -16,6 +16,8 @@ import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
 import setting from '@assets/Coversetting.png'
 import worldIcon from '@assets/worldIcon.svg'
 import notificationIcon from '@assets/notifi.png'
+import DisplayNotifications from '@utils/header/DisplayNotifications'
+
 
 const Usercontent = () => {
 
@@ -118,7 +120,7 @@ const Usercontent = () => {
                        
                         {notifcation && (
                                     <div className={styles['notificationSection']}>
-                                        sddsd
+                                        <DisplayNotifications/>
                                     </div>
                         )}
                        
