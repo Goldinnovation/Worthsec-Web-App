@@ -42,7 +42,7 @@ exports.searchUser_friends = async (req, res) => {
             include: {
                 notification: {
                     select: {
-                        userTOuserNotified_id: true
+                        notificationId: true
                     }
                 }
             }
@@ -82,7 +82,6 @@ exports.searchUser_friends = async (req, res) => {
             } 
             else {
                 console.log("status is already updated");
-                console.log(onConnectionexist[0].notification);
                 res.status(200).json(onConnectionexist)
             }
 
@@ -209,26 +208,30 @@ exports.followUser = async (req, res) => {
 
 exports.unFollowUser = async (req, res) => {
 
-    const userConnection_id = req.body
-    console.log(userConnection_id);
-    console.log(userConnection_id.unFollowUserId);
+    const userConnection_id = req.body.unFollowUserId
+    const otherUserNotification_Id = req.body.userNotificationId
 
     try {
         // deletes the connection of the users 
-        const deleteNotification = await prisma.notification.delete({
-            where: {
-                otherUserfollow_Id: userConnection_id.unFollowUserId
+        if(req.body){
+            const deleteNotification = await prisma.notification.delete({
+                where: {
+                    notificationId: otherUserNotification_Id
+                }
+            })
+            if(deleteNotification){
+                const deleteUserconnection = await prisma.userTouser.delete({
+                    where: {
+        
+                        userTouserId: userConnection_id
+                    }
+                })
+                console.log("successful deleted")
+                res.status(200).json({ message: "User unFollowed user" })
+    
             }
-        })
-        const deleteUserconnection = await prisma.userTouser.delete({
-            where: {
-
-                userTouserId: userConnection_id.unFollowUserId
-            }
-        })
-        console.log("successful deleted")
-        res.status(200).json({ message: "User unFollowed user" })
-
+        }
+        
     } catch (error) {
         console.log(error)
         return req.status(400).json({ message: "Bad Request for unFollowUser handler" })

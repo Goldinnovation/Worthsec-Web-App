@@ -76,6 +76,7 @@ const SearchInput = () => {
   const [userUnFollowArea, setUserUnFollowArea] = useState(false)
   // const [userfriendsData, setuserFriendsData] = useState(null)
   const [userFriendsId, setuserFriendId] = useState(null)
+  const [userNotification, setUserNotificaton] = useState(null)
 
 
   // const handleChange = async(e) => {
@@ -98,9 +99,8 @@ const SearchInput = () => {
       })
 
       const data = await res.json()
-      console.log(data)
 
-      if (res.ok && data.length === 1) {
+      if (res.ok && data.length >= 1) {
         setUserUnFollowArea(true)
         setuserFollowArea(false)
 
@@ -113,6 +113,7 @@ const SearchInput = () => {
       else if (!res.ok) {
         throw new Error(' Error: Bad response')
       }
+
       return data
 
 
@@ -155,7 +156,7 @@ const SearchInput = () => {
 
 
   // unfollow the user 
-  const UnFollowUserFetch = async (unFollowUserId) => {
+  const UnFollowUserFetch = async (unFollowUserId,userNotificationId) => {
 
     try {
       const res = await fetch(`http://localhost:3000/api/userTouser`,
@@ -164,7 +165,9 @@ const SearchInput = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ unFollowUserId })
+          body: JSON.stringify({ 
+            unFollowUserId,
+          userNotificationId })
 
         })
 
@@ -201,10 +204,11 @@ const SearchInput = () => {
 
       if (userIdData !== "") {
         try {
-          // console.log("init")
-          const checkifexitasFriend = await checkifUserexist(userIdData)
-          // console.log(checkifexitasFriend)
-          setuserFriendId(checkifexitasFriend)
+         
+          const checkifexitasFriend = await checkifUserexist(userIdData) 
+          console.log(checkifexitasFriend[0].notification); //notificationId
+          setuserFriendId(checkifexitasFriend)  //userTouserObject
+          setUserNotificaton(checkifexitasFriend[0].notification)
 
 
         } catch (error) {
@@ -223,7 +227,6 @@ const SearchInput = () => {
         const encodedSearchQuery = encodeURI("http://localhost:3000/api/userTouser")
         // console.log("search:", encodedSearchQuery)
         const requestUserInfo = await queryUser(searchQuery)
-
         setDisplayUserInfo(requestUserInfo)
       
 
@@ -323,13 +326,19 @@ const SearchInput = () => {
                     <div className={searchstyle['displayUserName']}>
                       {event.userName}
 
-
+                    
+                  
 
                     </div>
                     <div className={searchstyle['searchFollowOption']}>
                       {userUnFollowArea && (
+                         
                         <div className={searchstyle["SearchFollowArea"]}>
-                          <button onClick={() => UnFollowUserFetch(userFriendsId[0].userTouserId)}>Unfollow</button>
+                           {userNotification?.map((event, i) => (
+                            <div key={i}>
+                                <button onClick={() => UnFollowUserFetch(userFriendsId[0].userTouserId, event.notificationId)}>Unfollow</button>
+                            </div>
+                          ))}
                         </div>
                       )}
                       {userFollowArea && (
