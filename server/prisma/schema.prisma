@@ -81,9 +81,9 @@ model session {
 }
 
 model notification {
-  notificationId     String     @id @default(uuid())
-  currentUser        account    @relation(fields: [currentUser_Id], references: [userId])
-  currentUser_Id     String
-  otherUserFollow    userTouser @relation(fields: [otherUserfollow_Id], references: [userTouserId])
-  otherUserfollow_Id String
+  notificationId        String     @id @default(uuid())
+  currentUser           account    @relation(fields: [currentUser_Id], references: [userId])
+  currentUser_Id        String
+  userTOuserNotified    userTouser @relation(fields: [userTOuserNotified_id], references: [userTouserId])
+  userTOuserNotified_id String
 }
