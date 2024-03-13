@@ -5,6 +5,7 @@ import OrangeAddbtn from '@assets/O-add-btn.png'
 import Networkbtn from '@utils/Networkbtn'
 import Image from 'next/image'
 import DisplayJoinEvent from './DisplayJoinEvent'
+import controleIcon from  '@assets/controle3d.png'
 
 
 
@@ -40,9 +41,13 @@ const UserFeedArea = () => {
             <div className='feed-area'>
                 <div className='user-feed-nav'>
                     {/* <div className='timeline-btn-area' onClick={togglemodalCalender}><TimeLayer/></div> */}
+                    {/* <div className='network-btn-area' onClick={togglemodalnetwork}><Networkbtn /></div> */}
                     <div className='network-btn-area' onClick={togglemodalnetwork}><Networkbtn /></div>
+
                     <div className="btn-area">
-                        <button className='add-btn' onClick={togglemodalAddArea}><Image src={OrangeAddbtn} alt='imgbtn' height={20} width={20} /></button>
+                        {/* <button className='add-btn' onClick={togglemodalAddArea}><Image src={OrangeAddbtn} alt='imgbtn' height={20} width={20} /></button> */}
+                       <Image src={controleIcon} alt='imgbtn' height={40} width={40}  onClick={togglemodalAddArea}></Image>
+
                     </div>
 
 

@@ -17,6 +17,10 @@ import setting from '@assets/Coversetting.png'
 import worldIcon from '@assets/worldIcon.svg'
 import notificationIcon from '@assets/notifi.png'
 import DisplayNotifications from '@utils/header/DisplayNotifications'
+import SettingIcon  from '@assets/setting3d.png'
+import MailIcon from '@assets/Mail3d.png'
+import Search3dIcon from '@assets/search3d.png'
+
 
 
 const Usercontent = () => {
@@ -99,21 +103,31 @@ const Usercontent = () => {
                             </div>
                         <div className={styles['searchOption']}>
                         <Image
-                            src={searchIcon}
+                            // src={searchIcon}
+                            // alt="searchIcon"
+                            // className="search-Icon"
+                            // height={20}
+                            // width={20}
+                            // onClick={handleToggleSearch}
+                            src={Search3dIcon}
                             alt="searchIcon"
                             className="search-Icon"
-                            height={20}
-                            width={20}
+                            height={35}
+                            width={35}
                             onClick={handleToggleSearch}
                         />
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/>
+                                    {/* <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/> */}
+                                    <Image src={MailIcon} width={35} height={35} alt='World Icon' onClick={handleNotification}/>
+
                         </div>
                                 
                         <div className={styles['settingOption']}>
-                                <Image src={setting}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/>
+                                {/* <Image src={SettingIcon}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/> */}
+                                <Image src={SettingIcon}  alt='Setting Icon' height={30} width={30}   onClick={handleOptionToggle}/>
+
                                
                         </div>
                         <div>
@@ -151,6 +165,7 @@ const Usercontent = () => {
             </div>
             <div className='NavbarMenu' >   
                        <button className='homebtn' onClick={homeToggle}>H</button>
+
                        <button className='explorebtn' onClick={exploreToggle}>E</button>
             </div>  
               

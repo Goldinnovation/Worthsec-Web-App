@@ -3,6 +3,7 @@ import styles from "@styles/userFriends.module.css"
 import {debounce} from 'lodash'
 import Image from 'next/image'
 import { da } from 'date-fns/locale'
+import connectFriends from '@assets/confriends.png'
 
 
 
@@ -180,7 +181,7 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
         <div className={styles["friendsSlideSection"]} >
             <div  className={styles["friendsSlideSection_left"]}>
                 <div className={styles["friendsSlideSection_Icon"]} onClick={handleToggleInput}>
-                    
+                    <Image src={connectFriends} width={30} height={30} onClick={handleToggleInput}/>
                 </div>
                 <div >
                     {inputSectionToggle && (
