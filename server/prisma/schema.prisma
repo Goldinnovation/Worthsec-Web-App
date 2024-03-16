@@ -39,14 +39,14 @@ model account {
 
 model picture {
   id               String   @id @default(uuid())
-  pictureUrl       String
   picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
   picture_owner_id String   @unique
+  pictureUrl       String
   createdAt        DateTime @default(now())
 }
 
 model userJoinEvent {
-  Joinid       String      @id @default(uuid())
+  JoinId       String      @id @default(uuid())
   joined_user  account     @relation(fields: [user_id], references: [userId])
   user_id      String
   joined_event eventPrompt @relation(fields: [event_id], references: [id])
