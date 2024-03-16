@@ -7,21 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model eventPrompt {
-  id                      String            @id @default(uuid())
-  eventHost               String
-  eventTitle              String
-  eventType               Int               @db.Integer
-  eventDate               DateTime          @db.Date
-  eventDescriptionContent String
-  eventTime               String
-  ImageCoverUpload        String
-  createdAt               DateTime          @default(now())
-  eventInviteType         Int?
-  userJoinEvent           userJoinEvent[]
-  userFavourEvent         userFavourEvent[]
-}
-
 model account {
   userId          String            @id @default(uuid())
   userName        String            @unique
@@ -38,11 +23,26 @@ model account {
 }
 
 model picture {
-  id               String   @id @default(uuid())
+  pictureId        String   @id @default(uuid())
   picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
   picture_owner_id String   @unique
   pictureUrl       String
   createdAt        DateTime @default(now())
+}
+
+model eventPrompt {
+  id                      String            @id @default(uuid())
+  eventHost               String
+  eventTitle              String
+  eventType               Int               @db.Integer
+  eventDate               DateTime          @db.Date
+  eventDescriptionContent String
+  eventTime               String
+  ImageCoverUpload        String
+  createdAt               DateTime          @default(now())
+  eventInviteType         Int?
+  userJoinEvent           userJoinEvent[]
+  userFavourEvent         userFavourEvent[]
 }
 
 model userJoinEvent {

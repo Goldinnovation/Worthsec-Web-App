@@ -80,12 +80,12 @@ exports.createProfilImage = async(req,res, next) => {
     // console.log(pictureData.picture_owner_id)
 
     try{
-        const exitPic = await prisma.picture.findUnique({
+        const existPic = await prisma.picture.findUnique({
             where: {picture_owner_id: req.user.userId}
         })
        
 
-        if(exitPic){
+        if(existPic){
            
             const updatePic =  await prisma.picture.update({
                 where: {picture_owner_id: req.user.userId
