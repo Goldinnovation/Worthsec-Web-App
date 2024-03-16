@@ -18,6 +18,7 @@ model account {
   userJoinEvent   userJoinEvent[]
   userFavourEvent userFavourEvent[]
   notification    notification[]
+  event           event[]
 
   @@index(fields: [userName])
 }
@@ -30,8 +31,9 @@ model picture {
   createdAt        DateTime @default(now())
 }
 
-model eventPrompt {
-  id                      String            @id @default(uuid())
+model event {
+  eventId                 String            @id @default(uuid())
+  userId_EventHost        account           @relation(fields: [eventHost], references: [userId])
   eventHost               String
   eventTitle              String
   eventType               Int               @db.Integer
@@ -46,21 +48,21 @@ model eventPrompt {
 }
 
 model userJoinEvent {
-  JoinId       String      @id @default(uuid())
-  joined_user  account     @relation(fields: [user_id], references: [userId])
+  joinId       String   @id @default(uuid())
+  joined_user  account  @relation(fields: [user_id], references: [userId])
   user_id      String
-  joined_event eventPrompt @relation(fields: [event_id], references: [id])
+  joined_event event    @relation(fields: [event_id], references: [eventId])
   event_id     String
-  createdAt    DateTime    @default(now())
+  createdAt    DateTime @default(now())
 }
 
 model userFavourEvent {
-  favourId       String      @id @default(uuid())
-  user_favoured  account     @relation(fields: [currentUser_id], references: [userId])
+  favourId       String   @id @default(uuid())
+  user_favoured  account  @relation(fields: [currentUser_id], references: [userId])
   currentUser_id String
-  favored_event  eventPrompt @relation(fields: [event_id], references: [id])
+  favored_event  event    @relation(fields: [event_id], references: [eventId])
   event_id       String
-  createdAt      DateTime    @default(now())
+  createdAt      DateTime @default(now())
 }
 
 model userTouser {

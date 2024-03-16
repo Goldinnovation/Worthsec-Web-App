@@ -63,7 +63,7 @@ exports.DisplaygetEventbyjoinId = async(req,res) => {
         if(req.user && body){
 
             
-            const eventData = await prisma.eventPrompt.findMany({
+            const eventData = await prisma.event.findMany({
                 where:{
                     id: {
                         in: body.eventid

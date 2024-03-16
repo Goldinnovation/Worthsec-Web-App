@@ -44,7 +44,7 @@ exports.exploreEvents = async(req,res) => {
     try{
          if(req.user && selectedType !== undefined && inviteNum !== undefined){
             // console.log('sdsd');
-            const getselectedEvents = await prisma.eventPrompt.findMany({
+            const getselectedEvents = await prisma.event.findMany({
                 where: {
                     eventType: selectedType,
                     eventInviteType: inviteNum

@@ -17,9 +17,9 @@ const storage = getStorage();
 /**
  * Purpose Statement--createEvent
  *  The user can create an event, by entering the requested information such as like name,date,time,Image, description and type of event. 
- *  After the accomplishment of the process the data will be stored in the eventprompt database table.
+ *  After the accomplishment of the process the data will be stored in the event database table.
  *  Unless the Image file, this will be stored on a external database. I choose for the project Worthsec firebase cloud storage. 
- *  After storing the image file on the cloud, firebase will generate a url as respond. This url will be stored in the eventprompt database table. 
+ *  After storing the image file on the cloud, firebase will generate a url as respond. This url will be stored in the event database table. 
  *  Enabling the presentation of the Image on the client side 
  * 
 
@@ -110,7 +110,7 @@ exports.createEvent = async (req, res) => {
             
           
 
-            const newCreateEvent = await prisma.eventPrompt.create({
+            const newCreateEvent = await prisma.event.create({
                 data:
                 {
                     eventHost: userId,
@@ -190,7 +190,7 @@ exports.findEvents = async(req,res) => {
     try{
         if(req.user){
             
-            const userEvents =  await prisma.eventPrompt.findMany({
+            const userEvents =  await prisma.event.findMany({
                 where: {
                     eventHost: req.user.userId
                 },
