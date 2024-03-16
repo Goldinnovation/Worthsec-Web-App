@@ -13,28 +13,28 @@ const prisma = new PrismaClient()
 /**
  * Function Signature--userFavorEvent
  * 
- * @param {string} favor_user_id - The value represents the ID of the current user that favored the Event.
- * @param {string} favor_event_id - The value represents the ID of the Event that was favored by the user.
+ * @param {string} currentUserId - The value represents the ID of the current user that favored the Event.
+ * @param {string} favour_event_Id - The value represents the ID of the Event that was favored by the user.
  * @returns {string} Returns a statement that the user was successfully stored in the FavorEvent table.
  */
 
 exports.userFavorEvent = async (req, res) => {
 
-    const favor_user_id = req.user.userId
-    const favor_event_id = req.body.favoreventId
+    const currentUserId = req.user.userId
+    const favour_event_Id = req.body.favoreventId
 
     try {
         if (req.user && req.body) {
 
-            const userfavoredEvent = await prisma.userFavorEvent.create({
+            const userfavoredEvent = await prisma.userFavourEvent.create({
                 data:
                 {
-                    user_id: favor_user_id,
-                    event_id: favor_event_id
+                    currentUser_id: currentUserId,
+                    event_id: favour_event_Id
                 }
             })
 
-            // console.log(userfavoredEvent)
+            console.log(userfavoredEvent)
             res.status(200).json({ message: "user successfully favored a event" })
         }
 
