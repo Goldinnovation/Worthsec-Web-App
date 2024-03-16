@@ -11,7 +11,7 @@ exports.getCloseFriends = async (req, res) => {
       const currentUserFriends = await prisma.userTouser.findMany({
         where: {
           userRequested_id: user.userId,
-          userStatus: 2,
+          connection_status: 2,
         },
       });
 

@@ -114,7 +114,7 @@ exports.followUser = async (req, res) => {
                     data: {
                         userRequested_id: currentUser.userId,
                         userFollowed: otherUser_id.userIdData,
-                        userStatus: 1
+                        connection_status: 1
                     }
                 })
                 if (createUserasFriend) {

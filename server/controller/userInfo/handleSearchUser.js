@@ -51,47 +51,6 @@ exports.searchUserbyUser = async (req, res, next) => {
 
 
 
-/** 
- * Purpose Statement--findUserProfilimage
- * The finduserProfilImage handler logic recieves an other user parameter id from the clien side and queries with it an image path from the picture database table 
- * 
-*/
 
 
-
-/**
- * Function Signature--findUserProfilimage
- * @param {string} userParam - other user Id
- * @returns {object} Returns an object from the picture table.
- */
-
-
-// exports.findUserProfilimage = async (req, res) => {
-
-
-//     const userParam = await req.params.id
-
-//     try {
-
-//         if (userParam) {
-
-//             const userImage = await prisma.picture.findFirst({
-//                 where: {
-//                     picture_owner_id: userParam
-//                 }
-//             });
-//             // console.log(userImage);
-//             res.json(userImage)
-//         }
-//         else {
-//             res.status(401).json({ error: 'user could not be find' })
-//         }
-
-
-//     } catch (error) {
-//         console.log('failed to connect to db')
-//         console.log(error)
-//         res.status(500).send('Error getting the Imagedata')
-//     }
-// }
 

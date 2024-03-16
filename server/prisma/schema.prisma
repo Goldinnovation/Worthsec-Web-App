@@ -64,13 +64,13 @@ model userFavorEvent {
 }
 
 model userTouser {
-  userTouserId     String         @id @default(uuid())
-  userRequested    account        @relation(fields: [userRequested_id], references: [userId])
-  userRequested_id String
-  userFollowed     String
-  userStatus       Int
-  createdAt        DateTime       @default(now())
-  notification     notification[]
+  userTouserId      String         @id @default(uuid())
+  userRequested     account        @relation(fields: [userRequested_id], references: [userId])
+  userRequested_id  String
+  userFollowed      String
+  connection_status Int
+  createdAt         DateTime       @default(now())
+  notification      notification[]
 }
 
 model notification {

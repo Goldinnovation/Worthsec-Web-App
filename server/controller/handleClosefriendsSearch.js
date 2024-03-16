@@ -38,7 +38,7 @@ exports.searchforClosefriends = async(req,res) => {
                         where: {
                             userRequested_id: currentUser,
                             userFollowed: searchforUser.userId,
-                            userStatus: 2
+                            connection_status: 2
                         },
                     });
                     
