@@ -49,13 +49,14 @@ Worthsec is a social platform that offers accessibility for diverse groups of pe
 - [x] Sign up
 - [x] CRUD
 - [x] Search
-- [ ] Share
 - [x] Follow
 - [x] Explore
+- [X] Favor
+- [ ] Notification - in process 
+- [ ] Chat
 - [ ] Chat 
 - [ ] Invite 
-- [X] Favor
-- [X] Join 
+- [ ] Share
 
 
 
@@ -84,7 +85,7 @@ Worthsec is a social platform that offers accessibility for diverse groups of pe
 - user can favor events 
 - user can share events with friends 
 - user chat in events 
-- user favor events 
+- user can receive notification from friends 
 
 
 ## Conceptual Data Model 

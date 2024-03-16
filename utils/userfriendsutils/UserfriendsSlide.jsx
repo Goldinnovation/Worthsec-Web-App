@@ -180,9 +180,9 @@ const fetchsearchFriend = async(searchfriendsvalue) => {
     <div className={styles["friendsSlideLayer"]}>
         <div className={styles["friendsSlideSection"]} >
             <div  className={styles["friendsSlideSection_left"]}>
-                <div className={styles["friendsSlideSection_Icon"]} onClick={handleToggleInput}>
-                    <Image src={connectFriends} width={30} height={30} onClick={handleToggleInput}/>
-                </div>
+                {/* <div className={styles["friendsSlideSection_Icon"]} onClick={handleToggleInput}> */}
+                    <button className={styles["closefriends-slider-btn"]}  onClick={handleToggleInput}><Image src={connectFriends} width={30} height={30} onClick={handleToggleInput}/></button>
+                {/* </div> */}
                 <div >
                     {inputSectionToggle && (
                         <div className={styles["friendsSlidepopLayer"]}>

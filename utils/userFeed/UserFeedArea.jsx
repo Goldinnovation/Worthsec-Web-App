@@ -46,7 +46,7 @@ const UserFeedArea = () => {
 
                     <div className="btn-area">
                         {/* <button className='add-btn' onClick={togglemodalAddArea}><Image src={OrangeAddbtn} alt='imgbtn' height={20} width={20} /></button> */}
-                       <Image src={controleIcon} alt='imgbtn' height={40} width={40}  onClick={togglemodalAddArea}></Image>
+                        <button className='add-btn1'><Image src={controleIcon} alt='imgbtn' height={40} width={40}  onClick={togglemodalAddArea}></Image></button>
 
                     </div>
 

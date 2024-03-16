@@ -375,6 +375,12 @@ appearance: none;
         width: 40px;
     
     }
+    .add-btn1{
+        background-color: rgba(100, 99, 99, 0.162);
+        width: 60px;
+        border-radius: 10%;
+
+    }
     
     .Timeline-btn{
         /* background-color: rgba(189, 189, 189, 0.365); */
@@ -387,6 +393,14 @@ appearance: none;
         background-color: rgba(247, 247, 247, 0.233);
         width: 40px;
     }
+
+    .Network-btn1{
+        background-color: rgba(0, 0, 0, 0.19);
+        width: 60px;
+        border-radius: 10%;
+
+    }
+
     
     
     .Setting-btn{
@@ -394,6 +408,8 @@ appearance: none;
         width: 40px;
     }
     
+
+  
     .btn-area{
        
         height: 20px;

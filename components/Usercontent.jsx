@@ -103,30 +103,31 @@ const Usercontent = () => {
                             </div>
                         <div className={styles['searchOption']}>
                         <Image
-                            // src={searchIcon}
-                            // alt="searchIcon"
-                            // className="search-Icon"
-                            // height={20}
-                            // width={20}
-                            // onClick={handleToggleSearch}
-                            src={Search3dIcon}
+                            src={searchIcon}
                             alt="searchIcon"
                             className="search-Icon"
-                            height={35}
-                            width={35}
+                            height={20}
+                            width={20}
                             onClick={handleToggleSearch}
+                            // src={Search3dIcon}
+                            // alt="searchIcon"
+                            // className="search-Icon"
+                            // height={25}
+                            // width={25}
+                            // onClick={handleToggleSearch}
                         />
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    {/* <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/> */}
-                                    <Image src={MailIcon} width={35} height={35} alt='World Icon' onClick={handleNotification}/>
+                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/>
+                                    {/* <Image src={MailIcon} width={25} height={25} alt='World Icon' onClick={handleNotification}/> */}
 
                         </div>
                                 
                         <div className={styles['settingOption']}>
-                                {/* <Image src={SettingIcon}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/> */}
-                                <Image src={SettingIcon}  alt='Setting Icon' height={30} width={30}   onClick={handleOptionToggle}/>
+                                <Image src={setting}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/>
+                                {/* <Image src={SettingIcon}  alt='Setting Icon' height={25} width={25}   onClick={handleOptionToggle}/> */}
+
 
                                
                         </div>
