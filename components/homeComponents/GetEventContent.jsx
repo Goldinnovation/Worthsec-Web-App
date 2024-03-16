@@ -83,7 +83,7 @@ const GetEventContent = () => {
     const [eventInfo, setEventInfo] = useState(true)
 
     const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
-        // refreshInterval: 5000,
+        refreshInterval: 5000,
         // revalidateOnFocus: false
     })
 
