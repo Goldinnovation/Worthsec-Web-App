@@ -73,17 +73,17 @@ model userTouser {
   notification     notification[]
 }
 
+model notification {
+  notificationId           String     @id @default(uuid())
+  account                  account    @relation(fields: [currentUser_notified_Id], references: [userId])
+  currentUser_notified_Id  String
+  userTOuser               userTouser @relation(fields: [userTouser_connection_id], references: [userTouserId])
+  userTouser_connection_id String
+}
+
 model session {
   id     Int      @id @default(autoincrement())
   sid    String   @unique
   sess   String
   expire DateTime
-}
-
-model notification {
-  notificationId        String     @id @default(uuid())
-  currentUser           account    @relation(fields: [currentUser_Id], references: [userId])
-  currentUser_Id        String
-  userTOuserNotified    userTouser @relation(fields: [userTOuserNotified_id], references: [userTouserId])
-  userTOuserNotified_id String
 }

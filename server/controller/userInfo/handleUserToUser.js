@@ -34,63 +34,26 @@ exports.searchUser_friends = async (req, res) => {
          * responds with an object of length 1, if the current user is already following the other user
          * if the current user has no record with the other user it will return an object with length of 0 
          */
-        const onConnectionexist = await prisma.userTouser.findMany({
-            where: {
-                userRequested_id: currentUser.userId,
-                userFollowed: otherUser_id,
-            }, 
-            include: {
-                notification: {
-                    select: {
-                        notificationId: true
-                    }
-                }
-            }
-        })
-
-        
-        /**
-         *if the lenth of 1 confirmed the logic will check if there is a oppsite record object from the other user pesepective 
-         if this yes the user will check the status of the currentuser and it is on 1 it will update it to 2 and if it's on 2 it will return 
-         an object with a length of one, which also stands for the status is already updated 
-         */
-        // console.log(checkifConnectionExist?.length);
-        if (onConnectionexist?.length === 1) {
-
-            const checkOtherUserStatus = await prisma.userTouser.findMany({
+        if(currentUser){
+            const onConnectionexist = await prisma.userTouser.findMany({
                 where: {
-                    userRequested_id: otherUser_id,
-                    userFollowed: currentUser.userId
+                    userRequested_id: currentUser.userId,
+                    userFollowed: otherUser_id,
+                }, 
+                include: {
+                    notification: {
+                        select: {
+                            notificationId: true
+                        }
+                    }
                 }
             })
-           
-            // console.log(checkifConnectionExist[0].userStatus)
-            const updatecurrentUserstate = onConnectionexist[0].userTouserId
-            const usercurrentconnectionstate = onConnectionexist[0].userStatus
-
-            if (checkOtherUserStatus?.length === 1 && usercurrentconnectionstate === 1) {
-                const newUserconnecitonState = await prisma.userTouser.update({
-                    where: {
-                        userTouserId: updatecurrentUserstate
-                    },
-                    data: {
-                        userStatus: 2
-                    }
-                })
-                console.log("updated the state of the current user");
-                res.status(200).json(checkOtherUserStatus)
-            } 
-            else {
-                console.log("status is already updated");
-                res.status(200).json(onConnectionexist)
-            }
-
-
-        } else {
-
-
+            console.log(onConnectionexist);
             res.status(200).json(onConnectionexist)
+        }else{
+            return res.status(500).json({message: "User could not be found"})
         }
+        
 
 
     } catch (error) {
@@ -157,8 +120,8 @@ exports.followUser = async (req, res) => {
                 if (createUserasFriend) {
                     const createotherUserNotification = await prisma.notification.create({
                         data: {
-                            currentUser_Id: currentUser.userId,
-                            userTOuserNotified_id: createUserasFriend.userTouserId
+                            currentUser_notified_Id: currentUser.userId,
+                            userTouser_connection_id: createUserasFriend.userTouserId
                         }
                     })
                     console.log(createotherUserNotification);
@@ -186,11 +149,6 @@ exports.followUser = async (req, res) => {
 // -------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-
-
 /**
  * Purpose Statement--unFollowUser
  * 
@@ -210,6 +168,7 @@ exports.unFollowUser = async (req, res) => {
 
     const userConnection_id = req.body.unFollowUserId
     const otherUserNotification_Id = req.body.userNotificationId
+    
 
     try {
         // deletes the connection of the users 
