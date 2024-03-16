@@ -138,7 +138,8 @@ const SearchInput = () => {
 
         })
       const data = await res.json()
-      if (res.ok && data.message === "User followed user") {
+      console.log(data);
+      if (res.ok && data.message === 'User followed user') {
         setuserFollowArea(false)
         setUserUnFollowArea(true)
 
@@ -203,13 +204,15 @@ const SearchInput = () => {
     const fetchUserPic = async () => {
 
       if (userIdData !== "") {
+        console.log(userIdData);
         try {
          
           const checkifexitasFriend = await checkifUserexist(userIdData) 
-          console.log(checkifexitasFriend[0].notification); //notificationId
-          setuserFriendId(checkifexitasFriend)  //userTouserObject
+          if(checkifexitasFriend?.length > 0){
+            setuserFriendId(checkifexitasFriend)  //userTouserObject
           setUserNotificaton(checkifexitasFriend[0].notification)
-
+          }
+        
 
         } catch (error) {
           console.error("error fetching ther user pic", error)
