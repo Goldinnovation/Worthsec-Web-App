@@ -77,6 +77,8 @@ const SearchInput = () => {
   // const [userfriendsData, setuserFriendsData] = useState(null)
   const [userFriendsId, setuserFriendId] = useState(null)
   const [userNotification, setUserNotificaton] = useState(null)
+  const [refreshComponent, setRefreshComponenet] = useState(false)
+  const [refreshDeleteComponent, setRefreshDeleteComponent] = useState(false)
 
 
   // const handleChange = async(e) => {
@@ -99,8 +101,8 @@ const SearchInput = () => {
       })
 
       const data = await res.json()
-
-      if (res.ok && data.length >= 1) {
+       console.log(data.length);
+      if (res.ok && data.length === 1) {
         setUserUnFollowArea(true)
         setuserFollowArea(false)
 
@@ -138,10 +140,15 @@ const SearchInput = () => {
 
         })
       const data = await res.json()
-      console.log(data);
-      if (res.ok && data.message === 'User followed user') {
+      console.log("followUserFetch:",data);
+      if (res.ok && data.message === "currentUser follows now otherUser") {
+        console.log('init');
         setuserFollowArea(false)
         setUserUnFollowArea(true)
+        console.log('out');
+        setRefreshComponenet(true)
+        setRefreshDeleteComponent(false)
+
 
       } else if (!res.ok) {
         console.log('Res error')
@@ -177,6 +184,10 @@ const SearchInput = () => {
       if (res.ok && data.message === "User unFollowed user") {
         setuserFollowArea(true)
         setUserUnFollowArea(false)
+        console.log('Delete is called');
+        setRefreshDeleteComponent(true)
+        setRefreshComponenet(false)
+
 
       } else if (!res.ok) {
         console.log('Res error')
@@ -204,13 +215,14 @@ const SearchInput = () => {
     const fetchUserPic = async () => {
 
       if (userIdData !== "") {
-        console.log(userIdData);
+       
         try {
-         
+         console.log("refresh");
           const checkifexitasFriend = await checkifUserexist(userIdData) 
           if(checkifexitasFriend?.length > 0){
             setuserFriendId(checkifexitasFriend)  //userTouserObject
           setUserNotificaton(checkifexitasFriend[0].notification)
+          
           }
         
 
@@ -252,18 +264,15 @@ const SearchInput = () => {
 
 
     // debounce will execute the api request after a timeslot of 500 ms 
-
     const debounceFetch = debounce(fetchUserInfo, 500);
+
 
     // debounce is based on the input, so every time there is certain pause the funciton will be executed 
     debounceFetch(searchQuery)
 
-    // Interval for a periodic fetch 
-    // const intervalId = setInterval(() => {
-    //   fetchUserPic()
-    // }, 5000)
+   
 
-    // Initial fetch
+    // Execute fetchUserPic initially
     fetchUserPic()
 
 
@@ -273,7 +282,7 @@ const SearchInput = () => {
       debounceFetch.cancel()
     }
 
-  }, [searchQuery, userIdData])
+  }, [searchQuery, userIdData, refreshComponent, refreshDeleteComponent])
 
 
   // const handleSearchQuery = (e) => {
@@ -337,11 +346,8 @@ const SearchInput = () => {
                       {userUnFollowArea && (
                          
                         <div className={searchstyle["SearchFollowArea"]}>
-                           {userNotification?.map((event, i) => (
-                            <div key={i}>
-                                <button onClick={() => UnFollowUserFetch(userFriendsId[0].userTouserId, event.notificationId)}>Unfollow</button>
-                            </div>
-                          ))}
+                          
+                           <button onClick={() => UnFollowUserFetch(userFriendsId[0].userTouserId, userNotification[0].notificationId)}>Unfollow</button>
                         </div>
                       )}
                       {userFollowArea && (

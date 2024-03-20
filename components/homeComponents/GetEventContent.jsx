@@ -227,7 +227,7 @@ const GetEventContent = () => {
 
         
         
-       {selectedEvent && selectedEvent.id && (
+       {selectedEvent && selectedEvent.eventId && (
                                 
                         
                                 // <div className='eventWindoOverlay' > 

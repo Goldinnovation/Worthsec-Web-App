@@ -34,7 +34,7 @@ exports.searchUser_friends = async (req, res) => {
          * responds with an object of length 1, if the current user is already following the other user
          * if the current user has no record with the other user it will return an object with length of 0 
          */
-        if(currentUser){
+        if(currentUser && otherUser_id){
             const onConnectionexist = await prisma.userTouser.findMany({
                 where: {
                     userRequested_id: currentUser.userId,
@@ -93,7 +93,6 @@ exports.followUser = async (req, res) => {
 
     const currentUser = req.user
     const otherUser_id = req.body
-    console.log(otherUser_id)
 
     try {
 
@@ -117,6 +116,9 @@ exports.followUser = async (req, res) => {
                         connection_status: 1
                     }
                 })
+                        
+                     
+
                 if (createUserasFriend) {
                     const createotherUserNotification = await prisma.notification.create({
                         data: {
@@ -126,13 +128,14 @@ exports.followUser = async (req, res) => {
                     })
                     console.log(createotherUserNotification);
                     
-                res.status(200).json({ message: "User followed user" })
+                // res.status(200).json({message: "User followed user" })
+                res.status(200).json({message: "currentUser follows now otherUser" })
                 }
 
             } else {
 
                 console.log("User followes already user")
-                res.status(200).json({ message: " User followed user" })
+                res.status(200).json({ message: "User followes already user" })
 
             }
         }
@@ -172,12 +175,15 @@ exports.unFollowUser = async (req, res) => {
 
     try {
         // deletes the connection of the users 
-        if(req.body){
+        if(userConnection_id && otherUserNotification_Id){
+            console.log(userConnection_id);
+            console.log(otherUserNotification_Id);
             const deleteNotification = await prisma.notification.delete({
                 where: {
                     notificationId: otherUserNotification_Id
                 }
             })
+            console.log(deleteNotification)
             if(deleteNotification){
                 const deleteUserconnection = await prisma.userTouser.delete({
                     where: {

@@ -233,7 +233,7 @@ exports.deleteEvent = async(req,res) => {
         if(!id){
             res.status(400).json({message: 'Image could not be found, provoke bad request'})
         }else{
-            const deletedEvent = await prisma.eventPrompt.delete({
+            const deletedEvent = await prisma.event.delete({
                 where: {id: id},
             })
             console.log('Event is successfull deleted from the db ');
