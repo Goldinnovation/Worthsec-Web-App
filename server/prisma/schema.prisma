@@ -29,6 +29,8 @@ model picture {
   picture_owner_id String   @unique
   pictureUrl       String
   createdAt        DateTime @default(now())
+
+  @@index(fields: [picture_owner_id])
 }
 
 model event {
@@ -45,6 +47,8 @@ model event {
   eventInviteType         Int?
   userJoinEvent           userJoinEvent[]
   userFavourEvent         userFavourEvent[]
+
+  @@index(fields: [eventHost])
 }
 
 model userJoinEvent {
@@ -73,6 +77,8 @@ model userTouser {
   connection_status Int
   createdAt         DateTime       @default(now())
   notification      notification[]
+
+  @@index(fields: [userRequested_id, userFollowed])
 }
 
 model notification {
@@ -82,6 +88,7 @@ model notification {
   userTOuser               userTouser @relation(fields: [userTouser_connection_id], references: [userTouserId])
   userTouser_connection_id String
 }
+
 
 model session {
   id     Int      @id @default(autoincrement())

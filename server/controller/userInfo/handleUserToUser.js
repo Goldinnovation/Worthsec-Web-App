@@ -126,9 +126,7 @@ exports.followUser = async (req, res) => {
                             userTouser_connection_id: createUserasFriend.userTouserId
                         }
                     })
-                    console.log(createotherUserNotification);
                     
-                // res.status(200).json({message: "User followed user" })
                 res.status(200).json({message: "currentUser follows now otherUser" })
                 }
 
