@@ -34,12 +34,12 @@ exports.searchUser_friends = async (req, res) => {
          * responds with an object of length 1, if the current user is already following the other user
          * if the current user has no record with the other user it will return an object with length of 0 
          */
-        if(currentUser && otherUser_id){
+        if (currentUser && otherUser_id) {
             const onConnectionexist = await prisma.userTouser.findMany({
                 where: {
                     userRequested_id: currentUser.userId,
                     userFollowed: otherUser_id,
-                }, 
+                },
                 include: {
                     notification: {
                         select: {
@@ -50,10 +50,10 @@ exports.searchUser_friends = async (req, res) => {
             })
             console.log(onConnectionexist);
             res.status(200).json(onConnectionexist)
-        }else{
-            return res.status(500).json({message: "User could not be found"})
+        } else {
+            return res.status(500).json({ message: "User could not be found" })
         }
-        
+
 
 
     } catch (error) {
@@ -116,8 +116,6 @@ exports.followUser = async (req, res) => {
                         connection_status: 1
                     }
                 })
-                        
-                     
 
                 if (createUserasFriend) {
                     const createotherUserNotification = await prisma.notification.create({
@@ -126,8 +124,8 @@ exports.followUser = async (req, res) => {
                             userTouser_connection_id: createUserasFriend.userTouserId
                         }
                     })
-                    
-                res.status(200).json({message: "currentUser follows now otherUser" })
+
+                    res.status(200).json({ message: "currentUser follows now otherUser" })
                 }
 
             } else {
@@ -169,11 +167,11 @@ exports.unFollowUser = async (req, res) => {
 
     const userConnection_id = req.body.unFollowUserId
     const otherUserNotification_Id = req.body.userNotificationId
-    
+
 
     try {
         // deletes the connection of the users 
-        if(userConnection_id && otherUserNotification_Id){
+        if (userConnection_id && otherUserNotification_Id) {
             console.log(userConnection_id);
             console.log(otherUserNotification_Id);
             const deleteNotification = await prisma.notification.delete({
@@ -182,19 +180,19 @@ exports.unFollowUser = async (req, res) => {
                 }
             })
             console.log(deleteNotification)
-            if(deleteNotification){
+            if (deleteNotification) {
                 const deleteUserconnection = await prisma.userTouser.delete({
                     where: {
-        
+
                         userTouserId: userConnection_id
                     }
                 })
                 console.log("successful deleted")
                 res.status(200).json({ message: "User unFollowed user" })
-    
+
             }
         }
-        
+
     } catch (error) {
         console.log(error)
         return req.status(400).json({ message: "Bad Request for unFollowUser handler" })

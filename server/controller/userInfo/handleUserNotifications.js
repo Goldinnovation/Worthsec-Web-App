@@ -10,7 +10,7 @@ exports.getUserNotification = async (req, res) => {
 
 
     try {
-        if (req.user) {
+        if (currentUser) {
             const trackNotification = await prisma.notification.findMany({
                 where: {
                     currentUser_notified_Id: currentUser.userId
