@@ -4,21 +4,21 @@ const prisma = new PrismaClient()
 
 
 /**
- * Purpose Statement--userFavorEvent
- * The function allows the current user to favor an Event. 
- * Furthermore it gives the user the ability to store and  retrieve the data for a period of time.
+ * Purpose Statement--userFavourEvent
+ * The function allows the current user to favour an Event. 
+ * Furthermore it gives the user the ability to store and retrieve the data for a period of time.
 
 
 
 /**
- * Function Signature--userFavorEvent
+ * Function Signature--userFavourEvent
  * 
- * @param {string} currentUserId - The value represents the ID of the current user that favored the Event.
- * @param {string} favour_event_Id - The value represents the ID of the Event that was favored by the user.
- * @returns {string} Returns a statement that the user was successfully stored in the FavorEvent table.
+ * @param {string} currentUserId - The value represents the ID of the current user that favoured the Event.
+ * @param {string} favour_event_Id - The value represents the ID of the Event that was favoured by the user.
+ * @returns {string} Returns a statement that the user was successfully stored in the userFavourEvent table.
  */
 
-exports.userFavorEvent = async (req, res) => {
+exports.userFavourEvent = async (req, res) => {
 
     const currentUserId = req.user.userId
     const favour_event_Id = req.body.favoreventId

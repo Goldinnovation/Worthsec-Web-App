@@ -6,7 +6,7 @@ const handleFavorEvent = require('../controller/handleFavorEvent')
 
 
 
-router.post('/', handleFavorEvent.userFavorEvent )
+router.post('/', handleFavorEvent.userFavourEvent)
 
 
 module.exports = router

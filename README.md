@@ -79,10 +79,9 @@ Worthsec is a social media platform that offers accessibility for diverse groups
 - [x] Follow - Implemented 
 - [x] Explore events - Implemented
 - [x] Join - Implemented   
-- [ ] Favour - in process
+- [x] Favour - in process
 - [ ] Notification - in process 
 - [ ] Chat - Not Implemented 
-- [ ] Chat - Not Implemented
 - [ ] Invite - Not Implemented
 - [ ] Share- Not Implemented
 
@@ -102,6 +101,18 @@ The application has little data because it is still in the development phase. Pl
 </br>
 </br>
 
+## Annotation to Index Strategies:
+
+Index strategies are applied to four tables: 
+- account: Target column - `userName` 
+- event: Target column - `eventHost`
+- picture: Target column - `picture_owner_id`
+- userTouser: Target column - `userRequested_id` and `userFollwed` 
+
+
+</br>
+</br>
+</br>
 
 ## Set up and connect the Database: 
 
@@ -151,12 +162,6 @@ Please note that for these common steps, you need to set up Node.js and use the 
 <img src="image-3.png" alt="Prisma Client Operation Example" style="width:400px;"/>
 
 
-
-
-
-</br>
-</br>
-</br>
 
 
 
