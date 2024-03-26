@@ -79,7 +79,7 @@ Worthsec is a social media platform that offers accessibility for diverse groups
 - [x] Follow - Implemented 
 - [x] Explore events - Implemented
 - [x] Join - Implemented   
-- [x] Favour - in process
+- [x] Favour - Implemented
 - [ ] Notification - in process 
 - [ ] Chat - Not Implemented 
 - [ ] Invite - Not Implemented
