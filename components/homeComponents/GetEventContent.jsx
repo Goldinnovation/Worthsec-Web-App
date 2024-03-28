@@ -81,6 +81,7 @@ const GetEventContent = () => {
     const [eventOptions, setEventOptions] = useState(false)
     const [userInviteSection, setUserInviteSection] = useState(false)
     const [eventInfo, setEventInfo] = useState(true)
+    // const [rerender, setRerender] = useState(false)
 
     const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
         refreshInterval: 5000,
@@ -89,7 +90,7 @@ const GetEventContent = () => {
 
 
 
-
+   
     const handleEventToggle = () => {
         setEventOptions(!eventOptions)
 
@@ -122,7 +123,10 @@ const GetEventContent = () => {
 // Deletes the Event Object 
     const handleDelete = async(eventId,eventpath) => {
         try{
+            console.log(eventId);
+            console.log(eventpath);
             await deleteobj(eventId,eventpath)
+            
 
             // Look this area up 
            
@@ -163,24 +167,6 @@ const GetEventContent = () => {
 
     
     
-    // useEffect(() => {
-        
-    //     const fetchEventData =  async() => {
-    //         const data = await getContent();
-
-    //         setAllEventContent(data)
-            
-
-    //     }
-
-    //     const intervalId = setInterval(fetchEventData, 2000)
-
-    //     fetchEventData();
-       
-    //     return () => clearInterval(intervalId)
-    // },[])
-
-
   return (
 
     <>
@@ -296,7 +282,7 @@ const GetEventContent = () => {
 
                                                             
                                                             <div className='eventoptionsDelete'>
-                                                                 <Image src={setting} alt='current user event delete Icon'  width={18} height={18} onClick={() => handleDelete(selectedEvent.id, selectedEvent.ImageCoverUpload)}/>
+                                                                 <Image src={setting} alt='current user event delete Icon'  width={18} height={18} onClick={() => handleDelete(selectedEvent.eventId, selectedEvent.ImageCoverUpload)}/>
                                                             </div>
                                                             <div className='eventoptionMessage'>
                                                                 <Image src={message} alt='current user event message Icon' width={18} height={18}/>

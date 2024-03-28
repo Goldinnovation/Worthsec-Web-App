@@ -78,7 +78,6 @@ exports.createEvent = async (req, res) => {
         // gets the url of the post 
         const downloadImageUrl = await getDownloadURL(snapshot.ref)
 
-        res.status(200).json({ message: "file successful uploaded" });
 
 
         // Converts the eventtype to an int
@@ -127,8 +126,10 @@ exports.createEvent = async (req, res) => {
 
           
             console.log(newCreateEvent, "successful uploaded")
+            res.status(200).json({ message: "file successful uploaded" });
+
             
-            // res.status(200).json({messaage: "successful uploaded on the database"})
+            // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
 
 
         } catch (error) {
@@ -234,7 +235,7 @@ exports.deleteEvent = async(req,res) => {
             res.status(400).json({message: 'Image could not be found, provoke bad request'})
         }else{
             const deletedEvent = await prisma.event.delete({
-                where: {id: id},
+                where: {eventId: id},
             })
             console.log('Event is successfull deleted from the db ');
             res.status(200).json({message: "Event is successfull deleted from the db "})

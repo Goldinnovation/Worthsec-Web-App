@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React  from 'react'
 import OrangeAddbtn from '@assets/O-add-btn.png'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 
 
 const Createbtn = () => {
-  const [imagePreview, setImagePreview] = useState(null)
+   const [imagePreview, setImagePreview] = useState(null)
    const [model, setModel] = useState(false)
    const router = useRouter();
     
@@ -124,12 +124,11 @@ const Createbtn = () => {
       }
   
       const data = await res.json(); 
-
-      console.log(data);
+      togglemodal(!model);
       setEventData('')
       setImagePreview("")
       
-      togglemodal(!model);
+      
       
   
       
@@ -139,6 +138,7 @@ const Createbtn = () => {
     }
 
    }
+
 
 
 
