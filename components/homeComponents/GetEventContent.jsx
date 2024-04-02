@@ -230,8 +230,8 @@ const GetEventContent = () => {
                                             <div className='eventWindowLayer'>
                                          <div className='eventWindowImage'>
                                         <Image src={selectedEvent.ImageCoverUpload} className='eventWindowImageContent'  
-                                        width={400}
-                                        height={350}
+                                        width={470}
+                                        height={400}
                                         quality={100}
                                         alt='Cover of Job ad'/>
                                         </div>

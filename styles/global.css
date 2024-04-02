@@ -306,10 +306,10 @@ appearance: none;
        .feed-area{
             
         display: flex;
-        background-color: rgba(255, 80, 191, 0.288);
+        /* background-color: rgba(124, 255, 80, 0.11); */
             height: 560px;
             margin: 0.5%;
-            border: 1px solid rgb(220, 220, 220) ;
+            /* border: 1px solid rgb(220, 220, 220) ; */
        }
     
     } 
@@ -349,7 +349,7 @@ appearance: none;
         height: 490px;
         margin: 1%;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.897);
+        /* border: 1px solid rgba(255, 255, 255, 0.897); */
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -1037,6 +1037,33 @@ appearance: none;
         }
     }
 
+    
+    @media screen and (min-width:2000px){
+
+        
+    .DisplayEventArea{
+        /* background: linear-gradient(5deg, #151716, #10272d, #17171727); */
+        /* background: linear-gradient(1deg, #5e5e5e80, #6768680e, #88bcfc00, #4a4848); */
+        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
+        /* background-color: rgb(204, 255, 192); */
+
+        border: 1px solid rgba(255, 255, 255, 0.196);
+        border-radius: 10px;
+        width: 25%;
+        /* height: 450px; */
+        overflow: hidden;
+        animation: jumpOut 1s ease-out;
+      
+    }
+
+    }
+
+    
+       
+    @media screen and (max-width:2000px){
+         
+
     .DisplayEventArea{
         /* background: linear-gradient(5deg, #151716, #10272d, #17171727); */
         /* background: linear-gradient(1deg, #5e5e5e80, #6768680e, #88bcfc00, #4a4848); */
@@ -1046,13 +1073,18 @@ appearance: none;
 
         border: 1px solid rgba(255, 255, 255, 0.196);
         border-radius: 10px;
-        width: 500px;
+        width: 25%;
         height: 450px;
         margin-right: 10px;
         overflow: hidden;
         animation: jumpOut 1s ease-out;
       
     }
+
+
+    }
+    
+   
 
 
     .EventContentArea{
@@ -1078,12 +1110,11 @@ appearance: none;
         .AddEventContentArea{
             /* background-color: rgba(35, 35, 35, 0.397); */
             /* background-color: rgba(255, 9, 9, 0.86); */
-            display: flex;
+            /* display: flex; */
             margin-top: 30px;
-            width: 2400px;
-            height: 750px;
-            border: 1px solid rgba(255, 255, 255, 0.196);
-            
+            width: 100%;
+            /* height: 50px; */
+            /* border: 1px solid rgba(255, 255, 255, 0.196) */
             
     
             
@@ -1099,13 +1130,11 @@ appearance: none;
         display: flex;
         flex-direction: column; */
         background: linear-gradient(5deg, #151716, #10272d, #17171727);
-        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
-      
-       
+        background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);      
         border: 1px solid rgba(255, 255, 255, 0.196);
         border-radius: 10px;
-        width: 1300px;
-        height: 450px;
+        width: 70%;
+        height: 490px;
         overflow: hidden;
         animation: jumpOut 0.4s ease-out;
 
@@ -1116,12 +1145,13 @@ appearance: none;
     @media screen and (min-width:2000px){
     
         .eventContentSection{
-            background-color: rgba(103, 16, 16, 0.562);
+            /* background-color: rgba(30, 103, 16, 0.562); */
             display: flex;
-            width: 2150px;
+            width: 100%;
             height: 750px;
             flex-wrap: wrap;
             gap: 5%;
+            overflow: visible;
             /* padding: 0%; */
             
             
@@ -1140,6 +1170,8 @@ appearance: none;
             height: 350px;
             flex-wrap: wrap;
             gap: 5%;
+            overflow: visible;
+
             /* padding: 0%; */
             
             
@@ -1416,13 +1448,13 @@ appearance: none;
 }
 
 .eventWindowSection{
-    /* background-color:rgba(255, 0, 255, 0.244); */
+    /* background-color:rgba(185, 173, 185, 0.244); */
     /* position: absolute;
     top: 53.5%;
     left: 50%;
     transform: translate(-50%, -50%); */
-    width: 500px;
-    height: 450px;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -1464,13 +1496,6 @@ appearance: none;
     border-radius: 10px;
 }
 
-
-.eventWindowLayer{
-    /* background-color: #00ccff; */
-   
-    /* margin-right: 10%; */
-    
-}
 
 .eventWindowImage{
     /* background-color: rgba(25, 225, 2, 0.511); */
@@ -1521,7 +1546,8 @@ appearance: none;
 .eventWindowNav{
     /* background-color:rgba(8, 8, 8, 0.712); */
     /* background-color: rgb(0, 255, 98); */
-    width: 96%;
+    width: 100%;
+   
     height: 40px;
     display: flex;
     justify-content: flex-end;
@@ -1540,13 +1566,13 @@ appearance: none;
     display: flex;
     justify-content: center;
   
-    margin-left: 3%;
+    /* margin-left: 10%; */
     margin-right: 2%;
     width: 30px;
     height: 30px;
     /* width: 400px; */
     align-items: center;
-    margin-top: 1%;
+    /* margin-top: 5%; */
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.289);
    
