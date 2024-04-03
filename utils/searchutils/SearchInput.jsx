@@ -5,7 +5,7 @@ import useSWR, { preload } from 'swr'
 import Image from 'next/image'
 import { debounce } from 'lodash'
 import Gift from '@assets/3YKw.gif'
-import AddOtherUser from '@utils/connectUtils/AddOtherUser'
+
 
 
 
@@ -221,8 +221,8 @@ const SearchInput = () => {
          console.log("refresh");
           const checkifexitasFriend = await checkifUserexist(userIdData) 
           if(checkifexitasFriend?.length > 0){
-            setuserFriendId(checkifexitasFriend)  //userTouserObject
-          setUserNotificaton(checkifexitasFriend[0].notification)
+            setuserFriendId(checkifexitasFriend[0].userTouserId)  //userTouserObject
+          setUserNotificaton(checkifexitasFriend[0].notification[0].notificationId)
           
           }
         
@@ -348,13 +348,14 @@ const SearchInput = () => {
                          
                         <div className={searchstyle["SearchFollowArea"]}>
                           
-                           <button onClick={() => UnFollowUserFetch(userFriendsId[0].userTouserId, userNotification[0].notificationId)}>Unfollow</button>
+                           <button onClick={() => UnFollowUserFetch(userFriendsId, userNotification)}>Unfollow</button>
+                           
                         </div>
                       )}
                       {userFollowArea && (
                         <div className={searchstyle["SearchFollowArea"]}>
-                          {/* <button onClick={() => followUserFetch(userIdData)}>Follow</button> */}
-                          <AddOtherUser otherUserId={userIdData}/>
+                          <button onClick={() => followUserFetch(userIdData)}>Follow</button>
+                         
                         </div>
                       )}
 

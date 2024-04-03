@@ -1,38 +1,39 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react'
 import style from '@styles/searchStyle/searchpagestyle.module.css'
-import { useState } from 'react'
 
 
-function AddOtherUser(props) {
-    const [userFollowArea, setuserFollowArea] = useState(true)
+function UnAddotherUser(props) {
+    
     const [userUnFollowArea, setUserUnFollowArea] = useState(false)
     const [refreshComponent, setRefreshComponenet] = useState(false)
     const [refreshDeleteComponent, setRefreshDeleteComponent] = useState(false)
-  
 
-    // Follow other user 
-    
-  const followUserFetch = async (userIdData) => {
+
+  // unfollow the user 
+  const UnFollowUserFetch = async (unFollowUserId,userNotificationId) => {
+
     try {
-        console.log("UserIdData:", userIdData)
       const res = await fetch(`http://localhost:3000/api/userTouser`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userIdData })
+          body: JSON.stringify({ 
+            unFollowUserId,
+          userNotificationId })
 
         })
+
       const data = await res.json()
-      console.log("followUserFetch:",data);
-      if (res.ok && data.message === "currentUser follows now otherUser") {
-        console.log('init');
-        setuserFollowArea(false)
-        setUserUnFollowArea(true)
-        console.log('out');
-        setRefreshComponenet(true)
-        setRefreshDeleteComponent(false)
+
+      if (res.ok && data.message === "User unFollowed user") {
+        setuserFollowArea(true)
+        setUserUnFollowArea(false)
+        console.log('Delete is called');
+        setRefreshDeleteComponent(true)
+        setRefreshComponenet(false)
 
 
       } else if (!res.ok) {
@@ -41,31 +42,31 @@ function AddOtherUser(props) {
       }
 
 
+
+
+
     } catch (error) {
       console.error('fetch userID error for followUserFetch', error)
       throw error
     }
+
   }
-
-
-
-
-
 
   useEffect(() => {
 
   }, [props.otherUserId, refreshComponent, refreshDeleteComponent])
+
   return (
-    <div >
-        {userFollowArea && (
+    <div>
+         {userUnFollowArea && (
+                         
             <div className={style["SearchFollowArea"]}>
-                    <button  onClick={() => followUserFetch(props.otherUserId)}>Follow</button>
+              <button onClick={() => UnFollowUserFetch(props.unfollowotherUserId, props.notificationId)}>Unfollow</button>
             </div>
-        ) }
-       
+        )}
       
     </div>
   )
 }
 
-export default AddOtherUser
+export default UnAddotherUser
