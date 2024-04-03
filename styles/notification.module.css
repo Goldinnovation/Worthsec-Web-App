@@ -1,0 +1,38 @@
+.notificationSection{
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    /* border-top: 1px solid rgba(255, 255, 255, 0.248); */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.248);
+    margin-top: 3%;
+    gap: 5%;
+
+}
+
+.otherUserImg{
+    border-radius: 50%;
+    margin-left: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.requestedText_Content{
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    margin-left: 2%;
+    width: 50%;
+}
+.requestedText_Title{
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 590;
+}
+.requestedText_restText{
+    font-size: 18px;
+    font-family: sans-serif;
+    margin-left: 2%;
+    font-weight: 490;
+    /* font-size: medium; */
+}

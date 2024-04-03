@@ -173,35 +173,35 @@ const GetEventContent = () => {
      {/* after entering all necessary information to create an Event, A object will be generated as the event
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
        <div className='contentCreateSection'>
-       <div className='eventContentSection'>
-            {allEventContent?.map((event, i) => (
-             <div key={i} className='eventContentSectionArea'>
-                <div className='eventContentKey' >
-                        <div className='eventContent'>
+            <div className='eventContentSection'>
+                    {allEventContent?.map((event, i) => (
+                    <div key={i} className='eventContentSectionArea'>
+                        <div className='eventContentKey' >
+                                <div className='eventContent'>
+                                    
+                                    <div className='ImageCoverContent' onClick={() => handleEventtoggle(event)}>
+                                        <Image src={event.ImageCoverUpload} className='img-content-cover'  
+                                        // fill
+                                        width={180}
+                                        height={170}
+                                        quality={100}
+                                        alt='Cover of Job ad'/>
+                                        <div className='ImageEventTitle'>
+                                            <h2>{event.eventTitle}</h2>
+                                        </div>
+                                    </div>       
+                            </div>
+                            </div>
                             
-                            <div className='ImageCoverContent' onClick={() => handleEventtoggle(event)}>
-                                <Image src={event.ImageCoverUpload} className='img-content-cover'  
-                                // fill
-                                width={180}
-                                height={170}
-                                quality={100}
-                                alt='Cover of Job ad'/>
-                                <div className='ImageEventTitle'>
-                                    <h2>{event.eventTitle}</h2>
-                                </div>
-                            </div>       
-                      </div>
-                      </div>
+                        </div>
                     
-                </div>
+                    ))} 
             
-            ))} 
-    
-        </div>
+                </div>
 
         <div className='create-addbtn-area'>
             
-        
+       
             <Createbtn/>
         
         </div>

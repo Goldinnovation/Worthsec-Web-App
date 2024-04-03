@@ -120,7 +120,7 @@ exports.followUser = async (req, res) => {
                 if (createUserasFriend) {
                     const createotherUserNotification = await prisma.notification.create({
                         data: {
-                            currentUser_notified_Id: currentUser.userId,
+                            currentUser_notified_Id: otherUser_id.userIdData,
                             userTouser_connection_id: createUserasFriend.userTouserId
                         }
                     })

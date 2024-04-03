@@ -5,6 +5,7 @@ import useSWR, { preload } from 'swr'
 import Image from 'next/image'
 import { debounce } from 'lodash'
 import Gift from '@assets/3YKw.gif'
+import AddOtherUser from '@utils/connectUtils/AddOtherUser'
 
 
 
@@ -352,7 +353,8 @@ const SearchInput = () => {
                       )}
                       {userFollowArea && (
                         <div className={searchstyle["SearchFollowArea"]}>
-                          <button onClick={() => followUserFetch(userIdData)}>Follow</button>
+                          {/* <button onClick={() => followUserFetch(userIdData)}>Follow</button> */}
+                          <AddOtherUser otherUserId={userIdData}/>
                         </div>
                       )}
 
