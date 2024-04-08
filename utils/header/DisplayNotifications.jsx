@@ -36,6 +36,7 @@ const {data:displayNotification, error} = useSWR('http://localhost:3000/api/noti
 
                 <div className={style['notificationSection']}>
                 <div>
+                  {displayNotification.userName}
                     <Image src={`/${event.picture.pictureUrl}`}
                     width={60}
                     height={60}

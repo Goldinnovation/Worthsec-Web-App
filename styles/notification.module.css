@@ -28,15 +28,16 @@
     /* background-color: pink; */
     display: flex;
     align-items: center;
+    width: 100%;
     /* border-top: 1px solid rgba(255, 255, 255, 0.248); */
     border-bottom: 1px solid rgba(255, 255, 255, 0.248);
-    margin-top: 3%;
+    margin-top: 1%;
     gap: 5%;
 
 }
 
 .otherUserImg{
-    border-radius: 50%;
+    border-radius: 40%;
     margin-left: 20%;
     margin-top: 5%;
     margin-bottom: 5%;

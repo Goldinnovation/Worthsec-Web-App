@@ -89,8 +89,8 @@ const Usercontent = () => {
 
     const handleNotification = () => {
         setNotification(!notifcation)
-        setSearchArea(false)
         setConnectUserToggle(false)
+        setSearchArea(false)
         setEventInvitesToggle(false)
         setOptionToggle(false)
 

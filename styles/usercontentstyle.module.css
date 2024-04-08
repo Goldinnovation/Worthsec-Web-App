@@ -564,13 +564,28 @@
     left: 86.9%;
     transform: translate(-50%,-50%);
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-
+   
+    overflow: auto;
     /* border: 1px solid white; */
     border: 1px solid rgba(255, 255, 255, 0.321);
 
+}
+
+/* Scrollbar Modification */
+.notification_display_connectedUser::-webkit-scrollbar {
+    width: 11px; 
+   
+}
+
+.notification_display_connectedUser::-webkit-scrollbar-thumb {
+    background: #1a1a1a; 
+    border-radius: 6px; 
+    height: 30px;
+    
+}
+
+.notification_display_connectedUser::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }
 
 .notification_display_eventInvite{

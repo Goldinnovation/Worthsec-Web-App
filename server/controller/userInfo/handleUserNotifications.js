@@ -34,20 +34,25 @@ exports.getUserNotification = async (req, res) => {
                             }
                         }
                     })
-                  
-                const otherUserRequest = checkNotifications[0].userTOuser.userRequested_id
+                    // console.log(checkNotifications);
+                    const otherUserRequestedId = checkNotifications.map(connectId => connectId.userTOuser.userRequested_id)
+                    // console.log(otherUserRequestedId);
+                //   console.log(checkNotifications.userTOuser.userRequested_id);  
+                // const otherUserRequest = checkNotifications[0].userTOuser.userRequested_id
                 // console.log(otherUserRequest);
-                if(otherUserRequest){
-                    const getOtherUser = await prisma.account.findUnique({
+                if(otherUserRequestedId){
+                    const getOtherUser = await prisma.account.findMany({
                         where: {
-                            userId: otherUserRequest,
+                            userId: {
+                                in: otherUserRequestedId
+                            },
                         }, include: {
                             picture: true
                         }
                     })
 
-                    console.log(getOtherUser);
-                    res.json([getOtherUser])
+                    // console.log(getOtherUser);
+                    res.json(getOtherUser)
                 }
                     
             
