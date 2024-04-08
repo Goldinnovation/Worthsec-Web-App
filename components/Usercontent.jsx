@@ -22,7 +22,6 @@ import MailIcon from '@assets/Mail3d.png'
 import Search3dIcon from '@assets/search3d.png'
 
 
-
 const Usercontent = () => {
 
     
@@ -32,6 +31,9 @@ const Usercontent = () => {
     const [homePage, setHomePage] = useState(false)
     const [optionToggle, setOptionToggle] = useState(false)
     const [notifcation, setNotification] = useState(false)
+    const [connectUserToggle, setConnectUserToggle] = useState(false)
+    const [eventInvitesToggle, setEventInvitesToggle] = useState(false)
+
 
 
     // const router = useRouter();
@@ -45,6 +47,9 @@ const Usercontent = () => {
         setSearchArea(!searchArea)
         setOptionToggle(false)
         setNotification(false)
+        setConnectUserToggle(false)
+        setEventInvitesToggle(false)
+
 
     }
 
@@ -53,6 +58,10 @@ const Usercontent = () => {
         setHomePage(false)
         setSearchArea(false)
         setNotification(false)
+        setConnectUserToggle(false)
+        setEventInvitesToggle(false)
+
+
 
     }
 
@@ -61,12 +70,19 @@ const Usercontent = () => {
         setExplorePage(false)
         setSearchArea(false)
         setNotification(false)
+        setConnectUserToggle(false)
+        setEventInvitesToggle(false)
+
     }
 
 
     const handleOptionToggle = () => {
         setOptionToggle(!optionToggle)
         setSearchArea(false)
+        setConnectUserToggle(false)
+        setEventInvitesToggle(false)
+        setNotification(false)
+
 
     }
 
@@ -74,6 +90,21 @@ const Usercontent = () => {
     const handleNotification = () => {
         setNotification(!notifcation)
         setSearchArea(false)
+        setConnectUserToggle(false)
+        setEventInvitesToggle(false)
+        setOptionToggle(false)
+
+    }
+
+    const handleToggleConnect = () => {
+        setConnectUserToggle(true)
+        setEventInvitesToggle(false)
+    }
+    
+
+    const handleToggleEventInvite = () => {
+        setEventInvitesToggle(true)
+        setConnectUserToggle(false)
     }
 
 
@@ -134,10 +165,31 @@ const Usercontent = () => {
                         <div>
                        
                         {notifcation && (
-                                    <div className={styles['notificationSection']}>
-                                        <DisplayNotifications/>
+                                    <div className={styles['notificationOptionSection']}>
+                                        {/* <DisplayNotifications/> */}
+                                        <div>
+                                                <button onClick={handleToggleConnect}>1</button>
+                                        </div>
+                                        <div>
+                                                <button onClick={handleToggleEventInvite}>2</button>
+                                        </div>
+
                                     </div>
                         )}
+
+                        {
+                            connectUserToggle && (
+                                <div className={styles['notification_display_connectedUser']}>  
+                                <DisplayNotifications/>
+                                </div>
+                            )
+                        }
+                        {
+                            eventInvitesToggle && (
+                                <div className={styles['notification_display_eventInvite']}> trap</div>
+                            )
+                        }
+                        
                        
                         {optionToggle && (
                                     <div className={styles['userOptionLayer']}>

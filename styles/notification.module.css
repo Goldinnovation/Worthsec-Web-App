@@ -1,3 +1,29 @@
+.notificationBackLayer{
+    background-color: aqua;
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    height: 20px;
+    align-items: center;
+}
+
+
+.notificationConnect_toggle{
+    background-color: rgba(199, 199, 199, 0.133);
+    width: 300px;
+    height: 35px;
+    position: relative;
+    top: 200%;
+    left: 45.9%;
+    /* transform: translate(-50%,-50%); */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+    /* border: 1px solid white; */
+    border: 1px solid rgba(255, 255, 255, 0.321);
+
+}
 .notificationSection{
     /* background-color: pink; */
     display: flex;

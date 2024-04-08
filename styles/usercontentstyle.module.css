@@ -535,19 +535,56 @@
 
 
 /* Notification Section */
-.notificationSection{
+.notificationOptionSection{
     background-color: rgba(199, 199, 199, 0.133);
-    width: 380px;
-    height: 290px;
+    width: 400px;
+    height: 35px;
     position: absolute;
-    top: 19%;
-    left: 86.6%;
+    top: 7%;
+    left: 86.9%;
     transform: translate(-50%,-50%);
     border-radius: 10px;
-    overflow: visible;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
     /* border: 1px solid white; */
     border: 1px solid rgba(255, 255, 255, 0.321);
 
     
     
+}
+
+.notification_display_connectedUser{
+    background-color: rgba(199, 199, 199, 0.133);
+    width: 400px;
+    height: 255px;
+    position: absolute;
+    top: 21%;
+    left: 86.9%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    /* border: 1px solid white; */
+    border: 1px solid rgba(255, 255, 255, 0.321);
+
+}
+
+.notification_display_eventInvite{
+    background-color: rgba(199, 199, 199, 0.133);
+    width: 400px;
+    height: 255px;
+    position: absolute;
+    top: 21%;
+    left: 86.9%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+    /* border: 1px solid white; */
+    border: 1px solid rgba(255, 255, 255, 0.321);
 }
