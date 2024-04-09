@@ -12,7 +12,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 
 const DisplayNotifications = () => {
 // const [userNotification, setUserNotification] = useState(null)
-const {data:displayNotification, error} = useSWR('http://localhost:3000/api/notifications', fetcher,{
+const {data: displayNotification, error} = useSWR('http://localhost:3000/api/notifications', fetcher,{
    refreshInterval: 5000
 })
 
@@ -29,8 +29,10 @@ const {data:displayNotification, error} = useSWR('http://localhost:3000/api/noti
 // console.log(displayNotification)
   return (
     <div>
-       
-        {displayNotification?.map((event, i) => (
+
+      {
+        displayNotification  && displayNotification.map ? (
+          displayNotification.map((event, i) => (
             <div key={i}>
 
 
@@ -52,7 +54,13 @@ const {data:displayNotification, error} = useSWR('http://localhost:3000/api/noti
                 </div>
                 
             </div>
-        ))}
+        ))
+        ) : (
+          <p>Loading...</p>
+        )
+      }
+       
+       
     </div>
   )
 }
