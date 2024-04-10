@@ -21,8 +21,10 @@ exports.getUserNotification = async (req, res) => {
 
             // console.log(trackNotification.length);
             if(trackNotification.length === 0){
-                res.json({message: "User doesn't have any notifications"})
+                res.status(200).json({message: "User does not have any notifications"})
             }else{
+                // retrieves the currentuser related record from the notification database table and requested user id from the userTouser table 
+                // represents all users that follow the currentUser
                 const checkNotifications = await prisma.notification.findMany({
                         where: {
                             currentUser_notified_Id: currentUser.userId
@@ -34,11 +36,11 @@ exports.getUserNotification = async (req, res) => {
                             }
                         }
                     })
-                    // console.log(checkNotifications);
                     const followerId_arr = checkNotifications.map(connectId => connectId.userTOuser.userRequested_id)
                 
                    
-                  
+                //   Takes the requested user id to check if the currentUser follows the other user
+                //  represents filters users that the currentUser on follow 
                 if(followerId_arr){
 
                     const checkConnection =  await prisma.userTouser.findMany({
@@ -49,49 +51,52 @@ exports.getUserNotification = async (req, res) => {
                             }
                         }
                     })
-                    const otheruserId = checkConnection.map(otheruserId => otheruserId.userFollowed)
+                    // console.log(checkConnection.length);
+                    if(checkConnection.length > 0){
+                                // represents an array of the otheruserIds that the currentuser Follows 
+                            const otheruserId = checkConnection.map(otheruserId => otheruserId.userFollowed)
 
-                    const checkotherConnection =  await prisma.userTouser.findMany({
-                        where: {
-                            userRequested_id: {in: otheruserId},
-                            userFollowed: currentUser.userId
-                        }
-                    })
-
-                    console.log(checkotherConnection);
-
-
-                    const userconnectionId = checkConnection.map( connectionId => connectionId.userTouserId)
-                    const otherUserconnectionId = checkotherConnection.map( otherConnecitonId => otherConnecitonId.userTouserId)
-                    console.log(otherUserconnectionId);
-    
-                    if(checkConnection){
-
-                        const updateConnectionStatus1 = await prisma.userTouser.updateMany({
-                            where: {
-                                userTouserId: { in: userconnectionId}
-                            }, 
-                            data: {
-                                userRequested_id:currentUser.userId,
-                                connection_status: 2
-                            }
-                        })
-                        if(updateConnectionStatus1){
-                            const updateStausConnection2 = await prisma.userTouser.updateMany({
+                            const checkotherConnection =  await prisma.userTouser.findMany({
                                 where: {
-                                    userTouserId: { in: otherUserconnectionId}
-                                }, 
-                                data: {
-                                   
-                                    connection_status: 2
+                                    userRequested_id: {in: otheruserId},
+                                    userFollowed: currentUser.userId
                                 }
                             })
-                        }
-                       
-                    }
 
-                    
-                  
+                        
+
+                            // represents the pk id for the currentUser relation to otherusers 
+                            const userconnectionId = checkConnection.map( connectionId => connectionId.userTouserId)
+
+                            // represents the pk id for the otheruser relation to the currentUser
+                            const otherUserconnectionId = checkotherConnection.map( otherConnecitonId => otherConnecitonId.userTouserId)
+
+                            // represents update function for both connection status 
+                            if(userconnectionId && otherUserconnectionId){
+
+                                const updateConnectionStatus1 = await prisma.userTouser.updateMany({
+                                    where: {
+                                        userTouserId: { in: userconnectionId}
+                                    }, 
+                                    data: {
+                                        
+                                        connection_status: 2
+                                    }
+                                })
+                                if(updateConnectionStatus1){
+                                    const updateStausConnection2 = await prisma.userTouser.updateMany({
+                                        where: {
+                                            userTouserId: { in: otherUserconnectionId}
+                                        }, 
+                                        data: {
+                                        
+                                            connection_status: 2
+                                        }
+                                    })
+                                }
+                            
+                            }
+                    }
                     
 
                     // console.log(checkConnectionStatus);
@@ -105,7 +110,7 @@ exports.getUserNotification = async (req, res) => {
                         }
                     })
 
-                    console.log(getOtherUser);
+                    // console.log(getOtherUser);
                     res.json(getOtherUser)
                 }
                     
@@ -116,7 +121,7 @@ exports.getUserNotification = async (req, res) => {
          
             
         }else{
-            res.json({message: "User doesn't have any notifications"})
+            res.status(4000).json({message: "Client Error - currentUser is not available"})
         }
     } catch (error) {
         console.log(error)
