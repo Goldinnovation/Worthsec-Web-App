@@ -19,7 +19,7 @@
     /* background: linear-gradient(1deg, #15171600, #48c0dead, #17171706); */
     /* background-color: rgb(12, 20, 20); */
     display: flex;
-    height: 87%;
+    height: 88%;
     width: 100%;
     
     /* width: 40%; */
@@ -30,7 +30,7 @@
 .middleContentarea{
     /* background-color: rgba(202, 192, 138, 0.64); */
     /* background: linear-gradient(1deg, #0b3621, #10272d, #ff151527, #0b3621); */
-    background-color: violet;
+    /* background-color: violet; */
     /* width: 40%; */
     height: 6%;
     display: flex;
@@ -94,27 +94,69 @@
         /* background-color: orange; */
         width: 40%;
         display: flex; 
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        
 }
 
 .exploreEventContentRight{
     /* background-color: rgb(175, 255, 25); */
-   width: 70%;
+   width: 60%;
    display: flex;
+ 
    
    
 
 }
 
-.exploreEventCategorySection{
-    /* background-color: palevioletred; */
+.exploreEventSharedSection{
+    background-color: palevioletred;
     width: 7%;
+    display: flex;
+    flex-direction: column;
 }
-.exploreEventItem{
-    background-color: violet;
-    width: 75%;
-    height: 80%
+
+.exploreEventSharedHead{
+    /* background-color: orange; */
+    /* background: linear-gradient(1deg, #000000dc, #020202b4, #000000dc,#02020287, #000000); */
+    height: 10%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+   
+}
+.exploreEventhead{
+    /* background-color: violet; */
+    height: 9%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+    justify-content: space-between;
+
+    
+}
+
+.exploreEventheadMoodOpt{
+    background: linear-gradient(1deg, #000000dc, #020202b4, #000000dc,#02020287, #000000);
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+.exploreEventheadSharedOpt{
+    background: linear-gradient(1deg, #000000dc, #020202b4, #000000dc,#02020287, #000000);
+    width: 20%;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 1%;
+
 }
 .explorefeedContent{
     /* background-color: aqua; */
@@ -141,6 +183,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 1%;
+   
 }
 
 .explorefeedEventsHeadTitle{
@@ -259,8 +302,7 @@
 
 
 .exploreContentPopupOverlay{
-    background-color: rgba(27, 26, 26, 0.526);
-    background-color: rgba(185, 185, 185, 0.128);
+    background-color: rgba(3, 3, 3, 0.926);
 
     width: 100%;
     height: 100vh;
@@ -275,8 +317,11 @@
 
 .exploreContentPopupArea{
     /* background-color: rgba(235, 255, 235, 0.547); */
-    width: 40%;
-    height: 500px;
+    width: 70%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    
     position: absolute;
     top: 50%;
     left: 50%;
@@ -291,23 +336,25 @@
     /* background-color: rgba(235, 255, 235, 0.547); */
     /* border: 1px solid white; */
     height: 40px;
-    border-radius: 10px;
     display: flex; 
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    /* justify-content: center; */
 
 }
 
 .explorePopUpselectedTitle{
-    background-color: rgba(235, 255, 235, 0.547);
-    border: 1px solid white;
+    background-color: rgba(235, 255, 235, 0.252);
+    border: 1px solid rgba(255, 255, 255, 0.114);
+    color: white;
     height: 35px;
-    width: 500px;
-    border-radius: 10px;
-    margin-left: 90px;
-    display: flex;
-    justify-content: center;
-    padding-top: 1%;
+    width: 30%;
+    border-radius: 50px;
+    margin-left: 5%;
+    /* display: flex; */
+    text-align: center;
+    /* justify-content: center; */
+    /* padding-top: 1%; */
     
 }
 
@@ -325,15 +372,18 @@
     /* background-color: green; */
     /* background-color: rgba(235, 255, 235, 0.547);
     border: 1px solid white; */
+    height: 80%;
     border-radius: 10px;
     margin: 1%;
     display:  flex;
+    margin-left: 5%;
     
 }
 
 .explorePopUpselectedContent{
-    background-color: rgba(235, 255, 235, 0.547);
-    border: 1px solid white;
+    background-color: rgba(235, 255, 235, 0.252);
+    border: 1px solid rgba(255, 255, 255, 0.114);
+    width: 95%;
     display: flex;
     border-radius: 10px;
     margin-right: 3%;
@@ -341,8 +391,8 @@
 
 .explorePopUpselectedbar{
     background-color: #8a000083;
-    width: 100px;
-    border-radius: 10px;
+    width: 3%;
+    border-radius: 50px;
     border: 1px solid white;
 
 }
@@ -365,23 +415,23 @@
 .explorePopUpselectedDescript{
      background-color: rgba(5, 5, 5, 0.547);
     margin: 1%;
-    width: 350px;
+    width: 50%;
 }
 
-.explorePopUpselectedOptions{
-    display: flex;
-}
 
 
 
 .explorePopUpselectedOptions{
     /* background-color: pink; */
+    
     /* border: 1px solid white; */
-    height: 45px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    
     display: flex;
-    justify-content: center;
+    
     gap: 40px;
+    margin-top: 2%;
+    justify-content: center;
    
    
 
@@ -389,12 +439,13 @@
 
 
 .explorePopUpselectedOptionbtn1{
-    background: linear-gradient(1deg, #1f1919, #ffffff, #7f0079f4, #1c1d1c);
+    background: linear-gradient(1deg, #1f1919, #ffffff9a, #1d1c1df4, #1c1d1c);
     /* margin-top: 2%; */
-    width: 150px;
-    height: 35px;
-    border-radius: 10px;
-    margin-top: 2%;
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+
+    
 
 }
 
@@ -402,19 +453,20 @@
 .explorePopUpselectedOptionbtn2{
     background: linear-gradient(1deg, #1f1919, #ffffff, #f8c019c9, #1c1d1c);
     /* margin-top: 2%; */
-    width: 150px;
-    height: 35px;
-    border-radius: 10px;
-    margin-top: 2%;
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+  
 
 }
 
 .explorePopUpselectedOptionbtn3{
     background: linear-gradient(1deg, #1f1919, #ffffff, #ffffffc9, #1c1d1c);
-    /* margin-top: 2%; */
-    width: 90px;
-    height: 35px;
-    border-radius: 10px
+    width: 50px;
+    height: 45px;
+
+    border-radius: 50%;
+  
 
 }
 

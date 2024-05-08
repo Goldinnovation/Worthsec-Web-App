@@ -166,19 +166,31 @@ const ExploreContent = () => {
         <div className={styles["exploreheader"]}>trtr</div>
         <div className={styles["middleContentFeed"]}>
           <div className={styles["exploreEventContent"]}>
-            <div className={styles["exploreEventItem"]}>wew</div>
+            <div className={styles["exploreEventhead"]}>
+              <div className={styles["exploreEventheadMoodOpt"]}>Mood</div>
+              <div  className={styles["exploreEventheadSharedOpt"]}>Shared</div>
+            </div>
+            <div>
+                dsd
+            </div>
           </div>
           <div className={styles["exploreEventContentRight"]}>
-            <div className={styles['exploreEventCategorySection']} >
-                  dsds
-                </div>
+            {/* <div className={styles['exploreEventSharedSection']} >
+                  <div className={styles['exploreEventSharedHead']}>
+                    dsdsd
+                  </div>
+                  <div>
+                      csdsd
+                  </div>
+                </div> */}
             <div className={styles["explorefeedContent"]}>
               <div className={styles["explorefeedEventsHead"]}>
                 <div className={styles["explorefeedEventsHeadTitle"]}>
-                  dsdsd
+                 Category
                 </div>
               </div>
               <div className={styles["explorefeedEvents"]}>
+                
                 {userexploreData.map((event, i) => (
                   <div key={i} className={styles["exploreContentSection"]}>
                     <div
@@ -239,8 +251,8 @@ const ExploreContent = () => {
                                       className={
                                         styles["explorePopUpCoverItem"]
                                       }
-                                      width={400}
-                                      height={400}
+                                      width={650}
+                                      height={540}
                                       quality={100}
                                     />
                                   </div>
