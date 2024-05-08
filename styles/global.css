@@ -967,6 +967,8 @@ appearance: none;
 .ContentArea{
     border-radius: 10px;
     width: 100%;
+    /* background-color: orange; */
+    margin-top: 1%;
 
 }
 
@@ -981,11 +983,12 @@ appearance: none;
 
 .joinandFavorArea{
     background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #b0b0b01e);
+    /* background-color: #00ccff; */
     border: 1px solid rgba(255, 255, 255, 0.196);
     border-right: 1px solid rgba(255, 255, 255, 0.196);
     /* border-radius: 10px; */
     width: 98.5%;
-    height: 450px;
+    height: 480px;
     margin-top: 18px;
     border-radius: 10px;
     /* margin-right: 10px; */

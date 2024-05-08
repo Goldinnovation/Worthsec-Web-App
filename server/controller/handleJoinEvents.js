@@ -27,6 +27,9 @@ exports.userJoinEvent = async (req, res) => {
     const joined_user_id = req.user.userId
     const joined_event_id = req.body.joinEventId
 
+    console.log(joined_event_id);
+    console.log(joined_user_id);
+
     try {
         if (req.user && req.body) {
 

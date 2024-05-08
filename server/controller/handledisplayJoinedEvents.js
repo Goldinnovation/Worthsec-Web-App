@@ -53,9 +53,9 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 exports.DisplaygetEventbyjoinId = async(req,res) => {
 
     const body = req.body
-    // console.log(body);
+    console.log(body);
     
-    // console.log(body.eventid);
+    console.log(body.eventid);
 
 
 
@@ -65,7 +65,7 @@ exports.DisplaygetEventbyjoinId = async(req,res) => {
             
             const eventData = await prisma.event.findMany({
                 where:{
-                    id: {
+                    eventId: {
                         in: body.eventid
                     }
                     
@@ -74,7 +74,7 @@ exports.DisplaygetEventbyjoinId = async(req,res) => {
 
 
             // console.log(eventData.length)
-            // console.log(eventData);
+            console.log(eventData);
             res.status(200).json(eventData)
 
         }
