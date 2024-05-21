@@ -11,6 +11,7 @@ import eyeIcon from '@assets/eye-track.png'
 import useSWR, { mutate } from 'swr';
 import infoIcon from '@assets/infoIcon.png'
 import InviteUsertoEvent from '@utils/userFeed/InviteUsertoEvent'
+import searchIcon from '@assets/search.png'
 
 
 
@@ -112,6 +113,7 @@ const GetEventContent = () => {
         setEventInfo(false)
     }
    
+
 
   
 
@@ -230,7 +232,7 @@ const GetEventContent = () => {
                                             <div className='eventWindowLayer'>
                                          <div className='eventWindowImage'>
                                         <Image src={selectedEvent.ImageCoverUpload} className='eventWindowImageContent'  
-                                        width={470}
+                                        width={440}
                                         height={400}
                                         quality={100}
                                         alt='Cover of Job ad'/>
@@ -252,22 +254,8 @@ const GetEventContent = () => {
 
                                 
                                   <div>
-                                    
+                                {/* the invite friends search option   */}
                                   <div className='eventWindowNav'>
-                                      
-                                        <div className='eventInviteInputSection'>
-                                            <div>
-                                                    {userInviteSection && (
-                                                        <div  className='userInviteSearch'>
-                                                            <input type="text" className="userInviteInput" />
-                                                            <div>
-                                                                <button className='inviteUserToEventBtn'>Send</button>
-                                                            </div>
-                                                        </div>
-                                                    )}
-                                            </div>
-
-                                        </div> 
 
                                          <div className='eventWindowNavOptions'>
                                             <div className='eventeyeSection' onClick={handleEventToggle}>

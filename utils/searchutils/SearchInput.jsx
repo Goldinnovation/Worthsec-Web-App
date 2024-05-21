@@ -321,7 +321,7 @@ const SearchInput = () => {
                   <div className={searchstyle['displayUserContent']}>
                     <div className={searchstyle['DisplayImageArea']}>
 
-                      <Image className={searchstyle['DisplayImageContent']} src={`/${userProfilImage.pictureUrl}`} alt="other user profil picture" width={58} height={58}
+                      <Image className={searchstyle['DisplayImageContent']} src={`/${userProfilImage.pictureUrl}`} alt="other user profil picture" width={110} height={70}
                         quality={100}
                       />
 
@@ -335,7 +335,7 @@ const SearchInput = () => {
                       </div>
                     </div>
 
-
+                  {/* name section */}
                     <div className={searchstyle['displayUserName']}>
                       {event.userName}
 
@@ -348,7 +348,7 @@ const SearchInput = () => {
                          
                         <div className={searchstyle["SearchFollowArea"]}>
                           
-                           <button onClick={() => UnFollowUserFetch(userFriendsId, userNotification)}>Unfollow</button>
+                           <button className={searchstyle["SearchFollowBtn"]} onClick={() => UnFollowUserFetch(userFriendsId, userNotification)}>Unfollow</button>
                            
                         </div>
                       )}

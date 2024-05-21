@@ -95,7 +95,7 @@
 }
 
 .searchBtn{
-    background-color: #595b5b;
+    /* background-color: #595b5b; */
     width: 95px;
     height: 30px;
     margin-left: 4%;
@@ -105,29 +105,37 @@
 .DisplayUserSection{
     
     /* background-color: rgba(187, 187, 187, 0.063); */
-    background-color: rgba(199, 199, 199, 0.133);
+    /* background-color: rgba(16, 16, 16, 0.512); */
+    background: linear-gradient(1deg, #24232337, #fdfdfd06, #3e3e3e0c, #7878788e);
+
 
     width: 380px;
-    height: 290px;
+    height: 320px;
     position: absolute;
     top: 19%;
     left: 85%;
-    left: 81%;
+    /* left: 81%; */
     transform: translate(-50%,-50%);
     border-radius: 10px ;
-    border: 1px solid rgba(255, 255, 255, 0.321);
- 
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow:  2px 1px 5px #14141474;
+
 
 }
 
 .displayUserContent{
-    /* background-color: orange; */
+    /* background-color: rgba(4, 4, 4, 0.07); */
+    /* background: linear-gradient(1deg, #000000bb, #fdfdfd06, #000000b2, #0d04048e); */
+
     position: relative;
     width: 100%;
-    height: 75px;
+    height: 98px;
+    margin-top: 2%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    /* border-radius: 300px; */
+    border-top:1px solid rgba(255, 255, 255, 0.196) ;
     border-bottom: 1px solid rgba(255, 255, 255, 0.196);
    
 }
@@ -148,7 +156,6 @@
 }
 
 .DisplayImageArea:hover .userOverlay{
-  
     width: 700px;
     height: 330px;
     position: absolute;
@@ -177,7 +184,7 @@
 
     /* background-color: green; */
    
-    border-radius: 50%;
+    /* border-radius: 50%; */
     margin-left: 15%;
     z-index: 5;
 
@@ -185,7 +192,15 @@
 
 .displayUserName{
     /* background-color: gray; */
-    margin-right: 40%;
+    width: 30%;
+    height: 30%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 300px;
+   
 
 }
 
@@ -193,5 +208,17 @@
     /* background-color: rgba(255, 255, 0, 0.378); */
     margin-right: 5%;
     color: rgb(255, 255, 255);
+    margin-right: 10%;
 }
 
+
+.SearchFollowBtn{
+    width: 140%;
+    height: 30px;
+    background-color: #949595;
+    /* border-radius: 8%; */
+    border: 1px solid rgb(109, 109, 109) ;
+    /* box-shadow: 1px, 7px , 7px, #272828 ; */
+    box-shadow:  1px 2px 3px #14141474;
+    
+}

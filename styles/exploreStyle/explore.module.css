@@ -1,8 +1,10 @@
 
 
 .exploreheader{
-    background-color: green;
-    height: 5%;
+    /* background-color: green; */
+    height: 6%;
+    /* border: 1px solid #0603032e;
+    border-bottom:1px solid #0603032e ; */
 }
 
 .middleSection{
@@ -32,7 +34,7 @@
     /* background: linear-gradient(1deg, #0b3621, #10272d, #ff151527, #0b3621); */
     /* background-color: violet; */
     /* width: 40%; */
-    height: 6%;
+    height: 7%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -226,8 +228,16 @@
 }
 
 
-
-
+.exploreEventTitleContent{
+    /* background-color: red; */
+    height: 30%;
+   text-align: center;
+   margin-top: 4%;
+}
+.exploreEventTitle{
+    color: rgba(255, 255, 255, 0.775);
+    font-size: 18px;
+}
 
 .exploreContentSection{
     /* background-color: orange; */
@@ -345,6 +355,8 @@
 
 .explorePopUpselectedTitle{
     background-color: rgba(235, 255, 235, 0.252);
+    background: linear-gradient(1deg, #000000bb, #0000009d, #ffffff1c, #2014149d, #0c0c0cc3);
+
     border: 1px solid rgba(255, 255, 255, 0.114);
     color: white;
     height: 35px;
@@ -376,13 +388,18 @@
     border-radius: 10px;
     margin: 1%;
     display:  flex;
+    align-items: center;
     margin-left: 5%;
     
 }
 
 .explorePopUpselectedContent{
     background-color: rgba(235, 255, 235, 0.252);
-    border: 1px solid rgba(255, 255, 255, 0.114);
+    background: linear-gradient(1deg, #cacacabb, #bfbfbf9d, #000000f5, #0c0c0cc3);
+    background: linear-gradient(1deg, #000000bb, #0000009d, #bfbfbf9d, #2014149d, #0c0c0cc3);
+
+
+    border: 1px solid rgba(255, 255, 255, 0.227);
     width: 95%;
     display: flex;
     border-radius: 10px;
@@ -391,10 +408,15 @@
 
 .explorePopUpselectedbar{
     background-color: #8a000083;
+    background: linear-gradient(1deg, #000000bb, #0000009d, #bfbfbf9d, #2014149d, #0c0c0cc3);
+
+    height: 55%;
     width: 3%;
     border-radius: 50px;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.227);
 
+
+    
 }
 
 
@@ -413,7 +435,10 @@
 
 
 .explorePopUpselectedDescript{
-     background-color: rgba(5, 5, 5, 0.547);
+     background-color: rgba(44, 42, 42, 0.647);
+     border: 1px solid rgba(255, 255, 255, 0.227);
+
+     color: white;
     margin: 1%;
     width: 50%;
 }

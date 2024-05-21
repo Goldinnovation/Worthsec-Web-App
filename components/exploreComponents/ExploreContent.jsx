@@ -163,7 +163,7 @@ const ExploreContent = () => {
           </div>
           <div className={styles["middleContentbar_right"]}></div>
         </div>
-        <div className={styles["exploreheader"]}>trtr</div>
+        <div className={styles["exploreheader"]}></div>
         <div className={styles["middleContentFeed"]}>
           <div className={styles["exploreEventContent"]}>
             <div className={styles["exploreEventhead"]}>
@@ -204,6 +204,11 @@ const ExploreContent = () => {
                         height={200}
                         quality={100}
                       />
+                    </div>
+                    <div  className={styles["exploreEventTitleContent"]}>
+                      <div className={styles["exploreEventTitle"]}>
+                      {event.eventTitle}
+                      </div>
                     </div>
 
                     <div className={styles["exploreContentPopupSection"]}>

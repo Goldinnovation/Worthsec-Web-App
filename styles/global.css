@@ -1144,7 +1144,7 @@ appearance: none;
             display: flex;
             border-radius: 10px;
             width: 70%;
-            height: 490px;
+            /* height: 490px; */
             overflow: hidden;
             animation: jumpOut 0.4s ease-out;
     
@@ -1547,7 +1547,7 @@ appearance: none;
 .eventWindowImage{
     /* background-color: rgba(25, 225, 2, 0.511); */
     display: flex;
-    margin-left: 5%;
+    margin-left: 2%;
     
     /* justify-content: center; */
 }
@@ -1592,11 +1592,14 @@ appearance: none;
 /* Created Event style Section */
 .eventWindowNav{
     /* background-color:rgba(8, 8, 8, 0.712); */
-    /* background-color: rgb(0, 255, 98); */
+    /* background-color: rgb(55, 55, 55); */
+    /* border-top: 1px solid  rgba(247, 237, 237, 0.43); */
     width: 100%;
    
     height: 40px;
     display: flex;
+
+    /* justify-content: flex-end; */
     justify-content: flex-end;
     
     /* border-radius: 15px; */
@@ -1650,20 +1653,23 @@ appearance: none;
 .eventInviteUserSection{
     /* background-color: rgba(255, 228, 196, 0.473); */
     display: flex;
-    height: 350px;
+    height: 400px;
 
 }
 
 .eventInvitationLayer{
-     /* background-color: #c8c8c816; */
-     width: 400px;
-     margin-left: 5%;
-     border-radius: 10px;
+     /* background-color: #0fb96dc5; */
+     width: 86%;
+     height: 100%;
+     /* margin: 3%;  */
+     margin-left: 3%;
+     /* border-radius: 10px; */
+     
 
 
 }
 .eventInviteInputSection{
-    /* background-color: orange; */
+    background-color: orange;
     width: 412px;
     display: flex;
     align-items: center;
@@ -1672,25 +1678,53 @@ appearance: none;
 
 .userInviteSearch{
     /* background-color: rgb(215, 34, 34); */
-    width: 412px;
-    height: 70px;
+    width: 100%;
+    /* height: 15%; */
+    /* margin-top: 1%; */
+  
+    /* height: 70px; */
+    /* margin-right: 550px; */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10%;
-    margin-bottom: 1%;
+    /* flex-direction: column; */
+    /* justify-content: center; */
 }
 
+
+.search_closeFriends_PopUpIcon{
+    /* background-color: orange; */
+    margin-top: 2%;
+    /* margin: 2%; */
+
+}
+
+.seach_closeFirends_input{
+
+    /* background-color: #00ccff; */
+    width: 100%;
+    display: flex;
+    /* margin-left: 3%; */
+    /* justify-content: center; */
+}
+
+.userInviteSearchArea{
+
+    /* background-color: violet; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-left: 3%;
+    gap: 5%;
+
+}
 .userInviteInput{
     background-color: rgba(255, 255, 255, 0.948);
-    width: 60%;
+    width: 90%;
     height: 20px;
     border-radius: 50px;
 }
 
 .inviteUserToEventBtn{
-    
+    /* margin-top: 2%; */
     width: 90px;
 }
 
@@ -1712,16 +1746,39 @@ appearance: none;
 /* Create Section_ Closefriends area */
 
 
+
+.invitelayer{
+    /* background-color: pink; */
+    height: 100%;
+    margin-top: 2%;
+
+   
+}
 .closefriends_Section{
    /* background-color: #4fff1959; */
-  
-   height: 100px;
+   border-top: 1px solid rgba(255, 255, 255, 0.308);
+   margin-top: 2%;
+   height: 85%;
    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    gap: 10%;
 
 
+}
+
+.closefriends_downSection{
+    /* background-color: pink; */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.closeFriends_sendInvite_btn{
+    height: 30px;
+    width: 30%;
 }
 
 .closefriends_Content{
@@ -1735,6 +1792,11 @@ appearance: none;
    border-radius: 50%;
 }
 
+.send_btn_layer{
+    /* background-color: green; */
+    display: flex;
+    justify-content: center;
+}
 
 .closefriends_title{
     color: rgba(255, 255, 255, 0.751);
