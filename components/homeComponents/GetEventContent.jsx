@@ -187,6 +187,7 @@ const GetEventContent = () => {
                                         width={180}
                                         height={170}
                                         quality={100}
+                                        priority = {true}
                                         alt='Cover of Job ad'/>
                                         <div className='ImageEventTitle'>
                                             <h2>{event.eventTitle}</h2>

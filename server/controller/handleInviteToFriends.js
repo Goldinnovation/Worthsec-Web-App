@@ -42,3 +42,12 @@ exports.getCloseFriends = async (req, res) => {
       });
   }
 };
+
+
+
+exports.inviteClosefriendsToEvent = (req,res) =>{
+
+  console.log(req.body);
+
+   res.json({message: "successful connected"})
+}
