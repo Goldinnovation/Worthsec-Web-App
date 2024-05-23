@@ -2,15 +2,21 @@ const { PrismaClient } = require("@prisma/client");
 const { json } = require("body-parser");
 const prisma = new PrismaClient();
 
+
+
+
+
+// Display a list of currentUser close friends 
+
 exports.getCloseFriends = async (req, res) => {
-  const user = req.user;
+  const currentUser = req.user;
   // console.log(user);
 
   try {
-    if (user) {
+    if (currentUser) {
       const currentUserFriends = await prisma.userTouser.findMany({
         where: {
-          userRequested_id: user.userId,
+          userRequested_id: currentUser.userId,
           connection_status: 2,
         },
       });
@@ -45,9 +51,38 @@ exports.getCloseFriends = async (req, res) => {
 
 
 
-exports.inviteClosefriendsToEvent = (req,res) =>{
+// Creates a record of the Friends that are invited to the Event of the currentUser
+exports.inviteClosefriendsToEvent = async(req,res) =>{
 
   console.log(req.body);
 
-   res.json({message: "successful connected"})
+  const inviteData= req.body
+  const currentUser= req.user
+
+  console.log(inviteData, currentUser);
+  console.log( currentUser.userId);
+
+  try{
+    if(inviteData && currentUser){
+      const createInviterecord = await prisma.invitation.create({
+        data: {
+          event_invitedTo_Id: inviteData.eventIdData,
+          otherUser_invited_Id: inviteData.friendsDataList,
+          currentUser_invite_Id: currentUser.userId
+        }
+      })
+      console.log(createInviterecord, "successful created Invitation")
+      res.status(200).json({message:"friends are successfully invited" });
+
+    }
+
+  }catch(error){
+    console.log(error);
+    res
+      .status(500)
+      .json({
+        message: "unexpected Error und on inviteClosefriendsToEvent server handler function ",
+      });
+  }
+
 }
