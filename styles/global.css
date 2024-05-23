@@ -1693,6 +1693,7 @@ appearance: none;
 .search_closeFriends_PopUpIcon{
     /* background-color: orange; */
     margin-top: 2%;
+    position: relative;
     /* margin: 2%; */
 
 }
@@ -1763,6 +1764,8 @@ appearance: none;
    flex-direction: row;
    flex-wrap: wrap;
    gap: 10%;
+   position: relative;
+   
 
 
 }
@@ -1799,6 +1802,7 @@ appearance: none;
     /* background-color: green; */
     display: flex;
     justify-content: center;
+    /* position: absolute; */
 }
 
 .closefriends_title{
@@ -1962,17 +1966,6 @@ appearance: none;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -2052,4 +2045,35 @@ appearance: none;
     
     /* top: 50%; */
 
+}
+
+.invitationPopup_successfulPopUp{
+    /* background-color: rgba(36, 34, 34, 0.895); */
+    position: absolute;
+    /* top: 50%; */
+    /* left: 50%; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.invitationPopup_successfulPopUp_content{
+    background-color: #f3f6f6;
+    width: 60%;
+    text-align: center;
+    border-radius: 50px;
+}
+
+
+.marketAreaCloseFriendsOverlay{
+    position: absolute;
+    background-color: #010101a6;
+    pointer-events:none;
+    width: 100% ;
+    height: 100%;
+    top: 0%;
+    z-index: inherit;
 }
