@@ -19,6 +19,7 @@ model account {
   userFavourEvent userFavourEvent[]
   notification    notification[]
   event           event[]
+  invitation      invitation[]
 
   @@index(fields: [userName])
 }
@@ -47,6 +48,7 @@ model event {
   eventInviteType         Int?
   userJoinEvent           userJoinEvent[]
   userFavourEvent         userFavourEvent[]
+  invitation              invitation[]
 
   @@index(fields: [eventHost])
 }
@@ -89,10 +91,18 @@ model notification {
   userTouser_connection_id String
 }
 
-
 model session {
   id     Int      @id @default(autoincrement())
   sid    String   @unique
   sess   String
   expire DateTime
+}
+
+model invitation {
+  invitationId           String   @id @default(uuid())
+  currentUser_sendInvite account  @relation(fields: [currentUser_invite_Id], references: [userId])
+  currentUser_invite_Id   String
+  InvitedToEvent         event    @relation(fields: [event_invitedTo_Id], references: [eventId])
+  event_invitedTo_Id     String
+  otherUser_invited_Id   String[]
 }
