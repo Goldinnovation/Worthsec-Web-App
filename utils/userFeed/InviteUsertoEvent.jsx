@@ -6,19 +6,27 @@ import xMarkerIcon from "@assets/Xmarker.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const InviteUsertoEvent = () => {
+
+
+
+const InviteUsertoEvent = ({eventIdData}) => {
   const [closeFriends, setCloseFriends] = useState(null);
   const [searchToggel, setSearchToggle] = useState(false);
   const [selectfriends, setSelectfriends] = useState(null);
-  const [friendsArr, setFriendsArr] = useState([]);
-  const [collectFirends, setCollectedFriends] = useState(false);
+  const [invitedfriendsList, setinvitedfriendsList] = useState([]);
   const [checkInvitationStatus, setCheckInvitationStatus] = useState(false);
+ 
 
-  
+  // Fetches the closefriends data from the server
+  const { data: currentUserCloseFriends, error } = useSWR(
+    "http://localhost:3000/api/invite",
+    fetcher
+  );
 
+  // Handle the selection of friends from the currentUser-
   const handleSelectFriends = (event) => {
     setSelectfriends(selectfriends === event ? null : event);
-    setFriendsArr((prevArr) => {
+    setinvitedfriendsList((prevArr) => {
       if (prevArr.includes(event.userId)) {
         return prevArr.filter((id) => id !== event.userId);
       } else {
@@ -27,68 +35,67 @@ const InviteUsertoEvent = () => {
     });
   };
 
-  const { data: currentUserCloseFriends, error } = useSWR(
-    "http://localhost:3000/api/invite",
-    fetcher
-  );
-
-  const sendIdData = async(friendsArr) => {
-    try{
-      const res =  await fetch("http://localhost:3000/api/invite", {
-        method: "POST", 
+  // Send the invitation out, list of friends and eventId 
+  const sendIdData = async (invitedfriendsList, eventIdData) => {
+    try {
+      const eventInviteData = {
+        friendsDataList: invitedfriendsList,
+        eventIdData: eventIdData,
+      };
+      const res = await fetch("http://localhost:3000/api/invite", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(friendsArr)
+        body: JSON.stringify(eventInviteData),
       });
 
-     
-      if(!res.ok){
-        throw new Error('Failes to send the inviation to friends on InviteFriendsToEventAPI ')
-
-    } else{
-      const data = await res.json()
-      if(data.message === "successful connected"){
-
-       handlesuccessfulPopUp()
-
-       
-
+      if (!res.ok) {
+        throw new Error(
+          "Failes to send the inviation to friends on InviteFriendsToEventAPI "
+        );
+      } else {
+        const data = await res.json();
+        console.log(data.message);
+        if (data.message === "friends are successfully invited") {
+         
+          handlesuccessfulPopUp();
+        } else {
+          console.warn("Unexpected response:", data);
+        }
       }
-          
+    } catch (error) {
+      console.error("Error sending the invitation", error);
     }
-  }catch(error){
-      console.error(
-        'Error sending the invitation', error
-      )
-    }
-  }
+  };
 
 
 
+//  Search Pop up, currentUser can search for friends 
   const handleSearchPopUp = () => {
     setSearchToggle(!searchToggel);
   };
   
+  // Handle the friends invitation after clickung on the button
   const handlefriendsInvitation = (e) => {
     
     e.preventDefault();
-    
-      sendIdData(friendsArr)
+    sendIdData(invitedfriendsList, eventIdData)
     
   };
 
+  // displays a successful invite message
   const handlesuccessfulPopUp = () => {
     setCheckInvitationStatus(true)
 
   }
 
+  // Rerenders the page, after the successful Invite message with a timer of 500 ms and clears the friendsList
   useEffect(() => {
     if(checkInvitationStatus){
-        console.log('hallo rerender');
     const timer = setTimeout(() => {
       setCheckInvitationStatus(false)
-      setFriendsArr([])
+      setinvitedfriendsList([])
       
     }, 500)
     return () => clearTimeout(timer)
@@ -100,13 +107,6 @@ const InviteUsertoEvent = () => {
 
 
  
-
- 
-
- 
-
-  // setCloseFriends(currentUserCloseFriends[0].picture)
-  // console.log(currentUserCloseFriends.length)
   return (
     <div className="invitelayer">
       <div>
@@ -135,6 +135,7 @@ const InviteUsertoEvent = () => {
           </div>
         </div>
       </div>
+      {/* Display the closefriends section where the user can select the friends that should be invited to the event */}
       <div className="closefriends_Section">
         {/* Represents a array of friends that cna receive an invitation */}
         {currentUserCloseFriends?.map((event, i) => (
@@ -153,7 +154,7 @@ const InviteUsertoEvent = () => {
                   priority={true}
                 />
                 {/* Represents the friends which are marked  */}
-                {friendsArr.includes(event.userId) &&  (
+                {invitedfriendsList.includes(event.userId) &&  (
                   <div className="closefriends_markItem">
                     <Image
                       src={xMarkerIcon}
@@ -187,12 +188,7 @@ const InviteUsertoEvent = () => {
           <button type="submit" className="closeFriends_sendInvite_btn">
             Send Invitation
           </button>
-          {/* {collectFirends && (
-            <InviteFriendsToEventAPI
-              postData={friendsArr}
-              successfulInvitation={handleBothFuntion}
-            />
-         )} */}
+        
          
          
         </div>

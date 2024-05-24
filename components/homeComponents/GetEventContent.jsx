@@ -146,7 +146,7 @@ const GetEventContent = () => {
     const handleEventtoggle = (event) => {
 
         // set the toggle to the event object 
-        setSelectedEvent(selectedEvent === event ? null : event)
+        setSelectedEvent(selectedEvent === event ? event : event)
         if(selectedEvent === event ? null : event){
             handleEventInfo()
         }
@@ -247,7 +247,9 @@ const GetEventContent = () => {
                                   {userInviteSection && (
                                                 <div className='eventInviteUserSection'>
                                                     <div className='eventInvitationLayer'>
-                                                            <InviteUsertoEvent/>
+                                                            <InviteUsertoEvent 
+                                                            eventIdData={selectedEvent.eventId}
+                                                            />
                                                     </div>
                                                    
                                                 </div>
