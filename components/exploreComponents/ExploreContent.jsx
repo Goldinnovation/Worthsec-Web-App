@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import styles from "@styles/exploreStyle/explore.module.css";
 import Image from "next/image";
 
+
+
+
 export const getallEventsWorldwide = async (selectedValues) => {
   try {
     const res = await fetch(

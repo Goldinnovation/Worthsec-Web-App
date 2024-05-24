@@ -4,29 +4,44 @@ import Image from "next/image";
 import searchIcon from "@assets/search.png";
 import xMarkerIcon from "@assets/Xmarker.png";
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
+interface CloseFriend {
+  userId: string;
+  userName: string;
+  picture: {
+    pictureUrl: string;
+  };
+}
 
+interface EventInviteData {
+  friendsDataList: string[];
+  eventIdData: any; // Adjust the type according to the actual type of eventIdData
+}
 
+interface Props {
+  eventIdData: any; // Adjust the type according to the actual type of eventIdData
+}
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const InviteUsertoEvent = ({eventIdData}) => {
-  const [closeFriends, setCloseFriends] = useState(null);
-  const [searchToggel, setSearchToggle] = useState(false);
-  const [selectfriends, setSelectfriends] = useState(null);
-  const [invitedfriendsList, setinvitedfriendsList] = useState([]);
+const InviteUsertoEvent: React.FC<Props> = ({ eventIdData }) => {
+  const [closeFriends, setCloseFriends] = useState<CloseFriend[] | null>(null);
+  const [searchToggle, setSearchToggle] = useState(false);
+  const [selectfriends, setSelectfriends] = useState<CloseFriend | null>(null);
+  const [invitedfriendsList, setInvitedfriendsList] = useState<string[]>([]);
   const [checkInvitationStatus, setCheckInvitationStatus] = useState(false);
- 
 
   // Fetches the closefriends data from the server
-  const { data: currentUserCloseFriends, error } = useSWR(
+  const { data: currentUserCloseFriends, error } = useSWR<CloseFriend[]>(
     "http://localhost:3000/api/invite",
     fetcher
   );
 
   // Handle the selection of friends from the currentUser-
-  const handleSelectFriends = (event) => {
-    setSelectfriends(selectfriends === event ? null : event);
-    setinvitedfriendsList((prevArr) => {
+  const handleSelectFriends = (event: CloseFriend) => {
+    setSelectfriends((prevEvent) =>
+      prevEvent === event ? null : event
+    );
+    setInvitedfriendsList((prevArr) => {
       if (prevArr.includes(event.userId)) {
         return prevArr.filter((id) => id !== event.userId);
       } else {
@@ -35,10 +50,10 @@ const InviteUsertoEvent = ({eventIdData}) => {
     });
   };
 
-  // Send the invitation out, list of friends and eventId 
-  const sendIdData = async (invitedfriendsList, eventIdData) => {
+  // Send the invitation out, list of friends and eventId
+  const sendIdData = async (invitedfriendsList: string[], eventIdData: any) => {
     try {
-      const eventInviteData = {
+      const eventInviteData: EventInviteData = {
         friendsDataList: invitedfriendsList,
         eventIdData: eventIdData,
       };
@@ -52,14 +67,13 @@ const InviteUsertoEvent = ({eventIdData}) => {
 
       if (!res.ok) {
         throw new Error(
-          "Failes to send the inviation to friends on InviteFriendsToEventAPI "
+          "Failed to send the invitation to friends on InviteFriendsToEventAPI"
         );
       } else {
         const data = await res.json();
         console.log(data.message);
         if (data.message === "friends are successfully invited") {
-         
-          handlesuccessfulPopUp();
+          handleSuccessfulPopUp();
         } else {
           console.warn("Unexpected response:", data);
         }
@@ -69,44 +83,33 @@ const InviteUsertoEvent = ({eventIdData}) => {
     }
   };
 
-
-
-//  Search Pop up, currentUser can search for friends 
+  //  Search Pop up, currentUser can search for friends
   const handleSearchPopUp = () => {
-    setSearchToggle(!searchToggel);
+    setSearchToggle(!searchToggle);
   };
-  
-  // Handle the friends invitation after clickung on the button
-  const handlefriendsInvitation = (e) => {
-    
+
+  // Handle the friends invitation after clicking on the button
+  const handleFriendsInvitation = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendIdData(invitedfriendsList, eventIdData)
-    
+    sendIdData(invitedfriendsList, eventIdData);
   };
 
   // displays a successful invite message
-  const handlesuccessfulPopUp = () => {
-    setCheckInvitationStatus(true)
-
-  }
+  const handleSuccessfulPopUp = () => {
+    setCheckInvitationStatus(true);
+  };
 
   // Rerenders the page, after the successful Invite message with a timer of 500 ms and clears the friendsList
   useEffect(() => {
-    if(checkInvitationStatus){
-    const timer = setTimeout(() => {
-      setCheckInvitationStatus(false)
-      setinvitedfriendsList([])
-      
-    }, 500)
-    return () => clearTimeout(timer)
+    if (checkInvitationStatus) {
+      const timer = setTimeout(() => {
+        setCheckInvitationStatus(false);
+        setInvitedfriendsList([]);
+      }, 500);
+      return () => clearTimeout(timer);
     }
+  }, [checkInvitationStatus]);
 
-
-  },[checkInvitationStatus])
-  
-
-
- 
   return (
     <div className="invitelayer">
       <div>
@@ -120,10 +123,9 @@ const InviteUsertoEvent = ({eventIdData}) => {
               onClick={handleSearchPopUp}
               alt="search Icon"
             />
-            
           </div>
           <div className="seach_closeFirends_input">
-            {searchToggel && (
+            {searchToggle && (
               <div className="userInviteSearchArea">
                 <input
                   type="text"
@@ -137,7 +139,7 @@ const InviteUsertoEvent = ({eventIdData}) => {
       </div>
       {/* Display the closefriends section where the user can select the friends that should be invited to the event */}
       <div className="closefriends_Section">
-        {/* Represents a array of friends that cna receive an invitation */}
+        {/* Represents a array of friends that can receive an invitation */}
         {currentUserCloseFriends?.map((event, i) => (
           <div key={i} className="closeFriendsInviteSection">
             <div
@@ -153,8 +155,8 @@ const InviteUsertoEvent = ({eventIdData}) => {
                   alt="inviteCloseFriends_ProfilImg"
                   priority={true}
                 />
-                {/* Represents the friends which are marked  */}
-                {invitedfriendsList.includes(event.userId) &&  (
+                {/* Represents the friends which are marked */}
+                {invitedfriendsList.includes(event.userId) && (
                   <div className="closefriends_markItem">
                     <Image
                       src={xMarkerIcon}
@@ -165,7 +167,6 @@ const InviteUsertoEvent = ({eventIdData}) => {
                   </div>
                 )}
 
-               
                 <div className="closefriends_title">{event.userName}</div>
               </div>
             </div>
@@ -173,28 +174,23 @@ const InviteUsertoEvent = ({eventIdData}) => {
         ))}
 
         {/* represents the successful Invitation Pop Up Text */}
-         {checkInvitationStatus && (
-            <div className="invitationPopup_successfulPopUp">
-              <div className="invitationPopup_successfulPopUp_content">You Successful invited your friends</div>
+        {checkInvitationStatus && (
+          <div className="invitationPopup_successfulPopUp">
+            <div className="invitationPopup_successfulPopUp_content">
+              You Successfully invited your friends
             </div>
-          )}
-
-        
+          </div>
+        )}
       </div>
 
-        {/* Represents the invitation Button */}
-      <form onSubmit={handlefriendsInvitation}>
+      {/* Represents the invitation Button */}
+      <form onSubmit={handleFriendsInvitation}>
         <div className="send_btn_layer">
           <button type="submit" className="closeFriends_sendInvite_btn">
             Send Invitation
           </button>
-        
-         
-         
         </div>
       </form>
-      
-     
     </div>
   );
 };

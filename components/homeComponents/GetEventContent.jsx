@@ -10,6 +10,7 @@ import Createbtn from '@utils/Createbtn'
 import eyeIcon from '@assets/eye-track.png'
 import useSWR, { mutate } from 'swr';
 import infoIcon from '@assets/infoIcon.png'
+// import InviteUsertoEvent from '@utils/userFeed/InviteUsertoEvent'
 import InviteUsertoEvent from '@utils/userFeed/InviteUsertoEvent'
 import searchIcon from '@assets/search.png'
 
