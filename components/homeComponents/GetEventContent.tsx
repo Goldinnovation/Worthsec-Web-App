@@ -16,38 +16,18 @@ import searchIcon from '@assets/search.png'
 
 
 
-// export async function getContent(){
-//     try{
-
-//         const res = await fetch('http://localhost:3000/api/events', {
-//             method: "GET",
-          
-           
-//         })
-        
-//         if(!res.ok){
-//             throw new Error('res IS NOT OK,ERROR')
-//         }
-
-//         const data = await res.json()
-//         // console.log(data)
-//         return data
-        
-
-//     }
-
-//     catch(error){
-//         console.error('Fetch API ERROR')
-//     }
-// }
 
 
 
+interface Event {
+    eventId: string;
+    eventTitle: string;
+    ImageCoverUpload: string;
+  }
 
 
 
-
-export async function deleteobj(eventId,eventpath) {
+export async function deleteobj(eventId: string ,eventpath: string) {
     try{
 
         const res = await fetch(`http://localhost:3000/api/events/${eventId}`,{
@@ -69,23 +49,27 @@ export async function deleteobj(eventId,eventpath) {
 
 
 
+interface props {
+
+}
 
 
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 
-const GetEventContent = () => {
+const GetEventContent: React.FC= () => {
     
     // const [allEventContent, setAllEventContent] = useState([])
     // const [eventWindow, setEventWindow] = useState(false)
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);(null);
     const [eventOptions, setEventOptions] = useState(false)
     const [userInviteSection, setUserInviteSection] = useState(false)
     const [eventInfo, setEventInfo] = useState(true)
+    const [allEventContent, setAllEventContent] = useState<Event[] | undefined>([]);
     // const [rerender, setRerender] = useState(false)
 
-    const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
+    const {data: allEventData, error} = useSWR<Event[]>('http://localhost:3000/api/events', fetcher,{
         refreshInterval: 5000,
         // revalidateOnFocus: false
     })
@@ -124,17 +108,19 @@ const GetEventContent = () => {
   
 
 // Deletes the Event Object 
-    const handleDelete = async(eventId,eventpath) => {
+    const handleDelete = async(eventId: string ,eventpath: string) => {
         try{
-            console.log(eventId);
-            console.log(eventpath);
+            console.log("Eventid:",eventId);
+            console.log("EventPath:",eventpath);
             await deleteobj(eventId,eventpath)
             
-
+            console.log("EventDATA:", allEventData);
             // Look this area up 
            
-            const updatedData = allEventContent?.filter((event) => event.id !== eventId)
-                allEventContent(updatedData)           
+            const updatedData = allEventData?.filter((event: Event) => event.eventId !== eventId)
+            console.log("updataedData:", updatedData);
+            mutate('http://localhost:3000/api/events', updatedData, false);    
+            console.log(allEventData); 
 
         }catch(error){
             console.error('function error', error)
@@ -144,7 +130,7 @@ const GetEventContent = () => {
 
 
 
-    const handleEventtoggle = (event) => {
+    const handleEventtoggle = (event: Event) => {
 
         // set the toggle to the event object 
         setSelectedEvent(selectedEvent === event ? event : event)
@@ -161,12 +147,12 @@ const GetEventContent = () => {
     // if the length is equal zero, it will show no object 
 
     useEffect(() => {
-        if(allEventContent?.length > 0){
-            setSelectedEvent(allEventContent[allEventContent?.length - 1])
+        if( allEventData && allEventData?.length > 0){
+            setSelectedEvent(allEventData[allEventData?.length - 1])
         }else {
-            setSelectedEvent(false)
+            setSelectedEvent(null)
         }
-    },[allEventContent])
+    },[allEventData])
 
     
     
@@ -177,7 +163,7 @@ const GetEventContent = () => {
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
        <div className='contentCreateSection'>
             <div className='eventContentSection'>
-                    {allEventContent?.map((event, i) => (
+                    {allEventData?.map((event, i ) => (
                     <div key={i} className='eventContentSectionArea'>
                         <div className='eventContentKey' >
                                 <div className='eventContent'>

@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const handleUsertoFollow = require('../controller/userInfo/handleUserToUser')
-const apicache = require('apicache')
-let cache = apicache.middleware
+// const apicache = require('apicache')
+// let cache = apicache.middleware
 
 
 

@@ -5,6 +5,8 @@ const config = require('../config/firebase')
 const giveCurrentDateTime = require('../utils/date')
 const prisma = new PrismaClient()
 const sharp = require('sharp')
+import { Request, Response } from "express";
+
 
 
 // initialize firebase application
@@ -42,7 +44,7 @@ const storage = getStorage();
 
 
 
-exports.createEvent = async (req, res) => {
+export const createEvent = async (req, res) => {
 
     // const trybody = req.body
     // console.log(trybody)
@@ -184,13 +186,15 @@ exports.createEvent = async (req, res) => {
 // find the Event Object throw the user id and responds with the object inside of an array  
 
 
-exports.findEvents = async(req,res) => {
-  
+export const findEvents = async(req: Request,res: Response) => {
 
+ console.log(req.user);
     
     try{
         if(req.user){
             
+          
+
             const userEvents =  await prisma.event.findMany({
                 where: {
                     eventHost: req.user.userId
@@ -220,14 +224,13 @@ exports.findEvents = async(req,res) => {
 
 
 
-
 // Delete an Event Object 
 
-exports.deleteEvent = async(req,res) => {
-    const id = req.params.id;
+export const deleteEvent = async(req: Request,res : Response) => {
+    const id: string = req.params.id;
     console.log(id)
     console.log(req.body.eventpath);
-    const imagePath = req.body.eventpath
+    const imagePath: string= req.body.eventpath
    
     try{
         

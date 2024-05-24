@@ -6,7 +6,9 @@ const dev = process.env.Node_ENV !== 'production'
 const app = next({dev})
 const passport = require('passport')
 const handle = app.getRequestHandler()
-const eventRequest = require('./router/eventprompt')
+// const eventRequest = require('./router/eventprompt')
+// const eventRequest = require('./router/eventprompt')
+const userEvent = './router/userEvent'; 
 const signupRequest = require('./router/userSignup')
 const passportConfig = require('./config/passport')
 const Auth = require('./Middlware/checksAuth')
@@ -76,7 +78,7 @@ app.prepare().then(() => {
     initializeApp(config.firebaseConfig)
     
     // API endpoints 
-    server.use('/api/events', eventRequest)
+    server.use('/api/events', userEvent)
     server.use('/api/signUpAcc',signupRequest)
     server.use('/api/login', loginReq)
     server.use('/api/logout', logoutReq)
@@ -98,12 +100,12 @@ app.prepare().then(() => {
    
    
 
-    server.all('*', (req,res) => {
+    server.all('*', (req: Request,res: Response) => {
         return handle(req,res)
 
     })
 
-    server.listen(3000, (err) => {
+    server.listen(3000, (err: Error) => {
         if(err) throw err; 
         console.log('Ready on http://localhost:3000')
     })
