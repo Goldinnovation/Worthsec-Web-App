@@ -1,5 +1,6 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { Request, Response } from "express";
 
 /**
  * Purpose Statement--searchUserbyUser
@@ -15,7 +16,9 @@ const prisma = new PrismaClient();
  * @returns {object} Returns an object of the other user from the database account table.
  */
 
-exports.searchUserbyUser = async (req, res, next) => {
+
+
+export async function searchUserbyUser (req:Request , res: Response): Promise<void> {
   const searchUserName = req.body.searchValue;
 
   try {
@@ -32,6 +35,9 @@ exports.searchUserbyUser = async (req, res, next) => {
     res.status(200).json(searchUser);
   } catch (error) {
     console.log(error);
-    return res.status(400).json({ message: "Could not find User", error });
+     res.status(400).json({ message: "Could not find User", error });
   }
 };
+
+
+export default {searchUserbyUser}

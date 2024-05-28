@@ -1,10 +1,15 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
+import { Request, Response } from "express"
+
+
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
 
 
 
-
-exports.getUserNotification = async (req, res) => {
+export async function getUserNotification (req: AuthenticatedRequest, res: Response): Promise<void>{
 
     const currentUser = req.user
 
@@ -125,7 +130,9 @@ exports.getUserNotification = async (req, res) => {
         }
     } catch (error) {
         console.log(error)
-        return req.status(400).json({ message: "Error on getUserNotification hanlderlogic", error })
+        res.status(400).json({ message: "Error on getUserNotification hanlderlogic", error })
 
     }
 }
+
+export default {getUserNotification}

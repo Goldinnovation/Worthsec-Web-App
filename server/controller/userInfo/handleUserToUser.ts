@@ -1,6 +1,6 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from "@prisma/client"
 const prisma = new PrismaClient()
-
+import { Request, Response } from "express"
 
 
 /** 
@@ -22,7 +22,12 @@ const prisma = new PrismaClient()
  */
 
 
-exports.searchUser_friends = async (req, res) => {
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
+
+
+export async function searchUser_friends (req: AuthenticatedRequest, res: Response): Promise<void>{
 
     const currentUser = req.user
     const otherUser_id = await req.params.id
@@ -51,14 +56,14 @@ exports.searchUser_friends = async (req, res) => {
             console.log(onConnectionexist);
             res.status(200).json(onConnectionexist)
         } else {
-            return res.status(500).json({ message: "User could not be found" })
+             res.status(500).json({ message: "User could not be found" })
         }
 
 
 
     } catch (error) {
         console.log(error)
-        return req.status(400).json({ message: "Bad request handler by searchUser_friends" })
+         res.status(400).json({ message: "Bad request handler by searchUser_friends" })
     }
 
 }
@@ -89,7 +94,7 @@ exports.searchUser_friends = async (req, res) => {
  */
 
 
-exports.followUser = async (req, res) => {
+export async function followUser (req: AuthenticatedRequest, res: Response): Promise<void> {
 
     const currentUser = req.user
     const otherUser_id = req.body
@@ -137,11 +142,11 @@ exports.followUser = async (req, res) => {
         }
         else {
 
-            return req.status(400).json({ message: "Error with getting currentUser and OtherUser" })
+            res.status(400).json({ message: "Error with getting currentUser and OtherUser" })
         }
     } catch (error) {
         console.log(error)
-        return req.status(400).json({ message: "Bad UserToUser Request" })
+         res.status(400).json({ message: "Bad UserToUser Request" })
     }
 }
 
@@ -163,7 +168,7 @@ exports.followUser = async (req, res) => {
  * @returns {object-message|null}
  */
 
-exports.unFollowUser = async (req, res) => {
+export async  function unFollowUser  (req: AuthenticatedRequest, res: Response): Promise<void> {
 
     const userConnection_id = req.body.unFollowUserId
     const otherUserNotification_Id = req.body.userNotificationId
@@ -195,7 +200,10 @@ exports.unFollowUser = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        return req.status(400).json({ message: "Bad Request for unFollowUser handler" })
+         res.status(400).json({ message: "Bad Request for unFollowUser handler" })
 
     }
 }
+
+
+export default {unFollowUser, followUser, searchUser_friends}
