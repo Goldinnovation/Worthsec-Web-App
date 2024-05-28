@@ -26,6 +26,7 @@ const userFollowUser = require('./router/userToUser')
 const exploreEvents = require('./router/selectedEvents')
 const userFavorEvent = require('./router/favorEvent')
 const userJoinEvent = require('./router/userJoinEvent')
+// import userJoinEvent from './controller/handleJoinEvents'
 const displayUserJoinEvent = require('./router/displayJoinedEvents')
 const searchForCloseFriend = require('./router/userClosefriends')
 const inviteCloseFriends = require('./router/invitefriends')

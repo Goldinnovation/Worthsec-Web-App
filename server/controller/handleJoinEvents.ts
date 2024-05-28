@@ -1,5 +1,7 @@
-const {PrismaClient} = require('@prisma/client');
-const prisma = new PrismaClient()
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+import { Response, Request } from "express";
 
 
 
@@ -21,8 +23,12 @@ const prisma = new PrismaClient()
  */
 
 
+interface AuthenticatedRequest extends Request{
+    user: any
+}
 
-exports.userJoinEvent = async (req, res) => {
+
+async function userJoinEvent(req: AuthenticatedRequest, res: Response) {
 
     const joined_user_id = req.user.userId
     const joined_event_id = req.body.joinEventId
@@ -52,3 +58,6 @@ exports.userJoinEvent = async (req, res) => {
     }
 
 }
+
+
+export default userJoinEvent;

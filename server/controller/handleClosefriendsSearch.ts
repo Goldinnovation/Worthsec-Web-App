@@ -1,5 +1,6 @@
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
+import { Request, Response } from "express";
 
 /** 
  * Purpose Statement--searchforClosefriends
@@ -17,7 +18,13 @@ const prisma = new PrismaClient()
 
 
 
-exports.searchforClosefriends = async(req,res) => {
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
+
+
+
+export async function searchforClosefriends (req: AuthenticatedRequest,res: Response):Promise<void>  {
 
     const currentUser = req.user.userId
     // console.log(currentUser);
@@ -76,9 +83,11 @@ exports.searchforClosefriends = async(req,res) => {
 
 
 
-exports.searchImgUrl = async(req,res) => {
+ export async function searchImgUrl(req:  AuthenticatedRequest, res: Response):Promise<void>  {
 
     const otherUserId = req.params.id
+    // await searchImgUrl(req as AuthenticatedRequest, res)
+
     // console.log("searchImgUrl", otherUserId);
 
     try{
@@ -101,3 +110,6 @@ exports.searchImgUrl = async(req,res) => {
     
 }
 
+
+
+export default {searchImgUrl,searchforClosefriends }
