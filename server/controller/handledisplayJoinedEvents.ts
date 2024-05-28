@@ -1,5 +1,6 @@
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
+import { Request, Response } from "express";
 
 
 /** 
@@ -13,9 +14,14 @@ const prisma = new PrismaClient()
  */
 
 
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
 
 
-exports.DisplayUserofJoinEvents = async(req,res) => {
+
+
+export async function DisplayUserofJoinEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
     const currentUser = req.user.userId
     // console.log(user)
     
@@ -50,7 +56,7 @@ exports.DisplayUserofJoinEvents = async(req,res) => {
 
 
 
-exports.DisplaygetEventbyjoinId = async(req,res) => {
+export async function DisplaygetEventbyjoinId(req: AuthenticatedRequest,res: Response): Promise<void> {
 
     const body = req.body
     console.log(body);
@@ -84,3 +90,6 @@ exports.DisplaygetEventbyjoinId = async(req,res) => {
     }
 
 }
+
+
+export default {DisplayUserofJoinEvents, DisplaygetEventbyjoinId}

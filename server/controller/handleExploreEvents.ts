@@ -1,22 +1,25 @@
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
-const apicache = require('apicache');
-const cache = apicache.middleware;
+import { Request, Response } from 'express';
+// const apicache = require('apicache');
+// const cache = apicache.middleware;
 
 
 
 
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
 
 
 
 
-
-exports.exploreEvents = async(req,res) => {
+export async function exploreEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
 
 
 
     // receives Json string from the query request 
-    const selectQueryString = req.query.selectedValues
+    const selectQueryString = req.query.selectedValues as string
     // console.log(selectQueryString)
     // parse the json string to an object 
     const selctedQueryObject = JSON.parse(selectQueryString)
@@ -64,3 +67,6 @@ exports.exploreEvents = async(req,res) => {
 
 
 }
+
+
+export default {exploreEvents}

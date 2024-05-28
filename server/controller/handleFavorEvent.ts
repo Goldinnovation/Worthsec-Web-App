@@ -1,6 +1,6 @@
-const {PrismaClient} = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
-
+import { Request, Response } from 'express';
 
 
 /**
@@ -18,7 +18,15 @@ const prisma = new PrismaClient()
  * @returns {string} Returns a statement that the user was successfully stored in the userFavourEvent table.
  */
 
-exports.userFavourEvent = async (req, res) => {
+
+
+
+interface AuthenticatedRequest extends Request{
+    user?: any
+}
+
+
+export async function userFavourEvent(req: AuthenticatedRequest, res: Response): Promise<void> {
 
     const currentUserId = req.user.userId
     const favour_event_Id = req.body.favoreventId
@@ -48,3 +56,5 @@ exports.userFavourEvent = async (req, res) => {
 
 
 
+
+export default{userFavourEvent}
