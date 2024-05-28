@@ -1,12 +1,20 @@
-const { PrismaClient } = require("@prisma/client");
-const { default: next } = require("next");
-const { redirect } = require("next/dist/server/api-utils");
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-
-
+import { Request, Response } from "express";
+import { NextFunction } from "express";
 // The function queries the currentUser picture record through the userId
 
-exports.getUserProfilePicture = async (req, res) => {
+
+
+
+interface AuthenticatedRequest extends Request{
+  user?: any;
+  file?: Express.Multer.File;
+}
+
+
+
+export async function getUserProfilePicture (req: AuthenticatedRequest, res: Response,  next: NextFunction): Promise<void> {
   try {
     if (req.user) {
       const userImage = await prisma.picture.findFirst({
@@ -27,7 +35,7 @@ exports.getUserProfilePicture = async (req, res) => {
 
 // The function deletes the image from the picture database table through the currentUser id
 
-exports.deleteUserProfilePicture = async (req, res) => {
+export async function deleteUserProfilePicture(req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> {
   try {
     if (req.user) {
       const deleleProfPic = await prisma.picture.delete({
@@ -46,18 +54,19 @@ exports.deleteUserProfilePicture = async (req, res) => {
 
 // The function creates a new picture record for the currentUser inside the picture database table, only if the user does not already have a profile picture.  
 // If the currentUser has a profile picture, the currentUser record will be updated to the new picture data.
-exports.createProfilePicutre = async (req, res, next) => {
+export async function createProfilePicutre(req: AuthenticatedRequest, res: Response,  next: NextFunction): Promise<void> {
   console.log("knock knock");
 
-  const pictureData = {
-    pictureUrl: req.file.filename,
-    picture_owner_id: req.user.userId,
-  };
 
   // console.log(pictureData.pictureUrl)
   // console.log(pictureData.picture_owner_id)
 
   try {
+    const pictureData = {
+      pictureUrl: req.file?.filename as string,
+      picture_owner_id: req.user.userId,
+    };
+  
     const existPic = await prisma.picture.findUnique({
       where: { picture_owner_id: req.user.userId },
     });
@@ -84,3 +93,6 @@ exports.createProfilePicutre = async (req, res, next) => {
     console.log(error);
   }
 };
+
+
+export default{createProfilePicutre, deleteUserProfilePicture, getUserProfilePicture}

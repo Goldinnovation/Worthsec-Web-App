@@ -1,14 +1,19 @@
-const { PrismaClient } = require("@prisma/client");
-const { json } = require("body-parser");
+import { PrismaClient } from "@prisma/client";
+// const { json } = require("body-parser");
 const prisma = new PrismaClient();
-
-
+import { Request, Response } from "express";
 
 
 
 // Display a list of currentUser close friends 
 
-exports.getCloseFriends = async (req, res) => {
+
+
+interface AuthenticatedRequest extends Request{
+  user?: any
+}
+
+export async function getCloseFriends(req: AuthenticatedRequest, res: Response): Promise<void> {
   const currentUser = req.user;
   // console.log(user);
 
@@ -52,7 +57,7 @@ exports.getCloseFriends = async (req, res) => {
 
 
 // Creates a record of the Friends that are invited to the Event of the currentUser
-exports.inviteClosefriendsToEvent = async(req,res) =>{
+export async function inviteClosefriendsToEvent(req: AuthenticatedRequest,res: Response): Promise<void>{
 
   console.log(req.body);
 
@@ -86,3 +91,5 @@ exports.inviteClosefriendsToEvent = async(req,res) =>{
   }
 
 }
+
+export default {inviteClosefriendsToEvent, getCloseFriends}

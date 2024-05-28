@@ -1,7 +1,9 @@
-const multer = require('multer')
-const {fileURLToPath} = require('url')
-const path = require('path');
-const {join} = path
+import multer from "multer";
+// const {fileURLToPath} = require('url')
+import path from "path";
+// const path = require('path');
+import { join } from "path";
+// const {join} = path
 
 
  
@@ -25,4 +27,7 @@ const storage = multer.diskStorage({
 
 const userProfilImageFile = multer({storage:storage}).single('UserProfilImage')
 console.log(userProfilImageFile)
-module.exports = userProfilImageFile
+// module.exports = userProfilImageFile
+
+
+export default userProfilImageFile
