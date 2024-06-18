@@ -1,5 +1,4 @@
-const multer = require('multer')
-// const {fileURLToPath} = require('url')
+import multer from 'multer';
 
 
 
@@ -13,8 +12,6 @@ const upload = multer({storage}).single('ImageCoverUpload')
 
 
 
-// const uploadedImageFile = multer({storage:storage}).single('ImageCoverUpload')
-// // console.log(uploadedImageFile)
-module.exports = upload;
 
+export default upload
  

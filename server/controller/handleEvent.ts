@@ -1,10 +1,20 @@
-const {PrismaClient} = require('@prisma/client');
-const {getStorage, ref, deleteObject, getDownloadURL, UuploadBytesResumable, uploadBytesResumable}=require("firebase/storage")
-const {initializeApp} = require("firebase/app")
-const config = require('../config/firebase')
-const giveCurrentDateTime = require('../utils/date')
+
+// const {getStorage, ref, deleteObject, getDownloadURL, UuploadBytesResumable, uploadBytesResumable}=require("firebase/storage")
+
+import {getStorage, ref, deleteObject, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
+import { initializeApp } from 'firebase/app'
+import config from '../config/firebase'
+import { Sharp } from 'sharp'
+import sharp from 'sharp'
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
-const sharp = require('sharp')
+import giveCurrentDateTime from '../utils/date'
+import { Request, Response } from 'express';
+import multer from 'multer';
+import { Express } from 'express';
+
+
+
 
 
 // initialize firebase application
@@ -40,9 +50,16 @@ const storage = getStorage();
 
 
 
+interface AuthenticatedRequest extends Request{
+    user?: any,
+    file?: Express.Multer.File
+}
 
 
-exports.createEvent = async (req, res) => {
+
+
+
+const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
     // const trybody = req.body
     // console.log(trybody)
@@ -51,13 +68,16 @@ exports.createEvent = async (req, res) => {
         if (!req.file) {
             res.status(400).json({ message: "File could not be found" })
         }
+
+        const file = req.file as Express.Multer.File;
+
         // storage path reference 
         const dateTime = giveCurrentDateTime();
-        const storageRef = ref(storage, `files/${dateTime}_${req.file.originalname}`)
+        const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`)
 
         // compromising the image with sharp 
 
-        const compromiseImage = await sharp(req.file.buffer)
+        const compromiseImage = await sharp(file.buffer)
             .resize({ width: 800, height: 1050 })
             .jpeg({ quality: 80 })
             .toBuffer();
@@ -66,7 +86,7 @@ exports.createEvent = async (req, res) => {
 
 
         const metadata = {
-            contentType: req.file.mimetype
+            contentType: file.mimetype
         }
 
         // upload the file to the firebase storage
@@ -82,7 +102,7 @@ exports.createEvent = async (req, res) => {
 
         // Converts the eventtype to an int
         const stringEventType = req.body.eventType
-        IntEventType = parseInt(stringEventType, 10)
+        const  IntEventType = parseInt(stringEventType, 10)
         const userId = req.user.userId
         console.log(downloadImageUrl);
         console.log(req.body.Only_friends)
@@ -184,7 +204,7 @@ exports.createEvent = async (req, res) => {
 // find the Event Object throw the user id and responds with the object inside of an array  
 
 
-exports.findEvents = async(req,res) => {
+const findEvents = async(req: AuthenticatedRequest,res: Response) => {
   
 
     
@@ -223,7 +243,7 @@ exports.findEvents = async(req,res) => {
 
 // Delete an Event Object 
 
-exports.deleteEvent = async(req,res) => {
+ const deleteEvent = async(req: AuthenticatedRequest,res: Response) => {
     const id = req.params.id;
     console.log(id)
     console.log(req.body.eventpath);
@@ -256,3 +276,5 @@ exports.deleteEvent = async(req,res) => {
 
 }
 
+
+export default {deleteEvent, findEvents, createEvent }

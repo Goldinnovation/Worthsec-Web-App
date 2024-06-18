@@ -7,4 +7,4 @@ function giveCurrentDateTime(){
     return now.toISOString()
 }
 
-module.exports = giveCurrentDateTime;
+export default giveCurrentDateTime

@@ -3,7 +3,7 @@ const {getAnalytics} = require("firebase/analytics")
 require('dotenv').config()
 
 
-module.exports = {
+export default{
 
     firebaseConfig: {
         apiKey: process.env.API_KEY,
