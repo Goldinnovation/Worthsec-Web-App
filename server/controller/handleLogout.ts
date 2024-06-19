@@ -1,6 +1,4 @@
-
-
-
+import { Response, Request, NextFunction } from "express"
 
 
 /** 
@@ -13,7 +11,10 @@
  * @param {object} req - represents the current users request. 
  */
 
-exports.logout = (req,res) => {
+
+
+
+const logout = (req: Request,res: Response, next: NextFunction) => {
     if(req.isAuthenticated()){
         console.log('inside Logout')
        req.logout(function(err){
@@ -35,3 +36,5 @@ exports.logout = (req,res) => {
 
 
 }
+
+export default logout

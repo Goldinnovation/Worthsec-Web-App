@@ -1,12 +1,16 @@
-const {PrismaClient} = require('@prisma/client');
-const passport = require('passport')
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
+import { Request, Response, NextFunction } from "express";
+import passport from 'passport';
+import { Express } from 'express';
 
 
 
 
 
-
-
+interface AuthenticatedRequest extends Request{
+  user?: Express.User
+}
 /** 
  * Purpose Statement--userlog
  *By clicking the login button the user triggers the API endpoint userlog.
@@ -15,16 +19,11 @@ const passport = require('passport')
  *in the session database table and cookie. Throughthe session id the user will be redirect to the main page
 */
 
-/**
- * Function Signature--userlog
- * @param {object} user - represents the users information such as email and password 
- * @returns {object} Returns a json object message as approval or declined
- */
 
 
-exports.userlog = (req,res,next) => {
+const userlog = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
     
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', (err: Error, user: Express.User | false, info: {message: string} | undefined) => {
     if (err) {
         console.log('error')
       return res.status(500).json({ message: 'Authentication Error' });
@@ -49,3 +48,5 @@ exports.userlog = (req,res,next) => {
 
   
 }
+
+export default userlog

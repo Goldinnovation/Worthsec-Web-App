@@ -1,15 +1,24 @@
-const passport = require('passport');
-const bcrypt = require('bcrypt')
-const LocalStrategy = require('passport-local')
-const {PrismaClient} = require('@prisma/client');
-
-
-
+import {PassportStatic} from 'passport';
+import bcrypt from 'bcrypt'
+import { Strategy as LocalStrategy} from 'passport-local'
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
+import { Express } from 'express';
 
-module.exports = function(passport){
+interface User{
+    id: string,
+    userId: string, 
+    userEmail: string, 
+    userPassword1: string
+    
+}
+
+
+
+
+export default function(passport: PassportStatic){
     passport.use(
-        new LocalStrategy({usernameField: 'loginEmail', passwordField: 'loginPassword'},async(username, password, done ) => {
+        new LocalStrategy({usernameField: 'loginEmail', passwordField: 'loginPassword'},async(username: string, password: string, done: (Error: any, user?: Express.User | false, options?: { message: string }) => void ) => {
             console.log('Local strategy is triggered');
            try{
             const user = await prisma.account.findFirst({    //checks if the user exist in the db 
@@ -32,9 +41,13 @@ module.exports = function(passport){
                 return done(null, false); //Password does not match
             }
 
-           }catch(error){
+           }catch(error: any){
             console.log('local-strategy error')
-            return done('local-strategy error', error)
+            if (error instanceof Error) {
+                return done(error);
+              } else {
+                return done(new Error('An unknown error occurred'));
+              }
            }
         })
 
@@ -42,12 +55,12 @@ module.exports = function(passport){
     )
 
     
-    passport.serializeUser((user, done) => {  //stores the user id in the session 
+    passport.serializeUser((user: Express.User | false, done:(err: any, id?: string) => void ) => {  //stores the user id in the session 
        console.log('catch seq')
-        done(null, user.userId);
+        done(null,( user as User).userId);
     });
     
-    passport.deserializeUser(async(userId, done) => { //retrieves the user from the session with the id and sets it to the req.user 
+    passport.deserializeUser(async(userId: string, done: (err: any, user?: Express.User | false) => void) => { //retrieves the user from the session with the id and sets it to the req.user 
         try{
             const user = await prisma.account.findUnique({
                 where: {
