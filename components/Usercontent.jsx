@@ -11,7 +11,7 @@ import DisplayProfiIImage from "@utils/homeUtils/DisplayProfiIImage";
 import SearchInput from '@utils/searchutils/SearchInput'
 import Sliderbar from '@utils/sliderutils/Sliderbar'
 import UserFeedArea from '@utils/userFeed/UserFeedArea'
-import ExploreContent from './exploreComponents/ExploreContent' 
+import ExploreContent from './exploreComponents/ExploreContent'
 import UserfriendsSlide from '@utils/userfriendsutils/UserfriendsSlide'
 import setting from '@assets/Coversetting.png'
 import worldIcon from '@assets/worldIcon.svg'

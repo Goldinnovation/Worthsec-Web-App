@@ -1,8 +1,15 @@
+'use client'
 import React, { useEffect, useState } from "react";
 import styles from "@styles/exploreStyle/explore.module.css";
 import Image from "next/image";
 
-export const getallEventsWorldwide = async (selectedValues) => {
+
+interface Event {
+  eventId: string;
+  
+}
+
+export const getallEventsWorldwide = async (selectedValues: string) => {
   try {
     const res = await fetch(
       `http://localhost:3000/api/explore?selectedValues=${selectedValues}`,
@@ -12,7 +19,7 @@ export const getallEventsWorldwide = async (selectedValues) => {
       }
     );
     if (!res.ok) {
-      Console.log("Error on response: GetallEventsWorldWide");
+      console.log("Error on response: GetallEventsWorldWide");
     }
     const data = await res.json();
     return data;
@@ -23,7 +30,7 @@ export const getallEventsWorldwide = async (selectedValues) => {
 };
 
 //  User can favor event
-const userFavorEvent = async (favoreventId) => {
+const userFavorEvent = async (favoreventId: string) => {
   try {
     const res = await fetch(`http://localhost:3000/api/favorEvent`, {
       method: "POST",
@@ -44,7 +51,7 @@ const userFavorEvent = async (favoreventId) => {
 
 // user can join event#
 
-const userJoinEvent = async (joinEventId) => {
+const userJoinEvent = async (joinEventId: string) => {
   try {
     const res = await fetch(`http://localhost:3000/api/JoinEvent`, {
       method: "POST",
@@ -62,7 +69,7 @@ const userJoinEvent = async (joinEventId) => {
   }
 };
 
-const ExploreContent = () => {
+const ExploreContent: React.FC = () => {
   const [rangeValue, setrangeValue] = useState(9);
   const [userexploreData, setuserExploreData] = useState([]);
   const [popupSelectedItem, setpopupSelectedItem] = useState(null);
@@ -73,7 +80,7 @@ const ExploreContent = () => {
     explore_selectTypeofEventCategory__KzDeU: "3",
   });
 
-  const handleInput = (e) => {
+  const handleInput = (e: any) => {
     if (e.target.className === "selectedRangeofEvents" && e.target.value) {
       setrangeValue(e.target.value);
     }
@@ -84,7 +91,7 @@ const ExploreContent = () => {
     });
   };
 
-  const handleToggleitem = (event) => {
+  const handleToggleitem = (event: any) => {
     setpopupSelectedItem(popupSelectedItem === event ? null : event);
   };
 
@@ -191,14 +198,14 @@ const ExploreContent = () => {
               </div>
               <div className={styles["explorefeedEvents"]}>
                 
-                {userexploreData.map((event, i) => (
+                {userexploreData.map((event: any, i) => (
                   <div key={i} className={styles["exploreContentSection"]}>
                     <div
                       className={styles["exploreContent"]}
                       onClick={() => handleToggleitem(event)}
                     >
                       <Image
-                        src={event.ImageCoverUpload}
+                        src={event?.ImageCoverUpload}
                         width={200}
                         alt="Event cover"
                         height={200}
@@ -213,7 +220,7 @@ const ExploreContent = () => {
 
                     <div className={styles["exploreContentPopupSection"]}>
                       {popupSelectedItem &&
-                        popupSelectedItem.eventId === event.eventId && (
+                        (popupSelectedItem as Event)?.eventId === event.eventId && (
                           <div className={styles["exploreContentPopupOverlay"]}>
                             <div className={styles["exploreContentPopupArea"]}>
                               <div
@@ -314,7 +321,7 @@ const ExploreContent = () => {
                               ></div>
 
                               <div className={styles["explorePopUpOption"]}>
-                                {userexploreData.map((event, i) => (
+                                {userexploreData.map((event: any, i) => (
                                   <div
                                     key={i}
                                     className={
