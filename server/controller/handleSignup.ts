@@ -1,11 +1,13 @@
-const bcrypt = require('bcrypt')
-const {PrismaClient} = require('@prisma/client');
-const passport = require('passport')
+import bcrypt from 'bcrypt'
+import passport from 'passport';
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+import { Request, Response } from 'express';
 
 
 
 
-const prisma = new PrismaClient()
+
 
 
 
@@ -18,16 +20,18 @@ const prisma = new PrismaClient()
 */
 
 
+interface  User {
+    
+    userName: string
+    userEmail: string
+    userPassword1: string
+}
 
-/**
- * Function Signature--createUserAccount
- * @param {String} user - represents the user wants to sign Up on the pag 
- * @returns {object} Returns a json object message with the user is create the database
- */
 
 
 
-exports.createUserAccount = async(req,res,)  => {
+
+const createUserAccount = async(req: Request<{}, {}, User>,res: Response)  => {
    
     const user = req.body
     // console.log(user);
@@ -82,3 +86,5 @@ exports.createUserAccount = async(req,res,)  => {
         
    
 }
+
+export default createUserAccount

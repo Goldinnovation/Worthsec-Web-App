@@ -1,6 +1,6 @@
-const {initializeApp} = require("firebase/app")
-const {getAnalytics} = require("firebase/analytics")
-require('dotenv').config()
+import {initializeApp} from 'firebase/app'
+import {getAnalytics} from 'firebase/analytics'
+// require('dotenv').config()
 
 
 export default{

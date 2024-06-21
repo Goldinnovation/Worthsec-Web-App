@@ -1,9 +1,12 @@
 import multer from "multer";
 // const {fileURLToPath} = require('url')
-import path from "path";
-// const path = require('path');
-import { join } from "path";
-// const {join} = path
+
+import { fileURLToPath } from 'url';
+import path, { join } from "path";
+
+// Get the current file's directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
  
