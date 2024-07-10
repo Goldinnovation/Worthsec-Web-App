@@ -9,6 +9,7 @@ import signupRequest from './router/userSignup';
 import passportConfig from './config/passport';
 import isAuth from './Middlware/isAuth';
 import loginReq from './router/userLogin';
+import LoginToken from './router/loginToken'
 import { PrismaClient } from '@prisma/client';
 import Seqstore from 'connect-session-sequelize';
 import connectPgSimple from 'connect-pg-simple';
@@ -28,6 +29,7 @@ import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications';
 import expressSession from "express-session";
 import { log } from 'console';
+
 
 
 
@@ -53,6 +55,7 @@ app.prepare().then(() => {
     server.use(bodyParser.urlencoded({ extended: true }));
     server.use(express.static('public'));
     server.use(cors());
+    server.use(express.json())
     server.disable('view cache');
 
     server.use(
@@ -77,6 +80,7 @@ app.prepare().then(() => {
     server.use('/api/events', eventRequest);
     server.use('/api/signUpAcc', signupRequest);
     server.use('/api/login', loginReq);
+    server.use('/api/login-token',LoginToken)
     server.use('/api/logout', logoutReq);
     server.use('/api/user', userReq);
     server.use('/user', isAuth);

@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 import { Request, Response, NextFunction } from "express";
 import passport from 'passport';
 import { Express } from 'express';
-
+import { generateToken } from '../config/passport';
 
 
 
@@ -21,32 +21,21 @@ interface AuthenticatedRequest extends Request{
 
 
 
-const userlogin = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
+const userloginToken = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
     
-    passport.authenticate('local', (err: Error, user: Express.User | false, info: {message: string} | undefined) => {
-    if (err) {
-        console.log('error')
-      return res.status(500).json({ message: 'Authentication Error' });
-    }
-    if (!user) {
-        console.log('user not found')
-      return res.status(401).json('user not found');
-    }
-    req.login(user, (err) => {
-      if (err) {
-        console.log('user not catched')
-        return res.status(500).json({ message: 'Session error' });
-      }
-      console.log('user catched')
-     res.json({message: "Login Successful"}) 
-    });
-  })(req, res, next);
+    passport.authenticate('local', { session: false },  (err: Error, user: Express.User | false, info: {message: string} | undefined)=> {
+        if (err) {
+          return res.status(500).json({ message: 'Authentication Error', error: err.message });
+        }
+        if (!user) {
+          return res.status(401).json({ message: 'User not found', info });
+        }
+        const token = generateToken(user as any);
+        res.json({ token });
+      })(req, res, next);
 
-    
-
-   
 
   
 }
 
-export default userlogin
+export default userloginToken

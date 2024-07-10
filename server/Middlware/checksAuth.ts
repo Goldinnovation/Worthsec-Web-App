@@ -26,4 +26,6 @@ const checkAuth = (req:AuthenticatedRequest, res:Response, next: NextFunction) =
 };
 
 
+
+
 export default checkAuth

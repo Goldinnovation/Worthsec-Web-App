@@ -1,9 +1,23 @@
 import {PassportStatic} from 'passport';
 import bcrypt from 'bcrypt'
 import { Strategy as LocalStrategy} from 'passport-local'
+import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions, VerifiedCallback  } from 'passport-jwt';
 import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import jwt from 'jsonwebtoken';
 import { Express } from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+
+const prisma = new PrismaClient();
+// console.log(process.env.SECRET_KEYJWT);
+const SECRET_KEY=  process.env.SECRET_KEY as string
+
+
+if (!SECRET_KEY) {
+  throw new Error('JWT_SECRET_KEY is not defined');
+}
 
 interface User{
     id: string,
@@ -34,6 +48,7 @@ export default function(passport: PassportStatic){
 
             if(checkPasswordMatch){
                 console.log('Authentication successful')
+               
                 return done(null, user); // Authentication was successful
             }
             else{
@@ -42,7 +57,7 @@ export default function(passport: PassportStatic){
             }
 
            }catch(error: any){
-            console.log('local-strategy error')
+            console.log(error)
             if (error instanceof Error) {
                 return done(error);
               } else {
@@ -52,15 +67,43 @@ export default function(passport: PassportStatic){
         })
 
     
+    );
+   
+    passport.use(
+    new JwtStrategy(
+      {
+        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+        secretOrKey: SECRET_KEY,
+      },
+      async (jwtPayload: any , done: VerifiedCallback) => {
+        try {
+          const user = await prisma.account.findUnique({
+            where: {
+              userId: jwtPayload.userId,
+            },
+          });
+          if (user) {
+            console.log('user in jwt founded');
+            return done(null, user);
+          } else {
+            console.log('user in jwt not founded');
+            return done(null, false);
+          }
+        } catch (error) {
+          console.log('user catched error');
+          return done(error, false);
+        }
+      }
     )
+  );
 
     
-    passport.serializeUser((user: Express.User | false, done:(err: any, id?: string) => void ) => {  //stores the user id in the session 
-       console.log('catch seq')
+    passport.serializeUser((user: Express.User | false, done:(err: any, id?: string) => void ) => {  
+       console.log('stroes the user in the session')
         done(null,( user as User).userId);
     });
     
-    passport.deserializeUser(async(userId: string, done: (err: any, user?: Express.User | false) => void) => { //retrieves the user from the session with the id and sets it to the req.user 
+    passport.deserializeUser(async(userId: string, done: (err: any, user?: Express.User | false) => void) => { 
         try{
             const user = await prisma.account.findUnique({
                 where: {
@@ -85,4 +128,9 @@ export default function(passport: PassportStatic){
         }
     })
 
+}; 
+
+
+export function generateToken(user: User) {
+  return jwt.sign({ userId: user.userId, email: user.userEmail }, SECRET_KEY, { expiresIn: '1h' });
 }
