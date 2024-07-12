@@ -6,16 +6,20 @@ interface AuthenticatedRequest extends Request{
 
 
 const isAuthenticated = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
-    if(req.user) {
-        // console.log(req.user)
+    try{
+        if(req.user) {
+          
+            next(); 
     
-        // console.log('user is aUthenticated')
-        next(); 
+        }else{
+            
+            return res.redirect('/')
+        }
 
-    }else{
-        console.log('User is not Auth')
-        return res.redirect('/')
+    }catch(error){
+        console.log('Error on Authentication middleware', error);
     }
+ 
 } 
 
 

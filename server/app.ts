@@ -28,6 +28,7 @@ import searchForCloseFriend from './router/userClosefriends';
 import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications';
 import expressSession from "express-session";
+
 import { log } from 'console';
 
 
@@ -66,6 +67,7 @@ app.prepare().then(() => {
             saveUninitialized: true,
             cookie: {
                 maxAge: 1000 * 60 * 60 * 24,
+                
             },
         })
     );

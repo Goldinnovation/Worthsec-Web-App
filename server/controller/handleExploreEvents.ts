@@ -17,7 +17,6 @@ interface AuthenticatedRequest extends Request{
 export async function exploreEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
 
 
-
     // receives Json string from the query request 
     const selectQueryString = req.query.selectedValues as string
     // console.log(selectQueryString)

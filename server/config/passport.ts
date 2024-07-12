@@ -52,7 +52,7 @@ export default function(passport: PassportStatic){
                 return done(null, user); // Authentication was successful
             }
             else{
-                console.log('password does snot match ')
+                console.log('password does not match ')
                 return done(null, false); //Password does not match
             }
 
@@ -99,7 +99,8 @@ export default function(passport: PassportStatic){
 
     
     passport.serializeUser((user: Express.User | false, done:(err: any, id?: string) => void ) => {  
-       console.log('stroes the user in the session')
+       console.log('stores the user ID in the session')
+       
         done(null,( user as User).userId);
     });
     
