@@ -30,8 +30,20 @@ const userloginToken = (req: AuthenticatedRequest,res: Response,next: NextFuncti
         if (!user) {
           return res.status(401).json({ message: 'User not found', info });
         }
-        const token = generateToken(user as any);
-        res.json({ token });
+        try{
+          const token = generateToken(user as any);
+          if(token){
+            const find_userIntere = prisma.account.findFirst({
+              
+            })
+
+          }
+
+        }catch(error){
+          console.error('Error on Login ', error)
+        }
+        // const token = generateToken(user as any);
+        // res.json({ token });
       })(req, res, next);
 
 

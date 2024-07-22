@@ -20,8 +20,16 @@ model account {
   notification    notification[]
   event           event[]
   invitation      invitation[]
+  userInterest    userInterest?
 
   @@index(fields: [userName])
+}
+
+model userInterest {
+  IntersetId       String   @id @default(uuid())
+  user_id          account  @relation(fields: [user_interest_id], references: [userId])
+  user_interest_id String   @unique
+  interest_list    String[]
 }
 
 model picture {
@@ -101,7 +109,7 @@ model session {
 model invitation {
   invitationId           String   @id @default(uuid())
   currentUser_sendInvite account  @relation(fields: [currentUser_invite_Id], references: [userId])
-  currentUser_invite_Id   String
+  currentUser_invite_Id  String
   InvitedToEvent         event    @relation(fields: [event_invitedTo_Id], references: [eventId])
   event_invitedTo_Id     String
   otherUser_invited_Id   String[]

@@ -12,8 +12,7 @@ const authMiddlewareCheck = (req: AuthenticatedRequest,res: Response,next: NextF
     const token = req.headers['authorization']?.split(' ')[1]
    
         const tokenKey = process.env.SECRET_KEY as string
-        console.log(token);
-        console.log(tokenKey);
+     
 
     try{
         if(req.user) {
@@ -22,14 +21,13 @@ const authMiddlewareCheck = (req: AuthenticatedRequest,res: Response,next: NextF
             next(); 
     
         }else if (token){
-            console.log('inside token function');
             jwt.verify(token,tokenKey,(err,decoded) => {
                 if(err){
                     console.log('authicated verify error with token');
                     return res.status(401).json({message: "Invalid token "})
                 }else{
                     req.user = decoded
-                    console.log(req.user);
+                    // console.log(req.user);
                     next();
                 }
             } )
