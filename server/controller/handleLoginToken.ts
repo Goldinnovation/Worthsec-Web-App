@@ -7,9 +7,18 @@ import { generateToken } from '../config/passport';
 
 
 
+interface User {
+  userId: string, 
+  userName: string, 
+  userEmail: string, 
+  userPassword1: string
+
+}
+
 
 interface AuthenticatedRequest extends Request{
-  user?: Express.User
+  user?: User
+
 }
 /** 
  * Purpose Statement--userlog
@@ -21,32 +30,67 @@ interface AuthenticatedRequest extends Request{
 
 
 
-const userloginToken = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
+const authenticate = (req: Request, res: Response, next: NextFunction) => 
+  new Promise<User | false>((resolve, reject) => {
+    passport.authenticate('local', { session: false }, (err: Error, user:User | false, info: {message: string} | undefined) => {
+      if (err) {
+        reject(err);
+      } else if (!user) {
+        reject(new Error('User not found'));
+      } else {
+        resolve(user);
+      }
+    })(req, res, next);
+  });
+
+const userloginToken =  async (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
     
-    passport.authenticate('local', { session: false },  (err: Error, user: Express.User | false, info: {message: string} | undefined)=> {
-        if (err) {
-          return res.status(500).json({ message: 'Authentication Error', error: err.message });
-        }
-        if (!user) {
-          return res.status(401).json({ message: 'User not found', info });
-        }
+   
         try{
+          const user = await authenticate(req, res, next);
+
+          if (user === false) {
+            return res.status(401).json({ message: 'User not found' });
+          }
+      
           const token = generateToken(user as any);
+          console.log(user);
+          
+          console.log(user?.userId);
+         
           if(token){
-            const find_userIntere = prisma.account.findFirst({
-              
+
+            const userId = user?.userId
+            const find_userInterest =  await prisma.userInterest.findUnique({
+              where: {
+                 user_interest_id: userId
+              },
+
             })
+            
+            if(find_userInterest === null){
+
+              res.json({message: "Interest Section is empty"})
+
+            }else{
+
+                res.json({ token });
+
+
+            }
+
+           
+         
+          
+
 
           }
 
         }catch(error){
           console.error('Error on Login ', error)
         }
-        // const token = generateToken(user as any);
-        // res.json({ token });
-      })(req, res, next);
-
-
+        
+  
   
 }
 

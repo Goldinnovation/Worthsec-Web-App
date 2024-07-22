@@ -16,14 +16,12 @@ const authMiddlewareCheck = (req: AuthenticatedRequest,res: Response,next: NextF
 
     try{
         if(req.user) {
-            console.log('authicated with session');
           
             next(); 
     
         }else if (token){
             jwt.verify(token,tokenKey,(err,decoded) => {
                 if(err){
-                    console.log('authicated verify error with token');
                     return res.status(401).json({message: "Invalid token "})
                 }else{
                     req.user = decoded

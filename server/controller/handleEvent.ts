@@ -206,7 +206,6 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
 const findEvents = async(req: AuthenticatedRequest,res: Response) => {
   
-    console.log('Im triggered by token req:', req.user);
 
 
     
