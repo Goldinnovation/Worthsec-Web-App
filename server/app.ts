@@ -26,7 +26,8 @@ import userJoinEvent from './router/userJoinEvent';
 import displayUserJoinEvent from './router/displayJoinedEvents';
 import searchForCloseFriend from './router/userClosefriends';
 import inviteCloseFriends from './router/invitefriends';
-import userNotifications from './router/userNotifications';
+import userNotifications from './router/userNotifications'; 
+import userInterestDatarouter from './router/userInterestData'
 import expressSession from "express-session";
 
 import { log } from 'console';
@@ -95,6 +96,7 @@ app.prepare().then(() => {
     server.use('/api/searchforclosefriends', searchForCloseFriend);
     server.use('/api/invite', inviteCloseFriends);
     server.use('/api/notifications', userNotifications);
+    server.use('/api/userInterest', userInterestDatarouter)
   
 
     server.all('*',  (req: Request, res: Response) => {

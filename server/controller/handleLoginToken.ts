@@ -54,9 +54,7 @@ const userloginToken =  async (req: AuthenticatedRequest,res: Response,next: Nex
           }
       
           const token = generateToken(user as any);
-          console.log(user);
-          
-          console.log(user?.userId);
+         
          
           if(token){
 
@@ -70,11 +68,18 @@ const userloginToken =  async (req: AuthenticatedRequest,res: Response,next: Nex
             
             if(find_userInterest === null){
 
-              res.json({message: "Interest Section is empty"})
+            
+              res.json({
+                token, 
+                message: "Interest Section is empty"
+              })
 
             }else{
 
-                res.json({ token });
+                res.json({ 
+                  token, 
+                 message: "Interest data exist"
+               });
 
 
             }
@@ -94,4 +99,4 @@ const userloginToken =  async (req: AuthenticatedRequest,res: Response,next: Nex
   
 }
 
-export default userloginToken
+export default {userloginToken, authenticate}
