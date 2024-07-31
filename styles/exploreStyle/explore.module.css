@@ -41,26 +41,46 @@
     
 }
 
+.EventStateArea{
+    background-color: pink;
+    background: linear-gradient(1deg, #000000dc, #020202b4, #000000dc,#02020287, #000000);
+    width: 250px;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.EventStateLable{
+
+    font-weight: bold;
+    color: rgba(225, 225, 225, 0.574);
+    font-size: 20px;
+
+}
+
 .middleContentbar{
     /* background-color: rgb(205, 205, 205); */
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
     /* background: linear-gradient(0.1deg, #1036249e, #141b1b74, #00000027); */
     background: linear-gradient(1deg, #070707bb, #fdfdfd1d, #0c0c0c71, #000000);
+    /* background-color:chocolate; */
   
     
 
-    width: 1000px;
+    width: 800px;
     /* border-radius: 20px; */
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px;
     display: flex;
-    justify-content:space-around;
+    justify-content: center;
     align-items: center;
     border: 1px solid rgb(28, 28, 28);
    
    
 
 }
+
 
 .middleContentbar_left{
     background: linear-gradient(1deg, #acacac80, #2736390e, #88bcfc00, #acacac);
@@ -110,12 +130,7 @@
 
 }
 
-.exploreEventSharedSection{
-    background-color: palevioletred;
-    width: 7%;
-    display: flex;
-    flex-direction: column;
-}
+
 
 .exploreEventSharedHead{
     /* background-color: orange; */
@@ -270,23 +285,9 @@
    
 }
 
-.selectTypeofEvent{
-    width: 300px;
-    height: 30px;
-    border-radius: 20px;
-    background-color: rgba(249, 200, 208, 0.477);
-    text-align: center;
-    
-}
 
 
-.selectTypeofEventCategory{
-    width: 300px;
-    height: 30px;
-    border-radius: 20px;
-    background-color: rgba(200, 214, 249, 0.477);
-    text-align: center;
-}
+
 
 .categorySection{
     /* background-color: rgba(165, 42, 42, 0.186); */
