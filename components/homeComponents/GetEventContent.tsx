@@ -6,49 +6,36 @@ import addUser from '@assets/add-user.png'
 import message from '@assets/conversation.png'
 import setting from '@assets/Coversetting.png'
 import deleteIcon from '@assets/delete.png'
-import Createbtn from '@utils/Createbtn'
+import Createbtn from '@/utils/Createbtn'
 import eyeIcon from '@assets/eye-track.png'
 import useSWR, { mutate } from 'swr';
 import infoIcon from '@assets/infoIcon.png'
-import InviteUsertoEvent from '@utils/userFeed/InviteUsertoEvent'
+import InviteUsertoEvent from '@/utils/userFeed/InviteUsertoEvent'
 import searchIcon from '@assets/search.png'
 
 
 
-// export async function getContent(){
-//     try{
 
-//         const res = await fetch('http://localhost:3000/api/events', {
-//             method: "GET",
-          
-           
-//         })
-        
-//         if(!res.ok){
-//             throw new Error('res IS NOT OK,ERROR')
-//         }
-
-//         const data = await res.json()
-//         // console.log(data)
-//         return data
-        
-
-//     }
-
-//     catch(error){
-//         console.error('Fetch API ERROR')
-//     }
-// }
+interface Eventprops{
+    ImageCoverUpload: string;
+    eventDate: string;
+    eventDescriptionContent: string;
+    eventHost: string;
+    eventId: string;
+    eventInviteType: number;
+    eventTime: string;
+    eventTitle: string;
+    eventType: number;
+}
 
 
 
 
 
 
-
-export async function deleteobj(eventId,eventpath) {
+export async function deleteobj(eventId: string,eventpath: string) {
     try{
-
+        console.log(eventId);
         const res = await fetch(`http://localhost:3000/api/events/${eventId}`,{
 
             method: 'DELETE',
@@ -71,20 +58,20 @@ export async function deleteobj(eventId,eventpath) {
 
 
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
 
 const GetEventContent = () => {
     
     // const [allEventContent, setAllEventContent] = useState([])
     // const [eventWindow, setEventWindow] = useState(false)
-    const [selectedEvent, setSelectedEvent] = useState(null);
+    const [selectedEvent, setSelectedEvent] = useState<Eventprops | null>(null);
     const [eventOptions, setEventOptions] = useState(false)
     const [userInviteSection, setUserInviteSection] = useState(false)
     const [eventInfo, setEventInfo] = useState(true)
     // const [rerender, setRerender] = useState(false)
 
-    const {data: allEventContent, error} = useSWR('http://localhost:3000/api/events', fetcher,{
+    const {data: allEventContent, error,} = useSWR('http://localhost:3000/api/events', fetcher,{
         refreshInterval: 5000,
         // revalidateOnFocus: false
     })
@@ -123,27 +110,30 @@ const GetEventContent = () => {
   
 
 // Deletes the Event Object 
-    const handleDelete = async(eventId,eventpath) => {
+    const handleDelete = async(eventId: string,eventpath: string, event: Eventprops) => {
         try{
-            console.log(eventId);
-            console.log(eventpath);
-            await deleteobj(eventId,eventpath)
-            
 
-            // Look this area up 
-           
-            const updatedData = allEventContent?.filter((event) => event.id !== eventId)
-                allEventContent(updatedData)           
+            const userDeletsEvent = await deleteobj(eventId,eventpath)
+            
+            if(eventId && eventpath){
+            
+                const updatedEventContent = allEventContent?.filter((event: Eventprops) =>  event.eventId !== eventId)
+                 mutate('http://localhost:3000/api/events', updatedEventContent, false); 
+                console.log(updatedEventContent);
+            }
+              
 
         }catch(error){
             console.error('function error', error)
         }
     }
 
+    console.log(allEventContent);
 
 
 
-    const handleEventtoggle = (event) => {
+
+    const handleEventtoggle = (event: Eventprops) => {
 
         // set the toggle to the event object 
         setSelectedEvent(selectedEvent === event ? event : event)
@@ -163,9 +153,16 @@ const GetEventContent = () => {
         if(allEventContent?.length > 0){
             setSelectedEvent(allEventContent[allEventContent?.length - 1])
         }else {
-            setSelectedEvent(false)
+            setSelectedEvent(null)
         }
+        
     },[allEventContent])
+    useEffect(() => {
+        return () => {
+          // Clear cache on component unmount
+          mutate('http://localhost:3000/api/events', undefined, false);
+        };
+      }, ['http://localhost:3000/api/events'])
 
     
     
@@ -176,7 +173,7 @@ const GetEventContent = () => {
     when user hovers over the object, the object will show the event options like intiving friend, chatting and setting */}
        <div className='contentCreateSection'>
             <div className='eventContentSection'>
-                    {allEventContent?.map((event, i) => (
+                    {allEventContent?.map((event: Eventprops, i: number) => (
                     <div key={i} className='eventContentSectionArea'>
                         <div className='eventContentKey' >
                                 <div className='eventContent'>
@@ -273,7 +270,7 @@ const GetEventContent = () => {
 
                                                             
                                                             <div className='eventoptionsDelete'>
-                                                                 <Image src={setting} alt='current user event delete Icon'  width={18} height={18} onClick={() => handleDelete(selectedEvent.eventId, selectedEvent.ImageCoverUpload)}/>
+                                                                 <Image src={setting} alt='current user event delete Icon'  width={18} height={18} onClick={() => handleDelete(selectedEvent.eventId, selectedEvent.ImageCoverUpload, selectedEvent)}/>
                                                             </div>
                                                             <div className='eventoptionMessage'>
                                                                 <Image src={message} alt='current user event message Icon' width={18} height={18}/>

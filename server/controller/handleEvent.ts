@@ -245,19 +245,23 @@ const findEvents = async(req: AuthenticatedRequest,res: Response) => {
 // Delete an Event Object 
 
  const deleteEvent = async(req: AuthenticatedRequest,res: Response) => {
+    console.log('hallo');
     const id = req.params.id;
-    console.log(id)
+    console.log('inside id:',id)
     console.log(req.body.eventpath);
     const imagePath = req.body.eventpath
    
     try{
         
         if(!id){
+            console.log('inside error');
             res.status(400).json({message: 'Image could not be found, provoke bad request'})
         }else{
+            console.log('inside query');
             const deletedEvent = await prisma.event.delete({
                 where: {eventId: id},
             })
+            console.log(deleteEvent);
             console.log('Event is successfull deleted from the db ');
             res.status(200).json({message: "Event is successfull deleted from the db "})
         }
