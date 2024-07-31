@@ -5,6 +5,7 @@ const prisma = new PrismaClient()
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 
+
 interface AuthenticatedRequest extends Request{
     user?: any
 }
@@ -17,12 +18,16 @@ interface DJwtPayload extends JwtPayload {
 
  const storeInterestData = async (req: AuthenticatedRequest, res: Response) => {
 
-    const usertoken = req.body.token.token 
+    const usertoken = req.body.token
+    console.log(usertoken);
     const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload
     const userId = decoded.userId
+    console.log(userId);
     const body = req.body.pickedIntesrest
+    console.log(body);
 
     try{
+        if(userId && body){
             const storeUserInterestData = await prisma.userInterest.create({
                 data: {
                     user_interest_id: userId,
@@ -32,10 +37,16 @@ interface DJwtPayload extends JwtPayload {
             })
 
             console.log(storeUserInterestData);
-            res.json({message: "Interest are successfully stored"})
+            res.status(200).json({message: "Interest are successfully stored"})
+
+        }else{
+
+            res.status(500).json({message: "Invalid Request data on the StoreInterestdata handler"})
+        }
+         
 
     }
-    catch(error ){
+    catch(error){
         console.log('Errror on handler storeInterestData', error);
         res.status(500).json({message: "Error on Response of handler storeInterstData"})
 
