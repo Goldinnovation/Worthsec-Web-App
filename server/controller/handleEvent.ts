@@ -222,7 +222,7 @@ const findEvents = async(req: AuthenticatedRequest,res: Response) => {
            
 
             
-            console.log(userEvents.length);
+            // console.log(userEvents.length);
             res.json(userEvents);
         }else {
             res.status(401).json({error: 'user is not Authenticated to get events'})
