@@ -1,11 +1,24 @@
-import {initializeApp} from 'firebase/app'
-import {getAnalytics} from 'firebase/analytics'
-// require('dotenv').config()
+import { initializeApp } from 'firebase/app';
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// export default {
+
+//     firebaseConfig: {
+//         apiKey: process.env.API_KEY,
+//         authDomain: process.env.AUTH_DOMAIN,
+//         projectId: process.env.PROJECT_ID,
+//         storageBucket: process.env.STORAGE_BUCKET,
+//         messagingSenderId: process.env.MESSAGINGSENDER_ID,
+//         appId: process.env.APP_ID,
+//         measurementId: process.env.MEASURE_ID
+//     },
+// } 
 
 
-export default{
-
-    firebaseConfig: {
+  const firebaseConfig = {
         apiKey: process.env.API_KEY,
         authDomain: process.env.AUTH_DOMAIN,
         projectId: process.env.PROJECT_ID,
@@ -13,7 +26,9 @@ export default{
         messagingSenderId: process.env.MESSAGINGSENDER_ID,
         appId: process.env.APP_ID,
         measurementId: process.env.MEASURE_ID
-    },
-} 
-  
 
+  }
+
+  const fireapp = initializeApp(firebaseConfig);
+
+  export default firebaseConfig

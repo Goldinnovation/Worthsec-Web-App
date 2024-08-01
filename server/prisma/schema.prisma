@@ -44,7 +44,7 @@ model picture {
 
 model event {
   eventId                 String            @id @default(uuid())
-  userId_EventHost        account           @relation(fields: [eventHost], references: [userId])
+  userId_EventHost        account           @relation(fields: [eventHost], references: [userId], onDelete: Cascade)
   eventHost               String
   eventTitle              String
   eventType               Int               @db.Integer
@@ -65,7 +65,7 @@ model userJoinEvent {
   joinId       String   @id @default(uuid())
   joined_user  account  @relation(fields: [user_id], references: [userId])
   user_id      String
-  joined_event event    @relation(fields: [event_id], references: [eventId])
+  joined_event event    @relation(fields: [event_id], references: [eventId], onDelete: Cascade)
   event_id     String
   createdAt    DateTime @default(now())
 }
@@ -74,7 +74,7 @@ model userFavourEvent {
   favourId       String   @id @default(uuid())
   user_favoured  account  @relation(fields: [currentUser_id], references: [userId])
   currentUser_id String
-  favored_event  event    @relation(fields: [event_id], references: [eventId])
+  favored_event  event    @relation(fields: [event_id], references: [eventId], onDelete: Cascade)
   event_id       String
   createdAt      DateTime @default(now())
 }
@@ -110,7 +110,7 @@ model invitation {
   invitationId           String   @id @default(uuid())
   currentUser_sendInvite account  @relation(fields: [currentUser_invite_Id], references: [userId])
   currentUser_invite_Id  String
-  InvitedToEvent         event    @relation(fields: [event_invitedTo_Id], references: [eventId])
+  InvitedToEvent         event    @relation(fields: [event_invitedTo_Id], references: [eventId], onDelete: Cascade)
   event_invitedTo_Id     String
   otherUser_invited_Id   String[]
 }

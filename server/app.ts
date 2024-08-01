@@ -29,9 +29,7 @@ import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications'; 
 import userInterestDatarouter from './router/userInterestData'
 import expressSession from "express-session";
-
-import { log } from 'console';
-
+import firebaseConfig from './config/firebase';
 
 
 
@@ -77,7 +75,9 @@ app.prepare().then(() => {
     server.use(passport.session());
 
     passportConfig(passport);
-    initializeApp(config.firebaseConfig);
+    initializeApp(firebaseConfig);
+    // getStorage(fireapp)
+    // getFirestore(fireapp)
 
     // API endpoints
     server.use('/api/events', eventRequest);

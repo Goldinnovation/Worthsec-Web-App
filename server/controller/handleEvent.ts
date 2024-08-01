@@ -222,7 +222,7 @@ const findEvents = async(req: AuthenticatedRequest,res: Response) => {
            
 
             
-            // console.log(userEvents);
+            console.log(userEvents.length);
             res.json(userEvents);
         }else {
             res.status(401).json({error: 'user is not Authenticated to get events'})
@@ -257,22 +257,26 @@ const findEvents = async(req: AuthenticatedRequest,res: Response) => {
             console.log('inside error');
             res.status(400).json({message: 'Image could not be found, provoke bad request'})
         }else{
-            console.log('inside query');
-            const deletedEvent = await prisma.event.delete({
-                where: {eventId: id},
-            })
-            console.log(deleteEvent);
-            console.log('Event is successfull deleted from the db ');
-            res.status(200).json({message: "Event is successfull deleted from the db "})
+         
+            try{
+                const userDeletedEvent = await prisma.event.delete({
+                    where: {
+                        eventId: id
+                    }
+                })
+                console.log(userDeletedEvent);
+                console.log('Event is successfull deleted from the db ');
+                const storageRef = ref(storage, imagePath)
+                await deleteObject(storageRef)
+                res.status(200).json({message: "Event is successfull deleted from the db "})
+
+            }catch(error){
+                console.log('DB query Execution failes on deleteEvent:', error);
+            }
+        
         }
 
-        const storageRef = ref(storage, imagePath)
-        await deleteObject(storageRef)
-
-        console.log('Image is deleted')
-    
-       
-
+     
         
     }catch(error){
         res.status(500).json({message:"Error trying to Delete the object"})
