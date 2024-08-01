@@ -146,23 +146,41 @@ const Createbtn = () => {
     <div>
       {model && (
           
+          <div className='create_event_overlay'>
           <div className="create-event-area">
             <form onSubmit={handleSubmit} encType="multipart/form-data">
             <div className='create-event-content'>
                 <div className='title-date-content'>
+                  {/* title area */}
                   <div className='event-title-area'>
                   <input type="text" className="eventTitle" onChange={handleInput} placeholder='Enter your Event Title' required/>
+
+
+                  <div className='time_and_Date_area'>
+                 
+
+                  <input type="time"  className='eventTime' onChange={handleInput}  required/>
+                  <input type="date" className='eventDate' onChange={handleInput} required/>
+
+                </div>
                   </div>
 
                   <div className='eventtype-date-area'>
-                  <select className="eventType" onChange={handleInput} required>
+                <div className='eventtype_area'>
+                  
+                    <select className="eventType" onChange={handleInput} required>
                           <option value=''  className='event-type-content'>Event-type</option>
                           <option value="1">Exhibiton</option>
                           <option value={2}>House party</option>
                           <option value={3}>Club Party</option>
                         
                 </select>
-                <input type="date" className='eventDate' onChange={handleInput} required/>
+                </div>
+                <div>jhnkj</div>
+
+                
+            
+
                 </div>
                   </div>
                 
@@ -259,7 +277,7 @@ const Createbtn = () => {
 
                 <div className='createEventBtnArea'>
                   <div className='btnContentArea'>
-                  <input type="time"  className='eventTime' onChange={handleInput}  required/>
+                  {/* <input type="time"  className='eventTime' onChange={handleInput}  required/> */}
                 <button className="createEventBtn"  >Submit</button>
                   </div>
                 </div>
@@ -268,6 +286,7 @@ const Createbtn = () => {
                 
             </div>
             </form> 
+          </div>
           </div>
       )}
         
