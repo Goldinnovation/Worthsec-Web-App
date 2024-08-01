@@ -424,17 +424,33 @@ appearance: none;
 /* user create event area  */
 
 
+.create_event_overlay{
+    background-color: #020202ed;
+    width: 100%;
+    height: 100vh;
+    /* flex: 1; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    z-index: 1;
+
+    
+}
+
 @media screen and (max-width:2000px){
 
 
     .create-event-area{
         background-color: rgba(143, 141, 141, 0.354);
+        background-color: palegoldenrod;
         width: 590px;
         height: 320px;
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,20%);
+        transform: translate(-50%,-50%);
         border: 1px solid white;
         border-radius: 10px;
         
@@ -450,12 +466,15 @@ appearance: none;
     
     .create-event-area{
     background-color: rgba(143, 141, 141, 0.354);
-    width: 750px;
+    /* background-color: rgb(55, 38, 208); */
+
+    /* width: 750px; */
+    width: 850px;
     height: 400px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,0%);
+    transform: translate(-50%,-50%);
     border: 1px solid white;
     border-radius: 10px;
     
@@ -471,7 +490,7 @@ appearance: none;
 @media screen and (max-width:1800px){
     .title-date-content{
         /* background-color: rgba(255, 166, 0, 0.975); */
-        margin-top: 20px;
+        /* margin-top: 20px; */
         display: flex;
         height: 90px;
         
@@ -485,9 +504,9 @@ appearance: none;
     
     .title-date-content{
         /* background-color: rgba(255, 166, 0, 0.975); */
-        margin-top: 20px;
+        /* margin-top: 20px; */
         display: flex;
-        height: 90px;
+        height: 100px;
         
     
     }
@@ -502,6 +521,7 @@ appearance: none;
         /* background-color: green; */
         width: 90%;
         height: 90px;
+        display: flex;
         text-align: center;
         align-items: center;
        
@@ -515,11 +535,15 @@ appearance: none;
     
 
     .event-title-area{
-        /* background-color: green; */
-        width: 90%;
-        height: 90px;
-        text-align: center;
+        /* background-color: rgba(38, 255, 38, 0.558); */
+        width: 70%;
+        height: 100px;
+        display: flex;
+        /* text-align: center; */
         align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
     
     }
    
@@ -528,7 +552,7 @@ appearance: none;
 
 
 
-
+/* 
 .eventTitle{
     background-color: rgba(240, 248, 255, 0.79);
     width: 300px;
@@ -539,7 +563,7 @@ appearance: none;
     gap: 50%;
 
     
-}
+} */
 
 @media screen and (min-width:1800px){ 
     
@@ -548,10 +572,10 @@ appearance: none;
         background-color: rgba(240, 248, 255, 0.79);
         width: 90%;
         height: 30px;
-        border-radius: 10px;
-        margin-left: 10px;
-        margin-top: 23px;
-        gap: 50%;
+        border-radius: 6px;
+        /* margin-left: 10px; */
+        /* margin-top: 23px; */
+        /* gap: 50%; */
 
         
     }
@@ -565,15 +589,46 @@ appearance: none;
 
 
 
-/* .eventtype-date-area{
-    background-color: red;
+.eventtype-date-area{
+    /* background-color: rgb(255, 77, 0); */
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 30%;
+    gap: 30%;
+    align-items: center;
+    border-left: 1px solid white;
+    
    
-} */
+}
 
+.time_and_Date_area{
+    /* background-color: #00ccff; */
+    display: flex;
+    /* gap: 10%; */
+    justify-content: space-between;
+    margin-top: 2%;
+    width: 90%;
+    height: 30px;
+    align-items: center;
+    
+}
+
+.eventtype_area{
+    /* background-color: rgb(128, 255, 0); */
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+
+
+}
 .eventType{
-    width: 150px;
+    width: 200px;
     height: 25px;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: rgba(240, 248, 255, 0.79);
     
 }
@@ -582,7 +637,10 @@ appearance: none;
 
 .eventDate{
     width: 145px;
-    margin-top: 5px;
+    height: 25px;
+    /* padding: 2%; */
+    /* border-radius: 50px; */
+    /* margin-top: 5px; */
     background-color: rgba(240, 248, 255, 0.79);
 }
 
@@ -885,6 +943,9 @@ appearance: none;
     background-color: rgba(240, 248, 255, 0.79);
     height: 20px;
     margin-left: 22%;
+    padding: 2%;
+    border-radius: 50px;
+    
 
 }
 }
@@ -896,7 +957,8 @@ appearance: none;
     .eventTime{
         background-color: rgba(240, 248, 255, 0.79);
         height: 25px;
-        
+        /* padding: 4%; */
+        /* border-radius: 50px; */
     
     }
 
