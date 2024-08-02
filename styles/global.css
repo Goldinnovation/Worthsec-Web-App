@@ -469,8 +469,8 @@ appearance: none;
     /* background-color: rgb(55, 38, 208); */
 
     /* width: 750px; */
-    width: 850px;
-    height: 400px;
+    width: 860px;
+    height: 530px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -512,6 +512,34 @@ appearance: none;
     }
 }
 
+
+.create-event-header{
+    /* background-color: pink; */
+    width: 100%;
+    height: 50px;
+    display: flex;
+    /* justify-content: center; */
+    border-bottom: 1px solid white;
+}
+
+.create-event-header-title{
+    color:  white;
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: center;
+    border-right: 1px solid white;
+}
+
+.clostebtn-createEvent{
+    /* background-color: pink; */
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
 
 
 
@@ -595,7 +623,7 @@ appearance: none;
     /* justify-content: center; */
     flex-direction: column;
     width: 30%;
-    gap: 30%;
+    gap: 20%;
     align-items: center;
     border-left: 1px solid white;
     
@@ -635,6 +663,42 @@ appearance: none;
 
 
 
+#rangeInput {
+    /* -webkit-appearance: none; */
+    width: 180px;
+    height: 10px;
+    text-align: center;
+    border-radius: 5px;
+    /* margin: 20px 0; */
+}
+
+#outputValue {
+    display: block;
+    color: #fafafa;
+    text-align: center;
+
+}
+
+#rangeInput::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+}
+
+  
+
+  input[type='range']::-webkit-slider-thumb {
+    width: 15px;
+    -webkit-appearance: none;
+    height: 15px;
+    cursor: ew-resize;
+    border-radius: 50px;
+    background: #7700ff;
+    /* border: 2px solid rgb(0, 0, 0); */
+    /* box-shadow: -80px 0 0 80px #43e5f7; */
+  }
+
+
 .eventDate{
     width: 145px;
     height: 25px;
@@ -643,6 +707,7 @@ appearance: none;
     /* margin-top: 5px; */
     background-color: rgba(240, 248, 255, 0.79);
 }
+
 
 
 /* invite option area */
@@ -662,6 +727,66 @@ appearance: none;
     
 }
 
+.address-zipcode-country-area{
+    /* background-color: rgb(255, 251, 127); */
+    height: 50px;
+    border-top-style: solid;
+    border-top-color: white ;
+    border-top-width: 1px;
+    align-items: center;
+    display: flex;
+    /* justify-content: flex-end; */
+
+
+}
+
+.address-zipcode-area{
+    /* background-color: #ddff00; */
+    width: 69.9%;
+    height: 50px;
+    border-right: 1px solid white;
+    display: flex;
+}
+
+.country-area{
+    /* background-color: orange; */
+    height: 50px;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+.address-section{
+    /* background-color: orange; */
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid white;
+
+}
+.zipcode-section{
+    /* background-color: green; */
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.eventAddress{
+    background-color: rgba(240, 248, 255, 0.79);
+        width: 85%;
+        height: 20px;
+        border-radius: 6px;
+}
+
+.eventZipcode{
+    background-color: rgba(240, 248, 255, 0.79);
+        width: 71%;
+        height: 20px;
+        border-radius: 6px;
+
+}
 .invite-content{
     /* background-color: orange; */
     width: 60%;
@@ -708,14 +833,24 @@ appearance: none;
 
 
 .UploadCoverArea{
-    display: flex; 
-    gap: 10%;
+    /* display: flex;  */
+    /* gap: 10%; */
+    /* background-color: orange; */
+    width: 15%;
     
     
     
     
 }
 
+.imageCoverLayer{
+    width: 260px;
+    height: 250px;
+    margin-left: 29%;
+    background-color: aqua;
+    margin-bottom: 21%;
+
+}
 .invite-area{
     background-color: goldenrod;
     width: 100px;
@@ -725,8 +860,8 @@ appearance: none;
 .ImageCoverUpload{
 
     background-color: aqua;
-    color: white;
-    margin-left: 2%;
+    /* color: white; */
+    /* margin-left: 5%; */
     
 }
 
@@ -740,7 +875,7 @@ appearance: none;
 
             background-color: rgb(0, 255, 255);
             color: white;
-            margin-left: 11.5%;
+            /* margin-left: 11.5%; */
             margin-top: 4%;
             width: 190px;
             height: 170px;
@@ -758,7 +893,9 @@ appearance: none;
 
             background-color: aqua;
             color: white;
-            margin-left: 13%;
+            /* margin-left: 70%; */
+            /* width: 900px!important; */
+            /* height: 30px; */
 
         }
 
@@ -825,7 +962,7 @@ appearance: none;
         /* background-color: rgba(43, 226, 76, 0.457); */
         display: flex;
         justify-content: space-between;
-        height: 180px;
+        height: 220px;
         text-align: center;
         align-items: center;
         
@@ -869,9 +1006,9 @@ appearance: none;
     .eventDescriptionContent{
         background-color: rgba(240, 248, 255, 0.799);
         margin-top: 10px;
-        width: 58%;
-        height: 150px;
-        margin-right: 1%;
+        width: 56.5%;
+        height: 205px;
+        margin-right: 3%;
         border-radius: 10px;
        
         text-align: center;
@@ -898,9 +1035,10 @@ appearance: none;
 @media screen and (min-width:2000px){
 
     .createEventBtnArea{
-        margin-top: 10px;
+        margin-top: 16px;
         display: flex;
         /* background-color: aqua; */
+        height: 30px;
         justify-content: flex-end
     }
 
@@ -923,10 +1061,10 @@ appearance: none;
 
     .btnContentArea{
         /* background-color: green; */
-        width: 438px;
-        margin-right: 1%;
-        display: flex;
-        justify-content: space-between;
+        width: 30%;
+        margin-right: 15%;
+        /* display: flex; */
+        /* justify-content: space-between; */
     }
     
 
@@ -986,8 +1124,10 @@ appearance: none;
     
         .createEventBtn{
             background-color: rgb(246, 246, 246);
-            width: 250px;
-            margin-right: 50px;
+            width: 254px;
+            height: 30px;
+            border-radius: 50px;
+            /* margin-right: 50px; */
            
         }
     }

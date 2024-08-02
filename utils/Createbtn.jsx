@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import uploadCoverImg from '@assets/UploadCover.png'
 import { useRouter } from 'next/navigation'
+import e from 'cors'
 
 
 
@@ -13,7 +14,19 @@ const Createbtn = () => {
    const [imagePreview, setImagePreview] = useState(null)
    const [model, setModel] = useState(false)
    const router = useRouter();
-    
+  const [rangeValue, setRangeValue] = useState(0)
+
+
+
+
+  const handleRangeInput = (e) => {
+    const range = e.target.value
+    console.log(range);
+   
+    setRangeValue(range)
+  
+  }
+  console.log(rangeValue);
 
    const [eventData, setEventData] = useState({
     eventTitle: "",
@@ -104,6 +117,7 @@ const Createbtn = () => {
 
 
 
+
     
     
     
@@ -147,8 +161,17 @@ const Createbtn = () => {
       {model && (
           
           <div className='create_event_overlay'>
+            
           <div className="create-event-area">
             <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <div className='create-event-header'>
+              <div className='create-event-header-title'>
+              <h1>Create your Event</h1>
+              </div>
+              <div className='clostebtn-createEvent'>
+                close
+              </div>
+            </div>
             <div className='create-event-content'>
                 <div className='title-date-content'>
                   {/* title area */}
@@ -176,7 +199,22 @@ const Createbtn = () => {
                         
                 </select>
                 </div>
-                <div>jhnkj</div>
+                
+                <div className='rangeArea'>
+              <input
+                type="range"
+                id="rangeInput"
+                className="selectedRangeofEvents"
+                onChange={handleRangeInput}
+                min="9"
+                max="1000"
+                value={rangeValue}
+              />
+              <output htmlFor="rangeInput" id="outputValue">
+                {rangeValue}
+              </output>
+                </div>
+                
 
                 
             
@@ -185,7 +223,28 @@ const Createbtn = () => {
                   </div>
                 
                 
-                <div className='upload-event-Image'>
+                {/* <div className='upload-event-Image'> */}
+                <div className='address-zipcode-country-area'>
+                  <div className='address-zipcode-area'>
+                     <div className='address-section'>
+                     <input type="text" className="eventAddress" onChange={handleInput} placeholder='Enter your Event Address' required/>
+                     </div>
+
+                     <div className='zipcode-section'>
+                     <input type="text" className="eventZipcode" onChange={handleInput} placeholder='Zipcode' required/>
+                     </div>
+                  </div>
+                  <div className='country-area'>
+                  <select className="eventType" onChange={handleInput} required>
+                          <option value=''  className='country-type-content'>Country</option>
+                          <option value="1">Exhibiton</option>
+                          <option value={2}>House party</option>
+                          <option value={3}>Club Party</option>
+                        
+                  </select>
+                  </div>
+                 
+                </div>
                   <div className='Invite-content-area'> 
                 <div className='invite-content'  required>
                   <div className='onlyFriends-content'>
@@ -238,25 +297,30 @@ const Createbtn = () => {
 
                 </div>
                 
-                </div>  
-                </div>
+                  </div>  
+                {/* </div> */}
 
 
                 <div className='event-Description-And-ImageArea'>
                   {/* Image Upload  */}
                 <div className='UploadCoverArea'>
            <input type="file" className="ImageCoverUpload" alt="Input file on create button"  id="UploadtriggerId"  onChange={handleImageUpload} hidden/>
+        
+
+          
            {imagePreview ? (
+            <div className='imageCoverLayer'>
                 <Image 
                     src={imagePreview} 
                     alt="Uploaded Preview"
-                    width={250} 
+                    width={260} 
                     height={250}
                     className='imagePreview'
                     onClick={() => document.getElementById("UploadtriggerId").click()} 
                     style={{ cursor: 'pointer' }}
                     required
                 />
+                </div>
             ) : (
                 <Image 
                     src={uploadCoverImg}
@@ -269,6 +333,7 @@ const Createbtn = () => {
                     
                 />
             )}
+            
                 </div>
 
       
