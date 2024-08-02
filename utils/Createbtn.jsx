@@ -337,7 +337,7 @@ const Createbtn = () => {
                 </div>
 
       
-                  <input type="text" className='eventDescriptionContent' onChange={handleInput} placeholder='Describe your Event'  required/>
+                  <textarea type="text" className='eventDescriptionContent' onChange={handleInput} placeholder='Describe your Event'  required/>
                 </div>
 
                 <div className='createEventBtnArea'>

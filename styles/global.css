@@ -470,7 +470,7 @@ appearance: none;
 
     /* width: 750px; */
     width: 860px;
-    height: 530px;
+    height: 550px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1005,9 +1005,9 @@ appearance: none;
     
     .eventDescriptionContent{
         background-color: rgba(240, 248, 255, 0.799);
-        margin-top: 10px;
+        margin-top: 21px;
         width: 56.5%;
-        height: 205px;
+        height: 190px;
         margin-right: 3%;
         border-radius: 10px;
        
@@ -1035,7 +1035,7 @@ appearance: none;
 @media screen and (min-width:2000px){
 
     .createEventBtnArea{
-        margin-top: 16px;
+        margin-top: 23px;
         display: flex;
         /* background-color: aqua; */
         height: 30px;
