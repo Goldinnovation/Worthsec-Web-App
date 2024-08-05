@@ -55,7 +55,7 @@ model event {
   createdAt               DateTime          @default(now())
   eventInviteType         Int?
   eventAddress            String
-  eventZipcode            Int
+  eventZipcode            String
   cityType                String
   selectedRangeofEvents   Int?
   userJoinEvent           userJoinEvent[]
