@@ -84,7 +84,7 @@ const ExploreFeed: React.FC<ExploreFeedprops> = ({userexploreData}) => {
 
     return(
         <div className={styles["explorefeedEvents"]}>
-             {userexploreData.map((event: any, i) => (
+             {userexploreData?.map((event: any, i) => (
                   <div key={i} className={styles["exploreContentSection"]}>
                     <div
                       className={styles["exploreContent"]}
