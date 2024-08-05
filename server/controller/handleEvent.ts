@@ -61,108 +61,109 @@ interface AuthenticatedRequest extends Request{
 
 const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
-    // const trybody = req.body
-    // console.log(trybody)
+    const trybody = req.body
+    console.log(trybody)
 
-    try {
-        if (!req.file) {
-            res.status(400).json({ message: "File could not be found" })
-        }
+    // try {
+    //     if (!req.file) {
+    //         res.status(400).json({ message: "File could not be found" })
+    //     }
 
-        const file = req.file as Express.Multer.File;
+    //     const file = req.file as Express.Multer.File;
 
-        // storage path reference 
-        const dateTime = giveCurrentDateTime();
-        const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`)
+    //     // storage path reference 
+    //     const dateTime = giveCurrentDateTime();
+    //     const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`)
 
-        // compromising the image with sharp 
+    //     // compromising the image with sharp 
 
-        const compromiseImage = await sharp(file.buffer)
-            .resize({ width: 800, height: 1050 })
-            .jpeg({ quality: 80 })
-            .toBuffer();
-
-
-
-
-        const metadata = {
-            contentType: file.mimetype
-        }
-
-        // upload the file to the firebase storage
-        const uploadaction = uploadBytesResumable(storageRef, compromiseImage, metadata)
-
-        // wait for the upload to complete 
-        const snapshot = await uploadaction;
-
-        // gets the url of the post 
-        const downloadImageUrl = await getDownloadURL(snapshot.ref)
+    //     const compromiseImage = await sharp(file.buffer)
+    //         .resize({ width: 800, height: 1050 })
+    //         .jpeg({ quality: 80 })
+    //         .toBuffer();
 
 
 
-        // Converts the eventtype to an int
-        const stringEventType = req.body.eventType
-        const  IntEventType = parseInt(stringEventType, 10)
-        const userId = req.user.userId
-        console.log(downloadImageUrl);
-        console.log(req.body.Only_friends)
+
+    //     const metadata = {
+    //         contentType: file.mimetype
+    //     }
+
+    //     // upload the file to the firebase storage
+    //     const uploadaction = uploadBytesResumable(storageRef, compromiseImage, metadata)
+
+    //     // wait for the upload to complete 
+    //     const snapshot = await uploadaction;
+
+    //     // gets the url of the post 
+    //     const downloadImageUrl = await getDownloadURL(snapshot.ref)
 
 
-        let eventinviteNum;
-        if (req.body.Only_friends === '1') {
-            const num1 = req.body.Only_friends
-            eventinviteNum = parseInt(num1, 10)
-        } else if (req.body.friends_Plus_Plus === '2') {
-            const num2 = req.body.friends_Plus_Plus
-            eventinviteNum = parseInt(num2, 10)
-        } else if (req.body.worldwideClass === '3') {
-            const num3 = req.body.worldwideClass
-            eventinviteNum = parseInt(num3, 10)
-        }
+
+    //     // Converts the eventtype to an int
+    //     const stringEventType = req.body.eventType
+    //     const  IntEventType = parseInt(stringEventType, 10)
+    //     const userId = req.user.userId
+    //     console.log(downloadImageUrl);
+    //     console.log(req.body.Only_friends)
+
+
+    //     let eventinviteNum;
+    //     if (req.body.Only_friends === '1') {
+    //         const num1 = req.body.Only_friends
+    //         eventinviteNum = parseInt(num1, 10)
+    //     } else if (req.body.friends_Plus_Plus === '2') {
+    //         const num2 = req.body.friends_Plus_Plus
+    //         eventinviteNum = parseInt(num2, 10)
+    //     } else if (req.body.worldwideClass === '3') {
+    //         const num3 = req.body.worldwideClass
+    //         eventinviteNum = parseInt(num3, 10)
+    //     }
 
       
 
 
 
-        try {
+    //     try {
           
             
           
 
-            const newCreateEvent = await prisma.event.create({
-                data:
-                {
-                    eventHost: userId,
-                    eventTitle: req.body.eventTitle,
-                    eventType: IntEventType,
-                    eventDate: req.body.eventDate,
-                    eventDescriptionContent: req.body.eventDescriptionContent,
-                    eventTime: req.body.eventTime,
-                    ImageCoverUpload: downloadImageUrl,
-                    eventInviteType: eventinviteNum
+    //         const newCreateEvent = await prisma.event.create({
+    //             data:
+    //             {
+    //                 eventHost: userId,
+    //                 eventTitle: req.body.eventTitle,
+    //                 eventType: IntEventType,
+    //                 eventDate: req.body.eventDate,
+    //                 eventDescriptionContent: req.body.eventDescriptionContent,
+    //                 eventTime: req.body.eventTime,
+    //                 ImageCoverUpload: downloadImageUrl,
+    //                 eventInviteType: eventinviteNum
 
-                }
-            });
+    //             }
+    //         });
 
           
-            console.log(newCreateEvent, "successful uploaded")
-            res.status(200).json({ message: "file successful uploaded" });
+    //         console.log(newCreateEvent, "successful uploaded")
+    //         res.status(200).json({ message: "file successful uploaded" });
 
             
-            // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
+    //         // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
 
 
-        } catch (error) {
-            console.error(error)
-            res.status(500).send('issue server side')
-        }
+    //     } catch (error) {
+    //         console.error(error)
+    //         res.status(500).send('issue server side')
+    //     }
 
-    } catch (error) {
+    // } catch (error) {
 
-        console.log(error)
-        res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
-    }
+    //     console.log(error)
+    //     res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
+    // }
 
+    res.json({message:"create event is connected with backend "})
 
 
 }

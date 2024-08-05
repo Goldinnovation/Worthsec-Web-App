@@ -37,7 +37,13 @@ const Createbtn = () => {
     ImageCoverUpload: "",
     Only_friends:"",
     friends_Plus_Plus:"",
-    worldwideClass: ""
+    worldwideClass: "",
+    eventAddress: "",
+    eventZipcode: 0,
+    cityType: "",
+    selectedRangeofEvents:""
+    
+
 
    })
 
@@ -47,16 +53,18 @@ const Createbtn = () => {
    }
 
    const handleInput = (e) => {
+   
     let value = e.target.value; 
+   
 
     if(e.target.className === 'eventDate' && value){
       value = new Date(value).toISOString()
 
     }
 
-    if(e.target.className === 'eventType' && value){
-      value = parseInt(value)
-    }
+    // if(e.target.className === 'eventType' && value){
+    //   value = parseInt(value)
+    // }
 
     if(e.target.className === "Only_friends" && value){
       value  = 1
@@ -97,6 +105,15 @@ const Createbtn = () => {
     }
    }
 
+
+   const handleClose = () => {
+    
+    setRangeValue(0)
+    togglemodal(!model);
+    setEventData('')
+    setImagePreview("")
+   }
+
   
 
 
@@ -113,6 +130,15 @@ const Createbtn = () => {
     formData.append('Only_friends', eventData.Only_friends)
     formData.append('friends_Plus_Plus', eventData.friends_Plus_Plus)
     formData.append('worldwideClass', eventData.worldwideClass)
+    formData.append('eventAddress', eventData.eventAddress)
+    formData.append('eventZipcode', eventData.eventZipcode)
+    formData.append('cityType', eventData.cityType)
+    formData.append('selectedRangeofEvents', rangeValue)
+
+
+
+
+
 
 
 
@@ -140,6 +166,7 @@ const Createbtn = () => {
       const data = await res.json(); 
       togglemodal(!model);
       setEventData('')
+      setRangeValue(0)
       setImagePreview("")
       
       
@@ -168,7 +195,7 @@ const Createbtn = () => {
               <div className='create-event-header-title'>
               <h1>Create your Event</h1>
               </div>
-              <div className='clostebtn-createEvent'>
+              <div className='clostebtn-createEvent' onClick={handleClose}>
                 close
               </div>
             </div>
@@ -193,9 +220,18 @@ const Createbtn = () => {
                   
                     <select className="eventType" onChange={handleInput} required>
                           <option value=''  className='event-type-content'>Event-type</option>
-                          <option value="1">Exhibiton</option>
-                          <option value={2}>House party</option>
-                          <option value={3}>Club Party</option>
+                          <option value="Movie">Movie</option>
+                          <option value="Techno">Techno</option>
+                          <option value="Hip-Hop">Hip-Hop</option>
+                          <option value="Art">Art</option>
+                          <option value="Comedy">Comedy</option>
+                          <option value="Festivals">Festivals</option>
+                          <option value="Bookclubs">Bookclubs</option>
+                          <option value="Fashion">Fashion</option>
+                          <option value="Flea Market">Flea Market</option>
+                          <option value="Exhibition">Exhibition</option>
+                          <option value="Pop-Ups">Pop-Ups</option>
+
                         
                 </select>
                 </div>
@@ -235,11 +271,14 @@ const Createbtn = () => {
                      </div>
                   </div>
                   <div className='country-area'>
-                  <select className="eventType" onChange={handleInput} required>
-                          <option value=''  className='country-type-content'>Country</option>
-                          <option value="1">Exhibiton</option>
-                          <option value={2}>House party</option>
-                          <option value={3}>Club Party</option>
+                  <select className="cityType" onChange={handleInput} required>
+                          <option value=''  className='country-type-content'>City</option>
+                          <option value="Berlin">Berlin</option>
+                          <option value="New York">New York</option>
+                          <option value="Cologne">Cologne</option>
+                          <option value="Barcelona">Barcelona</option>
+                          <option value="Paris">Paris</option>
+
                         
                   </select>
                   </div>
