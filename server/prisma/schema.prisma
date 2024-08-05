@@ -47,13 +47,17 @@ model event {
   userId_EventHost        account           @relation(fields: [eventHost], references: [userId], onDelete: Cascade)
   eventHost               String
   eventTitle              String
-  eventType               Int               @db.Integer
+  eventType               String
   eventDate               DateTime          @db.Date
   eventDescriptionContent String
   eventTime               String
   ImageCoverUpload        String
   createdAt               DateTime          @default(now())
   eventInviteType         Int?
+  eventAddress            String
+  eventZipcode            Int
+  cityType                String
+  selectedRangeofEvents   Int?
   userJoinEvent           userJoinEvent[]
   userFavourEvent         userFavourEvent[]
   invitation              invitation[]
