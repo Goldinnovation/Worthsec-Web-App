@@ -18,10 +18,10 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
 
 
     // receives Json string from the query request 
-    const selectQueryString = req.query.selectedValues as string
+    // const selectQueryString = req.query.selectedValues as string
     // console.log(selectQueryString)
     // parse the json string to an object 
-    const selctedQueryObject = JSON.parse(selectQueryString)
+    // const selctedQueryObject = JSON.parse(selectQueryString)
     // console.log(selctedQueryObject)
    
 
@@ -30,39 +30,73 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
 
    
 
-    const selectedEventsTypeNum = parseInt(selctedQueryObject.explore_selectTypeofEvent__bmewZ, 10)
-    const selectedType = (selectedEventsTypeNum >=1 && selectedEventsTypeNum <=3 ? selectedEventsTypeNum : undefined)
-    // console.log(selectedType);
+    // const selectedEventsTypeNum = parseInt(selctedQueryObject.explore_selectTypeofEvent__bmewZ, 10)
+    // const selectedType = (selectedEventsTypeNum >=1 && selectedEventsTypeNum <=3 ? selectedEventsTypeNum : undefined)
+    // // console.log(selectedType);
 
-    const inputNumber =  parseInt(selctedQueryObject.selectedRangeofEvents, 10)
-    const rangeEventNum = (inputNumber >= 9 && inputNumber <=20 ? inputNumber : undefined)
-    // console.log(rangeEventNum);
+    // const inputNumber =  parseInt(selctedQueryObject.selectedRangeofEvents, 10)
+    // const rangeEventNum = (inputNumber >= 9 && inputNumber <=20 ? inputNumber : undefined)
+    // // console.log(rangeEventNum);
 
-    const inputCategoryNum  =  parseInt(selctedQueryObject.explore_selectTypeofEventCategory__KzDeU, 10)
-    const inviteNum = (inputCategoryNum >=1 && inputCategoryNum <=3 ? inputCategoryNum : undefined)
+    // const inputCategoryNum  =  parseInt(selctedQueryObject.explore_selectTypeofEventCategory__KzDeU, 10)
+    // const inviteNum = (inputCategoryNum >=1 && inputCategoryNum <=3 ? inputCategoryNum : undefined)
 
     // console.log(inviteNum)
 
     try{
-         if(req.user && selectedType !== undefined && inviteNum !== undefined){
-            // console.log('sdsd');
-            const getselectedEvents = await prisma.event.findMany({
-                where: {
-                    eventType: selectedType,
-                    eventInviteType: inviteNum
-                }
+        const currentUser = req.user.userId
+         if(currentUser){
+
+            console.log(currentUser);
+            const getUserInterest = await prisma.account.findUnique({
+                    where: {
+                        userId: currentUser
+
+                    },include: {
+                        userInterest: { 
+                            select: {
+                                interest_list: true
+                            }
+                        }
+
+
+                    }
             })
-            
-        // console.log(getselectedEvents)
-        // console.log(getselectedEvents.length)
-        
-         res.status(200).json(getselectedEvents)
+
+            const userInterestsdataArr = getUserInterest?.userInterest?.interest_list
+          
+
+            const resInterestArr: any[] = []
+            if(userInterestsdataArr){
+               
+                const promise = userInterestsdataArr.map(async(currentUserInterestItem) => {
+                    const interestedEvents = await prisma.event.findMany({
+                        where: {
+                            eventType: currentUserInterestItem
+                        }
+                    });
+
+                    
+                    if(interestedEvents?.length > 0){
+                        resInterestArr.push(...interestedEvents)
+                    }
+                });
+
+                await Promise.all(promise)
+            }
+            console.log(resInterestArr);
+             res.status(200).json(resInterestArr)
+
+
+           
+           
+
          }
 
     }catch(error){
         console.log("Bad request:",error)
     }
-    // res.json({message: "Successful Enterend the server handler "})
+    
 
 
 }

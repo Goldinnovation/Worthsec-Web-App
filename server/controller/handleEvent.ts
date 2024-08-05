@@ -108,7 +108,7 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
         const zipcode_value = req.body.eventZipcode
         console.log(zipcode_value);
         const eventAddress_value = req.body.eventAddress
-        const cityType_value = req.body.eventType
+        const cityType_value = req.body.cityType
         const eventDescription_value = req.body.eventDescriptionContent
         const eventTime_value = req.body.eventTime
         let selectedRange_string = req.body.selectedRangeofEvents
