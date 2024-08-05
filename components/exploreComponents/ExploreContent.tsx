@@ -13,7 +13,7 @@ interface Event {
 export const getallEventsWorldwide = async (selectedValues: string) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/explore?selectedValues=${selectedValues}`,
+      `http://localhost:3000/api/explore`,
       {
         method: "GET",
         cache: "no-store",
