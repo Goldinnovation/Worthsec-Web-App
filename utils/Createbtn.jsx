@@ -245,6 +245,7 @@ const Createbtn = () => {
                 min="9"
                 max="1000"
                 value={rangeValue}
+                
               />
               <output htmlFor="rangeInput" id="outputValue">
                 {rangeValue}
@@ -299,11 +300,6 @@ const Createbtn = () => {
                
                   
                   <div className='friendsPlus-content'>
-                  {/* <style jsx>{`
-                               #friendsPlusPlus:checked {
-                                      outline: 2px solid #ffffff;  // Set a constant outline when checkbox is checked
-                                  }
-                              `}</style> */}
                   <label for="friendsPlusPlus"  style={{color:'#ffffff'}}>Friends++</label>
                   <input 
                   type="checkbox"
@@ -316,11 +312,6 @@ const Createbtn = () => {
                   </div>
                  
                   <div className='worldWide-content'>
-                  {/* <style jsx>{`
-                                  #worldwide:checked {
-                                      outline: 2px solid #ffffff;  // Set a constant outline when checkbox is checked
-                                  }
-                                  `}</style> */}
                   <label for="worldwide"  onChange={handleInput} style={{color:'#ffffff'}}>WorldWide</label>
                   <input 
                   type="checkbox"
@@ -343,7 +334,7 @@ const Createbtn = () => {
                 <div className='event-Description-And-ImageArea'>
                   {/* Image Upload  */}
                 <div className='UploadCoverArea'>
-           <input type="file" className="ImageCoverUpload" alt="Input file on create button"  id="UploadtriggerId"  onChange={handleImageUpload} hidden/>
+           <input type="file" className="ImageCoverUpload" alt="Input file on create button"  id="UploadtriggerId"  onChange={handleImageUpload} required hidden/>
         
 
           
