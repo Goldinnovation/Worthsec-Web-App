@@ -46,6 +46,7 @@ model event {
   eventId                 String            @id @default(uuid())
   userId_EventHost        account           @relation(fields: [eventHost], references: [userId], onDelete: Cascade)
   eventHost               String
+  eventHostName           String
   eventTitle              String
   eventType               String
   eventDate               DateTime          @db.Date

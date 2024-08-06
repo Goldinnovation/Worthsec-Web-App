@@ -102,6 +102,7 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
         //  declaration of object properties 
         const userId = req.user.userId
+        const eventHostname = req.user.userName
         const eventTitle_value = req.body.eventTitle
         const eventDate_value = req.body.eventDate
         const eventType_value = req.body.eventType
@@ -143,6 +144,7 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
                 data:
                 {
                     eventHost: userId,
+                    eventHostName: eventHostname,
                     eventTitle: eventTitle_value,
                     eventType: eventType_value,
                     eventDate: eventDate_value ,

@@ -16,7 +16,7 @@ interface AuthenticatedRequest extends Request{
 
 export async function exploreEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
 
-
+    console.log(req.user);
     // receives Json string from the query request 
     // const selectQueryString = req.query.selectedValues as string
     // console.log(selectQueryString)
@@ -45,6 +45,7 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
 
     try{
         const currentUser = req.user.userId
+        console.log(req.user);
          if(currentUser){
 
             console.log(currentUser);
