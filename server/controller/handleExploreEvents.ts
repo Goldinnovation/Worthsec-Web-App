@@ -15,40 +15,15 @@ interface AuthenticatedRequest extends Request{
 
 
 export async function exploreEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
-
-    console.log(req.user);
-    // receives Json string from the query request 
-    // const selectQueryString = req.query.selectedValues as string
-    // console.log(selectQueryString)
-    // parse the json string to an object 
-    // const selctedQueryObject = JSON.parse(selectQueryString)
-    // console.log(selctedQueryObject)
-   
-
-    // Converting the all 3 string to Numbers 
-    // if none of the numbers are selceted the value will be undefined 
-
-   
-
-    // const selectedEventsTypeNum = parseInt(selctedQueryObject.explore_selectTypeofEvent__bmewZ, 10)
-    // const selectedType = (selectedEventsTypeNum >=1 && selectedEventsTypeNum <=3 ? selectedEventsTypeNum : undefined)
-    // // console.log(selectedType);
-
-    // const inputNumber =  parseInt(selctedQueryObject.selectedRangeofEvents, 10)
-    // const rangeEventNum = (inputNumber >= 9 && inputNumber <=20 ? inputNumber : undefined)
-    // // console.log(rangeEventNum);
-
-    // const inputCategoryNum  =  parseInt(selctedQueryObject.explore_selectTypeofEventCategory__KzDeU, 10)
-    // const inviteNum = (inputCategoryNum >=1 && inputCategoryNum <=3 ? inputCategoryNum : undefined)
-
-    // console.log(inviteNum)
-
+ 
     try{
         const currentUser = req.user.userId
-        console.log(req.user);
+        // console.log(req.user);
+
+        // finds the interest of the currentUser 
          if(currentUser){
 
-            console.log(currentUser);
+            // console.log(currentUser);
             const getUserInterest = await prisma.account.findUnique({
                     where: {
                         userId: currentUser
@@ -66,7 +41,7 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
 
             const userInterestsdataArr = getUserInterest?.userInterest?.interest_list
           
-
+            
             const resInterestArr: any[] = []
             if(userInterestsdataArr){
                
@@ -74,18 +49,48 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
                     const interestedEvents = await prisma.event.findMany({
                         where: {
                             eventType: currentUserInterestItem
-                        }
+                        }, 
                     });
 
                     
                     if(interestedEvents?.length > 0){
+
+                        // const eventHostId= interestedEvents.map((host) => host.eventHost)
+                        // console.log(eventHostId);
+                        // if(eventHostId.length > 0 ){
+                        //     const getAccount =eventHostId.map(async(id) =>{
+                        //         const acc = await prisma.account.findUnique({
+                        //             where:{
+                        //                 userId: id
+                        //             },include:{
+                        //                 picture: {
+                        //                     select: {
+                        //                         pictureUrl: true
+                        //                     }
+                        //                 }
+                        //             }
+                        //         })
+                                
+                        //         console.log(acc);
+
+                        //     })
+
+                        //     await Promise.all(getAccount);
+                            
+
+                        // }
+                        
+                            
+                        console.log(interestedEvents);
                         resInterestArr.push(...interestedEvents)
                     }
                 });
 
                 await Promise.all(promise)
             }
-            console.log(resInterestArr);
+
+            
+            // console.log(resInterestArr);
              res.status(200).json(resInterestArr)
 
 
