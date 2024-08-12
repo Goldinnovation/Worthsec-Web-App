@@ -28,6 +28,7 @@ import searchForCloseFriend from './router/userClosefriends';
 import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications'; 
 import userInterestDatarouter from './router/userInterestData'
+import userCategoryEventReq from './router/userCategory'
 import expressSession from "express-session";
 // import firebaseConfig from './config/firebase';
 
@@ -97,6 +98,7 @@ app.prepare().then(() => {
     server.use('/api/invite', inviteCloseFriends);
     server.use('/api/notifications', userNotifications);
     server.use('/api/userInterest', userInterestDatarouter)
+    server.use('/api/eventCategory', userCategoryEventReq)
   
 
     server.all('*',  (req: Request, res: Response) => {
