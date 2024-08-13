@@ -81,7 +81,7 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
                         // }
                         
                             
-                        console.log(interestedEvents);
+                        // console.log(interestedEvents);
                         resInterestArr.push(...interestedEvents)
                     }
                 });

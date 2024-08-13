@@ -6,7 +6,7 @@ import userGetCategoryEvent from "../controller/handleCategoryReq";
 
 
 
-router.get('/', userGetCategoryEvent )
+router.post('/', userGetCategoryEvent )
 
 
 export default router

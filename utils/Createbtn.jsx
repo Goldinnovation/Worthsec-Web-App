@@ -279,6 +279,8 @@ const Createbtn = () => {
                           <option value="Cologne">Cologne</option>
                           <option value="Barcelona">Barcelona</option>
                           <option value="Paris">Paris</option>
+                          <option value="Paris">Tokyo</option>
+                          <option value="Paris">Oslo</option>
 
                         
                   </select>
