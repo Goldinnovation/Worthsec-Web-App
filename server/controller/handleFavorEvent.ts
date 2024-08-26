@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
 import { Request, Response } from 'express';
-
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 /**
  * Purpose Statement--userFavourEvent
@@ -30,14 +30,16 @@ export async function userFavourEvent(req: AuthenticatedRequest, res: Response):
 
     const currentUserId = req.user.userId
     const favour_event_Id = req.body.favoreventId
+ 
+  
 
     try {
-        if (req.user && req.body) {
+        if (currentUserId && favour_event_Id) {
 
             const userfavoredEvent = await prisma.userFavourEvent.create({
                 data:
                 {
-                    currentUser_id: currentUserId,
+                    currentUser_id: currentUserId ,
                     event_id: favour_event_Id
                 }
             })

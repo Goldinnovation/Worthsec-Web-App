@@ -29,6 +29,7 @@ import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications'; 
 import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
+import userFavorEventReqMob from './router/favorEventMobile'
 import expressSession from "express-session";
 // import firebaseConfig from './config/firebase';
 
@@ -99,6 +100,8 @@ app.prepare().then(() => {
     server.use('/api/notifications', userNotifications);
     server.use('/api/userInterest', userInterestDatarouter)
     server.use('/api/eventCategory', userCategoryEventReq)
+    server.use('/api/favorEventMobile', userFavorEventReqMob)
+
   
 
     server.all('*',  (req: Request, res: Response) => {
