@@ -114,7 +114,7 @@ console.log(userexploreData);
                 </div>
               </div>
               {/* Explore Feed */}
-                <ExploreFeed userexploreData={userexploreData} />
+                <ExploreFeed eventDataArr ={userexploreData} />
            
             </div>
           </div>
