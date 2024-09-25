@@ -16,10 +16,10 @@ interface User {
 }
 
 
-interface AuthenticatedRequest extends Request{
-  user?: User
+// interface AuthenticatedRequest extends Request{
+//   user?: User
 
-}
+// }
 /** 
  * Purpose Statement--userlog
  *By clicking the login button the user triggers the API endpoint userlog.
@@ -43,7 +43,10 @@ const authenticate = (req: Request, res: Response, next: NextFunction) =>
     })(req, res, next);
   });
 
-const userloginToken =  async (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
+
+
+
+const userloginToken =  async (req: Request, res: Response, next: NextFunction) => {
     
    
         try{

@@ -7,53 +7,55 @@ import { Request, Response } from 'express';
 
 
 
-interface AuthenticatedRequest extends Request{
+interface AuthenticatedRequest extends Request {
     user?: any
 }
 
 
 
 
-export async function exploreEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
- 
-    try{
+export async function exploreEvents(req: AuthenticatedRequest, res: Response): Promise<void> {
+
+    try {
         const currentUser = req.user.userId
-        // console.log(req.user);
+        // console.log(currentUser);
+        console.log(req.user);
 
         // finds the interest of the currentUser 
-         if(currentUser){
+        if (currentUser) {
+            console.log('init');
 
             // console.log(currentUser);
             const getUserInterest = await prisma.account.findUnique({
-                    where: {
-                        userId: currentUser
+                where: {
+                    userId: currentUser
 
-                    },include: {
-                        userInterest: { 
-                            select: {
-                                interest_list: true
-                            }
+                }, include: {
+                    userInterest: {
+                        select: {
+                            interest_list: true
                         }
-
-
                     }
+
+
+                }
             })
 
             const userInterestsdataArr = getUserInterest?.userInterest?.interest_list
-          
-            
+
+
             const resInterestArr: any[] = []
-            if(userInterestsdataArr){
-               
-                const promise = userInterestsdataArr.map(async(currentUserInterestItem) => {
+            if (userInterestsdataArr) {
+
+                const promise = userInterestsdataArr.map(async (currentUserInterestItem) => {
                     const interestedEvents = await prisma.event.findMany({
                         where: {
                             eventType: currentUserInterestItem
-                        }, 
+                        },
                     });
 
-                    
-                    if(interestedEvents?.length > 0){
+
+                    if (interestedEvents?.length > 0) {
 
                         // const eventHostId= interestedEvents.map((host) => host.eventHost)
                         // console.log(eventHostId);
@@ -70,17 +72,17 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
                         //                 }
                         //             }
                         //         })
-                                
+
                         //         console.log(acc);
 
                         //     })
 
                         //     await Promise.all(getAccount);
-                            
+
 
                         // }
-                        
-                            
+
+
                         // console.log(interestedEvents);
                         resInterestArr.push(...interestedEvents)
                     }
@@ -89,23 +91,23 @@ export async function exploreEvents(req: AuthenticatedRequest,res: Response): Pr
                 await Promise.all(promise)
             }
 
-            
+
             // console.log(resInterestArr);
-             res.status(200).json(resInterestArr)
+            res.status(200).json(resInterestArr)
 
 
-           
-           
 
-         }
 
-    }catch(error){
-        console.log("Bad request:",error)
+
+        }
+
+    } catch (error) {
+        console.log("Bad request:", error)
     }
-    
+
 
 
 }
 
 
-export default {exploreEvents}
+export default { exploreEvents }

@@ -1,6 +1,7 @@
 import { Router } from "express"
 const router = Router()
-import handleLoginToken from '../controller/handleLoginToken'
+// import  userLo from '../controller/handleLoginToken'
+import handleLoginEvent from "../controller/handleLoginToken"
 
 
 
@@ -8,7 +9,7 @@ import handleLoginToken from '../controller/handleLoginToken'
 
 
 router.get('/')
-router.post('/', handleLoginToken.userloginToken)
+router.post('/', handleLoginEvent.userloginToken)
 
 
 export default router

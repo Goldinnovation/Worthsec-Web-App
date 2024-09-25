@@ -6,14 +6,14 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true, // Allow JavaScript files
-    "checkJs": false, // Set to true if you want to check JS files with TypeScript
+    "allowJs": true, 
+    "checkJs": false, 
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -23,7 +23,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@/server/*": ["server/*"]
     },
     "plugins": [
       {

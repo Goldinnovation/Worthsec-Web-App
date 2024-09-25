@@ -46,12 +46,15 @@ const store = new (connectPgSimple(expressSession))({
     tableName: 'session',
 });
 
+
 const devEnv = process.env.NODE_ENV !== 'production';
 const app = next({ dev: devEnv });
 const handle = app.getRequestHandler();
 
+export const server = express();
+
+
 app.prepare().then(() => {
-    const server = express();
 
     server.use(bodyParser.json());
     server.use(bodyParser.urlencoded({ extended: true }));
@@ -115,3 +118,5 @@ app.prepare().then(() => {
         console.log(`Ready on http://localhost:${port}`);
     });
 });
+
+// export default server 

@@ -36,6 +36,7 @@ interface DJwtPayload extends JwtPayload {
 
 export async function userFavorEventMobile(req: AuthenticatedRequest, res: Response): Promise<void> {
 
+    console.log(req.body);
     const favour_event_Id = req.body.favoreventId
     const usertoken = req.body.token
     console.log(usertoken);
@@ -48,7 +49,7 @@ export async function userFavorEventMobile(req: AuthenticatedRequest, res: Respo
     try {
         console.log('inside try');
         if (userIdviaToken && favour_event_Id) {
-            console.log('Hallo');
+            // console.log('Hallo');
 
             const userfavoredEvent = await prisma.userFavourEvent.create({
                 data:
@@ -58,7 +59,7 @@ export async function userFavorEventMobile(req: AuthenticatedRequest, res: Respo
                 }
             })
 
-            console.log(userfavoredEvent)
+            // console.log(userfavoredEvent)
             res.status(200).json({ message: "user successfully favored a event" })
         }
 
