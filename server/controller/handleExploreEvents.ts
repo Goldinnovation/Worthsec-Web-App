@@ -17,18 +17,18 @@ interface AuthenticatedRequest extends Request {
 export async function exploreEvents(req: AuthenticatedRequest, res: Response): Promise<void> {
 
     try {
-        const currentUser = req.user.userId
+        const currentUserId = req.user.userId
         // console.log(currentUser);
         console.log(req.user);
 
         // finds the interest of the currentUser 
-        if (currentUser) {
+        if (currentUserId) {
             console.log('init');
 
             // console.log(currentUser);
             const getUserInterest = await prisma.account.findUnique({
                 where: {
-                    userId: currentUser
+                    userId: currentUserId
 
                 }, include: {
                     userInterest: {
@@ -57,33 +57,7 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
                     if (interestedEvents?.length > 0) {
 
-                        // const eventHostId= interestedEvents.map((host) => host.eventHost)
-                        // console.log(eventHostId);
-                        // if(eventHostId.length > 0 ){
-                        //     const getAccount =eventHostId.map(async(id) =>{
-                        //         const acc = await prisma.account.findUnique({
-                        //             where:{
-                        //                 userId: id
-                        //             },include:{
-                        //                 picture: {
-                        //                     select: {
-                        //                         pictureUrl: true
-                        //                     }
-                        //                 }
-                        //             }
-                        //         })
-
-                        //         console.log(acc);
-
-                        //     })
-
-                        //     await Promise.all(getAccount);
-
-
-                        // }
-
-
-                        // console.log(interestedEvents);
+                       
                         resInterestArr.push(...interestedEvents)
                     }
                 });
@@ -100,10 +74,12 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
 
         }
+       
 
     } catch (error) {
         console.log("Bad request:", error)
     }
+
 
 
 

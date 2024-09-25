@@ -8,7 +8,7 @@ import processProfilImageFile from "../Middlware/userProfilImage";
 
 
 router.get('/', getUserProfilePicture)
-router.post('/', processProfilImageFile, createProfilePicture)
+// router.post('/', processProfilImageFile, createProfilePicture)
 router.delete('/:id', deleteUserProfilePicture)
 
 

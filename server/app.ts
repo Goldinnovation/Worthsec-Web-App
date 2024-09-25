@@ -20,7 +20,7 @@ import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
 import searchUserReq from './router/userSearch';
 import userFollowUser from './router/userToUser';
-import exploreEvents from './router/selectedEvents';
+import exploreEvents from './router/exploreEvents'
 import userFavorEvent from './router/favorEvent';
 import userJoinEvent from './router/userJoinEvent';
 import displayUserJoinEvent from './router/displayJoinedEvents';
