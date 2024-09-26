@@ -11,7 +11,10 @@ export default {
   },
   verbose: true,   //indicates if individual test should reported during the run
   forceExit: true,  // wants our test should run even if there might be errors 
-  // clearMocks: true
+  clearMocks: true,
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+  // Ignore node_modules except if you need to transform them:
+  transformIgnorePatterns: ["/node_modules/(?!(my-es-module)/)"],
   
 
 };

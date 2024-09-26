@@ -31,13 +31,13 @@ import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
 import userFavorEventReqMob from './router/favorEventMobile'
 import expressSession from "express-session";
+import conf from "../next.config";
 // import firebaseConfig from './config/firebase';
 
 
 
 
 
-// const { conObject } = require('connect-pg-simple');
 
 const store = new (connectPgSimple(expressSession))({
     conObject: {
@@ -48,7 +48,7 @@ const store = new (connectPgSimple(expressSession))({
 
 
 const devEnv = process.env.NODE_ENV !== 'production';
-const app = next({ dev: devEnv });
+const app = next({ dev: devEnv, conf});
 const handle = app.getRequestHandler();
 
 export const server = express();

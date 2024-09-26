@@ -16,17 +16,26 @@ describe('GET /api/explore',  () => {
     // Should respond with a 404 status code
 
   
+    try{
+      
+       
+        it('should access protected endpoint with mock JWT', async () => {
+          const mockToken = createMockJWT();
+            console.log('hallo');
+          const Request = await supertest(server).post("/api/login-token")
+          .expect(200)
+          
+          console.log(Request);
+          expect(Request).toBe(true);
+        });
+      
+     
+  
 
-    it('should access protected endpoint with mock JWT', async () => {
-      const mockToken = createMockJWT();
+    }catch(error){
+      console.error("TestERROR", error)
+    }
     
-      const response = await supertest(server)
-        .post('/userInterest')
-        .set('Authorization', `Bearer ${mockToken}`);
-    
-      expect(response.status).toBe(200);
-    });
-
   })
 
   describe("Events that might interest the user could not be found",  () => {
