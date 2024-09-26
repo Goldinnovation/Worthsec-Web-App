@@ -11,13 +11,13 @@ dotenv.config();
 
 
 const prisma = new PrismaClient();
-// console.log(process.env.SECRET_KEYJWT);
 const SECRET_KEY=  process.env.SECRET_KEY as string
 
 
 if (!SECRET_KEY) {
   throw new Error('JWT_SECRET_KEY is not defined');
 }
+
 
 interface User{
     id: string,
@@ -90,7 +90,7 @@ export default function(passport: PassportStatic){
             return done(null, false);
           }
         } catch (error) {
-          console.log('user catched error');
+          console.log('JWT user error; Token Invalid');
           return done(error, false);
         }
       }
@@ -130,7 +130,7 @@ export default function(passport: PassportStatic){
     })
 
 }; 
-
+// Generate a JWT token when the your successfully logged In 
 
 export function generateToken(user: User) {
   return jwt.sign({ userId: user.userId, email: user.userEmail }, SECRET_KEY, { expiresIn: '1h' });
