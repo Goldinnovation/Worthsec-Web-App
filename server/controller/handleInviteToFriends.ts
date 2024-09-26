@@ -28,7 +28,7 @@ export async function getCloseFriends(req: AuthenticatedRequest, res: Response):
 
     
       if (currentUserFriends.length > 0) {
-        const arrobj = currentUserFriends.map((friendsId) =>friendsId.userFollowed)
+        const arrobj = currentUserFriends.map((friendsId: any) =>friendsId.userFollowed)
         
         const closefriendsData = await prisma.account.findMany({
           where: {

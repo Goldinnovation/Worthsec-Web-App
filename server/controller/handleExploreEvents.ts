@@ -47,7 +47,7 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
             const resInterestArr: any[] = []
             if (userInterestsdataArr) {
 
-                const promise = userInterestsdataArr.map(async (currentUserInterestItem) => {
+                const promise = userInterestsdataArr.map(async (currentUserInterestItem: any) => {
                     const interestedEvents = await prisma.event.findMany({
                         where: {
                             eventType: currentUserInterestItem

@@ -41,7 +41,7 @@ export async function getUserNotification (req: AuthenticatedRequest, res: Respo
                             }
                         }
                     })
-                    const followerId_arr = checkNotifications.map(connectId => connectId.userTOuser.userRequested_id)
+                    const followerId_arr = checkNotifications.map((connectId: any)=> connectId.userTOuser.userRequested_id)
                 
                    
                 //   Takes the requested user id to check if the currentUser follows the other user
@@ -59,7 +59,7 @@ export async function getUserNotification (req: AuthenticatedRequest, res: Respo
                     // console.log(checkConnection.length);
                     if(checkConnection.length > 0){
                                 // represents an array of the otheruserIds that the currentuser Follows 
-                            const otheruserId = checkConnection.map(otheruserId => otheruserId.userFollowed)
+                            const otheruserId = checkConnection.map((otheruserId: any) => otheruserId.userFollowed)
 
                             const checkotherConnection =  await prisma.userTouser.findMany({
                                 where: {
@@ -71,10 +71,10 @@ export async function getUserNotification (req: AuthenticatedRequest, res: Respo
                         
 
                             // represents the pk id for the currentUser relation to otherusers 
-                            const userconnectionId = checkConnection.map( connectionId => connectionId.userTouserId)
+                            const userconnectionId = checkConnection.map( (connectionId: any) => connectionId.userTouserId)
 
                             // represents the pk id for the otheruser relation to the currentUser
-                            const otherUserconnectionId = checkotherConnection.map( otherConnecitonId => otherConnecitonId.userTouserId)
+                            const otherUserconnectionId = checkotherConnection.map( (otherConnecitonId: any) => otherConnecitonId.userTouserId)
 
                             // represents update function for both connection status 
                             if(userconnectionId && otherUserconnectionId){

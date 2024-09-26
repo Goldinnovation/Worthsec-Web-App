@@ -89,7 +89,7 @@ export async function getUserFavoredEvents(req: AuthenticatedRequest, res: Respo
 
             const favoredEventsArr: any[] = []
             if(getEventIdofJointUser.length > 0){
-                const promiseEventDataFetch = getEventIdofJointUser.map( async(selectedEvents) => {
+                const promiseEventDataFetch = getEventIdofJointUser.map( async(selectedEvents: any) => {
                     const retrieveData = await prisma.event.findMany({
                        where: {
                         eventId: selectedEvents.event_id
