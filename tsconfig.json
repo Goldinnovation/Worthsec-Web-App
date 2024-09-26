@@ -37,6 +37,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
+    "**/*.mjs",
+    "**/*.cjs",
     "**/*.jsx",
     ".next/types/**/*.ts"
   ], // Include JS and JSX files

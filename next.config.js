@@ -15,6 +15,7 @@ const nextConfig = {
     config.resolve.alias['@utils'] = path.resolve(__dirname, 'utils');
     config.resolve.alias['@assets'] = path.resolve(__dirname, 'assets');
     config.resolve.alias['@server'] = path.resolve(__dirname, 'server');
+    config.resolve.alias['@'] = path.resolve(__dirname);
 
 
     return config;
@@ -22,3 +23,4 @@ const nextConfig = {
 };
 
 export default nextConfig
+

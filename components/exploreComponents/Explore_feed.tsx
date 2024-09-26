@@ -6,6 +6,7 @@ import { userFavorEvent } from "@/Service/Explore/userFavorEvent";
 import { userJoinEvent } from "@/Service/Explore/userJoinedEvents";
 import ExploreSlider from "./exploreSilder";
 import ExplorePopUpOption from "./explorePopUpOption";
+import React from "react";
 
 interface userEvent {
   ImageCoverUpload: string;

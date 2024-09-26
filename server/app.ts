@@ -31,7 +31,8 @@ import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
 import userFavorEventReqMob from './router/favorEventMobile'
 import expressSession from "express-session";
-import conf from "../next.config";
+import nextConfig from '@/next.config.js';
+// import conf from '../next.config.mjs';
 // import firebaseConfig from './config/firebase';
 
 
@@ -48,10 +49,12 @@ const store = new (connectPgSimple(expressSession))({
 
 
 const devEnv = process.env.NODE_ENV !== 'production';
-const app = next({ dev: devEnv, conf});
+const app = next({ dev: devEnv,
+     conf: nextConfig
+    });
 const handle = app.getRequestHandler();
 
-export const server = express();
+const server = express();
 
 
 app.prepare().then(() => {
@@ -119,4 +122,4 @@ app.prepare().then(() => {
     });
 });
 
-// export default server 
+export default server 

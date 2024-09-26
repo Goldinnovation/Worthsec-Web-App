@@ -1,12 +1,9 @@
-import { server } from '../../app';
+import  server from '../../app';
 import {describe, expect, test, beforeAll} from '@jest/globals';
 import supertest from 'supertest';
-import { Request, NextFunction} from 'express';
-import { RequestHandler } from 'express';
-import jwt, { JwtPayload } from "jsonwebtoken";
 import createMockJWT from './verifiedToken';
 
-const SECRET_KEY=  process.env.SECRET_KEY as string
+// const SECRET_KEY=  process.env.SECRET_KEY as string
 
 describe('GET /api/explore',  () => {
 
