@@ -1,4 +1,5 @@
 import express from 'express';
+import { Application } from 'express';
 import { Request, Response, NextFunction } from 'express';
 import next from 'next';
 import bodyParser from 'body-parser';

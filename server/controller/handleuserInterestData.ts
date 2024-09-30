@@ -52,7 +52,7 @@ interface DJwtPayload extends JwtPayload {
 
     // }
 
-    return res.status(200).json({message: "connected"})
+     res.status(200).json({message:"connected"})
 }
 
 export default storeInterestData
