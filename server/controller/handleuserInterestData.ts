@@ -18,40 +18,41 @@ interface DJwtPayload extends JwtPayload {
 
  const storeInterestData = async (req: AuthenticatedRequest, res: Response) => {
 
-    const usertoken = req.body.token
-    console.log(usertoken);
-    const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload
-    const userId = decoded.userId
-    console.log(userId);
-    const body = req.body.pickedIntesrest
-    console.log(body);
+    // const usertoken = req.body.token
+    // console.log(usertoken);
+    // const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload
+    // const userId = decoded.userId
+    // console.log(userId);
+    // const body = req.body.pickedIntesrest
+    // console.log(body);
 
-    try{
-        if(userId && body){
-            const storeUserInterestData = await prisma.userInterest.create({
-                data: {
-                    user_interest_id: userId,
-                    interest_list:  body
+    // try{
+    //     if(userId && body){
+    //         const storeUserInterestData = await prisma.userInterest.create({
+    //             data: {
+    //                 user_interest_id: userId,
+    //                 interest_list:  body
                     
-                }
-            })
+    //             }
+    //         })
 
-            console.log(storeUserInterestData);
-            res.status(200).json({message: "Interest are successfully stored"})
+    //         console.log(storeUserInterestData);
+    //         res.status(200).json({message: "Interest are successfully stored"})
 
-        }else{
+    //     }else{
 
-            res.status(500).json({message: "Invalid Request data on the StoreInterestdata handler"})
-        }
+    //         res.status(500).json({message: "Invalid Request data on the StoreInterestdata handler"})
+    //     }
          
 
-    }
-    catch(error){
-        console.log('Errror on handler storeInterestData', error);
-        res.status(500).json({message: "Error on Response of handler storeInterstData"})
+    // }
+    // catch(error){
+    //     console.log('Errror on handler storeInterestData', error);
+    //     res.status(500).json({message: "Error on Response of handler storeInterstData"})
 
-    }
+    // }
 
+    return res.status(200).json({message: "connected"})
 }
 
 export default storeInterestData

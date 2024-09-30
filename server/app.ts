@@ -49,9 +49,7 @@ const store = new (connectPgSimple(expressSession))({
 
 
 const devEnv = process.env.NODE_ENV !== 'production';
-const app = next({ dev: devEnv,
-     conf: nextConfig
-    });
+const app = next({ dev: devEnv});
 const handle = app.getRequestHandler();
 
 const server = express();
@@ -122,4 +120,5 @@ app.prepare().then(() => {
     });
 });
 
-export default server 
+
+export default server
