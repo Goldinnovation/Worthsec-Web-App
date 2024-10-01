@@ -51,7 +51,6 @@ interface DJwtPayload extends JwtPayload {
     //     res.status(500).json({message: "Error on Response of handler storeInterstData"})
 
     // }
-
      res.status(200).json({message:"connected"})
 }
 
