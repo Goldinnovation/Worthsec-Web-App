@@ -18,6 +18,7 @@ interface DJwtPayload extends JwtPayload {
 
  const storeInterestData = async (req: AuthenticatedRequest, res: Response) => {
 
+    // console.log(await req.body);
     // const usertoken = req.body.token
     // console.log(usertoken);
     // const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload

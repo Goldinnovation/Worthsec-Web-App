@@ -4,6 +4,8 @@ import supertest, { SuperTest, Test } from "supertest";
 import nock from "nock";
 import app from "../../index";
 import { vi } from 'vitest'
+import storeInterestData from "@/server/controller/handleuserInterestData";
+
 
 // calling multiple events that user might be interested in
 //should get a list of selected interests from the account table with the help of an inner join from userInterest table

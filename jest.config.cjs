@@ -31,22 +31,3 @@ module.exports = async () => ({
   forceExit: true,
 })
 
-
-// /** @type {import('ts-jest').JestConfigWithTsJest} */
-// module.exports = {
-//   preset: 'ts-jest',
-//   testEnvironment: "node",
-//   testMatch: [
-//     '**/__tests__/**/*.test.ts', 
-//     '**/?(*.)+(spec|test).ts' 
-//   ],
-//   transform: {
-//     "^.+\\.(ts|tsx)$": "babel-jest",
-//     '^.+\\.(css)$': '<rootDir>/config/jest/fileTransform.js', // add this to fix css import issues
-//   },
-//   verbose: true,
-//   forceExit: true,
-//   clearMocks: true,
-//   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-//   transformIgnorePatterns: ['/node_modules/(?!swiper|ssr-window|dom7)']
-// };
