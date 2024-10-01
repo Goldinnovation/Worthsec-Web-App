@@ -1,31 +1,98 @@
-import server from "../../app";
-import { describe, expect, test, beforeEach, afterEach, it } from "vitest";
-import supertest, { SuperTest, Test } from "supertest";
-import nock from "nock";
-import app from "../../index";
-import { vi } from 'vitest'
+import { describe, expect, test, beforeEach, afterEach, it, beforeAll } from "vitest";
+import { vi, } from 'vitest'
 import storeInterestData from "@/server/controller/handleuserInterestData";
+import { getMockReq, getMockRes } from 'vitest-mock-express'
+import { Request, Response } from "express";
+import { Jwt } from "jsonwebtoken";
+import { PrismaClient } from '@prisma/client';
+import jwt, { JwtPayload } from "jsonwebtoken";
+import isAuthenticated from "@/server/Middlware/isAuth";
 
 
-// calling multiple events that user might be interested in
-//should get a list of selected interests from the account table with the help of an inner join from userInterest table
-//should respond with a json object containing the list of events
-// Should respond with a 404 status code
+const  SECRET_KEY=  process.env.SECRET_KEY as string
+
+const tokenKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+interface AuthenticatedRequest extends Request{
+  user?: any, 
+
+}
+
+
+// Mocking the token to create an effect of decoding to return the encoded user information
+
+  
+
+
+
+
+// need to call a mockfucntion
+
 
 describe("POST /api/userInterest", () => {
-  const user = {
-    userId: "askhdbajasd", 
-    token: "dkdsjskdniadsnas",
-    pickedIntesrest: ["time", "Movie", "Festival"]
-  }
+ 
+  beforeAll( () => {
+    console.log('hello');
+    const  SECRET_KEY=  process.env.SECRET_KEY as string
 
-  test("should access endpoint", async () => {
-    const response = await supertest(app)
-      .post("/api/userInterest")
-      .set("Content-Type", "application/json")
-      .send(user)
+  vi.mock(import('jsonwebtoken',  ), async(importOriginal) => {
+      
+      const JwtPayload = await importOriginal()
+      const mockImplent = vi.fn().mockImplementation((token: string , SECRET: string) => {
+        console.log("Mock verify called"); 
+        if(token === tokenKey && SECRET === SECRET_KEY ){
+          return {
+            userId: "caro1"
+          }      
+        }
+        throw new Error("Invalid Tokenn")
+      })
+      console.log("MockImplement Data", JwtPayload);
+      // const jwt = await import('jsonwebtoken');
+       return {
+        ...JwtPayload,
+        verify: mockImplent}
+      })
+})
 
-    expect(response.status).toStrictEqual(200);
-    expect(response.body).toStrictEqual({ message: "connected" });
-  });
+afterEach(() => {
+  vi.restoreAllMocks(); // Restore all mocks to their original state
+});
+  
+  // Creating a MockRequest which uses vitest-mock-express Express to handle the Authentification 
+  // request and passes a req.body containing and userId, token, and pickedInterestData
+
+  const mockRequest = getMockReq<AuthenticatedRequest>({
+    
+    body: {
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      secret: SECRET_KEY,
+      pickedInterest: ["time", "Movie", "Festival"]
+    }
+  })
+// Creating a Mock Response
+
+
+  const {res: mockResponse} =  getMockRes({
+    status: vi.fn().mockReturnThis(),
+    json: vi.fn()
+ })
+
+ afterEach(() => {
+  vi.restoreAllMocks();
+});
+
+  
+  it("acces the handler Function with JWT token",async () => {
+     await  storeInterestData(mockRequest , mockResponse)
+
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
+    
+
+      // expect(mockResponse.sendStatusCode).toEqual(200)
+      expect(mockResponse.json).toHaveBeenCalledWith({message: "connected"})
+
+
+  })
+
+
 });

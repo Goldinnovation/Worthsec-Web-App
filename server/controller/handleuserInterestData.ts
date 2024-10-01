@@ -12,20 +12,20 @@ interface AuthenticatedRequest extends Request{
 
 interface DJwtPayload extends JwtPayload {
     userId: string;
-    email: string;
+    userEmail: string;   //before was Email 
   }
-  const SECRET_KEY=  process.env.SECRET_KEY as string
 
  const storeInterestData = async (req: AuthenticatedRequest, res: Response) => {
 
-    // console.log(await req.body);
-    // const usertoken = req.body.token
-    // console.log(usertoken);
-    // const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload
-    // const userId = decoded.userId
-    // console.log(userId);
-    // const body = req.body.pickedIntesrest
-    // console.log(body);
+
+    const SECRET_KEY=  process.env.SECRET_KEY as string
+    const usertoken = req.body.token
+    console.log(usertoken);
+    const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload
+    const userId = decoded.userId
+    console.log(userId);
+    const body = req.body.pickedIntesrest
+    console.log(body);
 
     // try{
     //     if(userId && body){
