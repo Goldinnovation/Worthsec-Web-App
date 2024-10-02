@@ -2,7 +2,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
-import jwt, { JwtPayload } from "jsonwebtoken";
 
 
 
@@ -12,18 +11,15 @@ interface AuthenticatedRequest extends Request{
     userSelectedInterests: any
 }
 
-interface DJwtPayload extends JwtPayload {
-    userId: string;
-    email: string;   //before was Email 
-  }
+
 
 
 //   The function receives a userId with a list of  selected interest strings and stores it in the database table userInterest
 
- const storeInterestData = async (req: AuthenticatedRequest, res: Response, next: NextFunction ) => {
+ const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
 
-    const userId = req?.decodedUserId
-    const selectedInterests = req?.userSelectedInterests
+    const userId = (req as AuthenticatedRequest)?.decodedUserId
+    const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
 
     try{
         if(userId && selectedInterests){
@@ -34,9 +30,8 @@ interface DJwtPayload extends JwtPayload {
                     
                 }
             })
-
             console.log(storeUserSelectedInterestData);
-            res.status(200).json({message: "Interest are successfully stored"})
+            res.status(200).json({message: "Interests are successfully stored"})
 
         }else{
 

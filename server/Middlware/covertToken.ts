@@ -14,17 +14,18 @@ interface DJwtPayload extends JwtPayload {
 // Receives a user token and decodes it to the users Id and Email. Afterwards the function passes the decodedId and
 //  the list of Selected interest to the local request property further to the next handler function 
 
-const converToken = (
-  req: AuthenticatedRequest,
+const convertToken = (
+  req: Request,
   res: Response,
   next: NextFunction
-) => {
+)  =>  {
   if (req.body) {
     const SECRET_KEY = process.env.SECRET_KEY as string;
     const usertoken = req.body.token;
     const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload;
-    req.decodedUserId = decoded.userId;
-    req.userSelectedInterests = req.body.pickedIntesrest;
+    // req.decodedUserId
+    (req as AuthenticatedRequest).decodedUserId = decoded.userId;
+    (req as AuthenticatedRequest).userSelectedInterests = req.body.pickedIntesrest;
 
     next();
   } else {
@@ -37,4 +38,4 @@ const converToken = (
   }
 };
 
-export default converToken;
+export default convertToken;

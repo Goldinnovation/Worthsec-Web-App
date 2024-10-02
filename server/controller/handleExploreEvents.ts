@@ -19,13 +19,13 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
     try {
         const currentUserId = req.user.userId
         // console.log(currentUser);
-        console.log(req.user);
+        // console.log(req.user);
 
         // finds the interest of the currentUser 
+        // let sum = 0
         if (currentUserId) {
-            console.log('init');
-
-            // console.log(currentUser);
+            // const num = sum+=1
+            // console.log(num);
             const getUserInterest = await prisma.account.findUnique({
                 where: {
                     userId: currentUserId
@@ -46,15 +46,16 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
             const resInterestArr: any[] = []
             if (userInterestsdataArr) {
+                // Mapping over the list of the user Interest and querying all corresponding Events that match the Interest array
 
                 const promise = userInterestsdataArr.map(async (currentUserInterestItem: any) => {
                     const interestedEvents = await prisma.event.findMany({
                         where: {
                             eventType: currentUserInterestItem
                         },
+                        take: 15   //setting query limit to 10
                     });
-
-
+                    // console.log("captured Interest data", interestedEvents?.length);
                     if (interestedEvents?.length > 0) {
 
                        
