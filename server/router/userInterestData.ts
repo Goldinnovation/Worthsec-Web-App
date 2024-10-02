@@ -1,9 +1,10 @@
 import { Router } from 'express'
 const router = Router();
 import handlerUserInterestData from '../controller/handleuserInterestData'
+import converToken from '../Middlware/covertToken';
 
 
-router.post('/', handlerUserInterestData )
+router.post('/',converToken, handlerUserInterestData )
 
 
 export default router

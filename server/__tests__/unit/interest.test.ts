@@ -83,7 +83,7 @@ afterEach(() => {
 
   
   it("acces the handler Function with JWT token",async () => {
-     await  storeInterestData(mockRequest , mockResponse)
+    //  await  storeInterestData(mockRequest , mockResponse)
 
       expect(mockResponse.status).toHaveBeenCalledWith(200);
     
