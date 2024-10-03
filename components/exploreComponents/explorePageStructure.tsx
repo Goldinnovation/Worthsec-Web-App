@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import styles from "@styles/exploreStyle/explore.module.css";
 import Image from "next/image";
 import ExploreFeed from "./Feed/Explore_feed";
+// import "tailwindcss/tailwind.css"
+
 
 
 interface Event {
@@ -99,9 +101,12 @@ console.log(userexploreData);
         <div className={styles["exploreheader"]}>
 
         </div>
+       
 
         {/* Feed Section */}
         <div className={styles["middleContentFeed"]}>
+
+          {/* Left Feed Section  */}
           <div className={styles["exploreEventContent"]}>
             <div className={styles["exploreEventhead"]}>
               <div className={styles["exploreEventheadMoodOpt"]}>Mood</div>
@@ -112,7 +117,7 @@ console.log(userexploreData);
             </div>
           </div>
 
-
+         {/* Right Feed Section  */}
           <div className={styles["exploreEventContentRight"]}>
            
             <div className={styles["explorefeedContent"]}>
@@ -126,6 +131,8 @@ console.log(userexploreData);
            
             </div>
           </div>
+
+
         </div>
       </section>
     </div>

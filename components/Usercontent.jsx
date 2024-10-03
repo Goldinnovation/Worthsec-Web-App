@@ -20,6 +20,7 @@ import DisplayNotifications from '@utils/header/DisplayNotifications'
 import SettingIcon  from '@assets/setting3d.png'
 import MailIcon from '@assets/Mail3d.png'
 import Search3dIcon from '@assets/search3d.png'
+import style from "../styles/global.css"
 
 
 const Usercontent = () => {
@@ -109,7 +110,7 @@ const Usercontent = () => {
 
 
   return (
-    <div>
+    <div >
 
        
 

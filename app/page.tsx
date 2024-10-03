@@ -3,9 +3,8 @@ import Login from '@components/loginComponents/Login'
 
 const page: React.FC = () => {
   return (
-    <div>
+    <div className='min-h-full' >
     <Login/>
-       
     </div>
   )
 }
