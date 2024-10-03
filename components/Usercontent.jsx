@@ -110,20 +110,23 @@ const Usercontent = () => {
 
 
   return (
-    <div >
+    <div className='min-h-full flex-1 ' >
 
        
 
         {/* <create/> */}
-        <header className={styles['header-area']}>
+        <header 
+        className="flex  h-[4vh] md:h-[5vh] lg:h-[5vh] xl:h-[6vh]"
+        >
 
             {/* Logo Section  */}
-                    <div className={styles['profilHeader']}>
-                        <div className={styles["logoWorthsec"]}>
-                            <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button>
+                    <div className=" h-[4vh] w-full flex justify-between   border-gray-400 border-opacity-20">
+                        <div className="min-h-full w-1/6 ml-5 flex items-center"  >
+                            {/* <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button> */}
+                            <h1 className='text-white text-bold text-xl '>WORTHSEC</h1>
                         </div>
 
-                        <div className={styles['navSideOptions']}>
+                        <div className="flex  items-center  justify-end gap-7 pl-1   md:w-1/6 ">
                             <div className={styles['inputSearchArea']}>
                                 {searchArea &&(
                                     <div className={styles['inputSearchOption']}>
@@ -138,8 +141,8 @@ const Usercontent = () => {
                             src={searchIcon}
                             alt="searchIcon"
                             className="search-Icon"
-                            height={20}
-                            width={20}
+                            height={18}
+                            width={18}
                             onClick={handleToggleSearch}
                             // src={Search3dIcon}
                             // alt="searchIcon"
@@ -151,13 +154,27 @@ const Usercontent = () => {
                                    
                         </div>
                         <div className={styles['worldmessageSection']}>
-                                    <Image src={notificationIcon} width={23} height={25} alt='World Icon' onClick={handleNotification}/>
+                                    <Image src={notificationIcon} width={20} height={20} alt='Noftification' onClick={handleNotification}/>
                                     {/* <Image src={MailIcon} width={25} height={25} alt='World Icon' onClick={handleNotification}/> */}
 
                         </div>
                                 
                         <div className={styles['settingOption']}>
-                                <Image src={setting}  alt='Setting Icon' height={20} width={20}   onClick={handleOptionToggle}/>
+                                <Image src={setting}  alt='Setting Icon' height={18} width={18}   onClick={handleOptionToggle}/>
+                                {/* <Image src={SettingIcon}  alt='Setting Icon' height={25} width={25}   onClick={handleOptionToggle}/> */}
+
+
+                               
+                        </div>
+                        <div className={styles['settingOption']}>
+                                <Image src={setting}  alt='Setting Icon' height={18} width={18}   onClick={handleOptionToggle}/>
+                                {/* <Image src={SettingIcon}  alt='Setting Icon' height={25} width={25}   onClick={handleOptionToggle}/> */}
+
+
+                               
+                        </div>
+                        <div className={styles['settingOption']}>
+                                <Image src={setting}  alt='Setting Icon' height={18} width={18}   onClick={handleOptionToggle}/>
                                 {/* <Image src={SettingIcon}  alt='Setting Icon' height={25} width={25}   onClick={handleOptionToggle}/> */}
 
 
