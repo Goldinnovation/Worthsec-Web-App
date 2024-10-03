@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "@styles/exploreStyle/explore.module.css";
 import Image from "next/image";
-import ExploreFeed from "./Explore_feed";
+import ExploreFeed from "./Feed/Explore_feed";
 
 
 interface Event {
@@ -70,6 +70,8 @@ console.log(userexploreData);
   return (
     <div>
       <section className={styles["middleSection"]}>
+
+        {/* Head Section */}
         <div className={styles["middleContentarea"]}>
           
 
@@ -92,7 +94,13 @@ console.log(userexploreData);
 
 
         </div>
-        <div className={styles["exploreheader"]}></div>
+
+      {/*  subHeader Section*/}
+        <div className={styles["exploreheader"]}>
+
+        </div>
+
+        {/* Feed Section */}
         <div className={styles["middleContentFeed"]}>
           <div className={styles["exploreEventContent"]}>
             <div className={styles["exploreEventhead"]}>

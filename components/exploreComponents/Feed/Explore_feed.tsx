@@ -4,8 +4,8 @@ import { useState } from "react";
 // import { userFavorEvent } from "@/Service/Explore/userFavorEvent";
 import { userFavorEvent } from "@/Service/Explore/userFavorEvent";
 import { userJoinEvent } from "@/Service/Explore/userJoinedEvents";
-import ExploreSlider from "./exploreSilder";
-import ExplorePopUpOption from "./explorePopUpOption";
+import ExploreSlider from "../PopUp/exploreSilder";
+import ExplorePopUpOption from "../PopUp/explorePopUpOption";
 import React from "react";
 
 interface userEvent {
