@@ -73,6 +73,12 @@ console.log(userexploreData);
     <div>
       <section className={styles["middleSection"]}>
 
+      <div className="h-[45vh] w-full bg-red-300 flex">
+        <div className="bg-green-500 w-6/12" >1</div>
+        <div className="bg-orange-500 w-6/12">2
+
+        </div>
+      </div>
         {/* Head Section */}
         <div className={styles["middleContentarea"]}>
           
@@ -97,17 +103,16 @@ console.log(userexploreData);
 
         </div>
 
-      {/*  subHeader Section*/}
-        <div className={styles["exploreheader"]}>
 
-        </div>
+      
+
        
 
         {/* Feed Section */}
         <div className={styles["middleContentFeed"]}>
 
           {/* Left Feed Section  */}
-          <div className={styles["exploreEventContent"]}>
+          {/* <div className={styles["exploreEventContent"]}>
             <div className={styles["exploreEventhead"]}>
               <div className={styles["exploreEventheadMoodOpt"]}>Mood</div>
               <div  className={styles["exploreEventheadSharedOpt"]}>Shared</div>
@@ -115,17 +120,17 @@ console.log(userexploreData);
             <div>
                 dsd
             </div>
-          </div>
+          </div> */}
 
          {/* Right Feed Section  */}
           <div className={styles["exploreEventContentRight"]}>
            
             <div className={styles["explorefeedContent"]}>
-              <div className={styles["explorefeedEventsHead"]}>
+              {/* <div className={styles["explorefeedEventsHead"]}>
                 <div className={styles["explorefeedEventsHeadTitle"]}>
                  Category
                 </div>
-              </div>
+              </div> */}
               {/* Explore Feed */}
                 <ExploreFeed eventDataArr ={userexploreData} />
            

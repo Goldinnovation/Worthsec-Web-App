@@ -56,9 +56,11 @@ const ExploreFeed: React.FC<ExploreFeedprops> = ({ eventDataArr }) => {
           >
             <Image
               src={event?.ImageCoverUpload}
-              width={200}
+              width={150}
               alt="Event cover"
-              height={200}
+              height={50}
+              className="rounded-xl h-36
+"
               quality={100}
             />
           </div>

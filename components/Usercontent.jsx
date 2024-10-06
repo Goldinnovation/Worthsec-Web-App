@@ -21,6 +21,7 @@ import SettingIcon  from '@assets/setting3d.png'
 import MailIcon from '@assets/Mail3d.png'
 import Search3dIcon from '@assets/search3d.png'
 import style from "../styles/global.css"
+import NavBarContent from './Navbar/navBarContent'
 
 
 const Usercontent = () => {
@@ -54,7 +55,7 @@ const Usercontent = () => {
 
     }
 
-    const exploreToggle = () =>  {
+    const handleExploreToggle = () =>  {
         setExplorePage(true)
         setHomePage(false)
         setSearchArea(false)
@@ -66,7 +67,7 @@ const Usercontent = () => {
 
     }
 
-    const homeToggle = () => {
+    const handProfileToggle = () => {
         setHomePage(true)
         setExplorePage(false)
         setSearchArea(false)
@@ -116,11 +117,11 @@ const Usercontent = () => {
 
         {/* <create/> */}
         <header 
-        className="flex  h-[4vh] md:h-[5vh] lg:h-[5vh] xl:h-[6vh]"
+        className="flex  h-[4vh] md:h-[5vh] bg-black lg:h-[5vh] bg-opacity-50 xl:h-[6vh] border-b border-gray-300  items-center"
         >
 
             {/* Logo Section  */}
-                    <div className=" h-[4vh] w-full flex justify-between   border-gray-400 border-opacity-20">
+                    <div className=" h-[4vh] w-full flex justify-between  ">
                         <div className="min-h-full w-1/6 ml-5 flex items-center"  >
                             {/* <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button> */}
                             <h1 className='text-white text-bold text-xl '>WORTHSEC</h1>
@@ -227,22 +228,24 @@ const Usercontent = () => {
                                 
         </header>  
 
-        
-                     {/* Navbar section */}
-            <div className='ProfilNavAreaContent'>         
-            
-            <div className="middleNavbar" >
-                    <DisplayProfiIImage />
-            </div>
-            <div className='NavbarMenu' >   
-                       <button className='homebtn' onClick={homeToggle}>H</button>
+        {/* Middle Section */}
+        <div className='flex  h-[95vh] w-full'>
+            <div className='w-[4%] bg-black flex flex-col border-r  bg-opacity-50 border-gray-300 ' >
 
-                       <button className='explorebtn' onClick={exploreToggle}>E</button>
-            </div>  
-              
+                <div className='h-[80vh]  w-full '>
+                <NavBarContent 
+                handleExploreToggle={handleExploreToggle}
+                handProfileToggle={handProfileToggle} 
+                 />
+                </div>
+                <div>
+                    sd
+                </div>
+                
+                 
             </div>
-
-        <div className='userPageOptions'>
+            <div className='w-[92%] '>
+            <div className='userPageOptions'>
             {homePage && (
                 <div>
                  {/* Slider Area  */} 
@@ -293,6 +296,32 @@ const Usercontent = () => {
             }
 
         </div>
+            </div>
+            <div className='w-[4%]  bg-black border-l bg-opacity-50' >3</div>
+            
+            {/* <div className='userInfoLayer'>4</div> */}
+
+        </div>
+
+        {/* <div className='h-[5vh]'>sdsd</div> */}
+
+        
+                     {/* Navbar section */}
+            {/* <div className='ProfilNavAreaContent'>         
+            
+            <div className="middleNavbar" >
+                    <DisplayProfiIImage />
+            </div>
+            <div className='NavbarMenu' >   
+                       <button className='homebtn' onClick={homeToggle}>H</button>
+
+                       <button className='explorebtn' onClick={exploreToggle}>E</button>
+            </div>  
+              
+            </div> */}
+
+
+       
     </div>
   )
 }

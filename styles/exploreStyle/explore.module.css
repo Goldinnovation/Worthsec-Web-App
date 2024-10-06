@@ -1,15 +1,15 @@
 
 
 .exploreheader{
-    /* background-color: green; */
+    background-color: green;
     height: 6%;
     /* border: 1px solid #0603032e;
     border-bottom:1px solid #0603032e ; */
 }
 
 .middleSection{
-    background-color: rgba(0, 255, 255, 0.495);
-    height: 800px;
+    /* background-color: rgba(0, 255, 255, 0.495); */
+    height: 100%;
     display: flex;
     flex-direction: column;
     
@@ -19,9 +19,9 @@
 .middleContentFeed{
     /* background: linear-gradient(5deg, #151716, #10272d, #17171727); */
     /* background: linear-gradient(1deg, #15171600, #48c0dead, #17171706); */
-    /* background-color: rgb(12, 20, 20); */
+    /* background-color: rgb(32, 237, 237); */
     display: flex;
-    height: 88%;
+    height: 50%;
     width: 100%;
     
     /* width: 40%; */
@@ -30,7 +30,7 @@
 }
 
 .middleContentarea{
-    background-color: rgba(202, 192, 138, 0.64);
+    /* background-color: rgba(202, 192, 138, 0.64); */
     /* background: linear-gradient(1deg, #0b3621, #10272d, #ff151527, #0b3621); */
     /* background-color: violet; */
     /* width: 40%; */
@@ -122,7 +122,7 @@
 
 .exploreEventContentRight{
     /* background-color: rgb(175, 255, 25); */
-   width: 60%;
+   width: 100%;
    display: flex;
  
    
@@ -176,7 +176,7 @@
 
 }
 .explorefeedContent{
-    /* background-color: aqua; */
+    /* background-color: rgb(255, 98, 0); */
     
  
     width: 100%;
@@ -195,16 +195,16 @@
 }
 
 .explorefeedEventsHead{
-    /* background-color: rebeccapurple; */
-    height: 10%;
+    background-color: rebeccapurple;
+    height: 5%;
     display: flex;
     align-items: center;
-    margin-bottom: 1%;
+    /* margin-bottom: 1%; */
    
 }
 
 .explorefeedEventsHeadTitle{
-        background-color: orange;
+        /* background-color: rgb(10, 198, 157); */
         background: linear-gradient(1deg, #000000dc, #020202b4, #000000dc,#02020287, #000000);
         width: 20%;
         height: 30px;
@@ -221,6 +221,7 @@
     width: 100%;
     /* margin-top: 0.8%; */
     display: flex;
+    justify-content: center;
     height: 100%;
     gap: 11%;
     flex-wrap: wrap;
@@ -255,8 +256,8 @@
 }
 
 .exploreContentSection{
-    /* background-color: orange; */
-    height: 250px;
+    /* background-color: green; */
+    height: 180px;
     /* margin-top: 1%; */
     /* margin: 0px; */
     animation: jumpOut 1s ease-out;
