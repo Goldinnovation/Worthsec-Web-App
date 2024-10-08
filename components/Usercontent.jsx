@@ -21,7 +21,8 @@ import SettingIcon  from '@assets/setting3d.png'
 import MailIcon from '@assets/Mail3d.png'
 import Search3dIcon from '@assets/search3d.png'
 import style from "../styles/global.css"
-import NavBarContent from './Navbar/navBarContent'
+import LeftnavBarContent from './Leftnavbar/navBarContent'
+import UserMenu from './userMenu/userMenu'
 
 
 const Usercontent = () => {
@@ -121,6 +122,7 @@ const Usercontent = () => {
         >
 
             {/* Logo Section  */}
+
                     <div className=" h-[4vh] w-full flex justify-between  ">
                         <div className="min-h-full w-1/6 ml-5 flex items-center"  >
                             {/* <button className={styles['worthsecAreabtn']} disabled>WORTHSEC</button> */}
@@ -224,16 +226,18 @@ const Usercontent = () => {
                                 )}
                         </div>
                         </div>
-                    </div>          
+                    </div>  
+
                                 
         </header>  
 
-        {/* Middle Section */}
+        {/* Main Section */}
         <div className='flex  h-[95vh] w-full'>
+            {/*  Left */}
             <div className='w-[4%] bg-black flex flex-col border-r  bg-opacity-50 border-gray-300 ' >
 
                 <div className='h-[80vh]  w-full '>
-                <NavBarContent 
+                <LeftnavBarContent 
                 handleExploreToggle={handleExploreToggle}
                 handProfileToggle={handProfileToggle} 
                  />
@@ -244,6 +248,9 @@ const Usercontent = () => {
                 
                  
             </div>
+
+
+            {/*Middle  */}
             <div className='w-[92%] '>
             <div className='userPageOptions'>
             {homePage && (
@@ -297,9 +304,19 @@ const Usercontent = () => {
 
         </div>
             </div>
+
+            {/* Right  */}
             <div className='w-[4%]  bg-black border-l bg-opacity-50' >3</div>
             
-            {/* <div className='userInfoLayer'>4</div> */}
+
+            {/* User Menu */}
+            <div className='userInfoLayer'>
+                <UserMenu
+                     handleExploreToggle={handleExploreToggle}
+                     handProfileToggle={handProfileToggle} 
+                />
+
+            </div>
 
         </div>
 

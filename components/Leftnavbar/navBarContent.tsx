@@ -10,7 +10,7 @@ interface ContentProps{
     handProfileToggle: () => void
 }
 
-const  NavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handProfileToggle}) =>  {
+const  LeftnavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handProfileToggle}) =>  {
 
   return (
     <div className=' h-[70%] w-[80%]] flex flex-col items-center'>
@@ -53,4 +53,4 @@ const  NavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handProfil
   )
 }
 
-export default NavBarContent
+export default LeftnavBarContent

@@ -72,8 +72,8 @@ console.log(userexploreData);
   return (
     <div>
       <section className={styles["middleSection"]}>
-
-      <div className="h-[45vh] w-full bg-red-300 flex">
+      {/* Head Cover  */}
+      <div className="h-[35vh] w-full bg-red-300 flex">
         <div className="bg-green-500 w-6/12" >1</div>
         <div className="bg-orange-500 w-6/12">2
 

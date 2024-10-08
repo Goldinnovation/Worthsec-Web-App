@@ -2182,9 +2182,11 @@ appearance: none;
 
   
 .userInfoLayer{
-    width: 400px;
+    width: 500px;
     height: 70px;
-    background-color: pink;
+    display: flex;
+    align-items: center;
+    /* background-color: pink; */
     position: absolute;
     top: 93%;
     left: 50%;
