@@ -27,3 +27,15 @@ describe("POST /api/userInterest", () => {
     expect(response.body).toStrictEqual({ message: "connected" });
   });
 });
+
+
+  // it("acces the handler Function with JWT token",async () => {
+  //    await  storeInterestData(mockRequest , mockResponse,)
+  //     expect(mockResponse.status).toHaveBeenCalledWith(200);
+    
+
+  //     // expect(mockResponse.sendStatusCode).toEqual(200)
+  //     expect(mockResponse.json).toHaveBeenCalledWith({message: "connected"})
+
+
+  // })

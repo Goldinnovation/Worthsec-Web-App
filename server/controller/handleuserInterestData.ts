@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
+import mockprisma from "../libs/prisma"
 
 
 
@@ -14,12 +15,17 @@ interface AuthenticatedRequest extends Request{
 
 
 
+
 //   The function receives a userId with a list of  selected interest strings and stores it in the database table userInterest
 
- const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
+ const storeInterestData = async (req: Request, res: Response ) => {
+
+
+    
 
     const userId = (req as AuthenticatedRequest)?.decodedUserId
     const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
+
 
     try{
         if(userId && selectedInterests){
@@ -45,7 +51,7 @@ interface AuthenticatedRequest extends Request{
         res.status(400).json({message: "Catched Error on Response of handler storeInterstData"})
 
     }
-    //  res.status(200).json({message:"connected"})
+    //  res.status(200).json(storeUserSelectedInterestData)
 }
 
 export default storeInterestData

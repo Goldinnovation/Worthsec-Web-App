@@ -3,10 +3,11 @@ import { vi, } from 'vitest'
 import storeInterestData from "@/server/controller/handleuserInterestData";
 import { getMockReq, getMockRes } from 'vitest-mock-express'
 import { Request, Response } from "express";
-import { Jwt } from "jsonwebtoken";
-import { PrismaClient } from '@prisma/client';
-import jwt, { JwtPayload } from "jsonwebtoken";
-import isAuthenticated from "@/server/Middlware/isAuth";
+// import Mockprisma from "@/server/libs/__mocks__/prisma";
+import libs from "../../libs/prisma"
+// import prisma from "../../libs/prisma";
+import serverTest from "../../controller/handleuserInterestData"
+import prisma from "../../libs/__mocks__/prisma"
 
 
 const  SECRET_KEY=  process.env.SECRET_KEY as string
@@ -20,79 +21,46 @@ interface AuthenticatedRequest extends Request{
 
 // Mocking the token to create an effect of decoding to return the encoded user information
 
-  
 
-
-
-
-// need to call a mockfucntion
-
-
-describe("POST /api/userInterest", () => {
- 
-  beforeAll( () => {
-    console.log('hello');
-    const  SECRET_KEY=  process.env.SECRET_KEY as string
-
-  vi.mock(import('jsonwebtoken',  ), async(importOriginal) => {
-      
-      const JwtPayload = await importOriginal()
-      const mockImplent = vi.fn().mockImplementation((token: string , SECRET: string) => {
-        console.log("Mock verify called"); 
-        if(token === tokenKey && SECRET === SECRET_KEY ){
-          return {
-            userId: "caro1"
-          }      
-        }
-        throw new Error("Invalid Tokenn")
-      })
-      console.log("MockImplement Data", JwtPayload);
-      // const jwt = await import('jsonwebtoken');
-       return {
-        ...JwtPayload,
-        verify: mockImplent}
-      })
-})
-
-afterEach(() => {
-  vi.restoreAllMocks(); // Restore all mocks to their original state
+vi.mock("../../libs/prisma", async(importOriginal) => {
+  return{
+    ...await importOriginal<typeof import('../../libs/prisma')>(),
+  }
 });
-  
-  // Creating a MockRequest which uses vitest-mock-express Express to handle the Authentification 
-  // request and passes a req.body containing and userId, token, and pickedInterestData
 
+
+// Created the Mock request data
   const mockRequest = getMockReq<AuthenticatedRequest>({
-    
-    body: {
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-      secret: SECRET_KEY,
-      pickedInterest: ["time", "Movie", "Festival"]
-    }
+    decodedUserId:  "sdfsdfops", 
+    userSelectedInterests: ["time", "Movie", "Festival"], 
   })
-// Creating a Mock Response
 
-
+  // Mock Response Data
   const {res: mockResponse} =  getMockRes({
     status: vi.fn().mockReturnThis(),
     json: vi.fn()
- })
-
- afterEach(() => {
-  vi.restoreAllMocks();
-});
-
+  })
   
-  it("acces the handler Function with JWT token",async () => {
-    //  await  storeInterestData(mockRequest , mockResponse)
 
-      expect(mockResponse.status).toHaveBeenCalledWith(200);
+
+  it("storeUserSelectedInterestData should return generated stored data row with list of interest ",async () => {
+  
+
+
+    const mockStoredData = {
+      user_interest_id: "sdfsdfopsd",
+      interest_list: ["time", "Movie", "Festival"],
+      IntersetId: "some-generated-id",
+      id: 1, // Simulate generated ID
+    };
+
+   const callofMock = prisma.userInterest.create.mockResolvedValue(mockStoredData)
+  //  console.log(callofMock);
+    // const storeData = await storeInterestData(mockRequest, mockResponse)
+    // console.log("StoredData:",storeData);
     
 
-      // expect(mockResponse.sendStatusCode).toEqual(200)
-      expect(mockResponse.json).toHaveBeenCalledWith({message: "connected"})
+ })
 
 
-  })
 
-
-});
