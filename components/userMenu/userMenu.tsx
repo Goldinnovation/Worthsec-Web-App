@@ -3,17 +3,18 @@ import React from "react"
 import Image from "next/image"
 import ExploreIcon from "../../assets/exploreIcon.png"
 import ProfileIcon from "../../assets/ag1.png"
-
+import ExpandUserOptions  from  "../../assets/menu.png"
 
 
 interface menuProps {
     handleExploreToggle: () => void
     handProfileToggle: () => void
+    handleExpandUserOptions: () => void
 
 }
 
 
-const UserMenu: React.FC<menuProps> = ({handProfileToggle, handleExploreToggle}) => {
+const UserMenu: React.FC<menuProps> = ({handProfileToggle, handleExploreToggle, handleExpandUserOptions}) => {
 
     return(
         <div className="flex flex-row  w-full ">
@@ -39,7 +40,11 @@ const UserMenu: React.FC<menuProps> = ({handProfileToggle, handleExploreToggle})
             <Image  src={ExploreIcon} width={30} height={30} alt='Explor Icon'/>
            </div>
 
-           <div>4</div>
+           <div  className="cursor-pointer"
+           onClick={handleExpandUserOptions}>
+           <Image  src={ExpandUserOptions} width={30} height={30} alt='Explor Icon'/>
+
+           </div>
            </div>
 
            </div>

@@ -36,6 +36,7 @@ const Usercontent = () => {
     const [notifcation, setNotification] = useState(false)
     const [connectUserToggle, setConnectUserToggle] = useState(false)
     const [eventInvitesToggle, setEventInvitesToggle] = useState(false)
+    const [expandUserOption, setExpandUserOption] = useState(false)
 
 
 
@@ -108,6 +109,10 @@ const Usercontent = () => {
     const handleToggleEventInvite = () => {
         setEventInvitesToggle(true)
         setConnectUserToggle(false)
+    }
+
+    const handleExpandUserOptions = () => {
+        setExpandUserOption(!expandUserOption)
     }
 
 
@@ -234,24 +239,27 @@ const Usercontent = () => {
         {/* Main Section */}
         <div className='flex  h-[95vh] w-full'>
             {/*  Left */}
-            <div className='w-[4%] bg-black flex flex-col border-r  bg-opacity-50 border-gray-300 ' >
+            {expandUserOption && (
+                 <div className='w-[3%] bg-black flex flex-col border-r  bg-opacity-50 border-gray-300 ' >
 
-                <div className='h-[80vh]  w-full '>
-                <LeftnavBarContent 
-                handleExploreToggle={handleExploreToggle}
-                handProfileToggle={handProfileToggle} 
-                 />
-                </div>
-                <div>
-                    sd
-                </div>
-                
+                 <div className='h-[80vh]  w-full '>
+                 <LeftnavBarContent 
+                 handleExploreToggle={handleExploreToggle}
+                 handProfileToggle={handProfileToggle} 
+                  />
+                 </div>
+                 <div>
+                     sd
+                 </div>
                  
-            </div>
+                  
+             </div>
+            )}
+           
 
 
             {/*Middle  */}
-            <div className='w-[92%] '>
+            <div className='w-[100%] '>
             <div className='userPageOptions'>
             {homePage && (
                 <div>
@@ -306,7 +314,11 @@ const Usercontent = () => {
             </div>
 
             {/* Right  */}
-            <div className='w-[4%]  bg-black border-l bg-opacity-50' >3</div>
+
+            {expandUserOption && (
+             <div className='w-[3%]  bg-black border-l bg-opacity-50' >3</div>
+
+            )}
             
 
             {/* User Menu */}
@@ -314,6 +326,7 @@ const Usercontent = () => {
                 <UserMenu
                      handleExploreToggle={handleExploreToggle}
                      handProfileToggle={handProfileToggle} 
+                     handleExpandUserOptions={handleExpandUserOptions}
                 />
 
             </div>
