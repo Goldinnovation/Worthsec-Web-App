@@ -55,7 +55,9 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
                         },
                         take: 15   //setting query limit to 10
                     });
-                    // console.log("captured Interest data", interestedEvents?.length);
+                    console.log("captured Interest data", interestedEvents?.length);
+                    const lenArr = interestedEvents?.length
+                    // lenArr.reduce((total, sum) => total += sum)
                     if (interestedEvents?.length > 0) {
 
                        
