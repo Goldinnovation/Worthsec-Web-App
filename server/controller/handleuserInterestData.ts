@@ -19,7 +19,7 @@ interface AuthenticatedRequest extends Request{
 
 //   The function receives a userId with a list of  selected interest strings and stores it in the database table userInterest
 
- const storeInterestData = async (req: Request, res: Response ) => {
+ const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
 
 
     
@@ -30,9 +30,7 @@ interface AuthenticatedRequest extends Request{
 
     try{
         if(userId && selectedInterests){
-            console.log('trigger');
-            console.log(userId);
-            console.log(selectedInterests);
+          
             const storeUserSelectedInterestData = await prisma.userInterest.create({
                 data: {
                     user_interest_id: userId,
@@ -40,7 +38,7 @@ interface AuthenticatedRequest extends Request{
                     
                 }
             })
-            console.log("data:",storeUserSelectedInterestData);
+            // console.log("data:",storeUserSelectedInterestData);
             res.status(200).json({message: "Interests are successfully stored"})
 
         }else{
