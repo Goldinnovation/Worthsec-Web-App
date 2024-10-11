@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+import prisma from '../libs/prisma';
 import { Response, Request } from "express";
 
 
@@ -30,7 +31,7 @@ interface AuthenticatedRequest extends Request{
     console.log(joined_user_id);
 
     try {
-        if (req.user && req.body) {
+        if (joined_user_id && joined_event_id ) {
 
             const joinusertoEvent = await prisma.userJoinEvent.create({
                 data:
@@ -41,7 +42,7 @@ interface AuthenticatedRequest extends Request{
             })
 
             // console.log(joinusertoEvent)
-            res.status(200).json({ message: "user successfully favored a event" })
+            res.status(200).json({ message: "user successfully Join a event" })
         }
 
     } catch (error) {

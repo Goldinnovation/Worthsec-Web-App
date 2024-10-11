@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient()
+// const prisma = new PrismaClient()
+import prisma from '../libs/prisma';
 import { Request, Response } from 'express';
 import jwt, { JwtPayload } from "jsonwebtoken";
 
@@ -44,7 +45,6 @@ export async function userFavourEvent(req: AuthenticatedRequest, res: Response):
                 }
             })
 
-            console.log(userfavoredEvent)
             res.status(200).json({ message: "user successfully favored a event" })
         }
 
