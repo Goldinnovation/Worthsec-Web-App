@@ -1,12 +1,12 @@
 import { Router } from "express";
 const router = Router()
-
-import userGetCategoryEvent from "../controller/handleCategoryReq";
-
-
+import userGetCategoryEvent from "../controller/handleEventCategoryReq";
+import CategoryConvertToken from "../Middlware/categoryConverToken";
 
 
-router.post('/', userGetCategoryEvent )
+
+
+router.post('/', CategoryConvertToken, userGetCategoryEvent )
 
 
 export default router

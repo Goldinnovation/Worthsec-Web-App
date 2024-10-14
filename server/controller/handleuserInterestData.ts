@@ -22,10 +22,9 @@ interface AuthenticatedRequest extends Request{
  const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
 
 
-    
     const userId = (req as AuthenticatedRequest)?.decodedUserId
     const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
-   
+
 
 
     try{

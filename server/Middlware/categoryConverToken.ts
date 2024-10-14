@@ -16,7 +16,7 @@ interface DJwtPayload extends JwtPayload {
 // Receives a user token and decodes it to the users Id and Email. Afterwards the function passes the decodedId and
 //  the list of Selected interest to the local request property further to the next handler function 
 
-const convertToken = (
+const CategoryConvertToken = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -40,4 +40,4 @@ const convertToken = (
   }
 };
 
-export default convertToken;
+export default CategoryConvertToken;

@@ -49,7 +49,7 @@ import {
     json: vi.fn(),
   });
   
-  it("should store the event Id that user selected as favored", async () => {
+  it("should store the event Id that user selected as joined", async () => {
     const mockedprismaResponse = {
         user_id: "sdfsdfopsd",
         event_id: "sdsdfsd",
