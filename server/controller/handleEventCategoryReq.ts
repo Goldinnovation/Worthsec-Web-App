@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 // const prisma = new PrismaClient();
 import prisma from '../libs/prisma';
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
 
@@ -30,7 +30,7 @@ interface DJwtPayload extends JwtPayload {
 
 const SECRET_KEY=  process.env.SECRET_KEY as string
 
-  async function  userGetCategoryEvent (req: Request, res: Response): Promise<void> {
+  async function  userGetCategoryEvent (req: Request, res: Response, next: NextFunction): Promise<void> {
     
     // const usertoken = req.body.token
     // // console.log(usertoken);
@@ -39,11 +39,11 @@ const SECRET_KEY=  process.env.SECRET_KEY as string
     // // console.log(userId);
    
     // console.log(selectedCategory);
-    
-    const userId = (req as AuthenticatedRequest)?.user.decodedUserId
+    console.log(req);
+    const userId = (req as AuthenticatedRequest)?.decodedUserId
     console.log(userId);
-    const selectedCategory = (req as AuthenticatedRequest)?.body.cateogory
-    console.log(selectedCategory);
+    const selectedCategory = req.body.cateogory
+    console.log("selectedEvent:", selectedCategory);
    
 
  
@@ -56,7 +56,7 @@ const SECRET_KEY=  process.env.SECRET_KEY as string
               eventType: selectedCategory
             }
           })
-          
+
             res.status(200).json(getUserselectedData)
             
 

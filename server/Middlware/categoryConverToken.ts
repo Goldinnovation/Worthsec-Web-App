@@ -4,7 +4,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 interface AuthenticatedRequest extends Request {
   user?: any;
   decodedUserId: any;
-  userSelectedInterests: any
+ 
 
   
 }
@@ -25,9 +25,10 @@ const CategoryConvertToken = (
     const SECRET_KEY = process.env.SECRET_KEY as string;
     const usertoken = req.body.token;
     const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload;
-    // req.decodedUserId
+    
+    
     (req as AuthenticatedRequest).decodedUserId = decoded.userId;
-    (req as AuthenticatedRequest).userSelectedInterests = req.body.pickedIntesrest;
+    
 
     next();
   } else {

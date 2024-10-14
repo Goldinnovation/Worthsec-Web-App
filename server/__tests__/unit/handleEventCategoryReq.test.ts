@@ -10,7 +10,7 @@ import {
   import { vi } from "vitest";
   import userGetCategoryEvent from "@/server/controller/handleEventCategoryReq";
   import { getMockReq, getMockRes } from "vitest-mock-express";
-  import { Request, Response } from "express";
+  import { Request, Response, } from "express";
   import prisma from "../../libs/__mocks__/prisma";
   
   interface AuthenticatedRequest extends Request {
@@ -54,16 +54,16 @@ import {
   
   // Created the Mock request data
   const mockRequest = getMockReq<AuthenticatedRequest>({
-    user: {
-        decodedUserId: "sdfsdfops",
-    },
+    
+    decodedUserId: "sdfsdfops",
+    
     body: {
         cateogory: "kudssio",
     }
   });
   
   // Mock Response Data
-  const { res: mockResponse} = getMockRes({
+  const { res: mockResponse, next: NextFunction} = getMockRes({
     status: vi.fn().mockReturnThis(),
     json: vi.fn(),
   });
@@ -80,7 +80,7 @@ import {
   
     await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
   
-   await userGetCategoryEvent(mockRequest, mockResponse)
+   await userGetCategoryEvent(mockRequest, mockResponse, NextFunction)
   
     expect(mockResponse.status).toHaveBeenCalledWith(200); 
     expect(mockResponse.json).toBeTypeOf("function")
