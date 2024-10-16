@@ -23,7 +23,8 @@ interface AuthenticatedRequest extends Request{
 
 
     const userId = (req as AuthenticatedRequest)?.decodedUserId
-    const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
+    // const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
+    const selectedInterests = req.body.pickedIntesrest
 
 
 

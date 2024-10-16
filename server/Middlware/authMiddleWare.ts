@@ -6,13 +6,16 @@ interface AuthenticatedRequest extends Request {
   user?: any;
 }
 
+
+// Checks if the user is logged through a token or a Session Id
+// If the user is logged through a session Id, than the Authentication Information will be provided by the Request Authenticator from Express. 
+// Otherwise the user will receive the toke and verify it's existence and decode it. Furthermore, the decoded Information will be assigned to the Express Request Authenticator 
 const authMiddlewareCheck = (
   req: AuthenticatedRequest,
   res: Response,
   next: NextFunction
 ) => {
   const token = req.headers["authorization"]?.split(" ")[1];
-
   const tokenKey = process.env.SECRET_KEY as string;
 
   try {

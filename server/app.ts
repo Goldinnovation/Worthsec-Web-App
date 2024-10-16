@@ -31,7 +31,9 @@ import userNotifications from './router/userNotifications';
 import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
 import userFavorEventReqMob from './router/favorEventMobile'
+import newExploreEventData from './router/newExploreData'
 import expressSession from "express-session";
+
 import nextConfig from '@/next.config.js';
 // import conf from '../next.config.mjs';
 // import firebaseConfig from './config/firebase';
@@ -106,6 +108,7 @@ app.prepare().then(() => {
     server.use('/api/userInterest', userInterestDatarouter)
     server.use('/api/eventCategory', userCategoryEventReq)
     server.use('/api/favorEventMobile', userFavorEventReqMob)
+    server.use('/api/newExploreEventData', newExploreEventData)
 
   
 

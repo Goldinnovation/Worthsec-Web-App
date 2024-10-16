@@ -36,7 +36,7 @@ vi.mock("../../libs/prisma", async () => {
 // Created the Mock request data
 const mockRequest = getMockReq<AuthenticatedRequest>({
   decodedUserId: "sdfsdfops",
-  userSelectedInterests: ["time", "Movie", "Festival", "Movie", "Techno"],
+  body: ["time", "Movie", "Festival", "Movie", "Techno"],
 });
 
 // Mock Response Data
