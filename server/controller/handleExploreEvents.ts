@@ -44,33 +44,41 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
             const userInterestsdataArr = getUserInterest?.userInterest?.interest_list
 
 
-            const resInterestArr: any[] = []
+            // const resInterestArr: any[] = []
             if (userInterestsdataArr) {
+
+                const interestedEvents = await prisma.event.findMany({
+                    where: {
+                        eventType: {
+                            in: userInterestsdataArr
+                        }
+                    },
+                    take: 31   //setting query limit to 10
+                });
+                console.log(interestedEvents.length);
+             
+                res.status(200).json(interestedEvents)
+            }
+
                 // Mapping over the list of the user Interest and querying all corresponding Events that match the Interest array
 
-                const promise = userInterestsdataArr.map(async (currentUserInterestItem: any) => {
-                    const interestedEvents = await prisma.event.findMany({
-                        where: {
-                            eventType: currentUserInterestItem
-                        },
-                        take: 15   //setting query limit to 10
-                    });
-                    // console.log("captured Interest data", interestedEvents?.length);
-                    // const lenArr = interestedEvents?.length
-                    // lenArr.reduce((total, sum) => total += sum)
-                    if (interestedEvents?.length > 0) {
+            //     const promise = userInterestsdataArr.map(async (currentUserInterestItem: any) => {
+                  
+            //         // console.log("captured Interest data", interestedEvents?.length);
+            //         // const lenArr = interestedEvents?.length
+            //         // lenArr.reduce((total, sum) => total += sum)
+            //         if (interestedEvents?.length > 0) {
 
                        
-                        resInterestArr.push(...interestedEvents)
-                    }
-                });
+            //             resInterestArr.push(...interestedEvents)
+            //         }
+            //     });
 
-                await Promise.all(promise)
-            }
+            //     await Promise.all(promise)
+            // }
 
 
             // console.log(resInterestArr);
-            res.status(200).json(resInterestArr)
 
 
 

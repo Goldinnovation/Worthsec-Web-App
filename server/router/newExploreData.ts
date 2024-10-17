@@ -1,11 +1,11 @@
 import { Router } from "express";
 const router = Router()
-import { getNewEventData } from "../controller/handlenewExploreData";
+import { updatetoNewEventData } from "../controller/handlenewExploreData";
 import authMiddlewareCheck from "../Middlware/authMiddleWare";
 import CategoryConvertToken from "../Middlware/categoryConverToken";
 
 
-router.post('/', CategoryConvertToken, getNewEventData)
+router.post('/', CategoryConvertToken, updatetoNewEventData)
 
 
 export default router
