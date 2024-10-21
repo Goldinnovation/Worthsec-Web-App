@@ -16,25 +16,16 @@ import DeleteBtn from '@utils/homeUtils/DeleteBtnProfImage'
 
 
 
-const ProfilImageBtn = () => {
+const UploadGif = () => {
 
     const [profilImagepreview, setProfilImagePreview] = useState(null)
     const [previewArea, setPreviewArea] = useState(false)
     const [editOptions, setEditOptions] = useState(false)
     const [uplaodImage, setUploadImage] = useState({
-        UserProfilImage:""
+        userProfileGifBg:""
     })
 
     
-
-
-
-
-    const handleUploadClick = () => {
-
-        document.getElementById('uplaodProfilImageInput').click()
-    }
-
 
     const handletoggle = () => {
         setPreviewArea(!previewArea)
@@ -45,11 +36,20 @@ const ProfilImageBtn = () => {
         setEditOptions(!editOptions)
         setPreviewArea(false)
     }
+
+   // Handles the input button click 
+
+    const handleUploadClick = () => {
+
+        document.getElementById('userGifBg').click()
+    }
+
+
     
 
 
     const handleUplaodImage = (e) => {
-        
+        console.log("triggrt");
         const file = e.target.files[0]
         
 
@@ -57,10 +57,10 @@ const ProfilImageBtn = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setProfilImagePreview(reader.result);
-                setUploadImage(profilImagepreview =>({...profilImagepreview, UserProfilImage: file}))
+                setUploadImage(profilImagepreview =>({...profilImagepreview, userProfileGifBg: file}))
             }
-
-            if (file && (file.type.match(/image\/jpeg/) || file.type.match(/image\/png/))){
+            
+            if (file && file.type.match(/image\/gif/)){
                 reader.readAsDataURL(file);
             }
             else {
@@ -80,11 +80,11 @@ const ProfilImageBtn = () => {
         e.preventDefault();
 
         const formData = new FormData(); 
-        formData.append('UserProfilImage', uplaodImage.UserProfilImage)
+        formData.append('userProfileGifBg', uplaodImage.userProfileGifBg)
 
 
         try{
-            const res = await fetch('http://localhost:3000/api/user',{
+            const res = await fetch('http://localhost:3000/api/uploadUserBackground',{
                 method:'POST', 
                 body: formData
 
@@ -116,11 +116,16 @@ const ProfilImageBtn = () => {
         {/* Handles the Form */}
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
             <div className={styles["profilPicSection"]}> 
-            <input type="file" className="UserProfilImage" id='uplaodProfilImageInput'  onChange={handleUplaodImage} hidden/>
+            <input type="file" className="userProfileGifBg" id='userGifBg'  onChange={handleUplaodImage} hidden/>
                 {/* <GetImageProfilPIC/> */}
             </div>
 
-            {previewArea &&(
+
+            
+        </form>
+
+           {/* Pop Up  */}
+           {previewArea &&(
                 <div className={styles["previewSection"]}>
                     <div className={styles["previewSectionUpperlayer"]} >
                     <div onClick={handleCloseCLick} className={styles["previewSectionCloseBtn"]}>x</div>
@@ -128,7 +133,7 @@ const ProfilImageBtn = () => {
                     <div className={styles["previewSectionImage"]}>
                     {profilImagepreview && (
                         <div className={styles["previewImageObjectSection"]}>
-                            <Image src={profilImagepreview} alt="Uploaded ProfilImage" width={140} height={140} className={styles["previewImageObject"]}/>
+                            <Image src={profilImagepreview} alt="Uploaded ProfilImage" width={210} height={140} className={styles["previewImageObject"]}/>
                         </div>
                     )}
                     </div>
@@ -138,19 +143,14 @@ const ProfilImageBtn = () => {
                        
                     </div>
                 </div>
-            )}
+            )} 
 
-            <div className={styles["BtnSection"]}>
-            <div  onClick={toggleShowOptions} className={styles["uploadprofilImageBtn"]}>SE          
-            </div>
-            </div>
-           
-           
-        
-       
-
-
-        </form>
+              {/* Lable Btn  */}
+        <div className={styles["BtnSection"]}>
+            <div  onClick={toggleShowOptions} className={styles["uploadprofilImageBtn"]}>
+                GI       
+        </div>
+        </div>
             {/* Represents the pop Up */}
         <div className={styles['editoptionPopup']}>
             {editOptions &&(
@@ -166,4 +166,4 @@ const ProfilImageBtn = () => {
   )
 }
 
-export default ProfilImageBtn
+export default UploadGif

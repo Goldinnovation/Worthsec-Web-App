@@ -23,6 +23,7 @@ import Search3dIcon from '@assets/search3d.png'
 import style from "../styles/global.css"
 import LeftnavBarContent from './Leftnavbar/navBarContent'
 import UserMenu from './userMenu/userMenu'
+import UploadGif from '@/utils/homeUtils/uploadGif'
 
 
 const Usercontent = () => {
@@ -219,10 +220,18 @@ const Usercontent = () => {
                        
                         {optionToggle && (
                                     <div className={styles['userOptionLayer']}>
+
+                                        {/* Upload Profile Picture btn */}
                                         <div className={styles['userOptionUpper']}>
                                              <ProfilImageBtn/>
                                             
                                         </div>
+                                      {/* Upload Gif Btn */}
+                                        <div  className={styles['userOptionlower']}>
+                                             <UploadGif/>
+                                        </div>
+
+                                        {/* Log Out Btn */}
                                         <div  className={styles['userOptionlower']}>
                                              <Userlogout/>
                                         </div>

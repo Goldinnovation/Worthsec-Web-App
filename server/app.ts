@@ -32,6 +32,7 @@ import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
 import userFavorEventReqMob from './router/favorEventMobile'
 import newExploreEventData from './router/newExploreData'
+import uploadUserBackground from './router/userGifbg'
 import expressSession from "express-session";
 
 import nextConfig from '@/next.config.js';
@@ -109,6 +110,8 @@ app.prepare().then(() => {
     server.use('/api/eventCategory', userCategoryEventReq)
     server.use('/api/favorEventMobile', userFavorEventReqMob)
     server.use('/api/newExploreEventData', newExploreEventData)
+    server.use('/api/uploadUserBackground', uploadUserBackground)
+
 
   
 

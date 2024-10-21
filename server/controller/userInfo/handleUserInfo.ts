@@ -96,6 +96,12 @@ export async function createProfilePicutre(req: AuthenticatedRequest, res: Respo
           pictureUrl: pictureData.pictureUrl,
         },
       });
+
+      // updatePic && (async() => {
+      //   const storageRef = ref(storage, pictureData."Old Image Path")
+      //   await deleteObject(storageRef)
+      // })
+      
       console.log("updated picture");
 
       res.json({ updatePic });
