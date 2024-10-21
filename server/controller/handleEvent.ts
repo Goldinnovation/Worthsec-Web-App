@@ -56,6 +56,12 @@ interface AuthenticatedRequest extends Request{
 }
 
 
+interface EventCreateInput {
+    ImageCoverUpload: string;  // No `undefined` allowed here
+  }
+
+
+
 
 
 
@@ -65,6 +71,99 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
     console.log(trybody)
 
     try {
+       
+
+        const cloudFileUrl = await FirebaseService(req, res)
+
+
+
+        //  declaration of object properties 
+        const userId = req.user.userId
+        const eventHostname = req.user.userName
+        const eventTitle_value = req.body.eventTitle
+        const eventDate_value = req.body.eventDate
+        const eventType_value = req.body.eventType
+        const zipcode_value = req.body.eventZipcode
+        console.log(zipcode_value);
+        const eventAddress_value = req.body.eventAddress
+        const cityType_value = req.body.cityType
+        const eventDescription_value = req.body.eventDescriptionContent
+        const eventTime_value = req.body.eventTime
+        let selectedRange_string = req.body.selectedRangeofEvents
+        const  selectedRange_int_value  = parseInt(selectedRange_string , 10)
+        console.log(selectedRange_int_value);
+        console.log(cloudFileUrl);
+
+
+
+        let eventinviteNum;
+        if (req.body.Only_friends === '1') {
+            const num1 = req.body.Only_friends
+            eventinviteNum = parseInt(num1, 10)
+        } else if (req.body.friends_Plus_Plus === '2') {
+            const num2 = req.body.friends_Plus_Plus
+            eventinviteNum = parseInt(num2, 10)
+        } else if (req.body.worldwideClass === '3') {
+            const num3 = req.body.worldwideClass
+            eventinviteNum = parseInt(num3, 10)
+        }
+
+      
+
+
+
+        try {
+            // Provides Default URL if the image Url is undefined
+            const cloudFileUrlSafe = cloudFileUrl ?? "Default Url Image"
+            const newCreateEvent = await prisma.event.create({
+                data:
+                {
+                    eventHost: userId,
+                    eventHostName: eventHostname,
+                    eventTitle: eventTitle_value,
+                    eventType: eventType_value,
+                    eventDate: eventDate_value ,
+                    eventDescriptionContent: eventDescription_value,
+                    eventTime: eventTime_value,
+                    ImageCoverUpload: cloudFileUrlSafe,
+                    eventInviteType: eventinviteNum,
+                    eventAddress: eventAddress_value,
+                    eventZipcode: zipcode_value,
+                    cityType: cityType_value,
+                    selectedRangeofEvents: selectedRange_int_value
+
+
+                       
+
+                }
+            });
+
+          
+            console.log(newCreateEvent, "successful uploaded")
+            res.status(200).json({ message: "file successful uploaded" });
+
+            
+            // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
+
+
+        } catch (error) {
+            console.error(error)
+            res.status(500).send('issue server side')
+        }
+
+    } catch (error) {
+
+        console.log(error)
+        res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
+    }
+
+
+
+}
+
+export const FirebaseService = async(req: AuthenticatedRequest, res: Response) => {
+
+    try{
         if (!req.file) {
             res.status(400).json({ message: "File could not be found" })
         }
@@ -100,91 +199,16 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
 
 
-        //  declaration of object properties 
-        const userId = req.user.userId
-        const eventHostname = req.user.userName
-        const eventTitle_value = req.body.eventTitle
-        const eventDate_value = req.body.eventDate
-        const eventType_value = req.body.eventType
-        const zipcode_value = req.body.eventZipcode
-        console.log(zipcode_value);
-        const eventAddress_value = req.body.eventAddress
-        const cityType_value = req.body.cityType
-        const eventDescription_value = req.body.eventDescriptionContent
-        const eventTime_value = req.body.eventTime
-        let selectedRange_string = req.body.selectedRangeofEvents
-        const  selectedRange_int_value  = parseInt(selectedRange_string , 10)
-        console.log(selectedRange_int_value);
-        console.log(downloadImageUrl);
-        // console.log(req.body.Only_friends)
-
-
-        let eventinviteNum;
-        if (req.body.Only_friends === '1') {
-            const num1 = req.body.Only_friends
-            eventinviteNum = parseInt(num1, 10)
-        } else if (req.body.friends_Plus_Plus === '2') {
-            const num2 = req.body.friends_Plus_Plus
-            eventinviteNum = parseInt(num2, 10)
-        } else if (req.body.worldwideClass === '3') {
-            const num3 = req.body.worldwideClass
-            eventinviteNum = parseInt(num3, 10)
-        }
-
-      
+        return downloadImageUrl
 
 
 
-        try {
-          
-            
-          
 
-            const newCreateEvent = await prisma.event.create({
-                data:
-                {
-                    eventHost: userId,
-                    eventHostName: eventHostname,
-                    eventTitle: eventTitle_value,
-                    eventType: eventType_value,
-                    eventDate: eventDate_value ,
-                    eventDescriptionContent: eventDescription_value,
-                    eventTime: eventTime_value,
-                    ImageCoverUpload: downloadImageUrl,
-                    eventInviteType: eventinviteNum,
-                    eventAddress: eventAddress_value,
-                    eventZipcode: zipcode_value,
-                    cityType: cityType_value,
-                    selectedRangeofEvents: selectedRange_int_value
-
-
-                       
-
-                }
-            });
-
-          
-            console.log(newCreateEvent, "successful uploaded")
-            res.status(200).json({ message: "file successful uploaded" });
-
-            
-            // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
-
-
-        } catch (error) {
-            console.error(error)
-            res.status(500).send('issue server side')
-        }
-
-    } catch (error) {
-
-        console.log(error)
-        res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
+    }catch(error){
+        console.error("Error on FirebaseService handler function")
     }
-
-
-
 }
+
 
 
 

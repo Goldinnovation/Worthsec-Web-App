@@ -236,6 +236,7 @@ const Usercontent = () => {
                                 
         </header>  
 
+        
         {/* Main Section */}
         <div className='flex  h-[95vh] w-full'>
             {/*  Left */}
@@ -333,22 +334,22 @@ const Usercontent = () => {
 
         </div>
 
-        {/* <div className='h-[5vh]'>sdsd</div> */}
+        <div className='h-[5vh]'>sdsd</div>
 
         
                      {/* Navbar section */}
-            {/* <div className='ProfilNavAreaContent'>         
+            <div className='ProfilNavAreaContent'>         
             
             <div className="middleNavbar" >
                     <DisplayProfiIImage />
             </div>
             <div className='NavbarMenu' >   
-                       <button className='homebtn' onClick={homeToggle}>H</button>
+                       {/* <button className='homebtn' onClick={}>H</button> */}
 
-                       <button className='explorebtn' onClick={exploreToggle}>E</button>
+                       {/* <button className='explorebtn' onClick={}>E</button> */}
             </div>  
               
-            </div> */}
+            </div>
 
 
        
