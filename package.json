@@ -9,7 +9,8 @@
     "start": "NODE_ENV=production node server/app.ts",
     "lint": "next lint",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "prepare": "husky"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
