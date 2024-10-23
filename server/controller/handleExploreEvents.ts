@@ -1,5 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient()
+// import { PrismaClient } from '@prisma/client';
+// const prisma = new PrismaClient()
+import prisma from '../libs/prisma';
 import { Request, Response } from 'express';
 // const apicache = require('apicache');
 // const cache = apicache.middleware;
@@ -17,15 +18,11 @@ interface AuthenticatedRequest extends Request {
 export async function exploreEvents(req: AuthenticatedRequest, res: Response): Promise<void> {
 
     try {
-        const currentUserId = req.user.userId
-        // console.log(currentUser);
-        // console.log(req.user);
 
-        // finds the interest of the currentUser 
-        // let sum = 0
+        // console.log(req);
+        const currentUserId = req.user.userId
         if (currentUserId) {
-            // const num = sum+=1
-            // console.log(num);
+          
             const getUserInterest = await prisma.account.findUnique({
                 where: {
                     userId: currentUserId
@@ -56,7 +53,7 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
                     take: 24   //setting query limit to 10
                 });
                 // console.log(interestedEvents.length);
-             
+                console.log('Succes');
                 res.status(200).json(interestedEvents)
             }
 
@@ -84,11 +81,16 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
 
 
+        }else{
+            console.log('trigger');
+            res.status(400).json({message: "Invalid Request on exploreEvents handler function"})
         }
        
 
     } catch (error) {
         console.log("Bad request:", error)
+        res.status(400).json({message: "Invalid Request on exploreEvents handler function,  Cannot read properties of undefined"})
+
     }
 
 
