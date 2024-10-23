@@ -53,7 +53,7 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
                             in: userInterestsdataArr
                         }
                     },
-                    take: 31   //setting query limit to 10
+                    take: 24   //setting query limit to 10
                 });
                 // console.log(interestedEvents.length);
              

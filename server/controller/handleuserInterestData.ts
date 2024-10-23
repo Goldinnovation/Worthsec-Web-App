@@ -21,7 +21,6 @@ interface AuthenticatedRequest extends Request{
 
  const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
 
-
     const userId = (req as AuthenticatedRequest)?.decodedUserId
     // const selectedInterests = (req as AuthenticatedRequest)?.userSelectedInterests
     const selectedInterests = req.body.pickedIntesrest
@@ -42,6 +41,8 @@ interface AuthenticatedRequest extends Request{
             res.status(200).json({message: "Interests are successfully stored"})
 
         }else{
+
+          
 
             res.status(400).json({message: "Invalid Request Body data on the StoreInterestdata handler function"})
         }

@@ -41,7 +41,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
         const eventDataArr = req.body?.EventDataId;
         const eventDataLen = eventDataArr.length;
         console.log(eventDataLen);
-        eventDataLen == 30 ?
+        eventDataLen == 24 ?
           (async () => {
                 const newEventData = await prisma.event.findMany({
                   where: {
@@ -49,7 +49,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
                       notIn: eventDataArr,
                     },
                   },
-                  take: 10,
+                  take: 27,
                 });
                 // Adds new Data to the list
                   res.status(200).json(newEventData)
