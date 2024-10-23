@@ -39,7 +39,7 @@ const SECRET_KEY=  process.env.SECRET_KEY as string
     // // console.log(userId);
    
     // console.log(selectedCategory);
-    console.log(req);
+    // console.log(req);
     const userId = (req as AuthenticatedRequest)?.decodedUserId
     console.log(userId);
     const selectedCategory = req.body.cateogory
@@ -62,6 +62,8 @@ const SECRET_KEY=  process.env.SECRET_KEY as string
 
 
         
+        }else{
+          res.status(400).json({message: "Invalid Request on userGetCategoryEvent handler function"})
         }
 
     } catch (error) {

@@ -17,6 +17,9 @@ import {
     user?: any;
   }
   
+
+
+  
   // mocks the prisma client ads the prisma mockDeep CLient to access the nested properties of prisma 
   vi.mock("../../libs/prisma", async () => {
    
@@ -24,34 +27,35 @@ import {
       typeof import("../../libs/__mocks__/prisma")
     >("../../libs/__mocks__/prisma");
     // console.log(actual);
+    const mockedprismaResponse =  [{
+      eventId: "212",
+      eventHost: "dsd",
+      eventHostName: "dsdssd",
+      eventTitle: "dsdfdsf",
+      eventDate:  new Date(),
+      eventType: "dsfdd",
+      eventDescriptionContent: "dsdfsdfdf",
+      eventTime: "Dsfsdff",
+      ImageCoverUpload: "sfedsfds",
+      eventInviteType: 1,
+      eventAddress: "sdfsddsf",
+      eventZipcode: "dsfsdfsdfdsf",
+      cityType: "DSfsddf",
+      selectedRangeofEvents: 43,
+      createdAt: new Date(),
+  }]
+  
     return {
       ...actual,
       default: {
         event: {
-          findMany: vi.fn().mockResolvedValue,
+          findMany: vi.fn().mockResolvedValue(mockedprismaResponse),
         },
       },
     };
   });
 
-  const mockedprismaResponse = [{
-    eventId: "212",
-    eventHost: "dsd",
-    eventHostName: "dsdssd",
-    eventTitle: "dsdfdsf",
-    eventDate:  new Date(),
-    eventType: "dsfdd",
-    eventDescriptionContent: "dsdfsdfdf",
-    eventTime: "Dsfsdff",
-    ImageCoverUpload: "sfedsfds",
-    eventInviteType: 1,
-    eventAddress: "sdfsddsf",
-    eventZipcode: "dsfsdfsdfdsf",
-    cityType: "DSfsddf",
-    selectedRangeofEvents: 43,
-    createdAt: new Date(),
-}];
-  
+
   // Created the Mock request data
   const mockRequest = getMockReq<AuthenticatedRequest>({
     
@@ -61,33 +65,116 @@ import {
         cateogory: "kudssio",
     }
   });
+
+  const ErrorRequest = getMockReq<AuthenticatedRequest>({
+    
+    decodedUserId: "sdfsdfops",
+    
+   
+  });
   
   // Mock Response Data
   const { res: mockResponse, next: NextFunction} = getMockRes({
     status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
+    json: vi.fn()
   });
 
-  beforeEach(() => {
-    // Reset the mocks before each test
- 
-    prisma.event.findMany.mockClear();
-  });
 
-  
-  it("should store the event Id that user selected as joined", async () => {
+describe("Post Method - Successful Request - selected category type queries the database to find events with the same cateegory Type",() => {
+  it("receives a string that represents a selected category type. Afterwards queries in the database for Events matching the category Type", async () => {
+    const mockedprismaResponse =  [{
+      eventId: "212",
+      eventHost: "dsd",
+      eventHostName: "dsdssd",
+      eventTitle: "dsdfdsf",
+      eventDate:  new Date(),
+      eventType: "dsfdd",
+      eventDescriptionContent: "dsdfsdfdf",
+      eventTime: "Dsfsdff",
+      ImageCoverUpload: "sfedsfds",
+      eventInviteType: 1,
+      eventAddress: "sdfsddsf",
+      eventZipcode: "dsfsdfsdfdsf",
+      cityType: "DSfsddf",
+      selectedRangeofEvents: 43,
+      createdAt: new Date(),
+  }]
   
   
     await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
   
    await userGetCategoryEvent(mockRequest, mockResponse, NextFunction)
   
-    expect(mockResponse.status).toHaveBeenCalledWith(200); 
-    expect(mockResponse.json).toBeTypeOf("function")
-    expect(mockResponse.json).toHaveBeenCalledTimes(1);
-    // expect(mockResponse.json).toHaveBeenCalledWith(mockedprismaResponse)
-    // expect(mockResponse.json).([...mockedprismaResponse])
-    // console.log(typeof )
+     //  Checks the statuscode of the response
+    expect(mockResponse.status).toHaveBeenCalledWith(200); //Passes Test
+    // checks that the json response is function
+    expect(mockResponse.json).toBeTypeOf("function") //Passes Test
+    //  checks that json function was called once 
+    expect(mockResponse.json).toHaveBeenCalledTimes(1); //Passes Test
+    // Checks that json response is a array
+    expect(mockResponse.json).toHaveBeenCalledWith(expect.any(Array)) //Passes Test- 
+    
+    // Checks the array Structure 
+    expect(mockResponse.json).toBeCalledWith(expect.arrayContaining([  //Passes Test
+
+      expect.objectContaining({
+        eventId: "212",
+      eventHost: "dsd",
+      eventHostName: "dsdssd",
+      eventTitle: "dsdfdsf",
+      eventDate:  expect.any(Date),
+      eventType: "dsfdd",
+      eventDescriptionContent: "dsdfsdfdf",
+      eventTime: "Dsfsdff",
+      ImageCoverUpload: "sfedsfds",
+      eventInviteType: 1,
+      eventAddress: "sdfsddsf",
+      eventZipcode: "dsfsdfsdfdsf",
+      cityType: "DSfsddf",
+      selectedRangeofEvents: 43,
+      createdAt: expect.any(Date),
+      })
+    ]))
+
 
   });
   
+})
+
+
+describe("Post Method - Error Request - Should through an error json message ", () => {
+  it("Should through an Error Message ", async () => {
+    const mockedprismaResponse =  [{
+      eventId: "212",
+      eventHost: "dsd",
+      eventHostName: "dsdssd",
+      eventTitle: "dsdfdsf",
+      eventDate:  new Date(),
+      eventType: "dsfdd",
+      eventDescriptionContent: "dsdfsdfdf",
+      eventTime: "Dsfsdff",
+      ImageCoverUpload: "sfedsfds",
+      eventInviteType: 1,
+      eventAddress: "sdfsddsf",
+      eventZipcode: "dsfsdfsdfdsf",
+      cityType: "DSfsddf",
+      selectedRangeofEvents: 43,
+      createdAt: new Date(),
+  }]
+  
+  
+    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+  
+   await userGetCategoryEvent(ErrorRequest, mockResponse, NextFunction)
+  
+     //  Checks the statuscode of the response
+    expect(mockResponse.status).toHaveBeenCalledWith(400); //Passes Test
+    // checks the json response message 
+    expect(mockResponse.json).toHaveBeenCalledWith({
+      message:  "Invalid Request on userGetCategoryEvent handler function" ,
+    });
+
+
+  });
+})
+ 
