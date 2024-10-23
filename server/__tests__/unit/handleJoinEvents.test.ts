@@ -42,28 +42,67 @@ import {
         joinEventId: "kudssio",
     }
   });
+
+  // Error Request
+  const errRequst = getMockReq<AuthenticatedRequest>({
+    user: {
+      userId: "sdfsdfops",
+    },
+  
+  });
   
   // Mock Response Data
   const { res: mockResponse} = getMockRes({
     status: vi.fn().mockReturnThis(),
     json: vi.fn(),
   });
-  
-  it("should store the event Id that user selected as joined", async () => {
-    const mockedprismaResponse = {
+
+
+  describe( "Post Method - successful Request of storing an event id in the database", () => {
+    it("should store the event Id that user selected in the database and return a message", async () => {
+      const mockedprismaResponse = {
+          user_id: "sdfsdfopsd",
+          event_id: "sdsdfsd",
+          createdAt: new Date(),
+          joinId : "1", // Simulate generated ID
+      };
+    
+      await prisma.userJoinEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+    
+      await userJoinEvent(mockRequest, mockResponse)
+    
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
+      expect(mockResponse.json).toHaveBeenCalledWith({
+        message: "user successfully Join a event" ,
+      });
+    });
+  })
+
+
+
+
+
+describe("Post Method - Error Request, should return an Error message if the data is invalid - ", () =>{
+
+    it("Should return an Error Message with the location that the Error accrued", async() => {
+
+      const mockedprismaResponse = {
         user_id: "sdfsdfopsd",
         event_id: "sdsdfsd",
         createdAt: new Date(),
         joinId : "1", // Simulate generated ID
     };
-  
+
     await prisma.userJoinEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
-  
-    await userJoinEvent(mockRequest, mockResponse)
-  
-    expect(mockResponse.status).toHaveBeenCalledWith(200);
+
+    await userJoinEvent(errRequst, mockResponse)
+
+    expect(mockResponse.status).toHaveBeenCalledWith(400);
     expect(mockResponse.json).toHaveBeenCalledWith({
-      message: "user successfully Join a event" ,
+      message: "Invalid Request on userJoinEvent handler function" ,
     });
-  });
+   })
+})
+  
+ 
   

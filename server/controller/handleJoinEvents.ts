@@ -27,8 +27,8 @@ interface AuthenticatedRequest extends Request{
     const joined_user_id = req.user.userId
     const joined_event_id = req.body.joinEventId
 
-    console.log(joined_event_id);
-    console.log(joined_user_id);
+    // console.log(joined_event_id);
+    // console.log(joined_user_id);
 
     try {
         if (joined_user_id && joined_event_id ) {
@@ -43,6 +43,8 @@ interface AuthenticatedRequest extends Request{
 
             // console.log(joinusertoEvent)
             res.status(200).json({ message: "user successfully Join a event" })
+        }else{
+            res.status(400).json({message: "Invalid Request on userJoinEvent handler function"})
         }
 
     } catch (error) {
