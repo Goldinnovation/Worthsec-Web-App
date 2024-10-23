@@ -82,13 +82,13 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
 
         }else{
-            console.log('trigger');
+            // console.log('trigger');
             res.status(400).json({message: "Invalid Request on exploreEvents handler function"})
         }
        
 
     } catch (error) {
-        console.log("Bad request:", error)
+        // console.log("Bad request:", error)
         res.status(400).json({message: "Invalid Request on exploreEvents handler function,  Cannot read properties of undefined"})
 
     }

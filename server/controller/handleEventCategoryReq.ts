@@ -41,9 +41,9 @@ const SECRET_KEY=  process.env.SECRET_KEY as string
     // console.log(selectedCategory);
     // console.log(req);
     const userId = (req as AuthenticatedRequest)?.decodedUserId
-    console.log(userId);
+    // console.log(userId);
     const selectedCategory = req.body.cateogory
-    console.log("selectedEvent:", selectedCategory);
+    // console.log("selectedEvent:", selectedCategory);
    
 
  
