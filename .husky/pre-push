@@ -1,1 +1,11 @@
-npm test --watchAll=false
+npm test
+
+
+RESULT=$?
+
+if [$RESULT -n 0]; then
+    echo "Tests failed, stoping the push"
+    exit 1
+fi
+    exit 0 
+
