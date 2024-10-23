@@ -7,7 +7,7 @@ export default defineConfig({
     plugins: [react(), tsconfigPaths()],
     test: {
         environment: "node",
-        globals:true,
+        // globals:true,
         include: [
           "server/__tests__/controller/**/*.ts",       // Include unit tests
           'server/__tests__/unit/**/*.test.ts'  // Include integration tests

@@ -53,7 +53,6 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
                     take: 24   //setting query limit to 10
                 });
                 // console.log(interestedEvents.length);
-                console.log('Succes');
                 res.status(200).json(interestedEvents)
             }
 
