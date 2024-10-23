@@ -172,3 +172,6 @@ Index strategies are applied to four tables:
 - event: Target column - `eventHost`
 - picture: Target column - `picture_owner_id`
 - userTouser: Target column - `userRequested_id` and `userFollwed` 
+
+
+Skips the Pre-hOOK: Most Git commands include a -n/--no-verify option to skip hooks: git commit -m "..." -n # Skips Git hooks
