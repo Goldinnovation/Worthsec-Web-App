@@ -46,6 +46,9 @@ export async function userFavourEvent(req: AuthenticatedRequest, res: Response):
             })
 
             res.status(200).json({ message: "user successfully favored a event" })
+        }else{
+            res.status(400).json({message: "Invalid Request on userFavourEvent handler function"})
+
         }
 
     } catch (error) {

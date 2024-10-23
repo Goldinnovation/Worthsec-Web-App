@@ -42,19 +42,33 @@ import {
       favoreventId: "kudssio",
     }
   });
+
+
+  const errRequst = getMockReq<AuthenticatedRequest>({
+    user: {
+      userId: "sdfsdfops",
+    },
+  
+  });
+
+  
   
   // Mock Response Data
   const { res: mockResponse} = getMockRes({
     status: vi.fn().mockReturnThis(),
     json: vi.fn(),
   });
-  
+
+
+
+  describe("Post Method - Successful Request of storing an event id and user id in the database ", () => {
+    
   it("should store the event Id that user selected as favored", async () => {
     const mockedprismaResponse = {
         currentUser_id: "sdfsdfopsd",
         event_id: "sdsdfsd",
         createdAt: new Date(),
-        favourId : "1", // Simulate generated ID
+        favourId : "1", 
     };
   
     await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
@@ -66,4 +80,26 @@ import {
       message: "user successfully favored a event",
     });
   });
+  })
+  
+
+  describe("Post Method - Error Request, should return an Error message if the data is invalid  ", () => {
+    it("Should return an Error Message with the location that the Error happend", async () => {
+      const mockedprismaResponse = {
+          currentUser_id: "sdfsdfopsd",
+          event_id: "sdsdfsd",
+          createdAt: new Date(),
+          favourId : "1", 
+      };
+    
+      await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+    
+      await userFavourEvent(errRequst, mockResponse)
+    
+      expect(mockResponse.status).toHaveBeenCalledWith(400);
+      expect(mockResponse.json).toHaveBeenCalledWith({
+        message: "Invalid Request on userFavourEvent handler function",
+      });
+    });
+  })
   

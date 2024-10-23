@@ -58,7 +58,7 @@ import {
   });
 
 
-  describe( "Post Method - successful Request of storing an event id in the database", () => {
+  describe( "Post Method - successful Request of storing an event id and user id in the database", () => {
     it("should store the event Id that user selected in the database and return a message", async () => {
       const mockedprismaResponse = {
           user_id: "sdfsdfopsd",
