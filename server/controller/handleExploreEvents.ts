@@ -1,10 +1,8 @@
-// import { PrismaClient } from '@prisma/client';
-// const prisma = new PrismaClient()
+
 import prisma from '../libs/prisma';
 import { Request, Response } from 'express';
-// const apicache = require('apicache');
-// const cache = apicache.middleware;
-
+import axios from 'axios';
+import * as cheerio from 'cheerio';
 
 
 
@@ -21,13 +19,14 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
         // console.log(req);
 
-        console.log(req.user);
-        const userEmail = req.user.userEmail
+        // console.log(req.user);
+        // const userEmail = req.user.userEmail
 
-        if(userEmail == "caro1"){
-            console.log('init');
-            const data = handlerScraping()
-        }   
+        // if(userEmail == "caro1"){
+        //     console.log('init');
+        //     const data = await handlerScraping()
+        //     console.log('dsd');
+        // }   
 
         const currentUserId = req.user.userId
         // if(current)
@@ -108,11 +107,23 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 }
 
 
-const handlerScraping = () => {
+// const handlerScraping = async() => {
 
-    console.log('handleScraping log');
+//     const html = await axios.get("https://ladenkino.de/", {
+//         method: "GET"
+//     })
 
-}
+//     const $ = cheerio.load(html.data)
+
+
+//     console.log($);
+//     // const title = $('h1.grid__col-12 .grid__col-12').text()
+//     // console.log("title:", title);
+
+//     // console.log('data', res.data);
+
+    
+// }
 
 
 export default { exploreEvents }
