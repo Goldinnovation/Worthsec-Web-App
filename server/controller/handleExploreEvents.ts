@@ -20,7 +20,17 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
     try {
 
         // console.log(req);
+
+        console.log(req.user);
+        const userEmail = req.user.userEmail
+
+        if(userEmail == "caro1"){
+            console.log('init');
+            const data = handlerScraping()
+        }   
+
         const currentUserId = req.user.userId
+        // if(current)
         if (currentUserId) {
           
             const getUserInterest = await prisma.account.findUnique({
@@ -94,6 +104,13 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
 
 
+
+}
+
+
+const handlerScraping = () => {
+
+    console.log('handleScraping log');
 
 }
 

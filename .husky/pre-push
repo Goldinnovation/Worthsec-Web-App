@@ -1,18 +1,19 @@
-#!/bin/sh
-# Adding debug output
-echo "Running pre-push hook..."
+# #!/bin/sh
+# # Adding debug output
+# echo "Running pre-push hook..."
 
+# npm test
+# echo $?
+
+# # Check the result of the test command
+# result=$?
+# echo "Test command finished with exit status: $result"
+
+# if [ $result -eq 0 ]; then
+#     echo "Tests passed, proceeding with push."
+#     exit 0
+# else
+#     echo "Tests failed, aborting push."
+#     exit 1
+# fi
 npm test
-echo $?
-
-# Check the result of the test command
-result=$?
-echo "Test command finished with exit status: $result"
-
-if [ $result -eq 0 ]; then
-    echo "Tests passed, proceeding with push."
-    exit 0
-else
-    echo "Tests failed, aborting push."
-    exit 1
-fi
