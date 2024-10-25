@@ -11,7 +11,7 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "prepare": "husky", 
-    "scraper": "tsx watch server/scraper.ts"
+    "scraper": "tsx watch scraper/server.ts"
 
   },
   "dependencies": {
