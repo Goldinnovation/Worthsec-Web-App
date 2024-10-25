@@ -14,11 +14,6 @@ app.use(express.json())
 
 
 
-const url = "https://www.berlin.de/kino/_bin/index.php"
-
-const url1 = "https://www.berlin.de/kino/_bin/filmdetail.php/301608/"
-
-
 
 
 app.use(getMovieData)
