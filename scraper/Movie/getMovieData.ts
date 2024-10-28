@@ -98,6 +98,6 @@ const getMovieTitle = async () => {
     }
 };
 
-getUserTitle()
+// getUserTitle()
 
 export default router;
