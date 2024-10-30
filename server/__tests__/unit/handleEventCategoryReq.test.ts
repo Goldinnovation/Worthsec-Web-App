@@ -111,7 +111,7 @@ describe("Post Method - Successful Request - selected category type queries the 
     expect(mockResponse.json).toBeTypeOf("function") //Passes Test
     //  checks that json function was called once 
     expect(mockResponse.json).toHaveBeenCalledTimes(1); //Passes Test
-    // Checks that json response is a array
+    // Checks that json response is an array
     expect(mockResponse.json).toHaveBeenCalledWith(expect.any(Array)) //Passes Test- 
     
     // Checks the array Structure 
