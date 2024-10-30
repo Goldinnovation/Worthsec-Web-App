@@ -105,10 +105,12 @@ This guide will help you set up the Worthsec project on your local machine, conn
 
 
 ## Client-Server Architecture:
+</br>
+<div style="text-align: center;">
 
- <img src="CSA.png" alt="Database connection Configuration" style="width:750px;"/>
+ <img src="CSA1.png" alt="Client-Server Architecture" style="width:650px;"/>
 
-
+</div>
 </br>
 </br>
 </br>
