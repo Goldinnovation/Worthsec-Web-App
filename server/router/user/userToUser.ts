@@ -1,7 +1,7 @@
 import { Router } from "express"
 const router = Router()
 // const handleUsertoFollow = require('../controller/userInfo/handleUserToUser')
-import {searchUser_friends,followUser, unFollowUser} from '../controller/userInfo/handleUserToUser'
+import {searchUser_friends,followUser, unFollowUser} from '../../controller/userInfo/handleUserToUser'
 // const apicache = require('apicache')
 // let cache = apicache.middleware
 

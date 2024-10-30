@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import {getCloseFriends, inviteClosefriendsToEvent} from '../controller/handleInviteToFriends'
+import {getCloseFriends, inviteClosefriendsToEvent} from '../../controller/handleInviteToFriends'
 
 
 

@@ -1,8 +1,8 @@
 import { Router } from "express"
 const router = Router()
-import handleEvent from '../controller/handleEvent'
-import ImageFileUpload from '../Middlware/coverImage'
-import authMiddlewareCheck from "../Middlware/authMiddleWare"
+import handleEvent from '../../controller/handleEvent'
+import ImageFileUpload from '../../Middlware/coverImage'
+import authMiddlewareCheck from "../../Middlware/authMiddleWare"
 
 
 router.get('/', authMiddlewareCheck, handleEvent.findEvents)
