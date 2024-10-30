@@ -7,7 +7,7 @@
 </div>
 
 
-Worthsec is a social media platform that offers accessibility for diverse groups of people, enabling them to exchange ideas, connect with others, and efficiently manage their events.
+Worthsec is a social media platform for events that offers accessibility for diverse groups of people, enabling them to exchange ideas, connect with others, and efficiently manage their events.
 
 
 </br>
