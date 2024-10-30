@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import { userFavourEvent } from '../../controller/handleFavorEvent'
+import { userFavourEvent } from '../../controller/Event/handleFavorEvent'
 
 
 

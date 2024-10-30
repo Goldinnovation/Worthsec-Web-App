@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router()
-import userGetCategoryEvent from "../../controller/handleEventCategoryReq";
+import userGetCategoryEvent from "../../controller/Event/handleEventCategoryReq";
 import CategoryConvertToken from "../../Middlware/User/categoryConverToken";
 
 

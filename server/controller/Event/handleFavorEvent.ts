@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 // const prisma = new PrismaClient()
-import prisma from '../libs/prisma';
+import prisma from '../../libs/prisma';
 import { Request, Response } from 'express';
 import jwt, { JwtPayload } from "jsonwebtoken";
 

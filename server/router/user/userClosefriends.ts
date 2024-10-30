@@ -1,7 +1,7 @@
 
 import { Router } from 'express'
 const router = Router()
-import {searchImgUrl, searchforClosefriends} from '../../controller/handleClosefriendsSearch'
+import {searchImgUrl, searchforClosefriends} from '../../controller/User/handleClosefriendsSearch'
 
 
 

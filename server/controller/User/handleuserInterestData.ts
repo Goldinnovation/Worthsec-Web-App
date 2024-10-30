@@ -2,8 +2,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 // const prisma = new PrismaClient()
-import prisma from '../libs/prisma';
-import mockprisma from "../libs/prisma"
+import prisma from '../../libs/prisma';
+import mockprisma from "../../libs/prisma"
 
 
 

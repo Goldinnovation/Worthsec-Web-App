@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router();
-import handlerUserInterestData from '../../controller/handleuserInterestData'
+import handlerUserInterestData from '../../controller/User/handleuserInterestData'
 import CategoryConvertToken from '../../Middlware/User/categoryConverToken';
 
 

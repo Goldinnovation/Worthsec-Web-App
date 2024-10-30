@@ -1,5 +1,5 @@
 
-import prisma from '../libs/prisma';
+import prisma from '../../libs/prisma';
 import { Request, Response } from 'express';
 import axios from 'axios';
 import * as cheerio from 'cheerio';

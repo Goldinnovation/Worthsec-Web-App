@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import { userFavorEventMobile, getUserFavoredEvents } from '../../controller/handleFavorEventMobile'
+import { userFavorEventMobile, getUserFavoredEvents } from '../../controller/Event/handleFavorEventMobile'
 import authMiddlewareCheck from "../../Middlware/Auth/authMiddleWare";
 
 

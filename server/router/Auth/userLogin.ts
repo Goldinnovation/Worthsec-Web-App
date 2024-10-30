@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import handleLog from '../../controller/handleLogin'
+import handleLog from '../../controller/Auth/handleLogin'
 
 
 

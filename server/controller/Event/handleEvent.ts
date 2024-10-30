@@ -3,12 +3,12 @@
 
 import {getStorage, ref, deleteObject, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
 import { initializeApp } from 'firebase/app'
-import config from '../config/firebase'
+import config from '../../config/firebase'
 import { Sharp } from 'sharp'
 import sharp from 'sharp'
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient()
-import giveCurrentDateTime from '../utils/date'
+import giveCurrentDateTime from '../../utils/date'
 import { Request, Response } from 'express';
 import multer from 'multer';
 import { Express } from 'express';

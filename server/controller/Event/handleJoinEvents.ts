@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
 // const prisma = new PrismaClient();
-import prisma from '../libs/prisma';
+import prisma from '../../libs/prisma';
 import { Response, Request } from "express";
 
 
