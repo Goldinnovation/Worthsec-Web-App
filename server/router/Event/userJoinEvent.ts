@@ -1,6 +1,6 @@
 import { Router } from 'express'
 const router = Router();
-import handleUserJoinEvent from '../controller/handleJoinEvents'
+import handleUserJoinEvent from '../../controller/handleJoinEvents'
 
 
 

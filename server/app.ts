@@ -9,30 +9,30 @@ import eventRequest from './router/eventprompt';
 import signupRequest from './router/userSignup';
 import passportConfig from './config/passport';
 import isAuth from './Middlware/isAuth';
-import loginReq from './router/userLogin';
+import loginReq from './router/Auth/userLogin';
 import LoginToken from './router/loginToken'
 import { PrismaClient } from '@prisma/client';
 import Seqstore from 'connect-session-sequelize';
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/userLogout';
-import userReq from './router/userInfos';
+import userReq from './router/user/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
 import searchUserReq from './router/userSearch';
 import userFollowUser from './router/userToUser';
 import exploreEvents from './router/exploreEvents'
 import userFavorEvent from './router/Event/favorEvent';
-import userJoinEvent from './router/userJoinEvent';
+import userJoinEvent from './router/Event/userJoinEvent';
 import displayUserJoinEvent from './router/displayJoinedEvents';
 import searchForCloseFriend from './router/userClosefriends';
 import inviteCloseFriends from './router/invitefriends';
-import userNotifications from './router/userNotifications'; 
-import userInterestDatarouter from './router/userInterestData'
+import userNotifications from './router/user/userNotifications'; 
+import userInterestDatarouter from './router/user/userInterestData'
 import userCategoryEventReq from './router/userCategory'
 import userFavorEventReqMob from './router/Event/favorEventMobile'
 import newExploreEventData from './router/Event/newExploreData'
-import uploadUserBackground from './router/userGifbg'
+import uploadUserBackground from './router/user/userGifbg'
 import expressSession from "express-session";
 
 import nextConfig from '@/next.config.js';
