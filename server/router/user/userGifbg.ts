@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import handleUserGifBg from '../../controller/userInfo/handleUserbg'
+import handleUserGifBg from '../../controller/User/handleUserbg'
 import processUserBgGif from '../../Middlware/User/processUserBgGif'
 
 
