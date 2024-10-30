@@ -2,7 +2,7 @@ import { Router } from "express";
 const router = Router()
 import {getUserProfilePicture, createProfilePicutre as createProfilePicture, deleteUserProfilePicture} from '../../controller/userInfo/handleUserInfo'
 // import processProfilImageFile from "../Middlware/userProfilImage";
-import processUserPictureFile from '../../Middlware/processUserPicture'
+import processUserPictureFile from '../../Middlware/User/processUserPicture'
 
 
 

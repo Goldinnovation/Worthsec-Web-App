@@ -1,7 +1,7 @@
 import { Router } from "express"
 const router = Router()
 import handleUserGifBg from '../../controller/userInfo/handleUserbg'
-import processUserBgGif from '../../Middlware/processUserBgGif'
+import processUserBgGif from '../../Middlware/User/processUserBgGif'
 
 
 router.post('/', processUserBgGif, handleUserGifBg.handleuserBackgroundUpload )

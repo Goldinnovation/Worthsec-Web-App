@@ -8,7 +8,7 @@ import passport from 'passport';
 import eventRequest from './router/eventprompt';
 import signupRequest from './router/userSignup';
 import passportConfig from './config/passport';
-import isAuth from './Middlware/isAuth';
+import isAuth from './Middlware/Auth/isAuth';
 import loginReq from './router/Auth/userLogin';
 import LoginToken from './router/loginToken'
 import { PrismaClient } from '@prisma/client';
