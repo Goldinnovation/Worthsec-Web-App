@@ -8,7 +8,7 @@ import {
     beforeAll,
   } from "vitest";
   import { vi } from "vitest";
-  import { userFavourEvent } from "@/server/controller/handleFavorEvent";
+  import { userFavourEvent } from "@/server/controller/Event/handleFavorEvent";
   import { getMockReq, getMockRes } from "vitest-mock-express";
   import { Request, Response } from "express";
   import prisma from "../../libs/__mocks__/prisma";
