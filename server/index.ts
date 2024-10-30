@@ -22,7 +22,7 @@ import config from './config/firebase';
 import searchUserReq from './router/userSearch';
 import userFollowUser from './router/userToUser';
 import exploreEvents from './router/exploreEvents'
-import userFavorEvent from './router/favorEvent';
+import userFavorEvent from './router/Event/favorEvent';
 import userJoinEvent from './router/userJoinEvent';
 import displayUserJoinEvent from './router/displayJoinedEvents';
 import searchForCloseFriend from './router/userClosefriends';
@@ -30,7 +30,7 @@ import inviteCloseFriends from './router/invitefriends';
 import userNotifications from './router/userNotifications'; 
 import userInterestDatarouter from './router/userInterestData'
 import userCategoryEventReq from './router/userCategory'
-import userFavorEventReqMob from './router/favorEventMobile'
+import userFavorEventReqMob from './router/Event/favorEventMobile'
 import expressSession from "express-session";
 import nextConfig from '@/next.config.js';
 // import conf from '../next.config.mjs';
