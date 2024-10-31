@@ -63,7 +63,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
           }catch(error){
 
             // Handles Database Query Error
-            console.error("Error on fetching new event data, CatchBlock - True::", error);
+            console.error("Error on fetching new event data, CatchBlock - True:", error);
             res.status(500).json({ message: "Failed to fetch new event data", Error: error });
           }}
 
