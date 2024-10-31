@@ -32,7 +32,7 @@ Worthsec is a social media platform for events that offers accessibility for div
 </br>
 </br>
 
-### Project Setup and Contribution Guide
+### Project Setup and Contribution Guide - Backend 
 
 This guide will help you set up the Worthsec project on your local machine, connect to Git, install dependencies, and start the application. Follow the steps below:
 
@@ -104,7 +104,7 @@ This guide will help you set up the Worthsec project on your local machine, conn
 </br>
 
 
-## Client-Server Architecture:
+## Client-Server Architecture - Current State:
 </br>
 <div style="text-align: center;">
 
