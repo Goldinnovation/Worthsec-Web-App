@@ -63,14 +63,14 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
           }catch(error){
 
             // Handles Database Query Error
-            console.error("Error fetching new event data:", error);
+            console.error("Error on fetching new event data, CatchBlock - True::", error);
             res.status(500).json({ message: "Failed to fetch new event data", Error: error });
           }}
 
         await fetchNewEventData()
 
     } catch (error) {
-        console.log("Server Error on getNewEventData handler function, CatchBlock - True:", error)
+        console.log("Server Error on updatetoNewEventData handler function, CatchBlock - True:", error)
         res.status(500).json({ message: "Unexpected error Internal Server Error" });
     }
 
