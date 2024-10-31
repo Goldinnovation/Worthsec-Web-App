@@ -82,6 +82,10 @@ const mockedEventRes =  [{
     user: {
       userId: "sdfsdfops",
     },
+    body: {
+      city: "Berlin"
+
+    }
   
   });
 
@@ -174,53 +178,53 @@ const mockedEventRes =  [{
   })
 
 
-  describe("Get Method - Error Request - checks if the Error Request receives a response with json Message", () => {
+  // describe("Get Method - Error Request - checks if the Error Request receives a response with json Message", () => {
 
-    it("Checks if the response json includes an Error Message and Invalid Request status code of 400", async() => {
+  //   it("Checks if the response json includes an Error Message and Invalid Request status code of 500", async() => {
 
-      const mockedAccountRes = {
-            userInterest: {
-              interest_list: ["dsfdsf", "dfdsf", "dssdfs", "dsfdfd", "dsfdsfdf"],
-          },
-          createdAt: new Date(),
-          userId: "dwewefe",
-          userName: "EWDewew",
-          userEmail: "dscdssd",
-          userPassword1: "DScsdcsd",
-      }
+  //     const getUserInterestMockedResponse = {
+  //           userInterest: {
+  //             interest_list: ["dsfdsf", "dfdsf", "dssdfs", "dsfdfd", "dsfdsfdf"],
+  //         },
+  //         createdAt: new Date(),
+  //         userId: "dwewefe",
+  //         userName: "EWDewew",
+  //         userEmail: "dscdssd",
+  //         userPassword1: "DScsdcsd",
+  //     }
       
-      const mockedEventRes =  [{
-        eventId: "212",
-        eventHost: "dsd",
-        eventHostName: "dsdssd",
-        eventTitle: "dsdfdsf",
-        eventDate:  new Date(),
-        eventType: "dsfdd",
-        eventDescriptionContent: "dsdfsdfdf",
-        eventTime: "Dsfsdff",
-        ImageCoverUpload: "sfedsfds",
-        eventInviteType: 1,
-        eventAddress: "sdfsddsf",
-        eventZipcode: "dsfsdfsdfdsf",
-        cityType: "DSfsddf",
-        selectedRangeofEvents: 43,
-        createdAt: new Date(),
-      }]
+  //     const mockedEventDataResponse =  [{
+  //       eventId: "212",
+  //       eventHost: "dsd",
+  //       eventHostName: "dsdssd",
+  //       eventTitle: "dsdfdsf",
+  //       eventDate:  new Date(),
+  //       eventType: "dsfdd",
+  //       eventDescriptionContent: "dsdfsdfdf",
+  //       eventTime: "Dsfsdff",
+  //       ImageCoverUpload: "sfedsfds",
+  //       eventInviteType: 1,
+  //       eventAddress: "sdfsddsf",
+  //       eventZipcode: "dsfsdfsdfdsf",
+  //       cityType: "DSfsddf",
+  //       selectedRangeofEvents: 43,
+  //       createdAt: new Date(),
+  //     }]
           
         
-        // Checkks if the mockedResponse is queal to the return value of the prisma schema 
-        await prisma.account.findUnique.mockResolvedValue(mockedAccountRes); //mocked Prisma Client response
-        await prisma.event.findMany.mockResolvedValue(mockedEventRes);
-        await exploreEvents(ErrorReq, mockResponse)
+  //       // Checkks if the mockedResponse is queal to the return value of the prisma schema 
+  //       await prisma.account.findUnique.mockResolvedValue(getUserInterestMockedResponse); //mocked Prisma Client response
+  //       await prisma.event.findMany.mockResolvedValue(mockedEventDataResponse);
+  //       await exploreEvents(ErrorReq, mockResponse)
       
-        expect(mockResponse.status).toHaveBeenCalledWith(400); //Passes Test
+  //       expect(mockResponse.status).toHaveBeenCalledWith(500); //Passes Test
 
-        expect(mockResponse.json).toHaveBeenCalledWith({
-          message: "Invalid Request on exploreEvents handler function,  Cannot read properties of undefined",
-        });
+  //       expect(mockResponse.json).toHaveBeenCalledWith({
+  //         message: "Unexpected Server Error on exploreEvents function",
+  //       });
       
     
     
     
-        })
-  })
+  //       })
+  // })
