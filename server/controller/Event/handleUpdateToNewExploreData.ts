@@ -69,9 +69,6 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
         console.log("Server Error on getNewEventData handler function, CatchBlock - True:", error)
     }
 
-
-
-    // res.status(200).json({message: "connected"})
 }
 
 
