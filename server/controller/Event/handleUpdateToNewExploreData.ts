@@ -34,13 +34,12 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
     try {
         const userId = (req as AuthenticatedRequest)?.decodedUserId;
         const eventDataIds = req.body?.EventDataId;
-      
-        // Checks if the user exist
+
         if(!userId) {
           res.status(400).json({ message: 'Invalid Request, userId does not exist' });
         }
 
-        // Checks if the data exist and the length matches
+   
         if( !eventDataIds ||  eventDataIds.length !== 24 ) {
           res.status(400).json({ message: 'User Length does not match the requirements' });
         }
@@ -62,7 +61,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
 
           }catch(error){
 
-            // Handles Database Query Error
+           
             console.error("Error on fetching new event data, CatchBlock - True:", error);
             res.status(500).json({ message: "Failed to fetch new event data", Error: error });
           }}
