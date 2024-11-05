@@ -56,9 +56,14 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
             const userInterestsdataArr = getUserInterest?.userInterest?.interest_list
             const currentUserFriends = getUserInterest?.userTouser
-            console.log('currentUserFriends', currentUserFriends);
-            if(userInterestsdataArr && currentUserFriends){
-                handlesuserFriendsInterest(userInterestsdataArr, currentUserFriends,  req, res)
+            const userFriendsId: any = currentUserFriends?.map((prev: any) => prev?.userFollowed || [])
+
+           
+            if(userInterestsdataArr && userFriendsId.length > 0 ){
+                handlesUserFriendsInterest(userInterestsdataArr, userFriendsId,  req, res)
+            }else{
+                handleSpecifiedEvent(userInterestsdataArr, req, res)
+
             }
            
             
@@ -81,85 +86,85 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
 
 
 // This function queries the interests of the current user's friends and compares them with the current user's interests to add new, unique interests to the current user's interest data list 
-export const handlesuserFriendsInterest = async(currentUserInterestData: string[]| undefined,currentUserFriends: any | undefined, req: AuthenticatedRequest, res: Response) => {
+export const handlesUserFriendsInterest = async(currentUserInterestData: string[]| undefined, currentUserFriendsId: any | undefined, req: AuthenticatedRequest, res: Response) => {
 
     try{
 
-        const totalInterests: any[] = []
-        const userFriendsId: string[] = currentUserFriends.map((prev: any) => prev?.userFollowed || [])
-
-        const otherUserInterestData = userFriendsId.map(async(id) => {
-            const interestData =  await prisma.account.findUnique({
-                where: {
-                  userId: id
-                },
-                include: {
-                    userInterest: {
-                        select: {
-                            interest_list: true
+       
+        
+        const updateUserInterestArr =  async() => {
+            const totalInterests: any[] = []
+            const otherUserInterestData = currentUserFriendsId.map(async(id: string) => {
+                const interestData =  await prisma.account.findUnique({
+                    where: {
+                      userId: id
+                    },
+                    include: {
+                        userInterest: {
+                            select: {
+                                interest_list: true
+                            }
                         }
                     }
-                }
-            })
-
-
-            
-            const otherUserInterest = interestData?.userInterest?.interest_list || [];
-            totalInterests.push(...otherUserInterest)
-          })
-
-        await Promise.all(otherUserInterestData)
-
-        // Removes the duplicated strings  
-       const uniqueArr  = [... new Set(totalInterests)]
-
-        // comparing the currentUser Interests with the other user Interest and removing equal Interest 
-        const comparingInterest = uniqueArr?.filter((interestString: string) => 
-            !currentUserInterestData?.some((otherUserInterest: string) => otherUserInterest === interestString)
-        )
-        //  handles the default logic
-        if(comparingInterest.length === 0 && currentUserInterestData ){
-            console.log('default trigger');
-            const defaultList = ["jazz", "Movie", "Art"]
-            const updatedInterstDatabydefault = [...currentUserInterestData,...defaultList ]
-            console.log('updatedInterstDatabydefault', updatedInterstDatabydefault);
-            handleSpecifiedEvent(updatedInterstDatabydefault, req, res)
-         
-        }else{
-              // create a list with 3 new unequal interest items
-            const newInterestData = []
-            let sum = 0
-            
-                for(const i of comparingInterest){
-                    if( sum < 3){
-                        sum++
-                        newInterestData.push(i)
-                    }  
-                }
-            
+                })
     
-            
-            
-            if(newInterestData.length > 0 && currentUserInterestData){
-                const updatedInterstData = [...currentUserInterestData, ...newInterestData]
     
-            
-                handleSpecifiedEvent(updatedInterstData, req, res)
+                
+                const otherUserInterest = interestData?.userInterest?.interest_list || [];
+                totalInterests.push(...otherUserInterest)
+              })
+    
+            await Promise.all(otherUserInterestData)
+    
+            // Removes the duplicated strings  
+           const uniqueArr  = [... new Set(totalInterests)]
+    
+            // comparing the currentUser Interests with the other user Interest and removing equal Interest 
+            const comparingInterest = uniqueArr?.filter((interestString: string) => 
+                !currentUserInterestData?.some((otherUserInterest: string) => otherUserInterest === interestString)
+            )
+            //  handles the default logic
+            if(comparingInterest.length === 0 && currentUserInterestData ){
+                console.log('default trigger');
+                const defaultList = ["jazz", "Movie", "Art"]
+                const updatedInterstDatabydefault = [...currentUserInterestData,...defaultList ]
+                console.log('updatedInterstDatabydefault', updatedInterstDatabydefault);
+                handleSpecifiedEvent(updatedInterstDatabydefault, req, res)
              
+            }else{
+                  // create a list with 3 new unequal interest items
+                const newInterestData = []
+                let sum = 0
+                
+                    for(const i of comparingInterest){
+                        if( sum < 3){
+                            sum++
+                            newInterestData.push(i)
+                        }  
+                    }
+                
+        
+                
+                
+                if(newInterestData.length > 0 && currentUserInterestData){
+                    const updatedInterstData = [...currentUserInterestData, ...newInterestData]
+        
+                
+                    handleSpecifiedEvent(updatedInterstData, req, res)
+                 
+                }
+                
+    
+    
             }
-            
-
 
         }
 
+
+        await updateUserInterestArr()
+
       
-       
-   
-
-
-       
-
-        
+  
       
         
     }catch(error){
@@ -170,24 +175,20 @@ export const handlesuserFriendsInterest = async(currentUserInterestData: string[
 }
 
 
-//  handles the retrieve of conditional event data, 
+//  handles the retrieve of conditional event datas 
 export const handleSpecifiedEvent = async(data: string[] | undefined, req: AuthenticatedRequest, res: Response) => {
 
     try{
-      console.log('data on handleSpecifiedEvent', data);
-        const today = new Date()
-        const endDate = new Date()
-        endDate.setDate(today.getDate() + 7)
-        if (!today) {
-            res.status(500).json({ message: "Current Date can not be provided, Internal Issue on function call - Early Error Reply" })
-        }
-
-        if (!endDate) {
-            res.status(500).json({ message: "specfied limitation data can be provided, Internal issue on function call - Early Error Reply " })
-        }
+      
     
 
         const getspecifiedEvents = async() => {
+            console.log('data:', data);
+            const today = new Date()
+            const endDate = new Date()
+            endDate.setDate(today.getDate() + 7)
+          
+
             try{
                 const interestedEvents = await prisma.event.findMany({
                     where: {
