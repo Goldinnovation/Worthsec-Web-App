@@ -1,27 +1,23 @@
 import {
   describe,
   expect,
-  test,
-  beforeEach,
-  afterEach,
   it,
-  beforeAll,
 } from "vitest";
 import { vi } from "vitest";
 import storeInterestData from "@/server/controller/User/handleuserInterestData";
 import { getMockReq, getMockRes } from "vitest-mock-express";
 import { Request, Response } from "express";
-import prisma from "../../libs/__mocks__/prisma";
+import prisma from "../../../libs/__mocks__/prisma";
 
 interface AuthenticatedRequest extends Request {
   user?: any;
 }
 
 // mocks the prisma client ads the prisma mockDeep CLient to access the nested properties of prisma 
-vi.mock("../../libs/prisma", async () => {
+vi.mock("../../../libs/prisma", async () => {
   const actual = await vi.importActual<
-    typeof import("../../libs/__mocks__/prisma")
-  >("../../libs/__mocks__/prisma");
+    typeof import("../../../libs/__mocks__/prisma")
+  >("../../../libs/__mocks__/prisma");
   // console.log(actual);
   return {
     ...actual,

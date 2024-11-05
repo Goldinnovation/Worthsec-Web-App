@@ -11,7 +11,7 @@ import {
   import userGetCategoryEvent from "@/server/controller/Event/handleEventCategoryReq";
   import { getMockReq, getMockRes } from "vitest-mock-express";
   import { Request, Response, } from "express";
-  import prisma from "../../libs/__mocks__/prisma";
+  import prisma from "../../../libs/__mocks__/prisma";
   
   interface AuthenticatedRequest extends Request {
     user?: any;
@@ -21,11 +21,11 @@ import {
 
   
   // mocks the prisma client ads the prisma mockDeep CLient to access the nested properties of prisma 
-  vi.mock("../../libs/prisma", async () => {
+  vi.mock("../../../libs/prisma", async () => {
    
     const actual = await vi.importActual<
-      typeof import("../../libs/__mocks__/prisma")
-    >("../../libs/__mocks__/prisma");
+      typeof import("../../../libs/__mocks__/prisma")
+    >("../../../libs/__mocks__/prisma");
     // console.log(actual);
     const mockedprismaResponse =  [{
       eventId: "212",

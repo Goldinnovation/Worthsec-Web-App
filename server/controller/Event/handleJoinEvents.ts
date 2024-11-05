@@ -32,7 +32,6 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
         const userId = req.user.userId
         const eventId = req.body.joinEventId
 
-        console.log('eventId', eventId);
 
         if (!userId) {
             res.status(400).json({ message: 'Invalid Request, userId is required' });
