@@ -1,6 +1,3 @@
-import { PrismaClient } from '@prisma/client';
-
-// const prisma = new PrismaClient();
 import prisma from '../../libs/prisma';
 import { Response, Request } from "express";
 
@@ -9,11 +6,18 @@ import { Response, Request } from "express";
 
 /**
  * Purpose Statement--userJoinEvent
- * 
  * The function allows the current user to join an Event. 
- * Furthermore it gives the user the ability to store and retrieve all necessary information related to the event.
-
+ *
 */
+
+
+/**
+ * Function Signature--userJoinEvent
+ * @param {string} currentUserId - The value represents the current user ID.
+ * @param {string} selectedEventId - The value represents the event ID that the user selected.
+ * @returns {string} Returns a json message that the operation was successful 
+*/
+
 
 
 
@@ -22,34 +26,38 @@ interface AuthenticatedRequest extends Request{
 }
 
 
-  async function  userJoinEvent (req: AuthenticatedRequest, res: Response): Promise<void> {
-
-    const joined_user_id = req.user.userId
-    const joined_event_id = req.body.joinEventId
-
-    // console.log(joined_event_id);
-    // console.log(joined_user_id);
-
+async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
-        if (joined_user_id && joined_event_id ) {
 
-            const joinusertoEvent = await prisma.userJoinEvent.create({
-                data:
-                {
-                    user_id: joined_user_id,
-                    event_id: joined_event_id
-                }
-            })
+        const userId = req.user.userId
+        const eventId = req.body.joinEventId
 
-            // console.log(joinusertoEvent)
-            res.status(200).json({ message: "user successfully Join a event" })
-        }else{
-            res.status(400).json({message: "Invalid Request on userJoinEvent handler function"})
+        if (!userId) {
+            res.status(400).json({ message: 'Invalid Request, userId is required' });
+            return;
         }
 
+        if (!eventId) {
+            res.status(400).json({ message: 'Invalid Request, eventId is required' });
+            return;
+        }
+
+
+        await prisma.userJoinEvent.create({
+            data:
+            {
+                user_id: userId,
+                event_id: eventId
+            }
+        })
+
+        res.status(200).json({ message: "user successfully Join a event" })
+
+
+
     } catch (error) {
-        console.log('Error on server side:', error)
-        res.status(500).json({ message: "Unexpected Error on serverside" })
+        console.error('Unexpected server-side error in userJoinEvent function:', error)
+        res.status(500).json({ message: "Unexpected Error on the server side", error })
 
     }
 
