@@ -13,8 +13,8 @@ import { Response, Request } from "express";
 
 /**
  * Function Signature--userJoinEvent
- * @param {string} currentUserId - The value represents the current user ID.
- * @param {string} selectedEventId - The value represents the event ID that the user selected.
+ * @param {string} userId - The value represents the current user ID.
+ * @param {string} eventId - The value represents the event ID that the user selected.
  * @returns {string} Returns a json message that the operation was successful 
 */
 
