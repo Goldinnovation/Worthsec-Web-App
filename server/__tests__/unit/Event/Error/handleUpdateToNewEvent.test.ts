@@ -65,25 +65,6 @@ const { res: serverResponse} = getMockRes({
          
         
       });
-     
-    const mockedprismaResponse = [{
-      eventId: "212",
-      eventHost: "dsd",
-      eventHostName: "dsdssd",
-      eventTitle: "dsdfdsf",
-      eventDate: new Date(),
-      eventType: "dsfdd",
-      eventDescriptionContent: "dsdfsdfdf",
-      eventTime: "Dsfsdff",
-      ImageCoverUpload: "sfedsfds",
-      eventInviteType: 1,
-      eventAddress: "sdfsddsf",
-      eventZipcode: "dsfsdfsdfdsf",
-      cityType: "DSfsddf",
-      selectedRangeofEvents: 43,
-      createdAt: new Date(),
-    }]
-    //   await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
     
       await updatetoNewEventData(ErrorRequest, serverResponse);
       
