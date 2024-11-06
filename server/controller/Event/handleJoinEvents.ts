@@ -33,7 +33,7 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
         const eventId = req.body.joinEventId
 
 
-        if (!userId) {
+        if (!userId || userId === undefined) {
             res.status(400).json({ message: 'Invalid Request, userId is required' });
             return;
         }
@@ -58,7 +58,7 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
 
     } catch (error) {
         console.error('Unexpected server-side error in userJoinEvent function:', error)
-        res.status(500).json({ message: "Unexpected Error on the server side"})
+        res.status(500).json({ message: "Internal Server Error"})
 
     }
 
