@@ -65,7 +65,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
 
 
   } catch (error) {
-    console.log('trigger');
+    
     console.log("Server Error on updatetoNewEventData handler function, CatchBlock - True:", error)
     res.status(500).json({ message: "Internal Server Error"});
   }
