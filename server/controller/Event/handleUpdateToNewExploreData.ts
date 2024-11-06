@@ -45,28 +45,20 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
       return
     }
 
-    const fetchNewEventData = async () => {
-      try {
-        const newEventData = await prisma.event.findMany({
-          where: {
-            eventId: {
-              notIn: eventIds,
-            },
-          },
-          take: 27,
-        });
 
-        res.status(200).json(newEventData)
+    const newEventData = await prisma.event.findMany({
+      where: {
+        eventId: {
+          notIn: eventIds,
+        },
+      },
+      take: 27,
+    });
 
-      } catch (error) {
+    res.status(200).json(newEventData)
 
 
-        console.error("Error on fetching new event data, CatchBlock - True:", error);
-        res.status(500).json({ message: "Failed to fetch new event data", Error: error });
-      }
-    }
 
-    await fetchNewEventData()
 
   } catch (error) {
     console.log("Server Error on updatetoNewEventData handler function, CatchBlock - True:", error)
