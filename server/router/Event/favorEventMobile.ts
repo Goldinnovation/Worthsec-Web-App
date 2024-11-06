@@ -1,12 +1,12 @@
 import { Router } from "express"
 const router = Router()
-import { userFavorEventMobile, getUserFavoredEvents } from '../../controller/Event/handleFavorEventMobile'
-import authMiddlewareCheck from "../../Middlware/Auth/authMiddleWare";
+import { userFavorEventMobile, getUserFavoredEvents } from '../../controller/Event/handleFavorEvent'
+import CategoryConvertToken from "../../Middlware/User/categoryConverToken";
 
 
 
 
-router.get('/', authMiddlewareCheck, getUserFavoredEvents)
+router.get('/', CategoryConvertToken, getUserFavoredEvents)
 
 router.post('/', userFavorEventMobile)
 

@@ -66,12 +66,7 @@ import {
     }
   });
 
-  const ErrorRequest = getMockReq<AuthenticatedRequest>({
-    
-    decodedUserId: "sdfsdfops",
-    
-   
-  });
+ 
   
   // Mock Response Data
   const { res: mockResponse, next: NextFunction} = getMockRes({
@@ -143,35 +138,44 @@ describe("Post Method - Successful Request - selected category type queries the 
 
 
 describe("Post Method - Error Request - Should through an error json message ", () => {
-  it("Should through an Error Message ", async () => {
-    const mockedprismaResponse =  [{
-      eventId: "212",
-      eventHost: "dsd",
-      eventHostName: "dsdssd",
-      eventTitle: "dsdfdsf",
-      eventDate:  new Date(),
-      eventType: "dsfdd",
-      eventDescriptionContent: "dsdfsdfdf",
-      eventTime: "Dsfsdff",
-      ImageCoverUpload: "sfedsfds",
-      eventInviteType: 1,
-      eventAddress: "sdfsddsf",
-      eventZipcode: "dsfsdfsdfdsf",
-      cityType: "DSfsddf",
-      selectedRangeofEvents: 43,
-      createdAt: new Date(),
-  }]
-  
-  
-    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
-  
-   await userGetCategoryEvent(ErrorRequest, mockResponse, NextFunction)
-  
-     //  Checks the statuscode of the response
+  it("Should through an Error message if the selectedCategory string is missing ", async () => {
+    const ErrorRequest = getMockReq<AuthenticatedRequest>({
+
+      decodedUserId: "sdfsdfops",
+
+
+    });
+
+
+    await userGetCategoryEvent(ErrorRequest, mockResponse, NextFunction)
+
+    //  Checks the statuscode of the response
     expect(mockResponse.status).toHaveBeenCalledWith(400); //Passes Test
     // checks the json response message 
     expect(mockResponse.json).toHaveBeenCalledWith({
-      message:  "Invalid Request on userGetCategoryEvent handler function" ,
+      message: "Invalid Request: selectedCategory does not match the requirements",
+    });
+
+
+  });
+
+  it("Should through an Error message if the userId is missing ", async () => {
+    const ErrorRequest = getMockReq<AuthenticatedRequest>({
+
+      body: {
+        cateogory: "kudssio",
+      }
+
+    });
+
+
+    await userGetCategoryEvent(ErrorRequest, mockResponse, NextFunction)
+
+    //  Checks the statuscode of the response
+    expect(mockResponse.status).toHaveBeenCalledWith(400); //Passes Test
+    // checks the json response message 
+    expect(mockResponse.json).toHaveBeenCalledWith({
+      message: "Invalid Request, userId does not exist",
     });
 
 

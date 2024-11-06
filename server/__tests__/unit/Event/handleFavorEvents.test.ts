@@ -8,10 +8,14 @@ import {
     beforeAll,
   } from "vitest";
   import { vi } from "vitest";
-  import { userFavourEvent } from "@/server/controller/Event/handleFavorEvent";
+  import { userFavorEventMobile } from "@/server/controller/Event/handleFavorEvent";
   import { getMockReq, getMockRes } from "vitest-mock-express";
+  import { getUserFavoredEvents } from "@/server/controller/Event/handleFavorEvent";
   import { Request, Response } from "express";
   import prisma from "../../../libs/__mocks__/prisma";
+  // import * as  handlesUserFriendsInterest from "@/server/controller/Event/handleExploreEvents";
+  import {findsEventsUserFavored} from "@/server/controller/Event/handleFavorEvent";
+  import findEvent from "@/server/controller/Event/handleFavorEvent";
   
   interface AuthenticatedRequest extends Request {
     user?: any;
@@ -23,45 +27,66 @@ import {
       typeof import("../../../libs/__mocks__/prisma")
     >("../../../libs/__mocks__/prisma");
     // console.log(actual);
+    const mockedprismaResponse =  [{
+      eventId: "212",
+      eventHost: "dsd",
+      eventHostName: "dsdssd",
+      eventTitle: "dsdfdsf",
+      eventDate:  new Date(),
+      eventType: "dsfdd",
+      eventDescriptionContent: "dsdfsdfdf",
+      eventTime: "Dsfsdff",
+      ImageCoverUpload: "sfedsfds",
+      eventInviteType: 1,
+      eventAddress: "sdfsddsf",
+      eventZipcode: "dsfsdfsdfdsf",
+      cityType: "DSfsddf",
+      selectedRangeofEvents: 43,
+      createdAt: new Date(),
+  }]
+
+  const mockedResponse = {
+          currentUser_id: "sdfsdfopsd",
+          event_id: "sdsdfsd",
+          createdAt: new Date(),
+          favourId : "1", 
+      }
     return {
       ...actual,
       default: {
         userFavourEvent: {
           create: vi.fn().mockResolvedValue,
+          findMany: vi.fn().mockResolvedValue(mockedResponse)
         },
+        event: {
+          findMany: vi.fn().mockResolvedValue(mockedprismaResponse)
+        }
+       
+
       },
     };
   });
   
   // Created the Mock request data
   const mockRequest = getMockReq<AuthenticatedRequest>({
-    user: {
-      userId: "sdfsdfops",
-    },
+    
+    decodedUserId: "sdfsdfops",
+    
     body: {
       favoreventId: "kudssio",
     }
   });
 
 
-  const errRequst = getMockReq<AuthenticatedRequest>({
-    user: {
-      userId: "sdfsdfops",
-    },
-  
-  });
+
 
   
   
   // Mock Response Data
-  const { res: mockResponse} = getMockRes({
-    status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
-  });
 
 
 
-  describe("Post Method - Successful Request of storing an event id and user id in the database ", () => {
+  describe("Post Method - Successful Request on userFavorEventMobile function - should store an event id and user id in the database ", () => {
     
   it("should store the event Id that user selected as favored", async () => {
     const mockedprismaResponse = {
@@ -70,36 +95,84 @@ import {
         createdAt: new Date(),
         favourId : "1", 
     };
+
+    const { res: mockResponse} = getMockRes({
+      status: vi.fn().mockReturnThis(),
+      json: vi.fn(),
+    });
+  
   
     await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
   
-    await userFavourEvent(mockRequest, mockResponse)
+    await userFavorEventMobile(mockRequest, mockResponse)
   
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith({
       message: "user successfully favored a event",
-    });
+    }); 
   });
   })
+
+
   
 
-  describe("Post Method - Error Request, should return an Error message if the data is invalid  ", () => {
-    it("Should return an Error Message with the location that the Error happend", async () => {
-      const mockedprismaResponse = {
-          currentUser_id: "sdfsdfopsd",
-          event_id: "sdsdfsd",
-          createdAt: new Date(),
-          favourId : "1", 
-      };
+  describe("Post Method - Successful Request on getUserFavoredEvents function - should store an event id and user id in the database ", () => {
     
-      await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
-    
-      await userFavourEvent(errRequst, mockResponse)
-    
-      expect(mockResponse.status).toHaveBeenCalledWith(400);
-      expect(mockResponse.json).toHaveBeenCalledWith({
-        message: "Invalid Request on userFavourEvent handler function",
+    it("should store the event Id that user selected as favored", async () => {
+     
+      // const userFavoredEvent = vi.spyOn(findsEventsUserFavored, 'findsEventsUserFavored').mockResolvedValue();
+
+      const { res: mockResponse} = getMockRes({
+        status: vi.fn().mockReturnThis(),
+        json: vi.fn(),
       });
+    
+
+      const mockedprismaResponse =  [{
+        eventId: "212",
+        eventHost: "dsd",
+        eventHostName: "dsdssd",
+        eventTitle: "dsdfdsf",
+        eventDate:  new Date(),
+        eventType: "dsfdd",
+        eventDescriptionContent: "dsdfsdfdf",
+        eventTime: "Dsfsdff",
+        ImageCoverUpload: "sfedsfds",
+        eventInviteType: 1,
+        eventAddress: "sdfsddsf",
+        eventZipcode: "dsfsdfsdfdsf",
+        cityType: "DSfsddf",
+        selectedRangeofEvents: 43,
+        createdAt: new Date(),
+    }]
+    
+   
+    
+    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+
+    
+      await findsEventsUserFavored(mockRequest, mockResponse)
+
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
+
+      expect(mockResponse.json).toBeTypeOf("function")
+
+      expect(mockResponse.json).toHaveBeenCalledWith(expect.any(Array)) 
+
+       expect(mockResponse.json).toBeCalledWith(expect.arrayContaining([]))
+ 
+
+      
+    
+
+     
     });
-  })
+    })
+
+
+  
+   
+    
+  
+
   

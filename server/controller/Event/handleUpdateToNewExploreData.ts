@@ -34,10 +34,6 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
     const userId = (req as AuthenticatedRequest)?.decodedUserId;
     const eventIds = req.body?.EventDataId;
 
-    console.log('userId', userId);
-
-    console.log('eventIds', eventIds);
-
     if (userId === undefined) {
       res.status(400).json({ message: 'Invalid Request, userId does not exist' });
       return
@@ -65,7 +61,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
 
 
   } catch (error) {
-    
+
     console.log("Server Error on updatetoNewEventData handler function, CatchBlock - True:", error)
     res.status(500).json({ message: "Internal Server Error"});
   }

@@ -164,11 +164,13 @@ const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 export const FirebaseService = async(req: AuthenticatedRequest, res: Response) => {
 
     try{
+        const file = req.file as Express.Multer.File;
+        
         if (!req.file) {
             res.status(400).json({ message: "File could not be found" })
         }
 
-        const file = req.file as Express.Multer.File;
+      
 
         // storage path reference 
         const dateTime = giveCurrentDateTime();

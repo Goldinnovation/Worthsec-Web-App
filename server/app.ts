@@ -22,7 +22,6 @@ import config from './config/firebase';
 import searchUserReq from './router/User/userSearch';
 import userFollowUser from './router/User/userToUser';
 import exploreEvents from './router/Event/exploreEvents'
-import userFavorEvent from './router/Event/favorEvent';
 import userJoinEvent from './router/Event/userJoinEvent';
 import displayUserJoinEvent from './router/Event/displayJoinedEvents';
 import searchForCloseFriend from './router/User/userClosefriends';
@@ -100,7 +99,6 @@ app.prepare().then(() => {
     server.use('/api/search', searchUserReq);
     server.use('/api/userTouser', userFollowUser);
     server.use('/api/explore', exploreEvents);
-    server.use('/api/favorEvent', userFavorEvent);
     server.use('/api/JoinEvent', userJoinEvent);
     server.use('/api/DisplayJoinedEvent', displayUserJoinEvent);
     server.use('/api/searchforclosefriends', searchForCloseFriend);
