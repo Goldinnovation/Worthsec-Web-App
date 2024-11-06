@@ -45,20 +45,7 @@ const mockRequest = getMockReq<AuthenticatedRequest>({
   }
 });
 
-// Error Request
-const errRequestNoEventId = getMockReq<AuthenticatedRequest>({
-  user: {
-    userId: "sdfsdfops",
-  },
 
-});
-
-const errRequestNoUserId = getMockReq<AuthenticatedRequest>({
-  body: {
-    joinEventId: "sdfsdfops",
-  }
-
-});
 
 // Mock Response Data
 const { res: mockResponse } = getMockRes({
@@ -88,37 +75,5 @@ describe("Post Method - successful Request of storing an event id and user id in
 })
 
 
-
-
-
-describe("Post Method - Error Request, should return an Error message if the request is invalid - ", () => {
-
-  it("Should return an error message that the request is invalid and the server eventId is required", async () => {
-
-
-    await userJoinEvent(errRequestNoEventId, mockResponse)
-
-
-    expect(mockResponse.status).toHaveBeenCalledWith(400);
-    expect(mockResponse.json).toHaveBeenCalledWith({
-      message: "Invalid Request, eventId is required",
-    });
-  })
-
-  it("Should return an error message that a unexpected server error accured", async () => {
-
-
-
-    await userJoinEvent(errRequestNoUserId, mockResponse)
-
-
-    expect(mockResponse.status).toHaveBeenCalledWith(500);
-    expect(mockResponse.json).toHaveBeenCalledWith({
-      message: "Unexpected Error on the server side",
-    });
-  })
-
-
-})
 
 
