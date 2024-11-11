@@ -238,34 +238,26 @@ export const FirebaseService = async(req: AuthenticatedRequest, res: Response) =
 
 
 
-// find the Event Object throw the user id and responds with the object inside of an array  
+const findEvents = async (req: AuthenticatedRequest, res: Response) => {
+    try {
 
-
-const findEvents = async(req: AuthenticatedRequest,res: Response) => {
-  
-
-
-    
-    try{
-        if(req.user){
-            
-            const userEvents =  await prisma.event.findMany({
-                where: {
-                    eventHost: req.user.userId
-                },
-
-            });
-
-           
-
-            
-            // console.log(userEvents.length);
-            res.json(userEvents);
-        }else {
-            res.status(401).json({error: 'user is not Authenticated to get events'})
+        const userId = req.user.userId
+        if (!userId) {
+            res.status(400).json({ message: "Bad Request: userId is required" });
         }
 
-    }catch(error){
+
+        const userEvents = await prisma.event.findMany({
+            where: {
+                eventHost: req.user.userId
+            },
+
+        });
+
+        res.json(userEvents);
+
+
+    } catch (error) {
         console.error(error)
         res.status(500).send('Error with find Event logic  ')
     }
@@ -282,38 +274,31 @@ const findEvents = async(req: AuthenticatedRequest,res: Response) => {
 // Delete an Event Object 
 
  const deleteEvent = async(req: AuthenticatedRequest,res: Response) => {
-    console.log('hallo');
-    const id = req.params.id;
-    console.log('inside id:',id)
-    console.log(req.body.eventpath);
-    const imagePath = req.body.eventpath
-   
+  
     try{
-        
-        if(!id){
+        const eventID = req.params.id;
+        const imagePath = req.body.eventpath
+       
+        if(!eventID){
             console.log('inside error');
-            res.status(400).json({message: 'Image could not be found, provoke bad request'})
-        }else{
-         
-            try{
-                const userDeletedEvent = await prisma.event.delete({
+            res.status(400).json({ message: "Bad Request: eventId is invalid" });
+
+        }
+           
+        const userDeletedEvent = await prisma.event.delete({
                     where: {
-                        eventId: id
+                        eventId: eventID
                     }
                 })
-                console.log(userDeletedEvent);
-                console.log('Event is successfull deleted from the db ');
-                const storageRef = ref(storage, imagePath)
-                await deleteObject(storageRef)
-                res.status(200).json({message: "Event is successfull deleted from the db "})
-
-            }catch(error){
-                console.log('DB query Execution failes on deleteEvent:', error);
-            }
+                
         
+        
+        if(userDeletedEvent){
+            const storageRef = ref(storage, imagePath)
+            await deleteObject(storageRef)
+            res.status(200).json({message: "Event is successfull deleted from the db "})
         }
-
-     
+               
         
     }catch(error){
         res.status(500).json({message:"Error trying to Delete the object"})
