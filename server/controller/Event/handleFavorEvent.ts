@@ -37,7 +37,7 @@ interface AuthenticatedRequest extends Request {
 
 
 
-export async function userFavoredEvent(req: Request, res: Response): Promise<void> {
+export async function userFavoresAnEvent(req: Request, res: Response): Promise<void> {
     try {
         const userId = (req as AuthenticatedRequest)?.decodedUserId;
         const eventId = req.body?.favoreventId;
@@ -61,7 +61,7 @@ export async function userFavoredEvent(req: Request, res: Response): Promise<voi
             }
         })
 
-        res.status(200).json({ message: "user successfully favored a event" })
+        res.status(200).json({ message: "User successfully favored an event" })
 
 
     } catch (error) {
@@ -163,4 +163,4 @@ export const getEventDetails = async (getFavoredEventId: any, res: Response) => 
 
 
 
-export default { userFavorEventMobile: userFavoredEvent, getUserFavoredEvents }
+export default { userFavorEventMobile: userFavoresAnEvent, getUserFavoredEvents }

@@ -21,23 +21,27 @@ interface AuthenticatedRequest extends Request{
 
 
 
-export async function DisplayUserofJoinEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
-    const currentUser = req.user.userId
-    // console.log(user)
-    
+export async function getUserJoinedEvents(req: AuthenticatedRequest,res: Response): Promise<void> {
+
      try{
-        if(req.user){
-            const getEventIdofJointUser =  await prisma.userJoinEvent.findMany({
+        const currentUser = req.user.userId
+
+        if (!currentUser) {
+            res.status(400).json({ message: "Bad Request: currentUser data is invalid" });
+        }
+     
+        const joinedUserId =  await prisma.userJoinEvent.findMany({
                 where: {
                     user_id: currentUser
                 }
             })
-            // console.log(getEventIdofJointUser)
-            res.status(200).json(getEventIdofJointUser)
-        }
+            res.status(200).json(joinedUserId)
+        
 
      }catch(error){
-        console.log('Unexpected Error on server side for DisplayUserofJoinEvents handler ');
+        console.log("Server Error on getUserJoinedEvents handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+
      }
 
 
@@ -45,51 +49,6 @@ export async function DisplayUserofJoinEvents(req: AuthenticatedRequest,res: Res
 }
 
 
-/** 
- * Purpose Statement--DisplaygetEventbyjoinId
- * The DisplaygetEventbyjoinId function allows the current user to retrieve the Event object that the user has joined with the Event-Id. 
-/**
- * Function Signature--DisplaygetEventbyjoinId
- * @param {string} Event-Id - represents the Event-Id from DisplayUserofJoinEvents function
- * @returns {object} Returns an array of Event-Objects. 
- */
 
 
-
-export async function DisplaygetEventbyjoinId(req: AuthenticatedRequest,res: Response): Promise<void> {
-
-    const body = req.body
-    console.log(body);
-    
-    console.log(body.eventid);
-
-
-
-    try{
-        if(req.user && body){
-
-            
-            const eventData = await prisma.event.findMany({
-                where:{
-                    eventId: {
-                        in: body.eventid
-                    }
-                    
-                }
-            })
-
-
-            // console.log(eventData.length)
-            console.log(eventData);
-            res.status(200).json(eventData)
-
-        }
-
-    }catch(error){
-        console.log('Failed the handler logic on DisplaygetEventbyjoinId ')
-    }
-
-}
-
-
-export default {DisplayUserofJoinEvents, DisplaygetEventbyjoinId}
+export default {getUserJoinedEvents}

@@ -166,7 +166,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
 
     
  
-    expect(FriendsInterestSpy.getMockName()).toEqual('handlesUserFriendsInterest')
+    expect(FriendsInterestSpy.getMockName()).toEqual('getUserFriendsInterests')
     expect(getUserFriendsInterests.getUserFriendsInterests(userInterestData, userFriendsId, userRequest, serverRes))
     expect(FriendsInterestSpy).toHaveBeenCalledTimes(1) 
  
@@ -225,7 +225,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
  
     
  
-    expect(specificatedEvent.getMockName()).toEqual('handleSpecifiedEvent')
+    expect(specificatedEvent.getMockName()).toEqual('getSpecifiedEventData')
     expect(getUserFriendsInterests.getSpecifiedEventData( interestData, userRequest, serverRes))
     expect(specificatedEvent).toHaveBeenCalledTimes(1) 
   

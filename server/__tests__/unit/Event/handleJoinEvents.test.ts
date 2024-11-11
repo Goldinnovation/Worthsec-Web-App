@@ -19,7 +19,6 @@ interface AuthenticatedRequest extends Request {
 
 
 
-// mocks the prisma client ads the prisma mockDeep CLient to access the nested properties of prisma 
 vi.mock("../../../libs/prisma", async () => {
   const actual = await vi.importActual<
     typeof import("../../../libs/__mocks__/prisma")
@@ -35,44 +34,39 @@ vi.mock("../../../libs/prisma", async () => {
   };
 });
 
-// Created the Mock request data
-const mockRequest = getMockReq<AuthenticatedRequest>({
-  user: {
-    userId: "sdfsdfops",
-  },
-  body: {
-    joinEventId: "kudssio",
-  }
-});
-
-
-
-// Mock Response Data
-const { res: mockResponse } = getMockRes({
-  status: vi.fn().mockReturnThis(),
-  json: vi.fn(),
-});
-
-
-describe("Post Method - successful Request of storing an event id and user id in the database", () => {
-  it("should store the event Id that user selected in the database and return a message", async () => {
+describe("POST Method - Handles client requests to store an event and user ID in the userJoinEvent database table.", () => {
+  it("should store the event ID selected by the user in the database and return a message.", async () => {
     const mockedprismaResponse = {
       user_id: "sdfsdfopsd",
       event_id: "sdsdfsd",
       createdAt: new Date(),
       joinId: "1", // Simulate generated ID
     };
+    const mockRequest = getMockReq<AuthenticatedRequest>({
+      user: {
+        userId: "sdfsdfops",
+      },
+      body: {
+        joinEventId: "kudssio",
+      },
+    });
+
+    // Mock Response Data
+    const { res: mockResponse } = getMockRes({
+      status: vi.fn().mockReturnThis(),
+      json: vi.fn(),
+    });
 
     await prisma.userJoinEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
 
-    await userJoinEvent(mockRequest, mockResponse)
+    await userJoinEvent(mockRequest, mockResponse);
 
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith({
-      message: "user successfully Join a event",
+      message: "User has successfully join an event",
     });
   });
-})
+});
 
 
 

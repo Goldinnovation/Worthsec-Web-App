@@ -33,7 +33,7 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
         const eventId = req.body.joinEventId
 
 
-        if (!userId || userId === undefined) {
+        if (!userId || userId === undefined || userId === " ") {
             res.status(400).json({ message: 'Invalid Request, userId is required' });
             return;
         }
@@ -52,7 +52,7 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
             }
         })
 
-        res.status(200).json({ message: "user successfully Join a event" })
+        res.status(200).json({ message: "User has successfully join an event" })
 
 
 

@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import { userFavoredEvent, getUserFavoredEvents } from '../../controller/Event/handleFavorEvent'
+import { userFavoresAnEvent, getUserFavoredEvents } from '../../controller/Event/handleFavorEvent'
 import CategoryConvertToken from "../../Middlware/User/categoryConverToken";
 
 
@@ -8,7 +8,7 @@ import CategoryConvertToken from "../../Middlware/User/categoryConverToken";
 
 router.get('/', CategoryConvertToken, getUserFavoredEvents)
 
-router.post('/', userFavoredEvent)
+router.post('/', userFavoresAnEvent)
 
 
 export default router
