@@ -1,13 +1,12 @@
 import {Router} from "express"
 const router = Router()
 // const handleDisplayJoinedEvent = require('../controller/handledisplayJoinedEvents')
-import {DisplayUserofJoinEvents,  DisplaygetEventbyjoinId} from '../../controller/Event/handledisplayJoinedEvents'
+import {getUserJoinedEvents} from '../../controller/Event/handledisplayJoinedEvents'
 
 // const apicache = require('apicache')
 // let cache = apicache.middleware
 
 
-router.get('/', DisplayUserofJoinEvents)
-router.post('/', DisplaygetEventbyjoinId)
+router.get('/', getUserJoinedEvents)
 
 export default router
