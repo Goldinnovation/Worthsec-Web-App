@@ -102,7 +102,7 @@ describe("Post method - Error Request ", () => {
     
     expect(mockResponse.status).toHaveBeenCalledWith(400);
     expect(mockResponse.json).toHaveBeenCalledWith({
-      message: "Invalid Request Body data on the StoreInterestdata handler function",
+      message: "Invalid Request, selectedInterests is required",
     });
   })
 })
