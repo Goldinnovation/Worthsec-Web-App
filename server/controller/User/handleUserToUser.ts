@@ -27,43 +27,44 @@ interface AuthenticatedRequest extends Request{
 }
 
 
-export async function searchUser_friends (req: AuthenticatedRequest, res: Response): Promise<void>{
-
-    const currentUser = req.user
-    const otherUser_id = await req.params.id
-    // console.log(" handlefunction - searchUser_friends:", otherUser_id)
-
-
-    try {
-        /**
+/**
          * responds with an object of length 1, if the current user is already following the other user
          * if the current user has no record with the other user it will return an object with length of 0 
          */
-        if (currentUser && otherUser_id) {
-            const onConnectionexist = await prisma.userTouser.findMany({
-                where: {
-                    userRequested_id: currentUser.userId,
-                    userFollowed: otherUser_id,
-                },
-                include: {
-                    notification: {
-                        select: {
-                            notificationId: true
-                        }
-                    }
-                }
-            })
-            console.log(onConnectionexist);
-            res.status(200).json(onConnectionexist)
-        } else {
-             res.status(500).json({ message: "User could not be found" })
+
+export async function searchUser_friends (req: AuthenticatedRequest, res: Response): Promise<void>{
+    try {
+        const currentUserId = req.user.userId
+        const otherUserId = await req.params.id
+
+        if (currentUserId) {
+            res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
+            return;
         }
 
+        if (otherUserId) {
+            res.status(400).json({ message: 'Invalid Request, otherUserId is required' });
+            return;
+        }
 
+        const checksIfUsersAreFriends = await prisma.userTouser.findMany({
+            where: {
+                userRequested_id: currentUserId,
+                userFollowed: otherUserId,
+            },
+            include: {
+                notification: {
+                    select: {
+                        notificationId: true
+                    }
+                }
+            }
+        })
+        res.status(200).json(checksIfUsersAreFriends)
 
     } catch (error) {
         console.log(error)
-         res.status(400).json({ message: "Bad request handler by searchUser_friends" })
+        res.status(400).json({ message: "Bad request handler by searchUser_friends" })
     }
 
 }
@@ -94,61 +95,86 @@ export async function searchUser_friends (req: AuthenticatedRequest, res: Respon
  */
 
 
-export async function followUser (req: AuthenticatedRequest, res: Response): Promise<void> {
-
-    const currentUser = req.user
-    const otherUser_id = req.body
-
+export async function followUser(req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
+        const currentUserId = req.user.userId
+        const otherUserId = req.body.userIdData
 
-        if (currentUser && otherUser_id) {
-            // checks if the current user follows the other user,
-            // if the condition is false, repesenting the length of 0 the database table will
-            // create a nea record which represents the follow event
-            const IfUserFriends = await prisma.userTouser.findMany({
-                where: {
-                    userRequested_id: currentUser.userId,
-                    userFollowed: otherUser_id.userIdData
+        if (currentUserId) {
+            res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
+            return;
+        }
 
-                }
-            })
-            if (IfUserFriends?.length === 0) {
+        if (otherUserId) {
+            res.status(400).json({ message: 'Invalid Request, otherUserId is required' });
+            return;
+        }
 
-                const createUserasFriend = await prisma.userTouser.create({
-                    data: {
-                        userRequested_id: currentUser.userId,
-                        userFollowed: otherUser_id.userIdData,
-                        connection_status: 1
-                    }
-                })
-
-                if (createUserasFriend) {
-                    const createotherUserNotification = await prisma.notification.create({
-                        data: {
-                            currentUser_notified_Id: otherUser_id.userIdData,
-                            userTouser_connection_id: createUserasFriend.userTouserId
-                        }
-                    })
-
-                    res.status(200).json({ message: "currentUser follows now otherUser" })
-                }
-
-            } else {
-
-                console.log("User followes already user")
-                res.status(200).json({ message: "User followes already user" })
+        const userFriendState = await prisma.userTouser.findMany({
+            where: {
+                userRequested_id: currentUserId,
+                userFollowed: otherUserId
 
             }
-        }
-        else {
+        })
 
-            res.status(400).json({ message: "Error with getting currentUser and OtherUser" })
-        }
+        checksIfUserFollowEachOther(userFriendState, req, res)
+
+
+
     } catch (error) {
-        console.log(error)
-         res.status(400).json({ message: "Bad UserToUser Request" })
+        console.log("Server Error on followUser handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
+
+
+
+
+const checksIfUserFollowEachOther = async (userFriendState: any, req: AuthenticatedRequest, res: Response) => {
+
+    try {
+        const currentUserId = req.user.userId
+        const otherUserId = req.body.userIdData
+
+
+        if (userFriendState?.length > 0) {
+            res.status(200).json({ message: "Current user follows already other user" })
+        }
+
+        const createUserasFriend = await prisma.userTouser.create({
+            data: {
+                userRequested_id: currentUserId,
+                userFollowed: otherUserId,
+                connection_status: 1
+            }
+        })
+
+        await prisma.notification.create({
+            data: {
+                currentUser_notified_Id: otherUserId,
+                userTouser_connection_id: createUserasFriend.userTouserId
+            }
+        })
+
+        res.status(200).json({ message: "currentUser follows now other user"})
+
+
+    } catch (error) {
+        console.log("Server Error on checksIfUserFollowEachOther handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+
+
+}
+
+
+
+
+
+
+
 
 // -------------------------------------------------------------------------------------------------------------------------
 
@@ -169,40 +195,55 @@ export async function followUser (req: AuthenticatedRequest, res: Response): Pro
  */
 
 export async  function unFollowUser  (req: AuthenticatedRequest, res: Response): Promise<void> {
-
-    const userConnection_id = req.body.unFollowUserId
-    const otherUserNotification_Id = req.body.userNotificationId
-
-
     try {
-        // deletes the connection of the users 
-        if (userConnection_id && otherUserNotification_Id) {
-            console.log(userConnection_id);
-            console.log(otherUserNotification_Id);
-            const deleteNotification = await prisma.notification.delete({
+
+    const userConnectionId = req.body.unFollowUserId
+    const notificationId = req.body.userNotificationId
+
+    if (!userConnectionId) {
+        res.status(200).json({ message: "Bad request - unfollowedUserId is invalid" })
+    }
+    if (!notificationId) {
+        res.status(200).json({ message: "Bad request - userNotificationId is invalid" })
+    }
+      
+    await prisma.notification.delete({
                 where: {
-                    notificationId: otherUserNotification_Id
+                    notificationId: notificationId
                 }
             })
-            console.log(deleteNotification)
-            if (deleteNotification) {
-                const deleteUserconnection = await prisma.userTouser.delete({
-                    where: {
-
-                        userTouserId: userConnection_id
-                    }
-                })
-                console.log("successful deleted")
-                res.status(200).json({ message: "User unFollowed user" })
-
-            }
-        }
+          
+    deleteUserConnection(userConnectionId, req, res)
 
     } catch (error) {
-        console.log(error)
-         res.status(400).json({ message: "Bad Request for unFollowUser handler" })
+        console.log("Server Error on unFollowUser handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
 
     }
+}
+
+
+
+
+const deleteUserConnection =  async(userConnectionId: string,req: AuthenticatedRequest, res: Response) => {
+
+    try { 
+        await prisma.userTouser.delete({
+            where: {
+
+                userTouserId: userConnectionId
+            }
+        })
+    
+    res.status(200).json({ message: "User unFollowed user" })
+
+    }
+    catch(error){
+        console.log("Server Error on deleteUserConnection handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+
+   
 }
 
 
