@@ -8,13 +8,13 @@ import {
     beforeAll,
   } from "vitest";
   import { vi } from "vitest";
-  import { userFavorEventMobile } from "@/server/controller/Event/handleFavorEvent";
+  import { userFavoredEvent } from "@/server/controller/Event/handleFavorEvent";
   import { getMockReq, getMockRes } from "vitest-mock-express";
   import { getUserFavoredEvents } from "@/server/controller/Event/handleFavorEvent";
   import { Request, Response } from "express";
   import prisma from "../../../libs/__mocks__/prisma";
   // import * as  handlesUserFriendsInterest from "@/server/controller/Event/handleExploreEvents";
-  import {findsEventsUserFavored} from "@/server/controller/Event/handleFavorEvent";
+  import {getEventDetails} from "@/server/controller/Event/handleFavorEvent";
   import findEvent from "@/server/controller/Event/handleFavorEvent";
   
   interface AuthenticatedRequest extends Request {
@@ -104,7 +104,7 @@ import {
   
     await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
   
-    await userFavorEventMobile(mockRequest, mockResponse)
+    await userFavoredEvent(mockRequest, mockResponse)
   
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith({
@@ -151,7 +151,7 @@ import {
     await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
 
     
-      await findsEventsUserFavored(mockRequest, mockResponse)
+      await getEventDetails(mockRequest, mockResponse)
 
       expect(mockResponse.status).toHaveBeenCalledWith(200);
 
