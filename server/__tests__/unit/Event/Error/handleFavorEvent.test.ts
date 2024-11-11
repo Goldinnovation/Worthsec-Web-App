@@ -9,7 +9,7 @@ import {
 } from "vitest";
 import { vi } from "vitest";
 // import { userFavourEvent } from "@/server/controller/Event/handleFavorEvent";
-import { userFavorEventMobile } from "@/server/controller/Event/handleFavorEvent";
+import { userFavoredEvent } from "@/server/controller/Event/handleFavorEvent";
 import { getMockReq, getMockRes } from "vitest-mock-express";
 import { Request, Response } from "express";
 import prisma from "../../../../libs/__mocks__/prisma";
@@ -58,7 +58,7 @@ describe("Post Method - Error Request on userFavorEventMobile function - should 
       favourId: "1",
     };
 
-    await userFavorEventMobile(errRequst, mockResponse);
+    await userFavoredEvent(errRequst, mockResponse);
 
     await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
     expect(mockResponse.status).toHaveBeenCalledWith(400);
@@ -86,7 +86,7 @@ describe("Post Method - Error Request on userFavorEventMobile function - should 
       json: vi.fn(),
     });
 
-    await userFavorEventMobile(errRequst, mockResponse);
+    await userFavoredEvent(errRequst, mockResponse);
 
     await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse);
     expect(mockResponse.status).toHaveBeenCalledWith(400);
@@ -109,7 +109,7 @@ describe("Post Method - Error Request on userFavorEventMobile function - should 
       json: vi.fn(),
     });
 
-    await userFavorEventMobile(errRequst, mockResponse);
+    await userFavoredEvent(errRequst, mockResponse);
 
     expect(mockResponse.status).toHaveBeenCalledWith(500);
     expect(mockResponse.json).toHaveBeenCalledWith({
