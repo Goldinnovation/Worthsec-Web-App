@@ -12,9 +12,9 @@ import { exploreEvents } from "@/server/controller/Event/handleExploreEvents";
 import { getMockReq, getMockRes } from "vitest-mock-express";
 import { Request, Response } from "express";
 import prisma from "../../../libs/__mocks__/prisma";
-import * as  handlesUserFriendsInterest from "@/server/controller/Event/handleExploreEvents";
+import * as  getUserFriendsInterests from "@/server/controller/Event/handleExploreEvents";
 import * as processUserData  from "@/server/controller/Event/handleExploreEvents";
-import  * as handleSpecifiedEvent  from "@/server/controller/Event/handleExploreEvents";
+import  * as getSpecifiedEventData  from "@/server/controller/Event/handleExploreEvents";
 interface AuthenticatedRequest extends Request {
   user?: any;
 }
@@ -141,7 +141,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
   it("Checks if the user exist in the database and returns the list of user's interests", async () => {
     
 
-    const FriendsInterestSpy = vi.spyOn(handlesUserFriendsInterest, 'handlesUserFriendsInterest').mockResolvedValue();
+    const FriendsInterestSpy = vi.spyOn(getUserFriendsInterests, 'getUserFriendsInterests').mockResolvedValue();
 
     const userRequest = getMockReq<AuthenticatedRequest>({
       user: {
@@ -167,7 +167,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
     
  
     expect(FriendsInterestSpy.getMockName()).toEqual('handlesUserFriendsInterest')
-    expect(handlesUserFriendsInterest.handlesUserFriendsInterest(userInterestData, userFriendsId, userRequest, serverRes))
+    expect(getUserFriendsInterests.getUserFriendsInterests(userInterestData, userFriendsId, userRequest, serverRes))
     expect(FriendsInterestSpy).toHaveBeenCalledTimes(1) 
  
   });
@@ -176,7 +176,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
   it("Checks if the user exist in the database and returns the list of user's interests", async () => {
     
 
-    const specificatedEvent = vi.spyOn(handleSpecifiedEvent, 'handleSpecifiedEvent').mockResolvedValue();
+    const specificatedEvent = vi.spyOn(getSpecifiedEventData, 'getSpecifiedEventData').mockResolvedValue();
 
     const userRequest = getMockReq<AuthenticatedRequest>({
       user: {
@@ -226,7 +226,7 @@ describe("Get Method - Successful Request - check if the user exist and queries 
     
  
     expect(specificatedEvent.getMockName()).toEqual('handleSpecifiedEvent')
-    expect(handlesUserFriendsInterest.handleSpecifiedEvent( interestData, userRequest, serverRes))
+    expect(getUserFriendsInterests.getSpecifiedEventData( interestData, userRequest, serverRes))
     expect(specificatedEvent).toHaveBeenCalledTimes(1) 
   
   });
