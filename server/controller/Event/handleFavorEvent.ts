@@ -23,116 +23,144 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 
 
-  interface AuthenticatedRequest extends Request {
+interface AuthenticatedRequest extends Request {
     user?: any
     decodedUserId: any
-  
-  }
-  
-
-
-export async function userFavorEventMobile(req: Request, res: Response): Promise<void> {
-    try {
-    const userId = (req as AuthenticatedRequest)?.decodedUserId;
-    const eventId = req.body?.favoreventId;
-
-  
-    if (userId === undefined) {
-        res.status(400).json({ message: 'Invalid Request, userId does not exist' });
-        return
-      }
-  
-    if (eventId === " " || eventId === undefined) {
-        res.status(400).json({ message: 'Invalid Request: event Id does not match the requirements' });
-        return
-      }
-   
-    await  prisma.userFavourEvent.create({
-                data:
-                {
-                    currentUser_id: userId,
-                    event_id: eventId
-                }
-            })
-
-    res.status(200).json({ message: "user successfully favored a event" })
-       
-
-    } catch (error) {
-        console.log("Server Error on userFavorEventMobile handler function, CatchBlock - True:", error)
-        res.status(500).json({ message: "Internal Server Error"});
-
-    }
- 
 
 }
 
 
-export async function getUserFavoredEvents(req: Request, res: Response): Promise<void> {    
-     try{
+
+
+
+
+
+
+
+export async function userFavoredEvent(req: Request, res: Response): Promise<void> {
+    try {
+        const userId = (req as AuthenticatedRequest)?.decodedUserId;
+        const eventId = req.body?.favoreventId;
+
+
+        if (userId === undefined) {
+            res.status(400).json({ message: 'Invalid Request, userId does not exist' });
+            return
+        }
+
+        if (eventId === " " || eventId === undefined) {
+            res.status(400).json({ message: 'Invalid Request: event Id does not match the requirements' });
+            return
+        }
+
+        await prisma.userFavourEvent.create({
+            data:
+            {
+                currentUser_id: userId,
+                event_id: eventId
+            }
+        })
+
+        res.status(200).json({ message: "user successfully favored a event" })
+
+
+    } catch (error) {
+        console.log("Server Error on userFavorEventMobile handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+export async function getUserFavoredEvents(req: Request, res: Response): Promise<void> {
+    try {
         const userId = (req as AuthenticatedRequest)?.decodedUserId;
 
 
         if (userId === undefined || userId === " ") {
             res.status(400).json({ message: 'Invalid Request, userId does not exist' });
             return
-          }
-
-        
-        const getFavoredEventId = async() => {
-
-            const favoredEvent =  await prisma.userFavourEvent.findMany({
-                where: {
-                    currentUser_id: userId
-                }, 
-            })
-
-            findsEventsUserFavored(favoredEvent, res)
-
         }
-        
-        await getFavoredEventId()
 
-            
-           
-        
 
-     }catch(error){
+
+
+        const favoredEvent = await prisma.userFavourEvent.findMany({
+            where: {
+                currentUser_id: userId
+            },
+        })
+
+        getEventDetails(favoredEvent, res)
+
+
+
+
+
+
+    } catch (error) {
         console.log("Server Error on getUserFavoredEvents handler function, CatchBlock - True:", error)
-        res.status(500).json({ message: "Internal Server Error"});
-     }
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 
 }
 
-export const findsEventsUserFavored = async(getFavoredEventId: any, res:Response ) =>{
 
-    try{
+
+
+
+
+
+
+
+
+
+
+export const getEventDetails = async (getFavoredEventId: any, res: Response) => {
+
+    try {
+        if (getFavoredEventId.length === 0) {
+            res.status(400).json({ message: 'Invalid Request, getFavoredEventId date is missing' });
+            return
+        }
 
         const favoredEventsArr: any[] = []
-        if(getFavoredEventId.length > 0){
-            const promiseEventDataFetch = getFavoredEventId.map( async(selectedEvents: any) => {
-                const retrieveData = await prisma.event.findMany({
-                   where: {
+
+        const promiseEventData = getFavoredEventId.map(async (selectedEvents: any) => {
+            const retrieveData = await prisma.event.findMany({
+                where: {
                     eventId: selectedEvents.event_id
-                   }
-                 })
-                favoredEventsArr.push(...retrieveData)
-            }
-            
-            )
-    
-            await Promise.all(promiseEventDataFetch)
+                }
+            })
+            favoredEventsArr.push(...retrieveData)
         }
-        // console.log(favoredEventsArr);
+
+        )
+
+        await Promise.all(promiseEventData)
+
+
         res.status(200).json(favoredEventsArr)
 
-    }catch(error){
+    } catch (error) {
         console.log("Server Error on findsEventsUserFavored handler function, CatchBlock - True:", error)
-        res.status(500).json({ message: "Internal Server Error"});
+        res.status(500).json({ message: "Internal Server Error" });
     }
-   
+
 }
 
 
 
-export default{userFavorEventMobile, getUserFavoredEvents}
+export default { userFavorEventMobile: userFavoredEvent, getUserFavoredEvents }
