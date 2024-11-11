@@ -41,7 +41,7 @@ export async function updatetoNewEventData(req: Request, res: Response): Promise
 
 
     if (!eventIds || eventIds.length !== 24) {
-      res.status(400).json({ message: 'Invalid Request: event Id length does not match the requirements' });
+      res.status(400).json({ message: 'Invalid Request: eventId length does not match the requirements' });
       return
     }
 
