@@ -52,7 +52,7 @@ const { res: serverResponse} = getMockRes({
       
       expect(serverResponse.status).toHaveBeenCalledWith(400);
       expect(serverResponse.json).toHaveBeenCalledWith({
-        message: "Invalid Request: event Id length does not match the requirements",
+        message: "Invalid Request: eventId length does not match the requirements",
       });
     })
 
