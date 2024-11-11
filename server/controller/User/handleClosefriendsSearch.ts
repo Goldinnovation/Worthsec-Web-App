@@ -18,56 +18,76 @@ import { Request, Response } from "express";
 
 
 
-interface AuthenticatedRequest extends Request{
+interface AuthenticatedRequest extends Request {
     user?: any
 }
 
 
 
-export async function searchforClosefriends (req: AuthenticatedRequest,res: Response):Promise<void>  {
+export async function searchforClosefriends(req: AuthenticatedRequest, res: Response): Promise<void> {
+    try {
+        const currentUserId = req.user.userId
+        const friendsId = req.body.searchfriendsvalue
 
-    const currentUser = req.user.userId
-    // console.log(currentUser);
-    const body = req.body.searchfriendsvalue
-    console.log("searchforClosefriends:",body);
-    try{
-        if(currentUser && body){
-            const searchforUser = await prisma.account.findUnique({
-                where: {
-                    userName: body
-                }
-            })
 
-            if(searchforUser) {
-                try {
-                    // console.timeEnd('prismaQuery');
-                    const closefriendsconnection = await prisma.userTouser.findMany({
-                        where: {
-                            userRequested_id: currentUser,
-                            userFollowed: searchforUser.userId,
-                            connection_status: 2
-                        },
-                    });
-                    
-                    res.status(200).json(closefriendsconnection);
-                } catch (error) {
-                    console.error('Error executing Prisma query:', error);
-                    
-                }
-            }else{
-                res.json({message:"user could not be found"})
-            }
-            
+        if (!currentUserId || currentUserId === undefined || currentUserId === " ") {
+            res.status(400).json({ message: 'Invalid Request, currentUserId is invalid' });
         }
 
-    }catch(error){
-        res.status(200).json({message: " No request from current user",error})
-    }
-    
+        if (!friendsId) {
+            res.status(400).json({ message: 'Invalid Request: friendsId is invalid' });
+        }
 
-    
-    
+
+        const getFriendDetails = await prisma.account.findUnique({
+            where: {
+                userName: friendsId
+            }
+        })
+
+        await handlegetConnectionState(getFriendDetails, currentUserId, req, res)
+
+    } catch (error) {
+        console.log("Server Error on searchforClosefriends handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+
+
+
+
 }
+
+
+
+
+
+const handlegetConnectionState = async (getFriendDetails: any, currentUserId: any, req: AuthenticatedRequest, res: Response) => {
+
+
+    try {
+        const closefriendsconnection = await prisma.userTouser.findMany({
+            where: {
+                userRequested_id: currentUserId,
+                userFollowed: getFriendDetails.userId,
+                connection_status: 2
+            },
+        });
+
+        res.status(200).json(closefriendsconnection);
+    } catch (error) {
+        console.log("Server Error on handlegetConnectionState handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+
+    }
+
+
+
+}
+
+
+
+
+
 
 /** 
  * Purpose Statement--searchImgUrl
@@ -83,33 +103,34 @@ export async function searchforClosefriends (req: AuthenticatedRequest,res: Resp
 
 
 
- export async function searchImgUrl(req:  AuthenticatedRequest, res: Response):Promise<void>  {
+export async function searchImgUrl(req: AuthenticatedRequest, res: Response): Promise<void> {
 
-    const otherUserId = req.params.id
-    // await searchImgUrl(req as AuthenticatedRequest, res)
+    try {
+        const otherUserId = req.params.id
 
-    // console.log("searchImgUrl", otherUserId);
-
-    try{
-        if(req.user && otherUserId){
-            const otherUserData = await prisma.account.findUnique({
-                where: {
-                    userId: otherUserId
-                }, include: {
-                    picture: true
-                }
-
-            })
-
-            res.status(200).json([otherUserData])
+        if (!otherUserId || otherUserId === undefined || otherUserId === " ") {
+            res.status(400).json({ message: 'Invalid Request, otherUserId is required' });
         }
-        
-    }catch(error){
-        res.json({message: "Invalid request to searchImgUrl handler"})
+
+        const otherUserData = await prisma.account.findUnique({
+            where: {
+                userId: otherUserId
+            }, include: {
+                picture: true
+            }
+
+        })
+
+        res.status(200).json([otherUserData])
+
+
+    } catch (error) {
+        console.log("Server Error on searchImgUrl handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
     }
-    
+
 }
 
 
 
-export default {searchImgUrl,searchforClosefriends }
+export default { searchImgUrl, searchforClosefriends }
