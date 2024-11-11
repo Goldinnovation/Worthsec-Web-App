@@ -39,25 +39,21 @@ async function userGetCategoryEvent(req: Request, res: Response, next: NextFunct
     }
 
 
-    const getUserselectedData = async () => {
-      const UserselectedData = await prisma.event.findMany({
-        where: {
-          eventType: selectedCategory
-        }
-      })
 
-      res.status(200).json(UserselectedData)
+    const UserselectedData = await prisma.event.findMany({
+      where: {
+        eventType: selectedCategory
+      }
+    })
 
+    res.status(200).json(UserselectedData)
 
-    }
-
-    await getUserselectedData()
 
 
   } catch (error) {
-    
+
     console.log("Server Error on userGetCategoryEvent handler function, CatchBlock - True:", error)
-    res.status(500).json({ message: "Internal Server Error"});
+    res.status(500).json({ message: "Internal Server Error" });
   }
 
 }
