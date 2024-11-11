@@ -18,10 +18,14 @@ import { Request, Response } from "express";
 
 
 
-export async function searchUserbyUser (req:Request , res: Response): Promise<void> {
-  const searchUserName = req.body.searchValue;
-
+export async function searchUserbyUser(req: Request, res: Response): Promise<void> {
   try {
+    const searchUserName = req.body.searchValue;
+
+    if (!searchUserName) {
+      res.status(400).json({ message: 'Invalid Request: searchUserName is invalid' });
+    }
+
     const searchUser = await prisma.account.findMany({
       where: {
         userName: searchUserName,
@@ -31,13 +35,13 @@ export async function searchUserbyUser (req:Request , res: Response): Promise<vo
       },
     });
 
-    console.log(searchUser);
+
     res.status(200).json(searchUser);
   } catch (error) {
-    console.log(error);
-     res.status(400).json({ message: "Could not find User", error });
+    console.log("Server Error on searchUserbyUser handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 
-export default {searchUserbyUser}
+export default { searchUserbyUser }
