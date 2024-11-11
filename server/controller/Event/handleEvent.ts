@@ -67,147 +67,139 @@ interface EventCreateInput {
 
 const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
-    const trybody = req.body
-    console.log(trybody)
-
     try {
-       
+      const cloudImageUrl = await FirebaseService(req, res);
 
-        const cloudFileUrl = await FirebaseService(req, res)
+      const userId = req.user.userId;
+      const eventHostName = req.user.userName;
+      const eventTitle = req.body.eventTitle;
+      const eventDate = req.body.eventDate;
+      const eventType = req.body.eventType;
+      const zipcode = req.body.eventZipcode;
+      const eventAddress = req.body.eventAddress;
+      const eventCity = req.body.cityType;
+      const eventDescription = req.body.eventDescriptionContent;
+      const eventTime = req.body.eventTime;
 
+      let selectedStrRange = req.body.selectedRangeofEvents;
+      const selectedIntRange = parseInt(selectedStrRange, 10);
 
+      let eventinviteNum;
+      req.body.Only_friends === "1"
+        ? (eventinviteNum = parseInt(req.body.Only_friends, 10))
+        : req.body.friends_Plus_Plus === "2"
+        ? (eventinviteNum = parseInt(req.body.friends_Plus_Plus, 10))
+        : req.body.worldwideClass === "3"
+        ? (eventinviteNum = parseInt(req.body.worldwideClass, 10))
+        : (eventinviteNum = 3);
 
-        //  declaration of object properties 
-        const userId = req.user.userId
-        const eventHostname = req.user.userName
-        const eventTitle_value = req.body.eventTitle
-        const eventDate_value = req.body.eventDate
-        const eventType_value = req.body.eventType
-        const zipcode_value = req.body.eventZipcode
-        console.log(zipcode_value);
-        const eventAddress_value = req.body.eventAddress
-        const cityType_value = req.body.cityType
-        const eventDescription_value = req.body.eventDescriptionContent
-        const eventTime_value = req.body.eventTime
-        let selectedRange_string = req.body.selectedRangeofEvents
-        const  selectedRange_int_value  = parseInt(selectedRange_string , 10)
-        console.log(selectedRange_int_value);
-        console.log(cloudFileUrl);
-
-
-
-        let eventinviteNum;
-        if (req.body.Only_friends === '1') {
-            const num1 = req.body.Only_friends
-            eventinviteNum = parseInt(num1, 10)
-        } else if (req.body.friends_Plus_Plus === '2') {
-            const num2 = req.body.friends_Plus_Plus
-            eventinviteNum = parseInt(num2, 10)
-        } else if (req.body.worldwideClass === '3') {
-            const num3 = req.body.worldwideClass
-            eventinviteNum = parseInt(num3, 10)
+    
+        if (!userId || userId === "undefined" || userId === " ") {
+            res.status(400).json({ message: "Bad Request: userId data is invalid" });
+        }
+        if (!eventHostName) {
+            res.status(400).json({ message: "Bad Request: eventHostName data is invalid" });
+        }
+        if (!eventTitle) {
+            res.status(400).json({ message: "Bad Request: eventTitle data is invalid" });
+        }
+        if (!eventDate) {
+            res.status(400).json({ message: "Bad Request: eventDate data is invalid" });
+        }
+        if (!eventType) {
+            res.status(400).json({ message: "Bad Request: eventType data is invalid" });
+        }
+        if (!zipcode) {
+            res.status(400).json({ message: "Bad Request: zipcode data is invalid" });
+        }
+        if (!eventAddress) {
+            res.status(400).json({ message: "Bad Request: eventAddress data is invalid" });
+        }
+        if (!eventCity) {
+            res.status(400).json({ message: "Bad Request: eventCity data is invalid" });
+        }
+        if (!eventDescription) {
+            res.status(400).json({ message: "Bad Request: eventDescription data is invalid" });
+        }
+        if (!eventTime) {
+            res.status(400).json({ message: "Bad Request: eventTime data is invalid" });
         }
 
-      
 
 
+      const ImageUrl = cloudImageUrl ?? "Default Url Image";
+      await prisma.event.create({
+        data: {
+          eventHost: userId,
+          eventHostName: eventHostName,
+          eventTitle: eventTitle,
+          eventType: eventType,
+          eventDate: eventDate,
+          eventDescriptionContent: eventDescription,
+          eventTime: eventTime,
+          ImageCoverUpload: ImageUrl,
+          eventInviteType: eventinviteNum,
+          eventAddress: eventAddress,
+          eventZipcode: zipcode,
+          cityType: eventCity,
+          selectedRangeofEvents: selectedIntRange,
+        },
+      });
 
-        try {
-            // Provides Default URL if the image Url is undefined
-            const cloudFileUrlSafe = cloudFileUrl ?? "Default Url Image"
-            const newCreateEvent = await prisma.event.create({
-                data:
-                {
-                    eventHost: userId,
-                    eventHostName: eventHostname,
-                    eventTitle: eventTitle_value,
-                    eventType: eventType_value,
-                    eventDate: eventDate_value ,
-                    eventDescriptionContent: eventDescription_value,
-                    eventTime: eventTime_value,
-                    ImageCoverUpload: cloudFileUrlSafe,
-                    eventInviteType: eventinviteNum,
-                    eventAddress: eventAddress_value,
-                    eventZipcode: zipcode_value,
-                    cityType: cityType_value,
-                    selectedRangeofEvents: selectedRange_int_value
-
-
-                       
-
-                }
-            });
-
-          
-            console.log(newCreateEvent, "successful uploaded")
-            res.status(200).json({ message: "file successful uploaded" });
-
-            
-            // res.status(200).json({messaage: "console.log('successful uploaded on the database');"})
-
-
-        } catch (error) {
-            console.error(error)
-            res.status(500).send('issue server side')
-        }
-
+      res.status(200).json({ message: "file successful uploaded" });
     } catch (error) {
-
-        console.log(error)
-        res.status(500).json({ message: "unexpected Error, trying to handle the file data" })
+        console.log("Unexpected Server Error on createEvent function, CatchBlock - True:", error)
+      res
+        .status(500)
+        .json({ message: "Internal Server Error" });
     }
-
-
-
 }
+
+
 
 export const FirebaseService = async(req: AuthenticatedRequest, res: Response) => {
 
-    try{
-        const file = req.file as Express.Multer.File;
-        
-        if (!req.file) {
-            res.status(400).json({ message: "File could not be found" })
-        }
+    try {
+      const file = req.file as Express.Multer.File;
 
-      
+      if (!req.file) {
+        res.status(400).json({ message: "File could not be found" });
+      }
 
-        // storage path reference 
-        const dateTime = giveCurrentDateTime();
-        const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`)
+      // storage path reference
+      const dateTime = giveCurrentDateTime();
+      const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`);
 
-        // compromising the image with sharp 
+      // compromising the image with sharp
 
-        const compromiseImage = await sharp(file.buffer)
-            .resize({ width: 800, height: 1050 })
-            .jpeg({ quality: 80 })
-            .toBuffer();
+      const compromiseImage = await sharp(file.buffer)
+        .resize({ width: 800, height: 1050 })
+        .jpeg({ quality: 80 })
+        .toBuffer();
 
+      const metadata = {
+        contentType: file.mimetype,
+      };
 
+      // upload the file to the firebase storage
+      const uploadaction = uploadBytesResumable(
+        storageRef,
+        compromiseImage,
+        metadata
+      );
 
+      // wait for the upload to complete
+      const snapshot = await uploadaction;
 
-        const metadata = {
-            contentType: file.mimetype
-        }
+      // gets the url of the post
+      const downloadImageUrl = await getDownloadURL(snapshot.ref);
 
-        // upload the file to the firebase storage
-        const uploadaction = uploadBytesResumable(storageRef, compromiseImage, metadata)
-
-        // wait for the upload to complete 
-        const snapshot = await uploadaction;
-
-        // gets the url of the post 
-        const downloadImageUrl = await getDownloadURL(snapshot.ref)
-
-
-
-        return downloadImageUrl
-
-
-
-
-    }catch(error){
-        console.error("Error on FirebaseService handler function")
+      return downloadImageUrl;
+    } catch (error) {
+        console.log("Unexpected Server Error on FirebaseService function, CatchBlock - True:", error)
+        res
+        .status(500)
+        .json({ message: "External Server Error" });
     }
 }
 
