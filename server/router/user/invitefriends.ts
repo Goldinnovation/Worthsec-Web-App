@@ -5,7 +5,6 @@ import {checkForUsersCloseFriends, inviteClosefriendsToEvent} from '../../contro
 
 
 
-// router.post('/', handleFavorEvent.userFavorEvent )
 router.get('/', checkForUsersCloseFriends)
 router.post('/', inviteClosefriendsToEvent)
 
