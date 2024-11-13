@@ -15,6 +15,41 @@ Worthsec is a social media platform for events that offers accessibility for div
 </br>
 
 
+<div style="display: flex; justify-content: space-between; align-items: center; width:100%; flex-wrap: wrap; gap:1px">
+
+ <img src="img1.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+
+ <img src="img2.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink:0;"/>
+
+<img src="img3.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;" />
+
+<img src="img4.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img5.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img6.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img7.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img8.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img9.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+<img src="img10.png" alt="Client-Server Architecture" style="width:150px;  flex-shrink: 0;"/>
+
+
+   
+
+</div>
+
+</br>
+</br>
+</br>
+
+
+
+
  <div align="center">
 
  # Tech Stack:
