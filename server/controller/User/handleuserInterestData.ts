@@ -15,7 +15,6 @@ interface AuthenticatedRequest extends Request{
 
 
 
-//   The function receives a userId with a list of  selected interest strings and stores it in the database table userInterest
 
  const storeInterestData = async (req: Request, res: Response, next: NextFunction ) => {
 

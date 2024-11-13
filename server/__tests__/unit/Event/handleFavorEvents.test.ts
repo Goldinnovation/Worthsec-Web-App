@@ -8,7 +8,7 @@ import {
     beforeAll,
   } from "vitest";
   import { vi } from "vitest";
-  import { userFavoresAnEvent } from "@/server/controller/Event/handleFavorEvent";
+  import { userFavorsEvent } from "@/server/controller/Event/handleFavorEvent";
   import { getMockReq, getMockRes } from "vitest-mock-express";
   import { getUserFavoredEvents } from "@/server/controller/Event/handleFavorEvent";
   import { Request, Response } from "express";

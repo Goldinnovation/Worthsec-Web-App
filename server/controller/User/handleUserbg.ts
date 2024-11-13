@@ -18,14 +18,10 @@ import { error } from "node:console";
 
 
 
-// The function queries the currentUser picture record through the userId
 
 
 
-// initialize firebase application
 initializeApp(config.firebaseConfig);
-
-// initialize the storage with the firebase service 
 const storage = getStorage();
 
 interface AuthenticatedRequest extends Request {
@@ -34,7 +30,6 @@ interface AuthenticatedRequest extends Request {
 }
 
 
-// Function for storing the Firebase URL in the database 
 export async function processUserBackgroundGifImage(req: AuthenticatedRequest, res: Response): Promise<void> {
 
   try {
@@ -67,7 +62,6 @@ export async function processUserBackgroundGifImage(req: AuthenticatedRequest, r
 
 };
 
-// Compromising the GIF Data, to a customized Buffer 
 export const compromiseGif = async (buffer: any, res:Response): Promise<Buffer> => {
   return new Promise((resolve, reject) => {
     try {
