@@ -61,10 +61,6 @@ export async function exploreEvents(req: AuthenticatedRequest, res: Response): P
     }
 }
 
-
-
-
-
 export const processUserData = (userData: any, req: AuthenticatedRequest, res: Response) => {
 
     try{
@@ -90,7 +86,6 @@ export const processUserData = (userData: any, req: AuthenticatedRequest, res: R
 }
 
 
-// This function queries the interests of the current user's friends and compares them with the current user's interests to add new, unique interests to the current user's interest data list 
 export const getUserFriendsInterests = async(currentUserInterestData: string[]| undefined, userFriendsId: any | undefined, req: AuthenticatedRequest, res: Response) => {
 
     try {
@@ -177,7 +172,6 @@ try {
 }
 
 
-//  handles the retrieve of conditional event datas 
 export const getSpecifiedEventData = async (data: string[] | undefined, req: AuthenticatedRequest, res: Response) => {
 
     try {
