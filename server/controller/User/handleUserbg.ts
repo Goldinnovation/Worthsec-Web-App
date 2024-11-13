@@ -3,11 +3,11 @@ const prisma = new PrismaClient();
 import { Request, Response } from "express";
 import { NextFunction } from "express";
 import giveCurrentDateTime from "../../utils/date";
-import {getStorage, ref, deleteObject, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
+import { getStorage, ref, deleteObject, getDownloadURL, uploadBytesResumable } from 'firebase/storage'
 import { initializeApp } from 'firebase/app'
 import config from '../../config/firebase'
 import sharp from 'sharp'
-import {execFile} from 'node:child_process';
+import { execFile } from 'node:child_process';
 import tmp from "tmp"
 import gifsicle from "gifsicle"
 import * as fs from 'fs';
@@ -28,90 +28,53 @@ initializeApp(config.firebaseConfig);
 // initialize the storage with the firebase service 
 const storage = getStorage();
 
-interface AuthenticatedRequest extends Request{
+interface AuthenticatedRequest extends Request {
   user?: any;
   file?: Express.Multer.File;
 }
 
 
 // Function for storing the Firebase URL in the database 
-export async function handleuserBackgroundUpload(req: AuthenticatedRequest, res: Response): Promise<void> {
-  // console.log("knock knock");
+export async function processUserBackgroundGifImage(req: AuthenticatedRequest, res: Response): Promise<void> {
 
-
-  const userBackgroundData = await processImageData(req, res)
-
-  console.log('User Background Data', userBackgroundData);
-
-
-  res.json({message: "User Uploaded a picture" });
-
-
-};
-
-
-// Storing Data in Firebase Cloud Storage  
-
-export const processImageData = async (
-  req: AuthenticatedRequest,
-  res: Response
-) => {
   try {
     if (!req.file) {
       res.status(400).json({ message: "File could not be found" });
+      return
     }
 
     const file = req.file as Express.Multer.File;
     const dateTime = giveCurrentDateTime();
 
-    // StoragePath Reference
     const storageRef = ref(
       storage,
       `userBackground/${dateTime}_${file.originalname}`
     );
 
-    // compromising the image with sharp
-    const compromiseGifData = await compromiseGif(file.buffer);
-
-    // Defines the Content type of the data
-
+    const compromiseGifData = await compromiseGif(file.buffer, res);
     const metadata = { contentType: "image/gif" };
 
-    // upload the file to the firebase storage
-    const uploadaction = uploadBytesResumable(
-      storageRef,
-      compromiseGifData,
-      metadata
-    );
+    uploadFileToFirebase(storageRef, compromiseGifData, metadata, req, res)
 
-    // wait for the upload to complete
-    const snapshot = await uploadaction;
 
-    // gets the url of the Gif Data
-    const uploadedGifUrl = await getDownloadURL(snapshot.ref);
-
-    return uploadedGifUrl;
   } catch (error) {
-    console.error("Error on FirebaseService handler function");
+    console.log("Server Error on processUserBackgroundGifImage handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
   }
+
+
+
+
 };
 
-
-
-
 // Compromising the GIF Data, to a customized Buffer 
-export const compromiseGif = async (buffer: any): Promise<Buffer> => {
+export const compromiseGif = async (buffer: any, res:Response): Promise<Buffer> => {
   return new Promise((resolve, reject) => {
     try {
-      // converting the buffer to a temporary file, so gifsicle can process it
-      // creates a unique temporary file with the .gif extension.
+
       const tmpInputFile = tmp.fileSync({ postfix: "gif" });
       const tmpOutputFile = tmp.fileSync({ postfix: "gif" });
-
-      // Assining the buffer to a temporary input file
       fs.writeFileSync(tmpInputFile.name, buffer);
-
-      // Does not hadle In-memomery buffer, can only process butffer on file paths
 
       execFile(
         gifsicle,
@@ -130,17 +93,38 @@ export const compromiseGif = async (buffer: any): Promise<Buffer> => {
               return reject(error);
             });
 
-          // Returning compromised Buffer
-
           const optimizedGifBuffer = fs.readFileSync(tmpOutputFile.name);
           resolve(optimizedGifBuffer);
         }
       );
     } catch (Error) {
-      console.error("Error on compromiseGif data function, Invalid File");
+      console.log("Server Error on compromiseGif handler function, CatchBlock - True:", error)
+      res.status(500).json({ message: "Internal Server Error" });
     }
   });
 };
 
 
-export default{handleuserBackgroundUpload}
+const uploadFileToFirebase = async (storageRef: any, compromiseGifData: any, metadata: any, req: AuthenticatedRequest, res: Response) => {
+  try {
+    const uploadaction = uploadBytesResumable(
+      storageRef,
+      compromiseGifData,
+      metadata
+    );
+
+
+    const snapshot = await uploadaction;
+    const uploadedGifUrl = await getDownloadURL(snapshot.ref);
+    res.json(uploadedGifUrl);
+
+  } catch (error) {
+    console.log("Server Error on uploadFileToFirebase handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+
+
+}
+
+
+export default { processUserBackgroundGifImage }
