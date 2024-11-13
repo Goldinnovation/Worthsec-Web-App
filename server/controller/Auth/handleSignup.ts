@@ -1,7 +1,5 @@
 import bcrypt from 'bcrypt'
-import passport from 'passport';
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import prisma from '@/server/libs/prisma';
 import { Request, Response } from 'express';
 
 
@@ -31,60 +29,56 @@ interface  User {
 
 
 
-const createUserAccount = async(req: Request<{}, {}, User>,res: Response)  => {
-   
-    const user = req.body
-    // console.log(user);
-       
-        try{
-            const exisitingUsername = await prisma.account.findFirst({
-                where:
-                 {
-                   
-                    userName: req.body.userName
-                }
-             })
-             if(!exisitingUsername){
+const checksIfUserExist = async (req: Request<{}, {}, User>, res: Response) => {
+    try {
+        const userName = req.body.userName
 
-                const hashpw =  await bcrypt.hash(req.body.userPassword1, 10)
-                                    
-                    try{
-                        const newUserAccount = await prisma.account.create({data:
-                            {
-                                userName: req.body.userName,
-                                userEmail: req.body.userEmail,
-                                userPassword1: hashpw
-                            }
-                        
-                        })
-                        // res.redirect('/user')
-                        // console.log(newUserAccount)
-                        res.json({message:"new user created"})
-                        
-                        
+        const userExist = await prisma.account.findFirst({
+            where:
+            {
 
-                    }catch(error){
-
-                        res.status(500).json({message:'Database connection failed'})
-
-                    }
-                  
-
-                 
+                userName: userName
             }
-            else{
-                console.log('User found');
-                res.status(500).json({message: 'User already Exist'})
-            }
+        })
+
+        createsNewAcc(userExist, req, res)
 
 
-        }catch(error){
-            console.error('Error while querying the database:', error);
-             res.status(500).send('Internal Server Error');
-        }
-
-        
-   
+    } catch (error) {
+        console.log("Server Error on checksIfUserExist handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 }
 
-export default createUserAccount
+
+
+const createsNewAcc = async (userExist: any, req: Request, res: Response) => {
+    try {
+        const userName = req.body.userName
+        const userEmail = req.body.userEmail
+        const hashpw = await bcrypt.hash(req.body.userPassword1, 10)
+
+        if (userExist) {
+            res.status(400).json({ message: 'User already Exist' })
+            return
+        }
+
+        await prisma.account.create({
+            data:
+            {
+                userName: userName,
+                userEmail: userEmail,
+                userPassword1: hashpw
+            }
+
+        })
+
+        res.json({ message: "new user created" })
+
+    } catch (error) {
+        console.log("Server Error on createsNewAcc handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+}
+
+export default checksIfUserExist
