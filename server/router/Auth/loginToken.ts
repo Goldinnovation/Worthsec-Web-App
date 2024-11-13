@@ -9,7 +9,7 @@ import handleLoginEvent from "../../controller/Auth/handleLoginToken"
 
 
 router.get('/')
-router.post('/', handleLoginEvent.userloginToken)
+router.post('/', handleLoginEvent.userLoginWithToken)
 
 
 export default router
