@@ -17,10 +17,7 @@ import { Express } from 'express';
 
 
 
-// initialize firebase application
 initializeApp(config.firebaseConfig);
-
-// initialize the storage with the firebase service 
 const storage = getStorage();
 
 
@@ -57,7 +54,7 @@ interface AuthenticatedRequest extends Request{
 
 
 interface EventCreateInput {
-    ImageCoverUpload: string;  // No `undefined` allowed here
+    ImageCoverUpload: string;  
   }
 
 
@@ -166,11 +163,9 @@ export const FirebaseService = async(req: AuthenticatedRequest, res: Response) =
         res.status(400).json({ message: "File could not be found" });
       }
 
-      // storage path reference
       const dateTime = giveCurrentDateTime();
       const storageRef = ref(storage, `files/${dateTime}_${file.originalname}`);
 
-      // compromising the image with sharp
 
       const compromiseImage = await sharp(file.buffer)
         .resize({ width: 800, height: 1050 })
@@ -181,20 +176,16 @@ export const FirebaseService = async(req: AuthenticatedRequest, res: Response) =
         contentType: file.mimetype,
       };
 
-      // upload the file to the firebase storage
       const uploadaction = uploadBytesResumable(
         storageRef,
         compromiseImage,
         metadata
       );
 
-      // wait for the upload to complete
       const snapshot = await uploadaction;
+      const ImageUrl = await getDownloadURL(snapshot.ref);
 
-      // gets the url of the post
-      const downloadImageUrl = await getDownloadURL(snapshot.ref);
-
-      return downloadImageUrl;
+      return ImageUrl;
     } catch (error) {
         console.log("Unexpected Server Error on FirebaseService function, CatchBlock - True:", error)
         res

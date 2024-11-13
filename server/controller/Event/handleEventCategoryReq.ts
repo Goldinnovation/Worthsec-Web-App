@@ -3,16 +3,6 @@ import { Response, Request, NextFunction } from "express";
 
 
 
-/**
- * 
- * 
- * 
- * 
-
-*/
-
-
-
 interface AuthenticatedRequest extends Request {
   user?: any;
   decodedUserId: any;
