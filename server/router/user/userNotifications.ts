@@ -1,10 +1,10 @@
 import { Router } from "express"
 const router = Router()
 // const handleNotifciation = require('../controller/userInfo/handleUserNotifications')
-import {getUserNotification} from '../../controller/User/handleUserNotifications'
+import {getCurrentUserNotification} from '../../controller/User/handleUserNotifications'
 
 
-router.get('/', getUserNotification)
+router.get('/', getCurrentUserNotification)
 
 
 export default router
