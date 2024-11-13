@@ -11,13 +11,25 @@ import { Express } from 'express';
 interface AuthenticatedRequest extends Request{
   user?: Express.User
 }
-/** 
- * Purpose Statement--userlog
- *By clicking the login button the user triggers the API endpoint userlog.
- *The endpoint executes the passport authenticatiion, which verfies if the user information exist the  in the account database table 
- *if the user exist in the account database table the passport authenticator creates a session Id for the user and stores it 
- *in the session database table and cookie. Throughthe session id the user will be redirect to the main page
+/**
+ * Purpose Statement — userLogin
+ * 
+ * The userLogin function executes the Passport authentication method, which verifies whether the user's information exists in the "account" database table.
+ * If the user exists in the "account" table, Passport creates a session ID for the user, storing it in both the "session" database table and a cookie,
+ * allowing the user to remain logged in even during navigation and page refreshes.
+ * If authentication is successful, the user is redirected to their profile page.
+ * 
 */
+
+
+
+/**
+ * Function Signature--userLogin
+ * 
+ * @param {object} user - Represents a user object.
+ * @returns {json} - Returns a JSON message describing the login status.
+ */
+
 
 
 
