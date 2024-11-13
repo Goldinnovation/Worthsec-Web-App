@@ -6,9 +6,9 @@ import { Request, Response } from "express"
 /** 
  * Purpose Statement--searchUser_friends
  * 
- *  The searchUser_friends handler logic  retrieves information from the userTouser database table,
- * to determine if there is connection between two users. If the connection is found, it returns
- * a user object, allowing the API to update the corresponding user's button option  
+ * The searchUser_friends handler retrieves information from the "userToUser" database table
+ * to determine if there is a connection between the two users. If a connection is found, it returns
+ * a "userToUser" record object.
 */
 
 
@@ -17,8 +17,8 @@ import { Request, Response } from "express"
  * Function Signature--searchUser_friends
  * 
  * @param {string} currentUser - The ID of the current user online.
- * @param {string} otherUser - The ID of the user to check for a connection
- * @returns {object|null} Returns a user object if the ID's are corresponding, otherwise it returns null.
+ * @param {string} otherUserId - The ID of the user to check for a connection
+ * @returns {object|null} Returns a userTouser record object, otherwise it returns null.
  */
 
 
@@ -27,22 +27,18 @@ interface AuthenticatedRequest extends Request{
 }
 
 
-/**
-         * responds with an object of length 1, if the current user is already following the other user
-         * if the current user has no record with the other user it will return an object with length of 0 
-         */
 
 export async function searchUser_friends (req: AuthenticatedRequest, res: Response): Promise<void>{
     try {
         const currentUserId = req.user.userId
         const otherUserId = await req.params.id
 
-        if (currentUserId) {
+        if (!currentUserId) {
             res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
             return;
         }
 
-        if (otherUserId) {
+        if (!otherUserId) {
             res.status(400).json({ message: 'Invalid Request, otherUserId is required' });
             return;
         }
@@ -78,20 +74,22 @@ export async function searchUser_friends (req: AuthenticatedRequest, res: Respon
 
 
 /**
- * Purpose Statement--followUser
+ * Purpose Statement -- followUser & checksIfUserFollowEachOther
  * 
- * The followUser handler logic creates a record of the usersID and their status in the userTouser database table,
- * if the currentUser presses the button follow, the handler logic will asign the currentUser
- * to the column userRequested_id and the otherUserId will be assigned to userFollowed column. 
- * Afterwarda the status  which represents their relation will be updated from null to 1
+ * The followUser function checks if the current user has a record with the other user in the "userToUser" database table.
+ * 
+ * If the record exists, the function responds with a message that confirms the connection between the currentUser and the other user.
+ * 
+ * If the connection is null, the checksIfUserFollowEachOther function will create a new record in both the "userToUser" and "notification" database tables.
+ * 
  */
 
 /**
- * Function Signature--followUser
+ * Function Signature -- followUser & checksIfUserFollowEachOther
  * 
- * @param {currentUser} - The ID of the current user who send a request 
- * @param {otherUser_id} - The ID of the other user who should be followed 
- * @returns {object|null} - Returns a object as the connection between both users 
+ * @param {string} currentUser - The ID of the current user who sent the follow request.
+ * @param {string} otherUserId - The ID of the user to be followed.
+ * @returns {json} - Returns a JSON message describing the state of the connection.
  */
 
 
@@ -100,17 +98,17 @@ export async function followUser(req: AuthenticatedRequest, res: Response): Prom
         const currentUserId = req.user.userId
         const otherUserId = req.body.userIdData
 
-        if (currentUserId) {
+        if (!currentUserId) {
             res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
             return;
         }
 
-        if (otherUserId) {
+        if (!otherUserId) {
             res.status(400).json({ message: 'Invalid Request, otherUserId is required' });
             return;
         }
 
-        const userFriendState = await prisma.userTouser.findMany({
+        const userFriendState = await prisma.userTouser.findFirst({
             where: {
                 userRequested_id: currentUserId,
                 userFollowed: otherUserId
@@ -139,8 +137,9 @@ const checksIfUserFollowEachOther = async (userFriendState: any, req: Authentica
         const otherUserId = req.body.userIdData
 
 
-        if (userFriendState?.length > 0) {
+        if (userFriendState) {
             res.status(200).json({ message: "Current user follows already other user" })
+            return;
         }
 
         const createUserasFriend = await prisma.userTouser.create({
@@ -180,19 +179,22 @@ const checksIfUserFollowEachOther = async (userFriendState: any, req: Authentica
 
 
 /**
- * Purpose Statement--unFollowUser
+ * Purpose Statement --unFollowUser & deleteUserConnection
  * 
- * The unFollowUser handler logic destroys the UserIDs corresponding record on the database table userTouser,
- * afterwards it responds with a json message which will update the state of the button on client side.
- * 
+ * The unFollowUser function first deletes the notification record ID that emphasizes the connection between the current user and the other user from the "notification" database table.
+ * Afterwards, the deleteUserConnection function deletes the unique userToUserId from the "userToUser" database table, which represents the connection between both users.
  */
+
+
 
 /**
  * Function Signature--unFollowUser
  * 
- * @param {userConnection_id} - The userTOuser record id will be used to delete the record
- * @returns {object-message|null}
+ * @param {string} userConnection_id - The ID representing the connection between both users.
+ * @param {string} notificationId - The ID of the notification created after the current user followed the other user.
+ * @returns {json} - Returns a JSON message describing the deletion status.
  */
+
 
 export async  function unFollowUser  (req: AuthenticatedRequest, res: Response): Promise<void> {
     try {
@@ -202,9 +204,11 @@ export async  function unFollowUser  (req: AuthenticatedRequest, res: Response):
 
     if (!userConnectionId) {
         res.status(200).json({ message: "Bad request - unfollowedUserId is invalid" })
+        return;
     }
     if (!notificationId) {
         res.status(200).json({ message: "Bad request - userNotificationId is invalid" })
+        return;
     }
       
     await prisma.notification.delete({
