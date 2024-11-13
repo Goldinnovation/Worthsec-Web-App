@@ -32,11 +32,11 @@ interface User {
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => 
   new Promise<User | false>((resolve, reject) => {
-    passport.authenticate('local', { session: false }, (err: Error, user:User | false, info: {message: string} | undefined) => {
+    passport.authenticate("local", { session: false }, (err: Error, user:User | false, info: {message: string} | undefined) => {
       if (err) {
         reject(err);
       } else if (!user) {
-        reject(new Error('User not found'));
+        reject(new Error("User not found"));
       } else {
         resolve(user);
       }
@@ -46,60 +46,46 @@ const authenticate = (req: Request, res: Response, next: NextFunction) =>
 
 
 
-const userloginToken =  async (req: Request, res: Response, next: NextFunction) => {
-    
-   
-        try{
-          const user = await authenticate(req, res, next);
+const userLoginWithToken = async (req: Request, res: Response, next: NextFunction) => {
 
-          if (user === false) {
-            return res.status(401).json({ message: 'User not found' });
-          }
-      
-          const token = generateToken(user as any);
-         
-         
-          if(token){
+  try {
+    const user = await authenticate(req, res, next);
+    const token = generateToken(user as any);
 
-            const userId = user?.userId
-            const find_userInterest =  await prisma.userInterest.findUnique({
-              where: {
-                 user_interest_id: userId
-              },
+    if (user === false) {
+      res.status(400).json({ message: "User not found" });
+      return
+    }
 
-            })
-            
-            if(find_userInterest === null){
-
-            
-              res.json({
-                token, 
-                message: "Interest Section is empty"
-              })
-
-            }else{
-
-                res.json({ 
-                  token, 
-                 message: "Interest data exist"
-               });
+    if (!token) {
+      res.status(400).json({ message: "Token data is invalid" });
+      return
+    }
 
 
-            }
+    const userId = user?.userId
+    const userInterest = await prisma.userInterest.findUnique({
+      where: {
+        user_interest_id: userId
+      },
 
-           
-         
-          
+    })
+
+    if (userInterest === null) {
 
 
-          }
+      res.status(200).json({ token, message: "Interest section is empty" })
 
-        }catch(error){
-          console.error('Error on Login ', error)
-        }
-        
-  
-  
+    } else {
+
+      res.status(200).json({ token, message: "Interest data exist" });
+    }
+
+
+  } catch (error) {
+    console.log("Server Error on userLoginWithToken handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 }
 
-export default {userloginToken, authenticate}
+export default {userLoginWithToken}
