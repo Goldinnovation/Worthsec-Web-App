@@ -21,27 +21,32 @@ interface AuthenticatedRequest extends Request{
 
 
 
-const userLogin = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
-    
-    passport.authenticate("local", (err: Error, user: Express.User | false, info: {message: string} | undefined) => {
-    if (err) {
-        console.log("error")
-      return res.status(500).json({ message: "Authentication Error" });
-    }
-    if (!user) {
-        console.log("user not found")
-      return res.status(401).json("user not found");
-    }
-    req.login(user, (err) => {
-      if (err) {
-        console.log("user not catched")
-        return res.status(500).json({ message: "Session error" });
-      }
-      console.log("user catched")
-     res.json({message: "Login Successful"}) 
-    });
-  })(req, res, next);
+const userLogin = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
 
+  try {
+    passport.authenticate("local", (err: Error, user: Express.User | false, info: { message: string } | undefined) => {
+      if (err) {
+        console.log("error")
+        return res.status(500).json({ message: "Authentication Error" });
+      }
+      if (!user) {
+        console.log("user not found")
+        return res.status(401).json("user not found");
+      }
+      req.login(user, (err) => {
+        if (err) {
+          console.log("user not catched")
+          return res.status(500).json({ message: "Session error" });
+        }
+        console.log("user catched")
+        res.json({ message: "Login Successful" })
+      });
+    })(req, res, next);
+
+  } catch (error) {
+    console.log("Server Error on userLogin handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 }
 
 export default userLogin
