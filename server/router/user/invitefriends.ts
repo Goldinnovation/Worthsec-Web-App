@@ -1,12 +1,12 @@
 import { Router } from "express"
 const router = Router()
-import {getCloseFriends, inviteClosefriendsToEvent} from '../../controller/User/handleInviteToFriends'
+import {checkForUsersCloseFriends, inviteClosefriendsToEvent} from '../../controller/User/handleInviteToFriends'
 
 
 
 
 // router.post('/', handleFavorEvent.userFavorEvent )
-router.get('/', getCloseFriends)
+router.get('/', checkForUsersCloseFriends)
 router.post('/', inviteClosefriendsToEvent)
 
 export default router
