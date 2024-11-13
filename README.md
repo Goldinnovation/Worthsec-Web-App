@@ -67,7 +67,7 @@ Worthsec is a social media platform for events that offers accessibility for div
 </br>
 </br>
 
-### Project Setup and Contribution Guide - Backend 
+### Procedural Instructions - How to set up the backend server 
 
 This guide will help you set up the Worthsec project on your local machine, connect to Git, install dependencies, and start the application. Follow the steps below:
 
@@ -122,6 +122,7 @@ This guide will help you set up the Worthsec project on your local machine, conn
 
 #### 4. Credentials 
 - Contact your Supervisor for credential Information
+- Supervisor: Emmanuel Neuenhaus 
 
 
 
