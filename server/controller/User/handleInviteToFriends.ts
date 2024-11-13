@@ -1,95 +1,106 @@
-import { PrismaClient } from "@prisma/client";
-// const { json } = require("body-parser");
-const prisma = new PrismaClient();
+import prisma from '@/server/libs/prisma';
 import { Request, Response } from "express";
 
 
 
-// Display a list of currentUser close friends 
-
-
-
-interface AuthenticatedRequest extends Request{
+interface AuthenticatedRequest extends Request {
   user?: any
 }
 
-export async function getCloseFriends(req: AuthenticatedRequest, res: Response): Promise<void> {
-  const currentUser = req.user;
-  // console.log(user);
+export async function checkForUsersCloseFriends(req: AuthenticatedRequest, res: Response): Promise<void> {
 
   try {
-    if (currentUser) {
-      const currentUserFriends = await prisma.userTouser.findMany({
-        where: {
-          userRequested_id: currentUser.userId,
-          connection_status: 2,
-        },
-      });
 
-    
-      if (currentUserFriends.length > 0) {
-        const arrobj = currentUserFriends.map((friendsId: any) =>friendsId.userFollowed)
-        
-        const closefriendsData = await prisma.account.findMany({
-          where: {
-            userId:{
-              in: arrobj
-            } 
-          },
-          include: {
-            picture: true,
-          },
-        });
-        // console.log(closefriendsData);
-        res.json(closefriendsData);
-      }
+    const currentUser = req.user;
+
+    if (!currentUser) {
+      res.status(400).json({ message: "Bad Request: User data is required" })
+      return
     }
+
+    const userCloseFriends = await prisma.userTouser.findMany({
+      where: {
+        userRequested_id: currentUser.userId,
+        connection_status: 2,
+      },
+    });
+
+    if (userCloseFriends.length === 0) {
+      res.status(200).json({ message: "user does not have any close friends" })
+      return
+    }
+
+    getCloseFriendsAccData(userCloseFriends, req, res)
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .json({
-        message: "unexpected Error und on handlerFunction getCloseFriends ",
-      });
+    console.log("Server Error on checkForUsersCloseFriends handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 
 
-// Creates a record of the Friends that are invited to the Event of the currentUser
-export async function inviteClosefriendsToEvent(req: AuthenticatedRequest,res: Response): Promise<void>{
+const getCloseFriendsAccData = async (userCloseFriends: any, req: AuthenticatedRequest, res: Response) => {
 
-  console.log(req.body);
-
-  const inviteData= req.body
-  const currentUser= req.user
-
-  console.log(inviteData, currentUser);
-  console.log( currentUser.userId);
-
-  try{
-    if(inviteData && currentUser){
-      const createInviterecord = await prisma.invitation.create({
-        data: {
-          event_invitedTo_Id: inviteData.eventIdData,
-          otherUser_invited_Id: inviteData.friendsDataList,
-          currentUser_invite_Id: currentUser.userId
+  try {
+    const arrobj = userCloseFriends.map((friendsId: any) => friendsId.userFollowed)
+    const closefriendsData = await prisma.account.findMany({
+      where: {
+        userId: {
+          in: arrobj
         }
-      })
-      console.log(createInviterecord, "successful created Invitation")
-      res.status(200).json({message:"friends are successfully invited" });
+      },
+      include: {
+        picture: true,
+      },
+    });
 
+    res.status(200).json(closefriendsData);
+
+  } catch (error) {
+    console.log("Server Error on getCloseFriendsAccData handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+
+
+export async function inviteClosefriendsToEvent(req: AuthenticatedRequest, res: Response): Promise<void> {
+  try {
+
+    const userId = req.user.userId
+    const eventId = req.body.eventIdData
+    const friendsList = req.body.friendsDataList
+
+    if (!userId) {
+      res.status(400).json({ message: "Bad Request: userId is required" })
+      return
     }
 
-  }catch(error){
-    console.log(error);
-    res
-      .status(500)
-      .json({
-        message: "unexpected Error und on inviteClosefriendsToEvent server handler function ",
-      });
+    if (!eventId) {
+      res.status(400).json({ message: "Bad Request: eventId is required" })
+      return
+    }
+
+    if (!friendsList) {
+      res.status(400).json({ message: "Bad Request: friendsList data is required" })
+      return
+    }
+
+    await prisma.invitation.create({
+      data: {
+        event_invitedTo_Id: eventId,
+        otherUser_invited_Id: friendsList,
+        currentUser_invite_Id: userId
+      }
+    })
+
+    res.status(200).json({ message: "Friends are successfully invited" });
+
+  } catch (error) {
+    console.log("Server Error on inviteClosefriendsToEvent handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
   }
 
 }
 
-export default {inviteClosefriendsToEvent, getCloseFriends}
+export default { inviteClosefriendsToEvent, checkForUsersCloseFriends }
