@@ -21,32 +21,27 @@ interface AuthenticatedRequest extends Request{
 
 
 
-const userlogin = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
+const userLogin = (req: AuthenticatedRequest,res: Response,next: NextFunction) => {
     
-    passport.authenticate('local', (err: Error, user: Express.User | false, info: {message: string} | undefined) => {
+    passport.authenticate("local", (err: Error, user: Express.User | false, info: {message: string} | undefined) => {
     if (err) {
-        console.log('error')
-      return res.status(500).json({ message: 'Authentication Error' });
+        console.log("error")
+      return res.status(500).json({ message: "Authentication Error" });
     }
     if (!user) {
-        console.log('user not found')
-      return res.status(401).json('user not found');
+        console.log("user not found")
+      return res.status(401).json("user not found");
     }
     req.login(user, (err) => {
       if (err) {
-        console.log('user not catched')
-        return res.status(500).json({ message: 'Session error' });
+        console.log("user not catched")
+        return res.status(500).json({ message: "Session error" });
       }
-      console.log('user catched')
+      console.log("user catched")
      res.json({message: "Login Successful"}) 
     });
   })(req, res, next);
 
-    
-
-   
-
-  
 }
 
-export default userlogin
+export default userLogin
