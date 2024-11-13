@@ -14,27 +14,27 @@ import { Response, Request, NextFunction } from "express"
 
 
 
-const logout = (req: Request,res: Response, next: NextFunction) => {
-    if(req.isAuthenticated()){
-        console.log('inside Logout')
-       req.logout(function(err){
-        if(err){
-            console.log(err)
-            return next(err)
-        }else{
-            console.log('user is logged out')
-            return res.status(200).json({message: 'user is logged out'})
+const logout = (req: Request, res: Response, next: NextFunction) => {
+    try {
+
+        if (!req.isAuthenticated()) {
+            res.json({ message: 'falied to logout' })
+            return
         }
-        
-       })
 
-    }else{
-        return res.json({message: 'falied to logout'})
+        req.logout(function (err) {
+            if (err) {
+                return next(err)
+            } else {
+                res.status(200).json({ message: 'user is logged out' })
+                return
+            }
+        })
+
+    } catch (error) {
+        console.log("Server Error on logout handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
     }
-
-  
-
-
 }
 
 export default logout
