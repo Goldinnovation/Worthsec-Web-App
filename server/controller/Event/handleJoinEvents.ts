@@ -57,8 +57,8 @@ async function userJoinEvent(req: AuthenticatedRequest, res: Response): Promise<
 
 
     } catch (error) {
-        console.error('Unexpected server-side error in userJoinEvent function:', error)
-        res.status(500).json({ message: "Internal Server Error"})
+        console.log("Server Error on userJoinEvent handler function, CatchBlock - True:", error)
+        res.status(500).json({ message: "Internal Server Error" });
 
     }
 
