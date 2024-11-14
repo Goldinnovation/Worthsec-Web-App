@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model account {
   userId          String            @id @default(uuid())
   userName        String            @unique
@@ -21,6 +26,7 @@ model account {
   event           event[]
   invitation      invitation[]
   userInterest    userInterest?
+  role            Role?              @default(USER)
 
   @@index(fields: [userName])
 }
