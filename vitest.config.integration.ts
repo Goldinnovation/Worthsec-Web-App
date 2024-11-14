@@ -15,9 +15,7 @@ export default defineConfig({
         },
         include: [
           'server/__tests__/integration/**/*.test.ts'
-        ],
-    
-       
+        ],     
       },
     server: {
         open: true

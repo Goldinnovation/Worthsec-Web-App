@@ -5,8 +5,11 @@
 /.pnp
 .pnp.js
 .env
+.env.test
 
 *.mp4
+
+
 
 # testing
 /coverage

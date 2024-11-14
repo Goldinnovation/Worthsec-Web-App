@@ -5,33 +5,35 @@ import next from 'next';
 import bodyParser from 'body-parser';
 import dev from 'process';
 import passport from 'passport';
-import eventRequest from './router/eventprompt';
-import signupRequest from './router/userSignup';
+import eventRequest from './router/Event/eventprompt';
+import signupRequest from './router/Auth/userSignup';
 import passportConfig from './config/passport';
 import isAuth from './Middlware/Auth/isAuth';
 import loginReq from './router/Auth/userLogin';
-import LoginToken from './router/loginToken'
+import LoginToken from './router/Auth/loginToken'
 import { PrismaClient } from '@prisma/client';
 import Seqstore from 'connect-session-sequelize';
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
-import logoutReq from './router/userLogout';
-import userReq from './router/user/userInfos';
+import logoutReq from './router/Auth/userLogout';
+import userReq from './router/User/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
-import searchUserReq from './router/userSearch';
-import userFollowUser from './router/userToUser';
-import exploreEvents from './router/exploreEvents'
-import userFavorEvent from './router/Event/favorEvent';
+import searchUserReq from './router/User/userSearch';
+import userFollowUser from './router/User/userToUser';
+import exploreEvents from './router/Event/exploreEvents'
 import userJoinEvent from './router/Event/userJoinEvent';
-import displayUserJoinEvent from './router/displayJoinedEvents';
-import searchForCloseFriend from './router/userClosefriends';
-import inviteCloseFriends from './router/invitefriends';
-import userNotifications from './router/user/userNotifications'; 
-import userInterestDatarouter from './router/user/userInterestData'
-import userCategoryEventReq from './router/userCategory'
+import displayUserJoinEvent from './router/Event/displayJoinedEvents';
+import searchForCloseFriend from './router/User/userClosefriends';
+import inviteCloseFriends from './router/User/invitefriends';
+import userNotifications from './router/User/userNotifications'; 
+import userInterestDatarouter from './router/User/userInterestData'
+import userCategoryEventReq from './router/Event/userCategory'
 import userFavorEventReqMob from './router/Event/favorEventMobile'
+import newExploreEventData from './router/Event/newExploreData'
+import uploadUserBackground from './router/User/userGifbg'
 import expressSession from "express-session";
+
 import nextConfig from '@/next.config.js';
 // import conf from '../next.config.mjs';
 // import firebaseConfig from './config/firebase';
@@ -39,39 +41,37 @@ import nextConfig from '@/next.config.js';
 
 
 
+const index = express();
 
-const app = express();
-
-app.use(express.json())
+index.use(express.json())
 
 
-app.use('/api/events', eventRequest);
-app.use('/api/signUpAcc', signupRequest);
-app.use('/api/login', loginReq);
-app.use('/api/login-token',LoginToken)
-app.use('/api/logout', logoutReq);
-app.use('/api/user', userReq);
-app.use('/user', isAuth);
-app.use('/api/search', searchUserReq);
-app.use('/api/userTouser', userFollowUser);
-app.use('/api/explore', exploreEvents);
-app.use('/api/favorEvent', userFavorEvent);
-app.use('/api/JoinEvent', userJoinEvent);
-app.use('/api/DisplayJoinedEvent', displayUserJoinEvent);
-app.use('/api/searchforclosefriends', searchForCloseFriend);
-app.use('/api/invite', inviteCloseFriends);
-app.use('/api/notifications', userNotifications);
-app.use('/api/userInterest', userInterestDatarouter)
-app.use('/api/eventCategory', userCategoryEventReq)
-app.use('/api/favorEventMobile', userFavorEventReqMob)
+index.use('/api/events', eventRequest);
+index.use('/api/signUpAcc', signupRequest);
+index.use('/api/login', loginReq);
+index.use('/api/login-token',LoginToken)
+index.use('/api/logout', logoutReq);
+index.use('/api/user', userReq);
+index.use('/user', isAuth);
+index.use('/api/search', searchUserReq);
+index.use('/api/userTouser', userFollowUser);
+index.use('/api/explore', exploreEvents);
+index.use('/api/JoinEvent', userJoinEvent);
+index.use('/api/DisplayJoinedEvent', displayUserJoinEvent);
+index.use('/api/searchforclosefriends', searchForCloseFriend);
+index.use('/api/invite', inviteCloseFriends);
+index.use('/api/notifications', userNotifications);
+index.use('/api/userInterest', userInterestDatarouter)
+index.use('/api/eventCategory', userCategoryEventReq)
+index.use('/api/favorEventMobile', userFavorEventReqMob)
 
 
 
 
 const port = 4000;
-app.listen(port, (err?: Error) => {
+index.listen(port, (err?: Error) => {
     if (err) throw err;
     console.log(`Ready on http://localhost:${port}`);
 });
 
-export default app
+export default index
