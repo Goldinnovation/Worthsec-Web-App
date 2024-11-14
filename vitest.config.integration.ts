@@ -17,9 +17,7 @@ export default defineConfig({
           'server/__tests__/integration/**/*.test.ts'
         ],
     
-        exclude: [
-            'server/__tests__/unit/**/*.test.ts'  
-        ]
+       
       },
     server: {
         open: true

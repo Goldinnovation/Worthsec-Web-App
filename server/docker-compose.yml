@@ -1,15 +1,16 @@
-verison: "3.9"
+version: "3.9"
 
 services:
-    db:
-      image: postgres:latest
-      env_file: .env_file
-      restart: always
-      container_name: integration-tests
-      ports: 
-          -"5030:5432"
-      enviroment: 
-        POSTGRES_USER: prisma
-        POSTGRES_PASSWORD: prisma
-        POSTGRES_DB: test 
+  db:
+    image: postgres:latest
+    container_name: integration-tests
+    env_file: .env.test
+    restart: always
+    ports:
+      - "5030:5432"
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: test
+
 
