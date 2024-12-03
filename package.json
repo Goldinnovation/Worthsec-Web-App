@@ -12,11 +12,8 @@
     "test:ui": "vitest --ui",
     "prepare": "husky",
     "scraper": "tsx watch scraper/server.ts",
-    "db:up": "docker compose up -d db",
-    "db:down": "docker compose down db",
-    "pretest:i": "npm run db:up && npx prisma migrate deploy",
-    "test:i": "vitest run --config ./vitest.config.integration.ts",
-    "posttest: i": "npm run db:down"
+    "test:i": "vitest --config ./vitest.config.integration.ts"
+    
   },
   "prisma": {
     "schema": "./server/prisma/schema.prisma"
