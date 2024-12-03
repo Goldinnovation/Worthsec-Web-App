@@ -21,24 +21,31 @@ const CategoryConvertToken = (
   res: Response,
   next: NextFunction
 )  =>  {
-  if (req.body) {
-    const SECRET_KEY = process.env.SECRET_KEY as string;
-    const usertoken = req.body.token;
-    const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload;
+  try{
+    if (req.body) {
+      const SECRET_KEY = process.env.SECRET_KEY as string;
+      const usertoken = req.body.token;
+      const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload;
     
-    
-    (req as AuthenticatedRequest).decodedUserId = decoded.userId;
-    
+      
+      (req as AuthenticatedRequest).decodedUserId = decoded.userId;
+      
+  
+      next();
+    } else {
+      res
+        .status(400)
+        .json({
+          Message:
+            "There have been a bad Request on the converToken middleware function",
+        });
+    }
 
-    next();
-  } else {
-    res
-      .status(400)
-      .json({
-        Message:
-          "There have been a bad Request on the converToken middleware function",
-      });
+  }catch(error){
+    console.error("Unexpected Error - CategoryConvertToken middleware function", error)
+    res.status(500).json({message: "Internal Server Error"})
   }
+  
 };
 
 export default CategoryConvertToken;
