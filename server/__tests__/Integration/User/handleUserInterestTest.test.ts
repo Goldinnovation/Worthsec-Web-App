@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import supertest from 'supertest'; // For making HTTP requests to the API
 import index from '@/server';
-import prisma from "../../libs/__mocks__/prisma";
+import prisma from "../../../libs/__mocks__/prisma";
 import { getMockReq, getMockRes } from "vitest-mock-express";
 import { Request, Response } from "express";
 import { vi } from "vitest";
@@ -28,19 +28,30 @@ describe('API Integration Tests', () => {
       await prisma.$disconnect(); // Disconnect Prisma after tests
     });
 
-  const mockRequest = getMockReq<AuthenticatedRequest>({
-    decodedUserId: "sdfsdfops",
-    favoreventId: "kudssio",
+//   const mockRequest = getMockReq<AuthenticatedRequest>({
+//     decodedUserId: "sdfsdfops",
+//     favoreventId: "kudssio",
 
+//   });
+
+const mockRequest = getMockReq<AuthenticatedRequest>({
+    decodedUserId: "sdfsdfops",
+    body: {
+      pickedIntesrest: ["time", "Movie", "Festival", "Movie", "Techno"]
+    }
   });
+
 
   it('should retunr an error status code of 400 ', async () => {
 
-    const response = await request.post('/api/favorEventMobile')
+    const response = await request.post('/api/userInterest')
       .send(mockRequest)
 
+ 
+
     expect(response.status).toBe(400);
-  });
+
+  }); 
 
 
 

@@ -1,12 +1,11 @@
 import { Router } from "express"
 const router = Router()
 import { userFavorsEvent, getUserFavoredEvents } from '../../controller/Event/handleFavorEvent'
-import CategoryConvertToken from "../../Middlware/User/categoryConverToken";
+import tokenDecodeAuth from "@/server/Middlware/User/tokenAuthDecoder";
 
 
 
-
-router.get('/', CategoryConvertToken, getUserFavoredEvents)
+router.get('/', tokenDecodeAuth, getUserFavoredEvents)
 
 router.post('/', userFavorsEvent)
 
