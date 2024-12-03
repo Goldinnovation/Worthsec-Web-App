@@ -26,6 +26,7 @@ export async function getUserJoinedEvents(req: AuthenticatedRequest,res: Respons
      try{
         const currentUser = req.user.userId
 
+        console.log('currentUser',currentUser);
         if (!currentUser) {
             res.status(400).json({ message: "Bad Request: currentUser data is invalid" });
         }

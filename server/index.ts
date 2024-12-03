@@ -46,6 +46,14 @@ const index = express();
 index.use(express.json())
 
 
+
+index.use((req, res, next) => {
+    if (req.body?.userId) {
+      req.user = { userId: req.body.userId }; // Map userId to req.user
+    }
+    next();
+  });
+  
 index.use('/api/events', eventRequest);
 index.use('/api/signUpAcc', signupRequest);
 index.use('/api/login', loginReq);
