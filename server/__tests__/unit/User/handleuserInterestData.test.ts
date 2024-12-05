@@ -65,7 +65,7 @@ it("should store the user selected interest data and return a message", async ()
     id: 1, // Simulate generated ID
   };
 
-  await prisma.userInterest.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+  await prisma.userInterest.create.mockResolvedValue(mockedprismaResponse); 
 
   await storeInterestData(mockRequest, mockResponse, nextFunction);
 
