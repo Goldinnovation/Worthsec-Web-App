@@ -45,11 +45,7 @@ const ErrorRequest = getMockReq<AuthenticatedRequest>({
   
 });
 
-
-const TryCatchBlockTest = getMockReq<AuthenticatedRequest>({
-
-  
-}); 
+ 
 
 // Mock Response Data
 const { res: mockResponse, next: nextFunction} = getMockRes({
