@@ -19,6 +19,8 @@ interface AuthenticatedRequest extends Request {
   user?: any;
 }
 
+type Role = 'ADMIN' | 'USER';
+
 // mocks the prisma client ads the prisma mockDeep CLient to access the nested properties of prisma
 vi.mock("../../../libs/prisma", async () => {
   const actual = await vi.importActual<
@@ -40,6 +42,7 @@ vi.mock("../../../libs/prisma", async () => {
     userName: "EWDewew", 
     userEmail: "dscdssd",
     userPassword1: "DScsdcsd", 
+    role: "USER" as Role
   };
 
 
@@ -116,6 +119,8 @@ describe("Get Method - Successful Request - check if the user exist and queries 
       userName: "EWDewew", 
       userEmail: "dscdssd",
       userPassword1: "DScsdcsd",
+      role: "USER" as Role
+
     };
 
     const processUserDataSpy = vi.spyOn(processUserData, 'processUserData').mockResolvedValue();
@@ -264,6 +269,7 @@ describe("Get Method - Error Request - checks if the Error Request receives a re
       userName: "EWDewew",
       userEmail: "dscdssd",
       userPassword1: "DScsdcsd",
+      role: "USER" as Role
     };
 
     const mockedEventDataResponse = [

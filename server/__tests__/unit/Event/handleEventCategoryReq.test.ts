@@ -96,7 +96,7 @@ describe("Post Method - Successful Request - selected category type queries the 
   }]
   
   
-    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); 
   
    await userGetCategoryEvent(mockRequest, mockResponse, NextFunction)
   

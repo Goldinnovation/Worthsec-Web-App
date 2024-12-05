@@ -52,12 +52,7 @@ import {
 
  
   
- 
-  const { res: serverResponse} = getMockRes({
-    status: vi.fn().mockReturnThis(),
-    json: vi.fn(),
-  });
-  
+
 
 
 describe("Post Method - successful Request call ", () => {
@@ -69,12 +64,18 @@ describe("Post Method - successful Request call ", () => {
       return `data`
     })
 
-    const userRequest = getMockReq<AuthenticatedRequest>({
+    const mockreq = getMockReq<AuthenticatedRequest>({
       decodedUserId: "sdfsdfops",
       body: {
         EventDataId: eventList
       }
     });
+     
+  const { res: mockres} = getMockRes({
+    status: vi.fn().mockReturnThis(),
+    json: vi.fn(),
+  });
+  
 
 
     const mockedprismaResponse = [{
@@ -98,17 +99,17 @@ describe("Post Method - successful Request call ", () => {
 
     await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
 
-    await updatetoNewEventData(userRequest, serverResponse);
+    await updatetoNewEventData(mockreq, mockres);
 
     // checks the statuscode 
-     expect(serverResponse.status).toHaveBeenCalledWith(200);
+     expect(mockres.status).toHaveBeenCalledWith(200);
     // checks if the json function was called once 
-     expect(serverResponse.json).toHaveBeenCalledTimes(1); 
+     expect(mockres.json).toHaveBeenCalledTimes(1); 
     // Checks if the json response is an array
-     expect(serverResponse.json).toHaveBeenCalledWith(expect.any(Array)) 
+     expect(mockres.json).toHaveBeenCalledWith(expect.any(Array)) 
 
     // Checks the array Structure 
-     expect(serverResponse.json).toBeCalledWith(expect.arrayContaining([ 
+     expect(mockres.json).toBeCalledWith(expect.arrayContaining([ 
 
        expect.objectContaining({
          eventId: "212",

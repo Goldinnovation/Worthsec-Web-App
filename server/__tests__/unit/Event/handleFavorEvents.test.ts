@@ -82,45 +82,14 @@ import {
 
   
   
-  // Mock Response Data
+ 
 
+  
 
-
-  // describe("Post Method - Successful Request on userFavorEventMobile function - should store an event id and user id in the database ", () => {
+  describe("Post Method - Successful Request on getEventDetails function - should get event details ", () => {
     
-  // it("should store the event Id that user selected as favored", async () => {
-  //   const mockedprismaResponse = {
-  //       currentUser_id: "sdfsdfopsd",
-  //       event_id: "sdsdfsd",
-  //       createdAt: new Date(),
-  //       favourId : "1", 
-  //   };
-
-  //   const { res: mockResponse} = getMockRes({
-  //     status: vi.fn().mockReturnThis(),
-  //     json: vi.fn(),
-  //   }); 
-  
-  
-  //   await prisma.userFavourEvent.create.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
-  
-  //   await userFavoredEvent(mockRequest, mockResponse)
-   
-  //   expect(mockResponse.status).toHaveBeenCalledWith(200);
-  //   expect(mockResponse.json).toHaveBeenCalledWith({
-  //     message: "User successfully favored an event",
-  //   }); 
-  // });
-  // })
-
-
-  
-
-  describe("Post Method - Successful Request on getUserFavoredEvents function - should store an event id and user id in the database ", () => {
-    
-    it("should store the event Id that user selected as favored", async () => {
+    it("should get event details ", async () => {
      
-      // const userFavoredEvent = vi.spyOn(findsEventsUserFavored, 'findsEventsUserFavored').mockResolvedValue();
 
       const { res: mockResponse} = getMockRes({
         status: vi.fn().mockReturnThis(),
@@ -137,7 +106,7 @@ import {
       });
     
 
-      const mockedprismaResponse =  [{
+      const mockedprismaReq =  [{
         eventId: "212",
         eventHost: "dsd",
         eventHostName: "dsdssd",
@@ -157,12 +126,12 @@ import {
     
 
     
-    await prisma.event.findMany.mockResolvedValue(mockedprismaResponse); //mocked Prisma Client instance
+    await prisma.event.findMany.mockResolvedValue(mockedprismaReq); //mocked Prisma Client instance
 
     
-      await getEventDetails(mockedprismaResponse, mockResponse)
+      await getEventDetails(mockedprismaReq, mockResponse)
 
-      // expect(mockResponse.status).toHaveBeenCalledWith(200);
+      expect(mockResponse.status).toHaveBeenCalledWith(200);
  
       expect(mockResponse.json).toBeTypeOf("function")
 

@@ -12,7 +12,12 @@
     "test:ui": "vitest --ui",
     "prepare": "husky",
     "scraper": "tsx watch scraper/server.ts",
-    "test:i": "vitest --config ./vitest.config.integration.ts"
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down db",
+    "pretest:i": "docker-compose down -v && docker-compose up -d db && npx prisma migrate deploy",
+    "test:i": "vitest --config ./vitest.config.integration.ts",
+    "posttest: i": "npm run db:down"
+
     
   },
   "prisma": {
