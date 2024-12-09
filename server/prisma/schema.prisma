@@ -26,7 +26,7 @@ model account {
   event           event[]
   invitation      invitation[]
   userInterest    userInterest?
-  role            Role?              @default(USER)
+  role            Role?             @default(USER)
 
   @@index(fields: [userName])
 }
@@ -43,6 +43,7 @@ model picture {
   picture_owner    account  @relation(fields: [picture_owner_id], references: [userId])
   picture_owner_id String   @unique
   pictureUrl       String
+  gifUrl           String?
   createdAt        DateTime @default(now())
 
   @@index(fields: [picture_owner_id])
