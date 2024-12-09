@@ -18,7 +18,11 @@ export async function handleUserDataInfoReq(req: AuthenticatedRequest, res: Resp
  
     try{
         const currentUserId = req.user.userId
-        console.log('currentUser', currentUserId);
+
+        if (!currentUserId || currentUserId === undefined || currentUserId === " ") {
+            res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
+            return;
+        }
 
         const getUserData = await prisma.account.findUnique({
             where: {
@@ -26,13 +30,13 @@ export async function handleUserDataInfoReq(req: AuthenticatedRequest, res: Resp
             }, include: {
                 picture: {
                     select: {
-                        pictureUrl: true
+                        pictureUrl: true, 
+                        gifUrl: true
                     }
                 }
             }
         })
-        res.json({message: "Succesfull connected to backend"})
-
+        res.status(200).json(getUserData)
 
     }catch(error){
         console.error("Unexpected Server on Error on handleUserDataInfoReq", error)
