@@ -11,8 +11,6 @@ import passportConfig from './config/passport';
 import isAuth from './Middlware/Auth/isAuth';
 import loginReq from './router/Auth/userLogin';
 import LoginToken from './router/Auth/loginToken'
-import { PrismaClient } from '@prisma/client';
-import Seqstore from 'connect-session-sequelize';
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/Auth/userLogout';
@@ -32,13 +30,8 @@ import userCategoryEventReq from './router/Event/userCategory'
 import userFavorEventReqMob from './router/Event/favorEventMobile'
 import newExploreEventData from './router/Event/newExploreData'
 import uploadUserBackground from './router/User/userGifbg'
+import UserDataMobile from './router/User/userDataMobile'
 import expressSession from "express-session";
-
-import nextConfig from '@/next.config.js';
-// import conf from '../next.config.mjs';
-// import firebaseConfig from './config/firebase';
-
-
 
 
 
@@ -109,6 +102,8 @@ app.prepare().then(() => {
     server.use('/api/favorEventMobile', userFavorEventReqMob)
     server.use('/api/newExploreEventData', newExploreEventData)
     server.use('/api/uploadUserBackground', uploadUserBackground)
+    server.use('/api/userData', UserDataMobile)
+
 
 
   
