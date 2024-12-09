@@ -111,7 +111,7 @@ const uploadFileToFirebase = async (storageRef: any, compromiseGifData: any, met
     const snapshot = await uploadaction;
     const uploadedGifUrl = await getDownloadURL(snapshot.ref);
 
-    handleUploadGifUrl(uploadedGifUrl, req, res)
+    handleUploadGifUrlToDB(uploadedGifUrl, req, res)
 
   } catch (error) {
     console.log("Server Error on uploadFileToFirebase handler function, CatchBlock - True:", error)
@@ -123,14 +123,21 @@ const uploadFileToFirebase = async (storageRef: any, compromiseGifData: any, met
 
 
 
-const handleUploadGifUrl = async (gifUrl: string, req: AuthenticatedRequest, res: Response) => {
-
-  const currentUser = req.user.userId
+const handleUploadGifUrlToDB = async (gifUrl: string, req: AuthenticatedRequest, res: Response) => {
 
   try {
+
+    const currentUserId = req.user.userId
+
+    
+    if (!currentUserId || currentUserId === undefined || currentUserId === " ") {
+      res.status(400).json({ message: 'Invalid Request, currentUserId is required' });
+      return;
+  }
+
     await prisma.picture.update({
       where: {
-        picture_owner_id: currentUser,
+        picture_owner_id: currentUserId,
 
       },
       data: {
