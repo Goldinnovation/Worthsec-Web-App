@@ -110,12 +110,41 @@ const uploadFileToFirebase = async (storageRef: any, compromiseGifData: any, met
 
     const snapshot = await uploadaction;
     const uploadedGifUrl = await getDownloadURL(snapshot.ref);
-    res.json(uploadedGifUrl);
+
+    handleUploadGifUrl(uploadedGifUrl, req, res)
 
   } catch (error) {
     console.log("Server Error on uploadFileToFirebase handler function, CatchBlock - True:", error)
     res.status(500).json({ message: "Internal Server Error" });
   }
+
+
+}
+
+
+
+const handleUploadGifUrl = async (gifUrl: string, req: AuthenticatedRequest, res: Response) => {
+
+  const currentUser = req.user.userId
+
+  try {
+    await prisma.picture.update({
+      where: {
+        picture_owner_id: currentUser,
+
+      },
+      data: {
+        gifUrl: gifUrl
+      }
+    })
+    res.json({ message: "Successfully created the gif Image upload" })
+
+  }
+  catch (error) {
+    console.log("Server Error on handleUploadGifUrl handler function, CatchBlock - True:", error)
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+
 
 
 }
