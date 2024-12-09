@@ -135,7 +135,7 @@ const handleUploadGifUrlToDB = async (gifUrl: string, req: AuthenticatedRequest,
       return;
   }
 
-    await prisma.picture.update({
+   const updatedBackGround =  await prisma.picture.update({
       where: {
         picture_owner_id: currentUserId,
 
@@ -144,6 +144,8 @@ const handleUploadGifUrlToDB = async (gifUrl: string, req: AuthenticatedRequest,
         gifUrl: gifUrl
       }
     })
+
+    console.log('updatedBackGround', updatedBackGround);
     res.json({ message: "Successfully created the gif Image upload" })
 
   }
