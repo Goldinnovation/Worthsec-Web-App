@@ -69,12 +69,12 @@ export const processUserData = (userData: any, req: AuthenticatedRequest, res: R
         const currentUserFriends = userData?.userTouser
         const userFriendsId: any = currentUserFriends?.map((prev: any) => prev?.userFollowed || [])
     
-        if (currentUserInterestData && userFriendsId.length > 0) {
-            getUserFriendsInterests(currentUserInterestData, userFriendsId, req, res)
-        } else {
+        // if (currentUserInterestData && userFriendsId.length > 0) {
+        //     getUserFriendsInterests(currentUserInterestData, userFriendsId, req, res)
+        // } else {
             getSpecifiedEventData(currentUserInterestData, req, res)
     
-        }
+        // }
 
     }catch(error){
         console.log("Unexpected Server Error on processUserData function, CatchBlock - True:", error)
@@ -187,14 +187,14 @@ export const getSpecifiedEventData = async (data: string[] | undefined, req: Aut
                 eventType: {
                     in: data
                 },
-                eventDate: {
-                    gte: today,
-                    lte: endDate
-                },
+                // eventDate: {
+                //     gte: today,
+                //     lte: endDate
+                // },
             },
-            orderBy: {
-                eventDate: 'asc'
-            },
+            // orderBy: {
+            //     eventDate: 'asc'
+            // },
             take: 24
         });
 
