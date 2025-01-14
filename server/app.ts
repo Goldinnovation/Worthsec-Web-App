@@ -31,6 +31,7 @@ import userFavorEventReqMob from './router/Event/favorEventMobile'
 import newExploreEventData from './router/Event/newExploreData'
 import uploadUserBackground from './router/User/userGifbg'
 import UserDataMobile from './router/User/userDataMobile'
+import userQRRequest from './router/User/userQrRequest'
 import expressSession from "express-session";
 
 
@@ -103,6 +104,7 @@ app.prepare().then(() => {
     server.use('/api/newExploreEventData', newExploreEventData)
     server.use('/api/uploadUserBackground', uploadUserBackground)
     server.use('/api/userData', UserDataMobile)
+    server.use('/api/userQRRequest', userQRRequest)
 
 
 
