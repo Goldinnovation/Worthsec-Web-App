@@ -14,7 +14,7 @@ import LoginToken from './router/Auth/loginToken'
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/Auth/userLogout';
-import userReq from './router/User/userInfos';
+import userProfilePicture from './router/User/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
 import searchUserReq from './router/User/userSearch';
@@ -33,6 +33,7 @@ import uploadUserBackground from './router/User/userGifbg'
 import UserDataMobile from './router/User/userDataMobile'
 import userQRRequest from './router/User/userQrRequest'
 import expressSession from "express-session";
+import uploadMobileUserProfilePicture from './router/User/userProfilePictureMobileUpload'
 
 
 
@@ -88,7 +89,7 @@ app.prepare().then(() => {
     server.use('/api/login', loginReq);
     server.use('/api/login-token',LoginToken)
     server.use('/api/logout', logoutReq);
-    server.use('/api/user', userReq);
+    server.use('/api/user', userProfilePicture);
     server.use('/user', isAuth);
     server.use('/api/search', searchUserReq);
     server.use('/api/userTouser', userFollowUser);
@@ -105,6 +106,7 @@ app.prepare().then(() => {
     server.use('/api/uploadUserBackground', uploadUserBackground)
     server.use('/api/userData', UserDataMobile)
     server.use('/api/userQRRequest', userQRRequest)
+    server.use('/api/userProfilePictureMobileUpload', uploadMobileUserProfilePicture);
 
 
 
