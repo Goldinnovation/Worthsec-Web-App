@@ -34,8 +34,7 @@ import UserDataMobile from './router/User/userDataMobile'
 import userQRRequest from './router/User/userQrRequest'
 import expressSession from "express-session";
 import uploadMobileUserProfilePicture from './router/User/userProfilePictureMobileUpload'
-
-
+import uploadUserGifBgMobile from './router/User/userGifBgMobile'
 
 
 const store = new (connectPgSimple(expressSession))({
@@ -107,6 +106,9 @@ app.prepare().then(() => {
     server.use('/api/userData', UserDataMobile)
     server.use('/api/userQRRequest', userQRRequest)
     server.use('/api/userProfilePictureMobileUpload', uploadMobileUserProfilePicture);
+    server.use('/api/uploadGifBgMobile', uploadUserGifBgMobile);
+
+    
 
 
 

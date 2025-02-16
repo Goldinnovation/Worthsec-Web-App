@@ -104,7 +104,7 @@ export const uploadImageUrlToDatabase   = async(userId:string, cloudImgUrl: stri
       });
       console.log('createPic record', uploadImage);
 
-      res.status(200).json({message: "image was successfully stored"})
+      res.status(200).json({message: "Image was successfully stored"})
 
      }catch(error){
 
