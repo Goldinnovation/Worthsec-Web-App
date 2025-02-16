@@ -10,8 +10,6 @@ import { initializeApp } from 'firebase/app'
 import config from '../../config/firebase'
 import sharp from 'sharp'
 
-
-
 interface AuthenticatedRequest extends Request{
     user?: any;
     decodedUserId: any
@@ -25,64 +23,97 @@ const storage = getStorage();
 
 
 export async function uploadProfilePicture(req: Request, res: Response): Promise<void>{
-// 
-    // console.log('req overall', req.body);
+
+  
     try{
       const userId = (req as AuthenticatedRequest)?.decodedUserId
-       const base64String = req.body.image
-      const buffer = Buffer.from(base64String, "base64")
-      const fileName =  req.body.imageName
-      const mimetype = req.body.imageMimeType
+      const imageBuffer = req.file?.buffer
+      const fileName =  req.file?.originalname as string ??  "defaultName"
+      const mimetype = req.file?.mimetype as string ??  "image/jpeg"
 
       if (!userId || userId === undefined || userId === " ") {
         res.status(400).json({ message: 'Invalid Request, userId is required' });
         return
       }
+      if (!imageBuffer || imageBuffer === undefined ) {
+        res.status(400).json({ message: 'Invalid Request, imageBuffer is required on File' });
+        return
+      }
 
 
-     const cloudImage = await processImage(buffer, fileName, mimetype)
-     console.log('cloudImage',cloudImage);
-     res.json({message: "connected with the backend"})
+     await addImagetoCloud(imageBuffer, fileName, mimetype, userId, res)
 
-    
 
 
     }catch(error){
       console.error('Erron on function:uploadProfilePicture', error);
+      res.status(500).json({ message: "Internal Server Error" });
+
     }
 }
 
 
-export const processImage = async(buffer: any, fileName:string, mimetype: string) => {
+export const addImagetoCloud = async(buffer: any, fileName:string, mimetype: string, userId:string, res: Response) => {
 
-  console.log('in processImAGE');
+  try{
+
+    const dateTime = giveCurrentDateTime();
+    const storageRef = ref(storage, `userProfileImage/${dateTime}_${fileName}`);
   
-  const dateTime = giveCurrentDateTime();
-  const storageRef = ref(storage, `userProfileImage/${dateTime}_${fileName}`);
+  
+    const metadata = {
+      contentType: mimetype,
+    };
+  
+    
+  
+    const uploadaction = uploadBytesResumable(
+      storageRef,
+      buffer,
+      metadata
+    );
+  
+      const snapshot = await uploadaction;
+      const ImageUrl = await getDownloadURL(snapshot.ref);
 
+      if(ImageUrl){
+        await uploadImageUrlToDatabase( userId, ImageUrl, res)
+      }
+    
 
-  const metadata = {
-    contentType: mimetype,
-  };
+  }catch(error){
 
-  const compromiseImage = await sharp(buffer)
-  .resize({ width: 800, height: 1050 })
-  .webp({ quality: 100 })
-  .toBuffer();
+    console.error('Erron on function: addImagetoCloud', error);
+    res.status(500).json({ message: "Internal Server Error" });
 
-  const uploadaction = uploadBytesResumable(
-    storageRef,
-    compromiseImage,
-    metadata
-  );
-
-  const snapshot = await uploadaction;
-  const ImageUrl = await getDownloadURL(snapshot.ref);
-
-  return ImageUrl
+  }
+  
+ 
 
 } 
 
+
+export const uploadImageUrlToDatabase   = async(userId:string, cloudImgUrl: string, res: Response) => {
+     try{
+
+      const uploadImage = await prisma.picture.create({
+        data:{
+          picture_owner_id: userId, 
+          pictureUrl: cloudImgUrl
+        }
+      });
+      console.log('createPic record', uploadImage);
+
+      res.status(200).json({message: "image was successfully stored"})
+
+     }catch(error){
+
+      console.error('Erron on function: uploadImageUrlToDatabase', error);
+      res.status(500).json({ message: "Internal Server Error" });
+
+     }
+
+}
 
 export default uploadProfilePicture
 
