@@ -172,13 +172,17 @@ export const FirebaseService = async(req: AuthenticatedRequest, res: Response) =
         .jpeg({ quality: 80 })
         .toBuffer();
 
+     const compromiseImageUint8Array = new Uint8Array(compromiseImage);
+
+     console.log('compromiseImageUint8Array', compromiseImageUint8Array);
+
       const metadata = {
         contentType: file.mimetype,
       };
 
       const uploadaction = uploadBytesResumable(
         storageRef,
-        compromiseImage,
+        compromiseImageUint8Array,
         metadata
       );
 

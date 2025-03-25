@@ -150,11 +150,13 @@ export const processImageData = async (req: AuthenticatedRequest, res: Response)
       .jpeg({ quality: 80 })
       .toBuffer();
 
+    const compromiseImageUint8Array = new Uint8Array(compromiseImage);
+
     const metadata = {
       contentType: file.mimetype
     }
 
-    const uploadaction = uploadBytesResumable(storageRef, compromiseImage, metadata)
+    const uploadaction = uploadBytesResumable(storageRef, compromiseImageUint8Array, metadata)
 
     const snapshot = await uploadaction;
 

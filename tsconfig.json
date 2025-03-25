@@ -8,11 +8,12 @@
       "esnext"
     ],
     "allowJs": true, 
+    "outDir": "./dist",  
     "checkJs": false, 
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
     "module": "ESNext",
     "moduleResolution": "node",
