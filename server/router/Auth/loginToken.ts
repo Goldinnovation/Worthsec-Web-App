@@ -1,6 +1,6 @@
 import { Router } from "express"
 const router = Router()
-import handleLoginEvent from "../../controller/Auth/handleLoginToken"
+import handleLoginEvent from '../../controller/Auth/handleLoginToken'
 
 
 

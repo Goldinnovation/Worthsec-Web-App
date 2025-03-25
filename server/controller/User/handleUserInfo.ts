@@ -1,7 +1,7 @@
 import prisma from '../../libs/prisma';
 import { Request, Response } from "express";
 import { NextFunction } from "express";
-import giveCurrentDateTime from "../../utils/date";
+import giveCurrentDateTime from '../../utils/date';
 import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
 import { initializeApp } from 'firebase/app'
 import config from '../../config/firebase'

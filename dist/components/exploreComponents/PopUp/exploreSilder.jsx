@@ -1,0 +1,15 @@
+import styles from "@styles/exploreStyle/explore.module.css";
+import Image from "next/image";
+const ExploreSlider = ({ eventArr, handleToggleitem }) => {
+    return (<div>
+                <div className={styles["explorePopUpOption"]}>
+                                {eventArr.map((event, i) => (<div key={i} className={styles["explorePopuppreviewSection"]}>
+                                    <div className={styles["explorepreviewContent"]} onClick={() => handleToggleitem(event)}>
+                                      <Image src={event.ImageCoverUpload} width={90} height={90} alt=" explore - event preview cover" quality={100}/>
+                                    </div>
+                                  </div>))}
+                              </div>
+
+            </div>);
+};
+export default ExploreSlider;
