@@ -10,11 +10,14 @@ COPY package*.json ./
 # Step 4: Install the root-level dependencies
 RUN npm install
 
-# Step 5: Copy the entire server folder into the container
-COPY server/ ./server/
+# Step 5: Copy the entire project into the container
+COPY . .
 
-# Step 6: Expose the port your Express server will run on (e.g., 3000)
+# Step 6: Build the application
+RUN npm run build
+
+# Step 7: Expose the port your server will run on (e.g., 3000)
 EXPOSE 3000
 
-# Step 7: Run the Express server from the server directory
-CMD ["npm", "run", "start", "server"]
+# Step 8: Run the server from the dist directory
+CMD ["node", "dist/server/app.js"]
