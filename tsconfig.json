@@ -8,7 +8,7 @@
       "esnext"
     ],
     "allowJs": true, 
-    "outDir": "dist-build",  
+    "outDir": "./dist",  
     "checkJs": false, 
     "skipLibCheck": true,
     "strict": true,
@@ -48,6 +48,5 @@
   ], // Include JS and JSX files
   "exclude": [
     "node_modules", 
-    "dist-build"
   ]
 }
