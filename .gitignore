@@ -20,6 +20,7 @@
 
 # production
 /build
+dist-build/
 
 # misc
 .DS_Store
@@ -40,3 +41,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+echo 'dist-build/' >> .gitignore
