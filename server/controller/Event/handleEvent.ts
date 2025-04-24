@@ -6,8 +6,7 @@ import { initializeApp } from 'firebase/app'
 import config from '../../config/firebase'
 import { Sharp } from 'sharp'
 import sharp from 'sharp'
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient()
+import prisma from '../../libs/prisma';
 import giveCurrentDateTime from '../../utils/date'
 import { Request, Response } from 'express';
 import multer from 'multer';
