@@ -120,7 +120,8 @@ app.prepare().then(() => {
         } );
 
     const port = 3000;
-    server.listen(port, (err?: Error) => {
+    
+    server.listen(port, '::',(err?: Error) => {
         if (err) throw err;
         console.log(`Ready on http://localhost:${port}`);
     });

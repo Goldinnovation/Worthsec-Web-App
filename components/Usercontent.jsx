@@ -37,7 +37,7 @@ const Usercontent = () => {
     const [notifcation, setNotification] = useState(false)
     const [connectUserToggle, setConnectUserToggle] = useState(false)
     const [eventInvitesToggle, setEventInvitesToggle] = useState(false)
-    const [expandUserOption, setExpandUserOption] = useState(false)
+    const [expandUserOption, setExpandUserOption] = useState(true)
 
 
 
@@ -124,7 +124,7 @@ const Usercontent = () => {
 
         {/* <create/> */}
         <header 
-        className="flex  h-[4vh] md:h-[5vh] bg-black lg:h-[5vh] bg-opacity-50 xl:h-[6vh] border-b border-gray-300  items-center"
+        className="flex  h-[4vh] md:h-[5vh] lg:h-[5vh] bg-opacity-50 xl:h-[6vh] border-b border-gray-300  items-center"
         >
 
             {/* Logo Section  */}
@@ -249,7 +249,7 @@ const Usercontent = () => {
         {/* Main Section */}
         <div className='flex  h-[95vh] w-full'>
             {/*  Left */}
-            {expandUserOption && (
+            {/* {expandUserOption && (
                  <div className='w-[3%] bg-black flex flex-col border-r  bg-opacity-50 border-gray-300 ' >
 
                  <div className='h-[80vh]  w-full '>
@@ -264,7 +264,7 @@ const Usercontent = () => {
                  
                   
              </div>
-            )}
+            )} */}
            
 
 
@@ -313,22 +313,25 @@ const Usercontent = () => {
                 <div>
                    
                     <div>
-                        <ExploreContent/>
+                    <ExploreContent/>
                     </div>
                 </div>
             )
 
             }
+            <div style={{
+                backgroundColor: "pinke"
+            }}>hello</div>
 
         </div>
             </div>
 
             {/* Right  */}
 
-            {expandUserOption && (
+            {/* {expandUserOption && (
              <div className='w-[3%]  bg-black border-l bg-opacity-50' >3</div>
 
-            )}
+            )} */}
             
 
             {/* User Menu */}

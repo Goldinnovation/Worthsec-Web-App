@@ -75,6 +75,7 @@
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.27.0",
     "@faker-js/faker": "^9.2.0",
+    "@flydotio/dockerfile": "^0.7.10",
     "@jest/globals": "^29.7.0",
     "@prisma/client": "^5.20.0",
     "@testing-library/dom": "^10.4.0",
