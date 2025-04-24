@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch server/app.ts",
-    "build": "next build && npx tsc && node add-extensions.js",
+    "build": "npx prisma generate && next build && npx tsc && node add-extensions.js",
     "start": "cross-env NODE_ENV=production node dist/server/app.js",
     "lint": "next lint",
     "test": "vitest",
