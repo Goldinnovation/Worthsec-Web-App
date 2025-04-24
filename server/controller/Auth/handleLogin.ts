@@ -1,5 +1,3 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
 import { Request, Response, NextFunction } from "express";
 import passport from 'passport';
 import { Express } from 'express';
