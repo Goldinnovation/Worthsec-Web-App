@@ -10,7 +10,7 @@ export const handleDelete = async(userId) => {
     try{
 
 
-        const res = await fetch(`http://localhost:3000/api/user/${userId}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/${userId}`,{
             method: 'DELETE',
            
 

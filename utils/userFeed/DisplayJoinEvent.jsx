@@ -10,7 +10,7 @@ import Image from 'next/image';
 const handleeventRequest = async(eventid) => {
   
         try{
-            const res = await fetch(`http://localhost:3000/api/DisplayJoinedEvent`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/DisplayJoinedEvent`, {
                 method: "POST", 
                 headers: {
                     'Content-Type': 'application/json'

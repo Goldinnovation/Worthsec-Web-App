@@ -28,7 +28,7 @@ prisma/server-ca.pem
 
 
 worthsec-3345b-137318638ce4.json
-.env.prodcution
+.env.development
 .env.test
 
 

@@ -94,7 +94,7 @@ const SearchInput = () => {
   const checkifUserexist = async (userIdData) => {
 
     try {
-      const res = await fetch(`http://localhost:3000/api/userTouser/${userIdData}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userTouser/${userIdData}`, {
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const SearchInput = () => {
 
   const followUserFetch = async (userIdData) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/userTouser`,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userTouser`,
         {
           method: "POST",
           headers: {
@@ -168,7 +168,7 @@ const SearchInput = () => {
   const UnFollowUserFetch = async (unFollowUserId,userNotificationId) => {
 
     try {
-      const res = await fetch(`http://localhost:3000/api/userTouser`,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userTouser`,
         {
           method: "DELETE",
           headers: {

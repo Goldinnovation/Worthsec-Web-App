@@ -14,7 +14,7 @@ function UnAddotherUser(props) {
   const UnFollowUserFetch = async (unFollowUserId,userNotificationId) => {
 
     try {
-      const res = await fetch(`http://localhost:3000/api/userTouser`,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userTouser`,
         {
           method: "DELETE",
           headers: {

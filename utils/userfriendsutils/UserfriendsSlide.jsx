@@ -11,7 +11,7 @@ import connectfriendsbubbleIcon from '@assets/confriends.png'
 
 const fetchUserImg = async(otherUserIdData) => {
    try{
-    const res = await fetch(`http://localhost:3000/api/searchforclosefriends/${otherUserIdData}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/searchforclosefriends/${otherUserIdData}`,{
         method: "GET",
         cache: "no-store",
         headers: {
@@ -66,7 +66,7 @@ const UserfriendsSlide = () => {
     
 const fetchsearchFriend = async(searchfriendsvalue) => {
     try{
-        const res = await fetch(`http://localhost:3000/api/searchforclosefriends`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/searchforclosefriends`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',

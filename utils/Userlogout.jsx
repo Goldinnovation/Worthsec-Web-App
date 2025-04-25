@@ -4,7 +4,7 @@ const Userlogout = () => {
 
     const handlelogout = async() => { 
         try{
-            const res = await fetch("http://localhost:3000/api/logout", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, {
                 method: "GET",
                 cache: 'no-store'
             })

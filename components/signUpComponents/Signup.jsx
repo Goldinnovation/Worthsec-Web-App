@@ -50,7 +50,7 @@ const Signup = () => {
            }
    
            try{
-               const res = await fetch('http://localhost:3000/api/signUpAcc', {
+               const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signUpAcc`, {
                    method: 'POST', 
                    headers: {
                        'Content-Type': 'application/json', // Set the content-type to JSON

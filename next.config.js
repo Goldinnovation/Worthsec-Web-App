@@ -20,6 +20,9 @@ const nextConfig = {
 
     return config;
   },
+  experimental: {
+    appDir: true, // Enable the app directory
+  },
 };
 
 export default nextConfig

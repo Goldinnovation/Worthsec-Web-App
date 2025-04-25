@@ -15,7 +15,7 @@ function AddOtherUser(props) {
   const followUserFetch = async (userIdData) => {
     try {
         console.log("UserIdData:", userIdData)
-      const res = await fetch(`http://localhost:3000/api/userTouser`,
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/userTouser`,
         {
           method: "POST",
           headers: {

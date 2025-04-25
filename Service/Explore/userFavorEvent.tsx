@@ -3,7 +3,7 @@
 
 export async function userFavorEvent(favoreventId: string){
     try {
-        const res = await fetch(`http://localhost:3000/api/favorEvent`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorEvent`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -22,7 +22,8 @@ const Login = () => {
 
 
        try{
-           const res = await fetch('http://localhost:3000/api/login', {
+
+           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/login`, {
                method: 'POST',        
                headers: {
                    'Content-Type': 'application/json', // Set the content-type to JSON
@@ -36,8 +37,13 @@ const Login = () => {
            }else{
                const data = await res.json();
                if(data.message === "Login Successful"){
-                router.prefetch('/user')
-                router.push('/user')
+                const username = data.userNameData
+                console.log('username', username);
+
+                console.log('inside login section before redirect and prefetch');
+                router.prefetch(`/user/${username}`)
+                // router.push('/user')
+                router.push(`/user/${username}`);
                }else {
                    console.error('failed to handle data message', data.message)
                }

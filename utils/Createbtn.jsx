@@ -149,7 +149,9 @@ const Createbtn = () => {
     
     
     try {
-      const res = await fetch('http://localhost:3000/api/events', {
+     
+      
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events`, {
         method: 'POST',
         body: formData,
       });

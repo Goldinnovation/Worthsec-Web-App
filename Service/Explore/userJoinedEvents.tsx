@@ -1,6 +1,6 @@
 export async function userJoinEvent(joinEventId: string) {
   try {
-    const res = await fetch(`http://localhost:3000/api/JoinEvent`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/JoinEvent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

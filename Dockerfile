@@ -13,15 +13,20 @@ RUN npm install
 # Step 5: Copy the entire project into the container
 COPY . .
 
-# Copy the certificate files from server/prisma to /app in the container
-COPY server/prisma/client-cert.pem /app/client-cert.pem
-COPY server/prisma/server-ca.pem /app/server-ca.pem
-COPY server/prisma/client-key.pem /app/client-key.pem
-
-
 ARG DATABASE_URL
 
 ENV DATABASE_URL=${DATABASE_URL}
+
+
+
+ARG DIRECT_URL
+
+ENV DIRECT_URL=${DIRECT_URL}
+
+
+ARG NEXT_PUBLIC_API_URL
+
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 
 # Copy the .env file into the image
@@ -34,10 +39,7 @@ RUN npx prisma generate
 # Step 7: Build the application
 RUN npm run build
 
-# COPY --from=builder /app/dist ./dist
-# COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-# COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-# COPY package*.json ./
+
 
 
 # Step 9: Expose the port your server will run on (e.g., 3000)

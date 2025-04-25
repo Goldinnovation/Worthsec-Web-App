@@ -36,7 +36,7 @@ interface Eventprops{
 export async function deleteobj(eventId: string,eventpath: string) {
     try{
         console.log(eventId);
-        const res = await fetch(`http://localhost:3000/api/events/${eventId}`,{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/events/${eventId}`,{
 
             method: 'DELETE',
             headers: {

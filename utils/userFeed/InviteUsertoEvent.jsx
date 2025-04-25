@@ -42,7 +42,7 @@ const InviteUsertoEvent = ({eventIdData}) => {
         friendsDataList: invitedfriendsList,
         eventIdData: eventIdData,
       };
-      const res = await fetch("http://localhost:3000/api/invite", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/invite`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

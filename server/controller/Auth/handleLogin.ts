@@ -7,7 +7,16 @@ import { Express } from 'express';
 
 
 interface AuthenticatedRequest extends Request{
-  user?: Express.User
+  user?: Express.User,
+  userName: any 
+}
+
+declare namespace Express {
+  export interface User {
+    userName: string; // Add your custom properties here
+    email?: string;   // Add other properties as needed
+    // Add more fields if your user object has them
+  }
 }
 /**
  * Purpose Statement — userLogin
@@ -48,8 +57,10 @@ const userLogin = (req: AuthenticatedRequest, res: Response, next: NextFunction)
           console.log("user not catched")
           return res.status(500).json({ message: "Session error" });
         }
-        console.log("user catched")
-        res.json({ message: "Login Successful" })
+       
+        const userName = user.userName
+
+        res.json({  userNameData: userName, message: "Login Successful" })
       });
     })(req, res, next);
 

@@ -15,7 +15,7 @@ interface Event {
 export const getallEventsWorldwide = async (selectedValues: string) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/explore`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/explore`,
       {
         method: "GET",
         cache: "no-store",

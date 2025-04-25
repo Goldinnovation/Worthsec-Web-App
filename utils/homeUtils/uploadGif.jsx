@@ -84,7 +84,7 @@ const UploadGif = () => {
 
 
         try{
-            const res = await fetch('http://localhost:3000/api/uploadUserBackground',{
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/uploadUserBackground`,{
                 method:'POST', 
                 body: formData
 
