@@ -14,27 +14,27 @@ import LoginToken from './router/Auth/loginToken'
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/Auth/userLogout';
-import userProfilePicture from './router/User/userInfos';
+import userProfilePicture from './router/user/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
-import searchUserReq from './router/User/userSearch';
-import userFollowUser from './router/User/userToUser';
+import searchUserReq from './router/user/userSearch';
+import userFollowUser from './router/user/userToUser';
 import exploreEvents from './router/Event/exploreEvents'
 import userJoinEvent from './router/Event/userJoinEvent';
 import displayUserJoinEvent from './router/Event/displayJoinedEvents';
-import searchForCloseFriend from './router/User/userClosefriends';
-import inviteCloseFriends from './router/User/invitefriends';
-import userNotifications from './router/User/userNotifications'; 
-import userInterestDatarouter from './router/User/userInterestData'
+import searchForCloseFriend from './router/user/userClosefriends';
+import inviteCloseFriends from './router/user/invitefriends';
+import userNotifications from './router/user/userNotifications'; 
+import userInterestDatarouter from './router/user/userInterestData'
 import userCategoryEventReq from './router/Event/userCategory'
 import userFavorEventReqMob from './router/Event/favorEventMobile'
 import newExploreEventData from './router/Event/newExploreData'
-import uploadUserBackground from './router/User/userGifbg'
-import UserDataMobile from './router/User/userDataMobile'
-import userQRRequest from './router/User/userQrRequest'
+import uploadUserBackground from './router/user/userGifbg'
+import UserDataMobile from './router/user/userDataMobile'
+import userQRRequest from './router/user/userQrRequest'
 import expressSession from "express-session";
-import uploadMobileUserProfilePicture from './router/User/userProfilePictureMobileUpload'
-import uploadUserGifBgMobile from './router/User/userGifBgMobile'
+import uploadMobileUserProfilePicture from './router/user/userProfilePictureMobileUpload'
+import uploadUserGifBgMobile from './router/user/userGifBgMobile'
 
 
 const store = new (connectPgSimple(expressSession))({
