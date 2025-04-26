@@ -7,7 +7,7 @@ import { userJoinEvent } from "@/Service/Explore/userJoinedEvents";
 import ExploreSlider from "../PopUp/exploreSilder";
 import ExplorePopUpOption from "../PopUp/explorePopUpOption";
 import React from "react";
-
+import { useMemo } from "react";
 interface userEvent {
   ImageCoverUpload: string;
   eventDate: string;

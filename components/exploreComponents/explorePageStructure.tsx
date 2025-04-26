@@ -1,11 +1,8 @@
 'use client'
 import React, { useEffect, useState } from "react";
 import styles from "@styles/exploreStyle/explore.module.css";
-import Image from "next/image";
 import ExploreFeed from "./Feed/Explore_feed";
-// import "tailwindcss/tailwind.css"
-
-
+import { useMemo } from "react";
 
 interface Event {
   eventId: string;
@@ -51,6 +48,7 @@ const ExploreContent: React.FC = () => {
       try {
         const encodeData = encodeURI(JSON.stringify(selectedQuery));
         const exploreData = await getallEventsWorldwide(encodeData);
+        console.log('exploreData', exploreData);
        
         setuserExploreData(exploreData);
       } catch (error) {
@@ -61,85 +59,35 @@ const ExploreContent: React.FC = () => {
     // Sets up the interval for the period of the fetch
     const invervalId = setInterval(fetchexploreData, 52000);
 
+
     fetchexploreData();
 
     return () => clearInterval(invervalId);
 
     // Renders the page from everytime the selectedValue is enterd
   }, [selectedQuery]);
-console.log(userexploreData);
 
+const memoizedUserExploreData = useMemo(() => userexploreData, [userexploreData]);
   return (
-    <div>
-      <section className={styles["middleSection"]}>
-      {/* Head Cover  */}
-      <div className="h-[35vh] w-full bg-red-300 flex">
-        <div className="bg-green-500 w-6/12" >1</div>
-        <div className="bg-orange-500 w-6/12">2
-
-        </div>
-      </div>
-        {/* Head Section */}
-        <div className={styles["middleContentarea"]}>
-          
-
-          <div className={styles["middleContentbar_left"]}></div>
+    <div style={{
+      border: "1px solid grey", 
+      width: "100%", 
+      height: "100%"
 
 
-          <div className={styles["middleContentbar"]}>
-            <div className={styles["EventStateArea"]}>
-              <div  className={styles["EventStateLable"]}>
-                Underground 
-              </div>
+
+    }}>
+   
+         hey
+        
+        <div className={styles["explorefeedContent"]}>
              
-            </div>
-            <div>
-            </div>
-         
-          </div>
-          <div className={styles["middleContentbar_right"]}></div>
-
-
-
-        </div>
-
-
-      
-
-       
-
-        {/* Feed Section */}
-        <div className={styles["middleContentFeed"]}>
-
-          {/* Left Feed Section  */}
-          {/* <div className={styles["exploreEventContent"]}>
-            <div className={styles["exploreEventhead"]}>
-              <div className={styles["exploreEventheadMoodOpt"]}>Mood</div>
-              <div  className={styles["exploreEventheadSharedOpt"]}>Shared</div>
-            </div>
-            <div>
-                dsd
-            </div>
-          </div> */}
-
-         {/* Right Feed Section  */}
-          <div className={styles["exploreEventContentRight"]}>
-           
-            <div className={styles["explorefeedContent"]}>
-              {/* <div className={styles["explorefeedEventsHead"]}>
-                <div className={styles["explorefeedEventsHeadTitle"]}>
-                 Category
-                </div>
-              </div> */}
               {/* Explore Feed */}
-                <ExploreFeed eventDataArr ={userexploreData} />
+                {/* <ExploreFeed eventDataArr ={memoizedUserExploreData} /> */}
            
             </div>
-          </div>
 
 
-        </div>
-      </section>
     </div>
   );
 };

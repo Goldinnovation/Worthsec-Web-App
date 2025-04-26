@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 // import MailIcon from '@assets/Mail3d.png'
 import MailIcon from '../../assets/Mail3d.png'
+import Settingsbtn from '@/utils/Settingsbtn'
 
 
 interface ContentProps{
@@ -22,7 +23,7 @@ const  LeftnavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handPr
             </div>
 
             <div className='text-white text-xs'>
-                Explore 
+                Profile
             </div>
         </div>
         <div className=' flex flex-col items-center justify-center gap-1'> 
@@ -31,17 +32,16 @@ const  LeftnavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handPr
 
             </div>
             <div className='text-white text-xs'>
-                Profile
+                Message
             </div>
         </div>
         <div className='flex flex-col items-center justify-center gap-1'> 
 
         <div>
             <Image  src={MailIcon} width={30} height={30} alt='Explor Icon'/>
-
             </div>
             <div className='text-white text-xs'>
-                Favored
+                Notes
             </div>
         </div>
 

@@ -37,10 +37,9 @@ const Login = () => {
            }else{
                const data = await res.json();
                if(data.message === "Login Successful"){
-                const username = data.userNameData
-                console.log('username', username);
-
-                console.log('inside login section before redirect and prefetch');
+                const user = data.userNameData
+                const username = user?.userName
+             
                 router.prefetch(`/user/${username}`)
                 // router.push('/user')
                 router.push(`/user/${username}`);
