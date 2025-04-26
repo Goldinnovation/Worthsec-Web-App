@@ -57,12 +57,12 @@ const Login = () => {
      
   return (
     <div>
-        <div className={style["mainBackground"]}>
+        {/* <div className={style["mainBackground"]}>
             <video autoPlay loop muted className={style["mainvideoContent"]}>
             <source src='/friends3.mp4' type='video/mp4'/>
             </video>
             
-        </div>
+        </div> */}
          <div className={style["logoWorthsec"]}>
                             <button className={style['worthsecAreabtn']} disabled>WORTHSEC</button>
                         </div>
