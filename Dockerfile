@@ -30,7 +30,6 @@ ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 
 # Copy the .env file into the image
-COPY .env .env
 
 # Step 6: Generate the Prisma Client
 RUN npx prisma generate
