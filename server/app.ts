@@ -14,7 +14,7 @@ import LoginToken from './router/Auth/loginToken'
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/Auth/userLogout';
-import userProfilePicture from './router/User/userInfos';
+// import userProfilePicture from './router/User/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
 import searchUserReq from './router/User/userSearch';
@@ -88,7 +88,7 @@ app.prepare().then(() => {
     server.use('/api/login', loginReq);
     server.use('/api/login-token',LoginToken)
     server.use('/api/logout', logoutReq);
-    server.use('/api/user', userProfilePicture);
+    // server.use('/api/user', userProfilePicture);
     server.use('/user', isAuth);
     server.use('/api/search', searchUserReq);
     server.use('/api/userTouser', userFollowUser);
