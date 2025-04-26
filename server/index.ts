@@ -16,22 +16,22 @@ import Seqstore from 'connect-session-sequelize';
 import connectPgSimple from 'connect-pg-simple';
 import cors from 'cors';
 import logoutReq from './router/Auth/userLogout';
-import userReq from './router/User/userInfos';
+import userReq from './router/user/userInfos';
 import { initializeApp } from 'firebase/app';
 import config from './config/firebase';
-import searchUserReq from './router/User/userSearch';
-import userFollowUser from './router/User/userToUser';
+import searchUserReq from './router/user/userSearch';
+import userFollowUser from './router/user/userToUser';
 import exploreEvents from './router/Event/exploreEvents'
 import userJoinEvent from './router/Event/userJoinEvent';
 import displayUserJoinEvent from './router/Event/displayJoinedEvents';
-import searchForCloseFriend from './router/User/userClosefriends';
-import inviteCloseFriends from './router/User/invitefriends';
-import userNotifications from './router/User/userNotifications'; 
-import userInterestDatarouter from './router/User/userInterestData'
+import searchForCloseFriend from './router/user/userClosefriends';
+import inviteCloseFriends from './router/user/invitefriends';
+import userNotifications from './router/user/userNotifications'; 
+import userInterestDatarouter from './router/user/userInterestData'
 import userCategoryEventReq from './router/Event/userCategory'
 import userFavorEventReqMob from './router/Event/favorEventMobile'
 import newExploreEventData from './router/Event/newExploreData'
-import uploadUserBackground from './router/User/userGifbg'
+import uploadUserBackground from './router/user/userGifbg'
 import expressSession from "express-session";
 
 import nextConfig from '@/next.config.js';
