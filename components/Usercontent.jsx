@@ -143,7 +143,7 @@ const Usercontent = () => {
      }}>
 
          <div style={{
-            // backgroundColor: "black", 
+            backgroundColor: "black", 
             height: "100%",
             width: "3%",
             borderTop: "1px solid grey",
