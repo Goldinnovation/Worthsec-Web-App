@@ -67,7 +67,7 @@ const ExploreContent: React.FC = () => {
     // Renders the page from everytime the selectedValue is enterd
   }, [selectedQuery]);
 
-const memoizedUserExploreData = useMemo(() => userexploreData, [userexploreData]);
+// const memoizedUserExploreData = useMemo(() => userexploreData, [userexploreData]);
   return (
     <div style={{
       border: "1px solid grey", 

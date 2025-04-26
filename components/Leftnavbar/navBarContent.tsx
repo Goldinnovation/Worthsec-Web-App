@@ -17,7 +17,9 @@ const  LeftnavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handPr
     <div className=' h-[70%] w-[80%]] flex flex-col items-center'>
         <div className='w-[80%]  h-[90%] grid grid-cols-1 grid-rows-[repeat(3,100px)] '> 
         <div className=' flex flex-col items-center justify-center gap-1'> 
-            <div  onClick={handleExploreToggle}>
+            <div  
+            // onClick={handleExploreToggle}
+            >
             <Image  src={MailIcon} width={30} height={30} alt='Explor Icon'/>
 
             </div>
@@ -27,7 +29,9 @@ const  LeftnavBarContent: React.FC<ContentProps> = ({handleExploreToggle, handPr
             </div>
         </div>
         <div className=' flex flex-col items-center justify-center gap-1'> 
-        <div onClick={handProfileToggle}>
+        <div 
+        // onClick={handProfileToggle}
+        >
             <Image  src={MailIcon} width={30} height={30} alt='Explor Icon'/>
 
             </div>

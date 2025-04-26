@@ -4,7 +4,7 @@ import React from "react"
 import StoryComponent from "./story/storyComponent"
 import ExploreComponent from "./explore/exploreComponent"
 
-const MainComponent  = () => {
+const  MainComponent  = () => {
     return(
         <div style={{
             // backgroundColor: "orange", 

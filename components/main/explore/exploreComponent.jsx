@@ -1,6 +1,6 @@
 
 import React from "react"
-import ExploreContent from "@/components/exploreComponents/explorePageStructure"
+// import ExploreContent from "@/components/exploreComponents/explorePageStructure"
 
 
 
@@ -46,7 +46,7 @@ const ExploreComponent = () => {
                  padding: "1%" 
 
             }}>
-                     <ExploreContent/>
+                     {/* <ExploreContent/> */}
             </div>
          
 
