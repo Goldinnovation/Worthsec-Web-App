@@ -44,6 +44,7 @@ export default function(passport: PassportStatic){
                 return done(null,false); //user not found
             }
 
+            console.log('user', user);
             const checkPasswordMatch = await bcrypt.compare(password, user.userPassword1);
 
             if(checkPasswordMatch){

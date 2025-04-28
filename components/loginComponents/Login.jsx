@@ -32,6 +32,7 @@ const Login = () => {
                body: JSON.stringify(loginData)
            })
 
+           console.log('res', res);
            if(!res.ok ){
                throw new (error)
            }else{
