@@ -17,51 +17,68 @@ const Login = () => {
     setloginData({ ...loginData, [e.target.className]: e.target.value });
   };
 
+  const handleUserLoggedIn = async(res) => {
+    try {
+      setFlashToggle(true);
+      setFlashMessage("Login Successful - page is loading...");
+
+      const data = await res.json();
+      console.log('data', data);
+      if (data.message === "Login Successful") {
+        const user = data.userNameData;
+        const username = user?.userName;
+
+        const intervalId = setInterval(() => {
+          setFlashToggle(false);
+          setFlashMessage("");
+          router.prefetch(`/user/${username}`);
+          router.push(`/user/${username}`);
+          clearInterval(intervalId)
+        }, 3000)
+
+
+      }
+
+    } catch {
+      console.log('Error on handleUserLoggedIn', error);
+
+    }
+
+  }
+
+  const handleResError = (res) => {
+    if(res.status == 401){
+      setFlashToggle(true);
+      setFlashMessage("The email or password you entered is incorrect. Please check your credentials and try again.");
+      const intervalId = setInterval(() => {
+        setFlashToggle(false);
+        setFlashMessage("");
+        setloginData({
+          loginEmail: "",
+          loginPassword: "",
+        })
+        clearInterval(intervalId);
+      }, 5000);
+    }else{
+        throw new Error("Error on handleResError", error)
+    }
+  
+
+  }
   const handleInputToBackend = async (email, password) => {
     try {
-      
-       const res = await LoginAPI(email, password)
-      if (!res.ok || res.status(401)) {
 
+      const res = await LoginAPI(email, password)
 
-          setFlashToggle(true);
-          setFlashMessage("The email or password you entered is incorrect. Please check your credentials and try again.");
-          const intervalId = setInterval(() => {
-            setFlashToggle(false);
-            setFlashMessage("");
-            setloginData({
-              loginEmail: "",
-              loginPassword: "",
-            })
-            clearInterval(intervalId);
-          }, 5000);
-        // throw new error();
+      if (!res.ok) {
+        handleResError(res)
       } else {
-        setFlashToggle(true);
-        setFlashMessage("Login Successful - page is loading...");
-     
-        const data = await res.json();
-        console.log('data', data);
-        if (data.message === "Login Successful") {
-          const user = data.userNameData;
-          const username = user?.userName;
 
-          const intervalId = setInterval(() =>{
-            setFlashToggle(false);
-            setFlashMessage("");
-            router.prefetch(`/user/${username}`);
-            router.push(`/user/${username}`);
-            clearInterval(intervalId)
-          }, 3000)
-          
-         
-        } 
-         else {
-          console.error("failed to handle data message", data.message);
-        }
+        handleUserLoggedIn(res)
+
       }
     } catch (error) {
-      console.error("fetch error");
+      console.error("fetch error on handleInputToBackend", error);
     }
   };
 
@@ -78,7 +95,7 @@ const Login = () => {
       setloginData({
         loginEmail: "",
         loginPassword: "",
-        });
+      });
 
     } else {
       setFlashToggle(true);
@@ -128,7 +145,7 @@ const Login = () => {
 
   return (
     <div>
- 
+
       <div className={style["logoWorthsec"]}>
         <button className={style["worthsecAreabtn"]} disabled>
           WORTHSEC
