@@ -44,12 +44,12 @@ const userLogin = (req: AuthenticatedRequest, res: Response, next: NextFunction)
       }
       if (!user) {
         console.log("user not found")
-        return res.status(401).json("user not found");
+        return res.status(401).json({message: "user not found"});
       }
       req.login(user, (err) => {
         if (err) {
           console.log("user not catched")
-          return res.status(500).json({ message: "Session error" });
+           return res.status(500).json({ message: "Session error" });
         }
        
         res.json({  userNameData: user, message: "Login Successful" })

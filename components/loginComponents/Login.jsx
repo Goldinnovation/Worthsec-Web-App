@@ -21,13 +21,27 @@ const Login = () => {
     try {
       
        const res = await LoginAPI(email, password)
-      if (!res.ok) {
-        throw new error();
+      if (!res.ok || res.status(401)) {
+
+
+          setFlashToggle(true);
+          setFlashMessage("The email or password you entered is incorrect. Please check your credentials and try again.");
+          const intervalId = setInterval(() => {
+            setFlashToggle(false);
+            setFlashMessage("");
+            setloginData({
+              loginEmail: "",
+              loginPassword: "",
+            })
+            clearInterval(intervalId);
+          }, 5000);
+        // throw new error();
       } else {
         setFlashToggle(true);
         setFlashMessage("Login Successful - page is loading...");
      
         const data = await res.json();
+        console.log('data', data);
         if (data.message === "Login Successful") {
           const user = data.userNameData;
           const username = user?.userName;
@@ -41,7 +55,8 @@ const Login = () => {
           }, 3000)
           
          
-        } else {
+        } 
+         else {
           console.error("failed to handle data message", data.message);
         }
       }
