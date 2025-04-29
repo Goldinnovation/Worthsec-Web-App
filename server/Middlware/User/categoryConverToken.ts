@@ -23,7 +23,7 @@ const DecodeANDVerifyToken = (
 )  =>  {
   try{
     if (req.body) {
-      const SECRET_KEY = process.env.SECRET_KEY as string;
+      const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
       const usertoken = req.body.token;
       const decoded = jwt.verify(usertoken, SECRET_KEY) as DJwtPayload;
     

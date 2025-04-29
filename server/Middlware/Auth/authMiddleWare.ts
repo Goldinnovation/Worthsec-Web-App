@@ -16,7 +16,7 @@ const authMiddlewareCheck = (
   next: NextFunction
 ) => {
   const token = req.headers["authorization"]?.split(" ")[1];
-  const tokenKey = process.env.SECRET_KEY as string;
+  const tokenKey = process.env.JWT_SECRET_KEY as string;
 
   try {
     if (req.user) {

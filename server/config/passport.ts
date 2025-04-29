@@ -11,7 +11,7 @@ dotenv.config();
 
 
 const prisma = new PrismaClient();
-const SECRET_KEY=  process.env.SECRET_KEY as string
+const SECRET_KEY=  process.env.JWT_SECRET_KEY as string
 
 
 if (!SECRET_KEY) {

@@ -28,7 +28,7 @@ const tokenDecodeAuth = (
   }
 
     const token = authHeader.split(' ')[1]
-    const SECRET_KEY = process.env.SECRET_KEY as string;
+    const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
     const decoded = jwt.verify(token, SECRET_KEY) as DJwtPayload;
     
     
