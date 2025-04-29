@@ -1,7 +1,5 @@
 "use client"
 import React from "react"
-import LeftnavBarContent from "../Leftnavbar/navBarContent"
-import Settingsbtn from "@/utils/Settingsbtn"
 
 const HeaderComponent = () => {
  
@@ -20,7 +18,8 @@ const HeaderComponent = () => {
                 width: "100%",
                 height: "90%"
             }}>
-                <LeftnavBarContent/>
+                {/* <LeftnavBarContent/> */}
+                nav
             </div>
             <div style={{
                 // backgroundColor: "orange",
