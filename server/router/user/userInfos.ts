@@ -1,6 +1,6 @@
 import { Router } from "express";
-const router = Router()
 import {getUserProfilePicture, getUserProfileImgData as createProfilePicture, deleteUserProfilePicture} from '../../controller/User/handleUserInfo'
+const router = Router()
 import processUserPictureFile from '../../Middlware/User/processUserPicture'
 
 

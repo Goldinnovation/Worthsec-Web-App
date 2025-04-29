@@ -35,6 +35,7 @@ import userQRRequest from './router/user/userQrRequest'
 import expressSession from "express-session";
 import uploadMobileUserProfilePicture from './router/user/userProfilePictureMobileUpload'
 import uploadUserGifBgMobile from './router/user/userGifBgMobile'
+import userAuthCheck from './router/Auth/userCheck'
 
 
 const store = new (connectPgSimple(expressSession))({
@@ -89,7 +90,7 @@ app.prepare().then(() => {
     server.use('/api/login-token',LoginToken)
     server.use('/api/logout', logoutReq);
     server.use('/api/user', userProfilePicture);
-    server.use('/user', isAuth);
+    server.use('/user/c', userAuthCheck);
     server.use('/api/search', searchUserReq);
     server.use('/api/userTouser', userFollowUser);
     server.use('/api/explore', exploreEvents);

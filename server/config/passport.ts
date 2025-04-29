@@ -33,7 +33,6 @@ interface User{
 export default function(passport: PassportStatic){
     passport.use(
         new LocalStrategy({usernameField: 'loginEmail', passwordField: 'loginPassword'},async(username: string, password: string, done: (Error: any, user?: Express.User | false, options?: { message: string }) => void ) => {
-            console.log('Local strategy is triggered');
            try{
             const user = await prisma.account.findFirst({    //checks if the user exist in the db 
                 where: {
@@ -44,11 +43,10 @@ export default function(passport: PassportStatic){
                 return done(null,false); //user not found
             }
 
-            console.log('user', user);
             const checkPasswordMatch = await bcrypt.compare(password, user.userPassword1);
 
             if(checkPasswordMatch){
-                console.log('Authentication successful')
+                console.log('password matched - user successfully logged in')
                
                 return done(null, user); // Authentication was successful
             }
@@ -100,7 +98,6 @@ export default function(passport: PassportStatic){
 
     
     passport.serializeUser((user: Express.User | false, done:(err: any, id?: string) => void ) => {  
-       console.log('stores the user ID in the session')
        
         done(null,( user as User).userId);
     });

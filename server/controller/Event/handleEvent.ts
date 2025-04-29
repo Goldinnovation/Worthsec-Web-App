@@ -64,6 +64,7 @@ interface EventCreateInput {
 const createEvent = async (req: AuthenticatedRequest, res: Response) => {
 
     try {
+        // Handles Image data, convert to url
       const cloudImageUrl = await FirebaseService(req, res);
 
       const userId = req.user.userId;

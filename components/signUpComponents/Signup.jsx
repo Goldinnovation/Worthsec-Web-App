@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import style from '@styles/login-sign.module.css'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const Signup = () => {
        // displays a message if the password data is empty or does not match 
@@ -48,6 +49,7 @@ const Signup = () => {
                
                return; 
            }
+           
    
            try{
                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signUpAcc`, {
@@ -140,11 +142,67 @@ const Signup = () => {
                            
 
                     </div> 
-                    <div className={style["signUpUsercreateArea"]}>
-                        <button className={style["submitBtn"]} onClick={handleSubmit}>
-                            <p>Create Account</p>
-                        </button>
-                    </div>
+                     <div
+                                    style={{
+                                      //   backgroundColor: "pink",
+                                      height: "10%",
+                                      display: "flex",
+                                      flexDirection: "column",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      textAlign: "center",
+                                    }}
+                                  >
+                                    <button
+                                      style={{
+                                        backgroundColor: "white",
+                                        border: "1px solid black",
+                                        height: "60%",
+                                        width: "50%",
+                                        borderRadius: "50px",
+                                        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Adds shadow
+                                        cursor: "pointer", // Makes it look clickable
+                                        fontSize: "16px", // Adjusts font size
+                                        fontWeight: "400", // Makes text bold
+                                        transition: "all 0.3s ease-in-out",
+                                      }}
+                                      onClick={handleSubmit}
+                                    >
+                                      Create Account
+                                    </button>
+                                  </div>
+                    <div
+                style={{
+                //   backgroundColor: "blue",
+                  height: "10%",
+                  display: "flex",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "5%",
+                  marginTop: "3%"
+
+                }}
+              >
+                <p className={style["noAccText"]}>You have an Account ?</p>
+                <Link
+                  href={"/"}
+                  style={{
+                    width: "15%",
+                    height: "1%",
+                    fontSize: "15px",
+                    color: "skyblue",
+                    border: "1px solid white",
+                    backgroundColor: "rgba(18, 18, 18, 0.32)",
+                    textDecoration: "none",
+                    borderRadius: "7px",
+                    padding: "2%",
+                  }}
+                >
+                  Login
+                </Link>
+              </div>
 
                     </form>
 

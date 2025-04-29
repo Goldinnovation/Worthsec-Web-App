@@ -19,12 +19,6 @@
 
 }
 
-.signUpTitle{
-    /* background-color: rebeccapurple; */
-    /* border-top: 1px solid white; */
-    
-   
-}
 
 .signUpEmailNamePasswordArea{
     /* background-color: orange; */
@@ -57,38 +51,11 @@
 
 
 
-.loginContentArea{
-    background-color: rgba(116, 10, 138, 0.418);
-    height: 450px;
-    width: 20%;
-    position: absolute;
-    top: 20%;
-    left: 72%;
-    border-radius: 10px ;
-    display: flex;
-    flex-direction: column;
-}
-
-.loginContent{
-    background-color: rgba(9, 101, 110, 0.371);
-    height: 450px;
-    text-align: center;
-    border: 1px solid white;
-    border-radius: 10px ;
-    display: flex;
-    flex-direction: column;
-   
-}
 
 
-.loginEmailPasswordArea{
-    /* background-color: orange; */
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-top: 10%;
-}
+
+
+
 
 
 .loginBtn{
@@ -98,7 +65,7 @@
 .loginEmail{
     background-color: rgba(242, 243, 244, 0.637);
     height: 20px;
-    width: 70%;
+    width: 90%;
     border-radius: 10px;
 }
 
